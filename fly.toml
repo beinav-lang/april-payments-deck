@@ -1,0 +1,37 @@
+# Fly.io deployment for the April 2026 Payments deck + comments backend.
+# Stable URL: https://<app-name>.fly.dev/april_2026_payments_summary_slides.html
+#
+# Deploy:
+#   flyctl auth signup           # one-time (or `flyctl auth login` if you already have an account)
+#   flyctl launch --no-deploy    # picks app name + region, generates fly.toml; accept defaults
+#   flyctl volumes create comments_data --region <region> --size 1   # 1 GB persistent disk
+#   flyctl deploy
+#
+# Comments persist on the volume mounted at /data, regardless of restarts/redeploys.
+
+app = "april-payments-deck"   # CHANGE THIS to a globally-unique name (e.g. doorloop-april-deck)
+primary_region = "iad"         # any region works; iad = US East (Virginia)
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  COMMENTS_FILE = "/data/comments.json"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"        # save free-tier credit when idle
+  auto_start_machines = true         # cold-start on incoming request (~2-3s)
+  min_machines_running = 0
+  processes = ["app"]
+
+[[mounts]]
+  source = "comments_data"
+  destination = "/data"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256                    # plenty for stdlib HTTP server
