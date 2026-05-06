@@ -2203,55 +2203,148 @@
     <h2 class="section-title">The five-step funnel.</h2>
 
     <style>
-      .j-arrows { display: flex; align-items: center; margin-top: 6px; padding: 0 }
-      .j-arrow-spacer { flex: 0.5 }
-      .j-arrow {
-        position: relative; height: 28px;
-        display: flex; align-items: center; justify-content: center;
-        margin: 0 6px;
+      /* Methodology stepper — diagram-grade card grid */
+      .jx-wrap { margin-top: 22px; }
+
+      /* Top brackets: anchor the 45-day windows above the cards */
+      .jx-brackets {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+        margin-bottom: 10px;
+        height: 26px;
+        align-items: stretch;
       }
-      .j-arrow.span-blue  { flex: 3; --c: var(--blue); }
-      .j-arrow.span-green { flex: 1; --c: var(--green); }
-      .j-arrow::before {
-        content: ""; position: absolute; left: 6px; right: 6px; top: 50%;
-        border-top: 1.5px dashed var(--c);
+      .jx-bracket {
+        position: relative;
+        height: 100%;
       }
-      .j-arrow .arrow-l, .j-arrow .arrow-r {
-        position: absolute; top: 50%; width: 0; height: 0;
-        transform: translateY(-50%);
+      .jx-bracket-blue  { grid-column: 1 / span 4; --c: var(--blue); }
+      .jx-bracket-green { grid-column: 5 / span 1; --c: var(--green); }
+      .jx-bracket::before {
+        content: "";
+        position: absolute;
+        left: 14px; right: 14px;
+        top: 50%;
+        bottom: 0;
+        border-top: 1.5px solid var(--c);
+        border-left: 1.5px solid var(--c);
+        border-right: 1.5px solid var(--c);
+        border-radius: 4px 4px 0 0;
       }
-      .j-arrow .arrow-l { left: 0; border-right: 7px solid var(--c); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-      .j-arrow .arrow-r { right: 0; border-left: 7px solid var(--c); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-      .j-arrow > span.label { position: relative; z-index: 1; background: var(--bg, #f6f8fc); padding: 0 10px; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--c); white-space: nowrap; }
+      .jx-bracket-label {
+        position: absolute;
+        left: 50%; top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--bg, #ECEEF5);
+        padding: 0 10px;
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--c);
+        white-space: nowrap;
+        z-index: 1;
+      }
+
+      /* Card grid */
+      .jx-cards {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+        position: relative;
+      }
+      .jx-card {
+        background: #fff;
+        border: 1px solid var(--divider);
+        border-radius: 14px;
+        padding: 22px 18px 18px;
+        box-shadow: 0 1px 4px rgba(22,32,80,0.04);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        position: relative;
+      }
+      .jx-card.active {
+        border: 2px solid var(--blue);
+        padding: 21px 17px 17px;
+      }
+      .jx-num {
+        width: 48px; height: 48px;
+        border-radius: 50%;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .jx-card.s1 .jx-num { background: #94a3b8; box-shadow: 0 0 0 4px rgba(148,163,184,0.16); }
+      .jx-card.s2 .jx-num { background: var(--orange); box-shadow: 0 0 0 4px rgba(234,88,12,0.16); }
+      .jx-card.s3 .jx-num { background: var(--blue); box-shadow: 0 0 0 4px rgba(49,133,252,0.16); }
+      .jx-card.s4 .jx-num { background: var(--green); box-shadow: 0 0 0 4px rgba(5,150,105,0.16); }
+      .jx-card.s5 .jx-num { background: var(--purple); box-shadow: 0 0 0 4px rgba(124,58,237,0.16); }
+      .jx-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.3;
+      }
+      .jx-tag {
+        display: inline-block;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        color: var(--muted);
+        background: #f1f5f9;
+        padding: 4px 10px;
+        border-radius: 999px;
+        margin-top: auto;
+      }
+      .jx-card.active .jx-tag { background: rgba(49,133,252,0.10); color: var(--blue); }
     </style>
 
-    <div class="journey" style="margin-top: 18px">
-      <div class="j-step s1"><span class="j-num">1</span><div>Lease activated<span class="j-tag">Step 1</span></div></div>
-      <div class="j-step s2"><span class="j-num">2</span><div>PM invite sent<span class="j-tag">PM · stable, biggest leak</span></div></div>
-      <div class="j-step s3 active"><span class="j-num">3</span><div>Tenant activates portal<span class="j-tag">KPI 1</span></div></div>
-      <div class="j-step s4"><span class="j-num">4</span><div>First payment<span class="j-tag">KPI 2</span></div></div>
-      <div class="j-step s5"><span class="j-num">5</span><div>Payment retained<span class="j-tag">KPI 3</span></div></div>
-    </div>
+    <div class="jx-wrap">
+      <div class="jx-brackets">
+        <div class="jx-bracket jx-bracket-blue">
+          <span class="jx-bracket-label">45 days from lease activation</span>
+        </div>
+        <div class="jx-bracket jx-bracket-green">
+          <span class="jx-bracket-label">2nd payment within 45 days</span>
+        </div>
+      </div>
 
-    <div class="j-arrows">
-      <div class="j-arrow-spacer"></div>
-      <div class="j-arrow span-blue">
-        <span class="arrow-l"></span>
-        <span class="label">45 days from lease activation</span>
-        <span class="arrow-r"></span>
+      <div class="jx-cards">
+        <div class="jx-card s1">
+          <span class="jx-num">1</span>
+          <div class="jx-title">Lease activated</div>
+        </div>
+        <div class="jx-card s2">
+          <span class="jx-num">2</span>
+          <div class="jx-title">PM invite sent</div>
+        </div>
+        <div class="jx-card s3">
+          <span class="jx-num">3</span>
+          <div class="jx-title">Tenant activates portal</div>
+        </div>
+        <div class="jx-card s4">
+          <span class="jx-num">4</span>
+          <div class="jx-title">First payment</div>
+        </div>
+        <div class="jx-card s5">
+          <span class="jx-num">5</span>
+          <div class="jx-title">Payment retained</div>
+        </div>
       </div>
-      <div class="j-arrow span-green">
-        <span class="arrow-l"></span>
-        <span class="label">2nd payment within 45 days</span>
-        <span class="arrow-r"></span>
-      </div>
-      <div class="j-arrow-spacer"></div>
     </div>
 
     <div class="w45-band" style="margin-top: 8px">
       <div class="w45-narr">
         <div class="w45-eyebrow">Methodology</div>
-        <div class="w45-title">Why the funnel uses a 45-day window</div>
+        <div class="w45-title">Why the funnel uses a 45-day window?</div>
         <div style="background: #eef3fb; border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 6px; margin: 4px 0 12px; font-size: 13px; line-height: 1.55; color: var(--text)">
           <strong style="color: var(--blue); text-transform: uppercase; letter-spacing: 0.8px; font-size: 11px; display: block; margin-bottom: 4px">Our effective time window</strong>
           Every funnel KPI in this deck is computed inside a <strong>45-day window</strong> — anchored on <strong>lease activation</strong> for <strong>Portal Activation</strong> and <strong>First Payment Conversion</strong>, and on the <strong>1st payment</strong> for <strong>Payment Retention</strong>.
