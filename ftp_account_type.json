@@ -1,0 +1,206 @@
+[
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 2874,
+        "DBTENANTS": 369
+    },
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 9563,
+        "DBTENANTS": 2608
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1745,
+        "DBTENANTS": 359
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 9528,
+        "DBTENANTS": 2836
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1789,
+        "DBTENANTS": 290
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 9931,
+        "DBTENANTS": 2977
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1601,
+        "DBTENANTS": 308
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 11117,
+        "DBTENANTS": 3117
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1444,
+        "DBTENANTS": 274
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 10336,
+        "DBTENANTS": 3203
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 2059,
+        "DBTENANTS": 308
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 11088,
+        "DBTENANTS": 3313
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1821,
+        "DBTENANTS": 278
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 11954,
+        "DBTENANTS": 3363
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1640,
+        "DBTENANTS": 297
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 12257,
+        "DBTENANTS": 3446
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1665,
+        "DBTENANTS": 259
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 11741,
+        "DBTENANTS": 3478
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 2143,
+        "DBTENANTS": 282
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 10743,
+        "DBTENANTS": 3424
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1777,
+        "DBTENANTS": 254
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 11525,
+        "DBTENANTS": 3432
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1280,
+        "DBTENANTS": 234
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 9661,
+        "DBTENANTS": 3341
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 3263,
+        "DBTENANTS": 345
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 11406,
+        "DBTENANTS": 3388
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 2039,
+        "DBTENANTS": 321
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 12481,
+        "DBTENANTS": 3774
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1389,
+        "DBTENANTS": 260
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 12644,
+        "DBTENANTS": 3641
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 1578,
+        "DBTENANTS": 271
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 13676,
+        "DBTENANTS": 3853
+    },
+    {
+        "MONTH": "2026-05-01",
+        "ACCOUNT_PAID_SEGMENT": "Account first-time paid this month",
+        "TENANTS": 158,
+        "DBTENANTS": 75
+    },
+    {
+        "MONTH": "2026-05-01",
+        "ACCOUNT_PAID_SEGMENT": "Existing account (paid before)",
+        "TENANTS": 2281,
+        "DBTENANTS": 1359
+    }
+]

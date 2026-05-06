@@ -1,0 +1,114 @@
+[
+    {
+        "PAYMENTS_MONTH": "2025-09-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 13793,
+        "LEASES_WITH_PORTAL_ACTIVE": 8196,
+        "ATTACH_RATE": "59.421400"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-09-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 12717,
+        "LEASES_WITH_PORTAL_ACTIVE": 3441,
+        "ATTACH_RATE": "27.058300"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-10-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 13478,
+        "LEASES_WITH_PORTAL_ACTIVE": 7702,
+        "ATTACH_RATE": "57.145000"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-10-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 12120,
+        "LEASES_WITH_PORTAL_ACTIVE": 4769,
+        "ATTACH_RATE": "39.348200"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-11-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 13762,
+        "LEASES_WITH_PORTAL_ACTIVE": 8228,
+        "ATTACH_RATE": "59.787800"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-11-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 12419,
+        "LEASES_WITH_PORTAL_ACTIVE": 3121,
+        "ATTACH_RATE": "25.130800"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-12-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 12755,
+        "LEASES_WITH_PORTAL_ACTIVE": 7597,
+        "ATTACH_RATE": "59.561000"
+    },
+    {
+        "PAYMENTS_MONTH": "2025-12-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 14120,
+        "LEASES_WITH_PORTAL_ACTIVE": 4236,
+        "ATTACH_RATE": "30.000000"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-01-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 13257,
+        "LEASES_WITH_PORTAL_ACTIVE": 8045,
+        "ATTACH_RATE": "60.684900"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-01-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 10376,
+        "LEASES_WITH_PORTAL_ACTIVE": 3650,
+        "ATTACH_RATE": "35.177300"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-02-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 15361,
+        "LEASES_WITH_PORTAL_ACTIVE": 9460,
+        "ATTACH_RATE": "61.584500"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-02-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 11427,
+        "LEASES_WITH_PORTAL_ACTIVE": 4512,
+        "ATTACH_RATE": "39.485400"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-03-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 15966,
+        "LEASES_WITH_PORTAL_ACTIVE": 9510,
+        "ATTACH_RATE": "59.564100"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-03-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 12226,
+        "LEASES_WITH_PORTAL_ACTIVE": 3434,
+        "ATTACH_RATE": "28.087700"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-04-01",
+        "COHORT_STATUS": "Mature",
+        "NEW_ACTIVE_LEASES": 17439,
+        "LEASES_WITH_PORTAL_ACTIVE": 9593,
+        "ATTACH_RATE": "55.008900"
+    },
+    {
+        "PAYMENTS_MONTH": "2026-04-01",
+        "COHORT_STATUS": "Onboarding",
+        "NEW_ACTIVE_LEASES": 10821,
+        "LEASES_WITH_PORTAL_ACTIVE": 2547,
+        "ATTACH_RATE": "23.537600"
+    }
+]

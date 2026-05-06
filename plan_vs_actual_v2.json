@@ -1,0 +1,227 @@
+[
+    {
+        "ORD": 1,
+        "METRIC": "Price Units",
+        "April 26": 498944.0,
+        "March 26": 495702.0,
+        "Apr 25": 382186.0,
+        "YoY": 0.30550046312528456,
+        "MoM": 0.006540219728788667
+    },
+    {
+        "ORD": 2,
+        "METRIC": "Net New Price Units",
+        "April 26": 3242.0,
+        "March 26": 4791.0,
+        "Apr 25": 9311.0,
+        "YoY": -0.6518096874664375,
+        "MoM": -0.32331454811104154
+    },
+    {
+        "ORD": 3,
+        "METRIC": "Product Units",
+        "April 26": 450239.0,
+        "March 26": 445755.0,
+        "Apr 25": 342838.0,
+        "YoY": 0.31327040759775754,
+        "MoM": 0.010059337528462945
+    },
+    {
+        "ORD": 4,
+        "METRIC": "Product Units to Price Units",
+        "April 26": 0.9023838346587993,
+        "March 26": 0.8992398658871661,
+        "Apr 25": 0.8970448943708037,
+        "YoY": 0.005338940287995642,
+        "MoM": 0.0031439687716332543
+    },
+    {
+        "ORD": 5,
+        "METRIC": "Active Leases",
+        "April 26": 377970.0,
+        "March 26": 372040.0,
+        "Apr 25": 289184.0,
+        "YoY": 0.307022518534912,
+        "MoM": 0.01593914632835179
+    },
+    {
+        "ORD": 6,
+        "METRIC": "Active Leases to Product Units",
+        "April 26": 0.8394874722092045,
+        "March 26": 0.8346288880663144,
+        "Apr 25": 0.8435004287739398,
+        "YoY": -0.004012956564735326,
+        "MoM": 0.004858584142890088
+    },
+    {
+        "ORD": 7,
+        "METRIC": "Active Lease with MA",
+        "April 26": 344427.0,
+        "March 26": 338642.0,
+        "Apr 25": 257861.0,
+        "YoY": 0.3357079977197017,
+        "MoM": 0.017082937143059633
+    },
+    {
+        "ORD": 8,
+        "METRIC": "MA Attach Rate",
+        "April 26": 0.9112548614969442,
+        "March 26": 0.9102300827867971,
+        "Apr 25": 0.8916848788314706,
+        "YoY": 0.019569982665473606,
+        "MoM": 0.0010247787101471673
+    },
+    {
+        "ORD": 9,
+        "METRIC": "Active Leases with Active Tenant",
+        "April 26": 279395.0,
+        "March 26": 272721.0,
+        "Apr 25": null,
+        "YoY": null,
+        "MoM": 0.024472
+    },
+    {
+        "ORD": 10,
+        "METRIC": "Active Tenants Leases Attach Rate",
+        "April 26": 0.739198878217848,
+        "March 26": 0.7330421460058059,
+        "Apr 25": null,
+        "YoY": null,
+        "MoM": 0.00615673221204216
+    },
+    {
+        "ORD": 11,
+        "METRIC": "Paid Leases",
+        "April 26": 181687.0,
+        "March 26": 174676.0,
+        "Apr 25": 126027.0,
+        "YoY": 0.441651,
+        "MoM": 0.040137
+    },
+    {
+        "ORD": 12,
+        "METRIC": "% Paid from Active Lease",
+        "April 26": 0.48069158927957245,
+        "March 26": 0.4695086549833351,
+        "Apr 25": 0.43580211906606175,
+        "YoY": 0.044889470213510696,
+        "MoM": 0.011182934296237346
+    },
+    {
+        "ORD": 13,
+        "METRIC": "Eligible Leases",
+        "April 26": 271434.0,
+        "March 26": 265069.0,
+        "Apr 25": null,
+        "YoY": null,
+        "MoM": 0.024013
+    },
+    {
+        "ORD": 14,
+        "METRIC": "% Eligible from Active Leases",
+        "April 26": 0.7181363600285737,
+        "March 26": 0.7124744651112783,
+        "Apr 25": null,
+        "YoY": null,
+        "MoM": 0.005661894917295407
+    },
+    {
+        "ORD": 15,
+        "METRIC": "% Paid from Eligible",
+        "April 26": 0.66936,
+        "March 26": 0.658983,
+        "Apr 25": null,
+        "YoY": null,
+        "MoM": 0.010377
+    },
+    {
+        "ORD": 16,
+        "METRIC": "Average Volume per Paid Lease",
+        "April 26": 1719.653119981066,
+        "March 26": 1702.201462078362,
+        "Apr 25": 1642.220377696843,
+        "YoY": 0.047151249209,
+        "MoM": 0.010252404484
+    },
+    {
+        "ORD": 17,
+        "METRIC": "Total Volume",
+        "April 26": 312438616.41,
+        "March 26": 297333742.59,
+        "Apr 25": 206964107.54,
+        "YoY": 0.509627056226,
+        "MoM": 0.050801075211
+    },
+    {
+        "ORD": 18,
+        "METRIC": "Card Amount",
+        "April 26": 54659554.04,
+        "March 26": 52754147.81,
+        "Apr 25": 37642513.18,
+        "YoY": 0.452069732396,
+        "MoM": 0.03611860506
+    },
+    {
+        "ORD": 19,
+        "METRIC": "% Card",
+        "April 26": 0.174944936922,
+        "March 26": 0.177424019724,
+        "Apr 25": 0.181879426474,
+        "YoY": -0.006934489552,
+        "MoM": -0.002479082802
+    },
+    {
+        "ORD": 28,
+        "METRIC": "Platform Fee Transactions (NSF)",
+        "April 26": 5072.0,
+        "March 26": 4614.0,
+        "Apr 25": 3241.0,
+        "YoY": 0.564949,
+        "MoM": 0.099263
+    },
+    {
+        "ORD": 29,
+        "METRIC": "% of platform fees / ACH transactions",
+        "April 26": 0.032036,
+        "March 26": 0.030899,
+        "Apr 25": 0.0297,
+        "YoY": 0.002336,
+        "MoM": 0.001137
+    },
+    {
+        "ORD": 30,
+        "METRIC": "Platform Fee Revenue per transaction",
+        "April 26": 29.862983044164,
+        "March 26": 29.365214564369,
+        "Apr 25": 24.444430731256,
+        "YoY": 0.221668173519,
+        "MoM": 0.016950956674
+    },
+    {
+        "ORD": 31,
+        "METRIC": "Platform Fee ARR",
+        "April 26": 1817580.6,
+        "March 26": 1625893.2,
+        "Apr 25": 950692.8,
+        "YoY": 0.91184849617,
+        "MoM": 0.117896673656
+    },
+    {
+        "ORD": 32,
+        "METRIC": "Total Payments ARR",
+        "April 26": 15486871.2,
+        "March 26": 14976253.2,
+        "Apr 25": 10763757.6,
+        "YoY": 0.438797841378,
+        "MoM": 0.034095176756
+    },
+    {
+        "ORD": 33,
+        "METRIC": "Additional ARR",
+        "April 26": 510618.0,
+        "March 26": -518423.76,
+        "Apr 25": 538251.36,
+        "YoY": -0.051339136421,
+        "MoM": -1.984943282692
+    }
+]

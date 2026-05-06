@@ -1,0 +1,12 @@
+# Don't ship analyst working files / json snapshots / backups to Fly.
+*.md
+*.json
+!comments.json
+*.v1-backup.html
+build_summary.py
+fly.toml
+.dockerignore
+__pycache__/
+*.pyc
+.venv/
+reference/

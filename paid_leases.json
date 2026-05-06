@@ -1,0 +1,110 @@
+[
+    {
+        "MONTH": "2024-11-01",
+        "ACTIVE_LEASES": 241601.0,
+        "PAID_LEASES": 101234,
+        "PCT_PAID": 0.41901316633623203
+    },
+    {
+        "MONTH": "2024-12-01",
+        "ACTIVE_LEASES": 251031.0,
+        "PAID_LEASES": 103717,
+        "PCT_PAID": 0.413164111205389
+    },
+    {
+        "MONTH": "2025-01-01",
+        "ACTIVE_LEASES": 259661.0,
+        "PAID_LEASES": 110517,
+        "PCT_PAID": 0.42562032804310235
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACTIVE_LEASES": 270328.0,
+        "PAID_LEASES": 115428,
+        "PCT_PAID": 0.4269923944245509
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACTIVE_LEASES": 280653.0,
+        "PAID_LEASES": 119866,
+        "PCT_PAID": 0.4270968063765575
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACTIVE_LEASES": 289184.0,
+        "PAID_LEASES": 126025,
+        "PCT_PAID": 0.4357952030541109
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACTIVE_LEASES": 298058.0,
+        "PAID_LEASES": 128345,
+        "PCT_PAID": 0.4306041106093445
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACTIVE_LEASES": 307890.0,
+        "PAID_LEASES": 132899,
+        "PCT_PAID": 0.4316444184611387
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACTIVE_LEASES": 315845.0,
+        "PAID_LEASES": 137917,
+        "PCT_PAID": 0.43666038721524797
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACTIVE_LEASES": 323035.0,
+        "PAID_LEASES": 141610,
+        "PCT_PAID": 0.4383735508536227
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACTIVE_LEASES": 328116.0,
+        "PAID_LEASES": 146347,
+        "PCT_PAID": 0.4460221385119897
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACTIVE_LEASES": 338093.0,
+        "PAID_LEASES": 151517,
+        "PCT_PAID": 0.44815183987837665
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACTIVE_LEASES": 344019.0,
+        "PAID_LEASES": 155940,
+        "PCT_PAID": 0.45328891718189984
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACTIVE_LEASES": 351276.0,
+        "PAID_LEASES": 158904,
+        "PCT_PAID": 0.45236224507225087
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACTIVE_LEASES": 357225.0,
+        "PAID_LEASES": 165152,
+        "PCT_PAID": 0.4623192665686892
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACTIVE_LEASES": 363773.0,
+        "PAID_LEASES": 172728,
+        "PCT_PAID": 0.474823585037922
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACTIVE_LEASES": 372121.0,
+        "PAID_LEASES": 174676,
+        "PCT_PAID": 0.46940645650205176
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACTIVE_LEASES": 378053.0,
+        "PAID_LEASES": 181687,
+        "PCT_PAID": 0.48058605539434945
+    }
+]

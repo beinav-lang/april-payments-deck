@@ -1,0 +1,138 @@
+[
+    {
+        "MONTH": "2024-12-01",
+        "PAID_LEASES": 103718,
+        "EXISTING_LEASES": 91201,
+        "FIRST_TIME_PAID_LEASES": 8672,
+        "REACTIVATED_LEASES": 3845,
+        "CHURNED_LEASES": 10034
+    },
+    {
+        "MONTH": "2025-01-01",
+        "PAID_LEASES": 110518,
+        "EXISTING_LEASES": 93028,
+        "FIRST_TIME_PAID_LEASES": 12457,
+        "REACTIVATED_LEASES": 5033,
+        "CHURNED_LEASES": 10690
+    },
+    {
+        "MONTH": "2025-02-01",
+        "PAID_LEASES": 115429,
+        "EXISTING_LEASES": 99422,
+        "FIRST_TIME_PAID_LEASES": 11293,
+        "REACTIVATED_LEASES": 4714,
+        "CHURNED_LEASES": 11096
+    },
+    {
+        "MONTH": "2025-03-01",
+        "PAID_LEASES": 119867,
+        "EXISTING_LEASES": 103569,
+        "FIRST_TIME_PAID_LEASES": 11750,
+        "REACTIVATED_LEASES": 4548,
+        "CHURNED_LEASES": 11860
+    },
+    {
+        "MONTH": "2025-04-01",
+        "PAID_LEASES": 126027,
+        "EXISTING_LEASES": 107496,
+        "FIRST_TIME_PAID_LEASES": 12624,
+        "REACTIVATED_LEASES": 5907,
+        "CHURNED_LEASES": 12371
+    },
+    {
+        "MONTH": "2025-05-01",
+        "PAID_LEASES": 128347,
+        "EXISTING_LEASES": 112049,
+        "FIRST_TIME_PAID_LEASES": 11519,
+        "REACTIVATED_LEASES": 4779,
+        "CHURNED_LEASES": 13978
+    },
+    {
+        "MONTH": "2025-06-01",
+        "PAID_LEASES": 132901,
+        "EXISTING_LEASES": 114463,
+        "FIRST_TIME_PAID_LEASES": 12669,
+        "REACTIVATED_LEASES": 5769,
+        "CHURNED_LEASES": 13884
+    },
+    {
+        "MONTH": "2025-07-01",
+        "PAID_LEASES": 137920,
+        "EXISTING_LEASES": 118435,
+        "FIRST_TIME_PAID_LEASES": 13479,
+        "REACTIVATED_LEASES": 6006,
+        "CHURNED_LEASES": 14466
+    },
+    {
+        "MONTH": "2025-08-01",
+        "PAID_LEASES": 141612,
+        "EXISTING_LEASES": 121708,
+        "FIRST_TIME_PAID_LEASES": 13437,
+        "REACTIVATED_LEASES": 6467,
+        "CHURNED_LEASES": 16212
+    },
+    {
+        "MONTH": "2025-09-01",
+        "PAID_LEASES": 146349,
+        "EXISTING_LEASES": 127347,
+        "FIRST_TIME_PAID_LEASES": 12884,
+        "REACTIVATED_LEASES": 6118,
+        "CHURNED_LEASES": 14265
+    },
+    {
+        "MONTH": "2025-10-01",
+        "PAID_LEASES": 151518,
+        "EXISTING_LEASES": 132342,
+        "FIRST_TIME_PAID_LEASES": 12841,
+        "REACTIVATED_LEASES": 6335,
+        "CHURNED_LEASES": 14007
+    },
+    {
+        "MONTH": "2025-11-01",
+        "PAID_LEASES": 155941,
+        "EXISTING_LEASES": 136409,
+        "FIRST_TIME_PAID_LEASES": 13296,
+        "REACTIVATED_LEASES": 6236,
+        "CHURNED_LEASES": 15109
+    },
+    {
+        "MONTH": "2025-12-01",
+        "PAID_LEASES": 158905,
+        "EXISTING_LEASES": 141465,
+        "FIRST_TIME_PAID_LEASES": 10868,
+        "REACTIVATED_LEASES": 6572,
+        "CHURNED_LEASES": 14476
+    },
+    {
+        "MONTH": "2026-01-01",
+        "PAID_LEASES": 165153,
+        "EXISTING_LEASES": 142354,
+        "FIRST_TIME_PAID_LEASES": 14698,
+        "REACTIVATED_LEASES": 8101,
+        "CHURNED_LEASES": 16551
+    },
+    {
+        "MONTH": "2026-02-01",
+        "PAID_LEASES": 172728,
+        "EXISTING_LEASES": 150206,
+        "FIRST_TIME_PAID_LEASES": 14434,
+        "REACTIVATED_LEASES": 8088,
+        "CHURNED_LEASES": 14947
+    },
+    {
+        "MONTH": "2026-03-01",
+        "PAID_LEASES": 174676,
+        "EXISTING_LEASES": 154220,
+        "FIRST_TIME_PAID_LEASES": 14114,
+        "REACTIVATED_LEASES": 6342,
+        "CHURNED_LEASES": 18508
+    },
+    {
+        "MONTH": "2026-04-01",
+        "PAID_LEASES": 181687,
+        "EXISTING_LEASES": 157023,
+        "FIRST_TIME_PAID_LEASES": 15116,
+        "REACTIVATED_LEASES": 9548,
+        "CHURNED_LEASES": 17653
+    }
+]

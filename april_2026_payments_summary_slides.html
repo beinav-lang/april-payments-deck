@@ -1734,13 +1734,13 @@
   </div>
 </section>
 
-<!-- ===== Card · Behavior + Mix — dual-driver explanation ===== -->
-<section class="paper" data-slide-title="Card · Behavior + Mix">
+<!-- ===== Why card dropped — dual-driver explanation ===== -->
+<section class="paper" data-slide-title="Why card dropped">
   <div class="wrap">
     <div class="chapter">
       <div class="chapter-num">07</div>
       <div class="chapter-meta">
-        <div class="chapter-name">Card · Behavior + Mix</div>
+        <div class="chapter-name">Why card dropped</div>
       </div>
     </div>
 
@@ -2350,12 +2350,28 @@
     <!-- Stepped waterfall (rendered by JS) -->
     <div id="fc-waterfall"></div>
 
-    <div class="footnote" style="padding: 18px 0 0; margin-top: 18px">
-      <strong style="color: var(--text)">Note on April invite-rate jump (86.7% all · 93.4% mature, +15.2 pp MoM).</strong>
-      Driven roughly half by one mid-size PM running a migration cut-over: ~945 April-cohort leases on a
-      single account (1,386 units, first engaged Sep '25) went from <strong>1.4% → 99.8%</strong> invited,
-      contributing ~<strong>4 pp</strong> of the 15 pp swing on its own. The other ~11 pp is broad-based —
-      67% of PMs active in both March and April moved their invite rate up vs. only 10% down.
+    <div class="april-summary">
+      <div class="april-summary-eyebrow">What happened in April</div>
+      <div class="april-summary-grid one-col">
+        <div class="april-summary-card up">
+          <div class="april-summary-row">
+            <div class="april-summary-arrow up">↑</div>
+            <div class="april-summary-headline">
+              <div class="april-summary-metric">Invite rate · <strong>8-month high</strong></div>
+            </div>
+            <div class="april-summary-aside">
+              Invite is the only stage with a fully readable April cohort. <strong>Activation, FPC, and retention</strong> are still partial-window — their +45d look-forwards close in June–July; treat any April reads on those as preliminary.
+            </div>
+          </div>
+          <table class="april-summary-table">
+            <tr><th>Mature</th><td>76.7% <span class="arr">→</span> <strong>93.4%</strong></td><td class="april-summary-delta up">+16.7 pp</td></tr>
+            <tr><th>Onboarding</th><td>62.3% <span class="arr">→</span> <strong>75.6%</strong></td><td class="april-summary-delta up">+13.4 pp</td></tr>
+          </table>
+          <div class="april-summary-text">
+            Both cohorts hit 8-month highs. Mature includes a <strong>~⅖ contribution from one PM's late migration</strong>: <em>Christian Relief Services of Virginia</em> bulk-imported <strong>~946 lease records into April</strong> (current + historical leases, all stamped with same-day activation dates from the import), then ran a bulk tenant-invite as part of the cut-over. Ex-CRSV Mature is <strong>86.8%</strong> (+10.1 pp). Onboarding's lift is fully broad-based — same shape, no migration noise.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2508,6 +2524,136 @@
     align-items: center; gap: 16px; padding: 14px 6px;
   }
   .wf-step + .wf-step { border-top: 1px solid #f1f5f9; }
+  /* Column header row above the stages — labels the columns. First col reserves
+     space for the side-group label so headers align with the row content. */
+  .wf-colhead {
+    display: grid; grid-template-columns: 60px 175px 1fr 60px 280px;
+    gap: 16px; padding: 0 6px 8px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 4px;
+  }
+  .wf-colhead > div {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--muted);
+    line-height: 1.4;
+    text-align: center;
+  }
+  .wf-colhead > div.wf-colhead-trend {
+    text-transform: none; letter-spacing: 0;
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Side-group wrapper: small grey label on the left, rows stacked on the right */
+  .wf-side-group {
+    display: grid; grid-template-columns: 60px 1fr;
+    gap: 16px; align-items: stretch;
+  }
+  .wf-side-group + .wf-side-group { margin-top: 6px; }
+  .wf-side-label {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 800; letter-spacing: 1.6px;
+    text-transform: uppercase; color: var(--muted);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border-right: 1px solid var(--divider);
+    padding: 4px 0;
+  }
+  .wf-side-rows { display: flex; flex-direction: column; }
+
+  /* April summary panel — sits below the cascade */
+  .april-summary {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--divider);
+  }
+  .april-summary-eyebrow {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .april-summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .april-summary-grid.one-col { grid-template-columns: 1fr; }
+  .april-summary-aside {
+    flex: 1;
+    margin-left: auto;
+    max-width: 380px;
+    font-size: 11px; line-height: 1.55; color: var(--muted);
+    border-left: 2px solid var(--divider);
+    padding-left: 14px;
+    font-style: italic;
+  }
+  .april-summary-aside strong { color: var(--text); font-weight: 700; font-style: normal; }
+  .april-summary-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 18px;
+    border-left-width: 4px;
+  }
+  .april-summary-card.up   { border-left-color: var(--blue); }
+  .april-summary-card.down { border-left-color: var(--pink); }
+  .april-summary-row {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 8px;
+  }
+  .april-summary-arrow {
+    font-size: 28px; font-weight: 800; line-height: 1;
+    font-family: 'Poppins', sans-serif;
+  }
+  .april-summary-arrow.up   { color: var(--blue); }
+  .april-summary-arrow.down { color: var(--pink); }
+  .april-summary-headline { display: flex; flex-direction: column; gap: 2px; }
+  .april-summary-metric {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    letter-spacing: 0.4px;
+  }
+  .april-summary-metric strong { color: var(--text); font-weight: 800; font-size: 13px; }
+  .april-summary-card.up   .april-summary-metric strong { color: var(--blue); }
+  .april-summary-card.down .april-summary-metric strong { color: var(--pink); }
+  .april-summary-line {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--text);
+    line-height: 1.1;
+  }
+  .april-summary-line .arr { color: var(--muted); font-weight: 500; padding: 0 4px; }
+  .april-summary-line strong { color: var(--text); font-weight: 800; }
+  .april-summary-table {
+    width: 100%; border-collapse: collapse;
+    margin: 4px 0 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .april-summary-table th {
+    text-align: left;
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px;
+    text-transform: uppercase; color: var(--muted);
+    padding: 4px 8px 4px 0;
+    width: 80px;
+  }
+  .april-summary-table td {
+    padding: 4px 8px 4px 0;
+    font-size: 13.5px; font-weight: 700; color: var(--text);
+  }
+  .april-summary-table td .arr { color: var(--muted); font-weight: 500; padding: 0 3px; }
+  .april-summary-table td strong { font-weight: 800; }
+  .april-summary-card.up   .april-summary-table td strong { color: var(--blue); }
+  .april-summary-card.down .april-summary-table td strong { color: var(--pink); }
+  .april-summary-table tr + tr th, .april-summary-table tr + tr td {
+    border-top: 1px solid var(--divider);
+  }
+  .april-summary-delta {
+    font-size: 11.5px; font-weight: 800; letter-spacing: 0.3px;
+    white-space: nowrap; text-align: right; width: 60px;
+  }
+  .april-summary-delta.up   { color: var(--blue); }
+  .april-summary-delta.down { color: var(--pink); }
+
+  .april-summary-text {
+    font-size: 12px; line-height: 1.55; color: var(--text);
+  }
+  .april-summary-text strong { font-weight: 700; color: var(--text); }
+  .april-summary-text em { color: var(--text); font-style: italic; font-weight: 600; }
+
   .wf-step-name { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.2; }
   .wf-step-name .wf-sub {
     display: block; font-size: 12px; font-weight: 600;
@@ -2531,6 +2677,11 @@
   .wf-step-loss.biggest {
     background: #ff4998; color: #fff;
   }
+  .wf-step-loss-tag {
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    margin-left: 10px; opacity: 0.95;
+  }
   .wf-step-bar {
     height: 100%; display: flex; align-items: center;
     padding: 0 10px;
@@ -2544,23 +2695,7 @@
   .wf-step-spark { height: 90px; width: 280px; }
   .wf-step-spark canvas { display: block; }
 
-  /* Side-group dividers inside the cascade — "PM Side" / "Tenant Side" */
-  .wf-side {
-    font-size: 11px; font-weight: 800; letter-spacing: 1.4px;
-    text-transform: uppercase; color: var(--muted);
-    padding: 14px 6px 6px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .wf-side::after {
-    content: ''; flex: 1; height: 1px; background: var(--divider);
-  }
-  .wf-side.pm  { color: var(--orange); }
-  .wf-side.pm::after  { background: rgba(234,88,12,0.20); }
-  .wf-side.tn  { color: var(--blue); }
-  .wf-side.tn::after  { background: rgba(49,133,252,0.20); }
-  .wf-side:first-child { padding-top: 2px; }
-  /* The first wf-step inside each side group doesn't need a top border */
-  .wf-side + .wf-step { border-top: none !important; }
+
 
   .w45-band {
     display: grid;
@@ -2958,310 +3093,18 @@
 
 
 <!-- ============================================================ -->
-<!-- SECTION 14 · APRIL INVITE RATE · what jumped, why, and the counterfactual -->
-<!-- ============================================================ -->
-<style>
-  /* April invite rate consolidated slide */
-  .ai-stat-strip {
-    display: grid; grid-template-columns: 1fr 1.3fr 1.3fr 1fr; gap: 14px;
-    margin: 18px 0 22px;
-  }
-  .ai-stat {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: 12px; padding: 14px 18px;
-  }
-  .ai-stat.hero { border-color: var(--blue); box-shadow: 0 4px 14px rgba(49,133,252,0.12); }
-  .ai-stat.cf   { border-color: var(--pink); box-shadow: 0 4px 14px rgba(255,73,152,0.12); border-style: dashed; }
-  .ai-stat-lbl {
-    font-size: 10.5px; font-weight: 800; letter-spacing: 1.1px;
-    text-transform: uppercase; color: var(--muted);
-  }
-  .ai-stat-num {
-    font-family: 'Poppins', sans-serif;
-    font-size: 22px; font-weight: 800; color: var(--text);
-    line-height: 1.1; margin-top: 4px;
-  }
-  .ai-stat .arr { color: var(--muted); font-weight: 500; padding: 0 4px; }
-  .ai-stat-delta { font-size: 12.5px; font-weight: 800; margin-top: 4px; color: var(--green); }
-  .ai-stat.hero .ai-stat-num { color: var(--blue); font-size: 26px; }
-  .ai-stat.hero .ai-stat-delta { color: var(--blue); }
-  .ai-stat.cf   .ai-stat-num { color: var(--pink); font-size: 24px; }
-  .ai-stat.cf   .ai-stat-delta { color: var(--pink); }
-
-  .ai-grid {
-    display: grid; grid-template-columns: 1.05fr 1fr; gap: 16px;
-    margin-bottom: 16px;
-  }
-  .ai-card {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px 20px;
-    display: flex; flex-direction: column;
-  }
-  .ai-eyebrow {
-    font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px;
-    text-transform: uppercase; color: var(--blue);
-  }
-  .ai-card-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px; font-weight: 700; color: var(--text);
-    margin: 4px 0 12px; line-height: 1.3;
-  }
-  .ai-chart-wrap { height: 200px; position: relative; }
-  .ai-card-note { font-size: 11.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
-
-  .ai-decomp-bar {
-    display: flex; height: 50px; border-radius: 8px; overflow: hidden;
-    border: 1px solid var(--border); margin: 4px 0 12px;
-  }
-  .ai-decomp-seg {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    color: #fff; padding: 0 8px; min-width: 0;
-  }
-  .ai-decomp-seg.cut { background: linear-gradient(135deg, #ff4998 0%, #c9296f 100%); }
-  .ai-decomp-seg.broad { background: linear-gradient(135deg, #162050 0%, #2a3478 100%); }
-  .ai-decomp-pp { font-size: 16px; font-weight: 800; line-height: 1; }
-  .ai-decomp-label { font-size: 10.5px; font-weight: 600; opacity: 0.95;
-    margin-top: 3px; line-height: 1.25; text-align: center; }
-
-  .ai-bullets { font-size: 12px; line-height: 1.55; color: var(--text);
-    margin: 4px 0 0; padding-left: 18px; }
-  .ai-bullets li { margin-bottom: 8px; }
-  .ai-bullets li:last-child { margin-bottom: 0; }
-  .ai-bullets strong { color: var(--text); font-weight: 700; }
-  .ai-bullets em { color: var(--blue); font-style: italic; font-weight: 700; }
-
-  /* Counterfactual callout */
-  .ai-cf {
-    background: linear-gradient(135deg, #fff5f9 0%, #ffe6f0 100%);
-    border: 1px solid rgba(255,73,152,0.30);
-    border-left: 4px solid var(--pink);
-    border-radius: 8px; padding: 16px 22px;
-  }
-  .ai-cf-eyebrow {
-    font-size: 11px; font-weight: 800; letter-spacing: 1.2px;
-    text-transform: uppercase; color: var(--pink);
-    margin-bottom: 8px;
-  }
-  .ai-cf-grid {
-    display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 22px; align-items: center;
-  }
-  .ai-cf-num {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px; font-weight: 800; color: var(--pink);
-    line-height: 1.1;
-  }
-  .ai-cf-num-sub { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
-  .ai-cf-text { font-size: 12px; color: var(--text); line-height: 1.55; }
-  .ai-cf-text strong { color: var(--pink); font-weight: 800; }
-</style>
-
-<section data-slide-title="April invite rate">
-  <div class="wrap">
-    <div class="chapter">
-      <div class="chapter-num">14</div>
-      <div class="chapter-meta">
-        <div class="chapter-name">April invite rate</div>
-      </div>
-    </div>
-
-    <h2 class="section-title" style="margin: 0">
-      Mature invite rate jumped <strong>+16.7 pp</strong> · ~⅖ from one migration cut-over, ~⅗ broad-based.
-    </h2>
-
-    <!-- Stat strip: All / Mature hero / Counterfactual / Onboarding -->
-    <div class="ai-stat-strip">
-      <div class="ai-stat">
-        <div class="ai-stat-lbl">All cohorts</div>
-        <div class="ai-stat-num">71.5 <span class="arr">→</span> 86.7%</div>
-        <div class="ai-stat-delta">+15.2 pp MoM</div>
-      </div>
-      <div class="ai-stat hero">
-        <div class="ai-stat-lbl">Mature · headline</div>
-        <div class="ai-stat-num">76.7 <span class="arr">→</span> 93.4%</div>
-        <div class="ai-stat-delta">+16.7 pp MoM</div>
-      </div>
-      <div class="ai-stat cf">
-        <div class="ai-stat-lbl">Mature · ex one PM</div>
-        <div class="ai-stat-num">76.7 <span class="arr">→</span> 86.8%</div>
-        <div class="ai-stat-delta">+10.1 pp without cut-over</div>
-      </div>
-      <div class="ai-stat">
-        <div class="ai-stat-lbl">Onboarding</div>
-        <div class="ai-stat-num">62.3 <span class="arr">→</span> 75.6%</div>
-        <div class="ai-stat-delta">+13.4 pp MoM</div>
-      </div>
-    </div>
-
-    <div class="ai-grid">
-      <!-- Left: Trend chart -->
-      <div class="ai-card">
-        <div class="ai-eyebrow">8-month trend · Mature + All</div>
-        <h3 class="ai-card-title">Cleanest step-up since the cohort series began.</h3>
-        <div class="ai-chart-wrap"><canvas id="ai-invite-trend"></canvas></div>
-        <div class="ai-card-note">
-          Mature held a tight 73–80% range Sep → Mar, then jumped 17 pp in April. All-cohort line follows the same shape.
-        </div>
-      </div>
-
-      <!-- Right: Decomposition + bullets -->
-      <div class="ai-card">
-        <div class="ai-eyebrow">Decomposition · +16.7 pp Mature</div>
-        <h3 class="ai-card-title">One PM adds +6.6 pp, the rest adds +10.1 pp.</h3>
-
-        <div class="ai-decomp-bar">
-          <div class="ai-decomp-seg cut" style="flex: 6.6">
-            <div class="ai-decomp-pp">+6.6 pp</div>
-            <div class="ai-decomp-label">Single migration cut-over</div>
-          </div>
-          <div class="ai-decomp-seg broad" style="flex: 10.1">
-            <div class="ai-decomp-pp">+10.1 pp</div>
-            <div class="ai-decomp-label">Broad-based PM lift</div>
-          </div>
-        </div>
-
-        <ul class="ai-bullets">
-          <li><strong>+6.6 pp · cut-over.</strong> <em>Christian Relief Services of Virginia</em> (Alexandria, VA · 1,386 units · affordable-housing nonprofit · $560K monthly volume) imported and bulk-invited 946 April-cohort leases in one shot. Account-level invite rate flipped <strong>1.4% → 99.7%</strong>. Cohort lease count exceeds active units, so the import included historical / legacy leases too.</li>
-          <li><strong>+10.1 pp · broad-based.</strong> Of 356 PMs with ≥5 leases in both months, <strong>67% moved invite rate up</strong>, 23% flat, 10% down — a real, broad shift independent of the cut-over.</li>
-          <li style="font-size: 11px; color: var(--muted); list-style: none; margin-left: -18px; margin-top: 8px"><em style="color:var(--muted);font-style:italic;font-weight:500">All-cohort split is +4.1 pp / +11.1 pp · same shape, smaller cut-over share because the mega-PM is a smaller % of the All denominator.</em></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Counterfactual callout -->
-    <div class="ai-cf">
-      <div class="ai-cf-eyebrow">Counterfactual · without the Christian Relief migration</div>
-      <div class="ai-cf-grid">
-        <div>
-          <div class="ai-cf-num">86.8%</div>
-          <div class="ai-cf-num-sub">Mature April rate (vs 93.4% actual · −6.6 pp)</div>
-        </div>
-        <div>
-          <div class="ai-cf-num">82.6%</div>
-          <div class="ai-cf-num-sub">All April rate (vs 86.7% actual · −4.1 pp)</div>
-        </div>
-        <div class="ai-cf-text">
-          MoM gap shrinks from <strong>+16.7 pp → +10.1 pp</strong> on Mature (still the biggest single-month move in 8 months, just less dramatic).
-          The same migration also depressed <strong>March</strong> — 961 of their leases sit in March cohort with only 13 invited within window — so the headline gap reflects timing on both sides of the cut-over.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (typeof kpi === 'undefined' || typeof kpiMonths === 'undefined') return;
-  const m = kpiMonths;
-  const matureSeries = m.map(x => kpi[x].Mature.invite);
-  const allSeries    = m.map(x => kpi[x].All.invite);
-  const labels       = m.map(fmtMonth);
-  const ctx = document.getElementById('ai-invite-trend');
-  if (!ctx) return;
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'Mature', data: matureSeries,
-          borderColor: '#3185FC', backgroundColor: 'rgba(49,133,252,0.10)',
-          borderWidth: 2.5, fill: true, tension: 0.3,
-          pointRadius: c => c.dataIndex === matureSeries.length - 1 ? 7 : 4,
-          pointBackgroundColor: c => c.dataIndex === matureSeries.length - 1 ? '#1d4ed8' : '#3185FC',
-          pointBorderColor: '#fff', pointBorderWidth: 1.5,
-          datalabels: {
-            display: c => c.dataIndex === c.dataset.data.length - 1 || c.dataIndex === 0,
-            anchor: 'end', align: 'top', offset: 6,
-            color: '#1d4ed8', font: { weight: 700, size: 11 },
-            formatter: v => v.toFixed(1) + '%'
-          }
-        },
-        {
-          label: 'All', data: allSeries,
-          borderColor: '#94a3b8', backgroundColor: 'transparent',
-          borderWidth: 2, borderDash: [5, 4], fill: false, tension: 0.3,
-          pointRadius: 3, pointBackgroundColor: '#94a3b8',
-          pointBorderColor: '#fff', pointBorderWidth: 1.5,
-          datalabels: { display: false }
-        }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      layout: { padding: { top: 22, right: 16, bottom: 6, left: 4 } },
-      plugins: {
-        legend: { display: true, position: 'top', align: 'end',
-          labels: { boxWidth: 14, boxHeight: 2, font: { size: 11, weight: 600 } } },
-        tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' } }
-      },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 11, weight: 600 } } },
-        y: { beginAtZero: false, min: 50, max: 100,
-          grid: { color: 'rgba(0,0,0,0.06)' },
-          ticks: { font: { size: 10 }, callback: v => v + '%' } }
-      }
-    }
-  });
-});
-</script>
-
-
-<!-- ============================================================ -->
 <!-- SECTION · ACTION ITEMS (last)                                 -->
 <!-- ============================================================ -->
 <section>
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">15</div>
+      <div class="chapter-num">14</div>
       <div class="chapter-meta">
         <div class="chapter-name">Action Items</div>
       </div>
     </div>
 
-    <div style="margin: 24px 0 18px">
-      <h2 class="section-title" style="font-size:24px">May is the structural test.</h2>
-      <p class="lede">First cycle free of calendar carryover and the first month that closes Mar's Activation read at full window. Top priorities: PM Invite gap (largest leak) and Mar Activation drop (only closed-data signal). Five tracks below; March's 3-track research carries forward as one.</p>
-    </div>
-
-    <div class="actions-wrap">
-      <div class="action">
-        <span class="action-pill live">● Live</span>
-        <h4>PM Invite gap (the largest leak by 7×)</h4>
-        <p>3,159 of 11,183 Dec '25 leases (28%) never got invited within ±45d — biggest single funnel leak by absolute volume. Has held steady at this scale for 6+ months. Even with Apr's invite ATH, the gap to 100% is the highest-ROI lever. Decompose by PM segment / lease-creation-channel / lease size to identify which PMs systematically don't invite.</p>
-        <div class="action-foot"><strong>Owner</strong> [Data lead name] · <strong>Due</strong> May 23 · <strong>Done when</strong> PM-segment + channel breakdown of un-invited leases is shared in #payments-data</div>
-      </div>
-      <div class="action">
-        <span class="action-pill live">● Live</span>
-        <h4>Mar '26 Activation Rate drop (KPI 1)</h4>
-        <p>Closed-enough signal (~98% closed): Activation 93.4% → 87.3% Feb → Mar with PM Invite essentially flat. Tenant-side regression — small in absolute volume (~700 leases) but a real change in trend. Hypothesis: marginal invitees in record-volume Mar/Apr cohorts are lower-intent. Compare invite-channel mix + activation-by-segment Feb vs Mar.</p>
-        <div class="action-foot"><strong>Owner</strong> [Data lead name] · <strong>Due</strong> May 23 · <strong>Done when</strong> Activation Rate by invite-channel + segment Feb vs Mar is shared in #payments-data</div>
-      </div>
-      <div class="action">
-        <span class="action-pill wip">● WIP</span>
-        <h4>Wait for May to read Mar Activation at full close</h4>
-        <p>April KPIs are heavily partial-window (Attach +37d short, FPC +82d short) — too early to call. May closes Mar's Activation read fully and gives us the first April cohort read. That tells us whether Mar's −6pp Activation drop is a one-cohort blip or the start of structural slippage. Also: do reactivated leases drop to ~6K (from 9.5K) and ARR hold $15.5M+ once calendar carryover is gone?</p>
-        <div class="action-foot"><strong>Owner</strong> [PM name] · <strong>Due</strong> May payments-month review · <strong>Done when</strong> next deck reports Mar's Activation Rate at full close + May cohort early read</div>
-      </div>
-      <div class="action">
-        <span class="action-pill pending">○ Pending</span>
-        <h4>Card-share decline</h4>
-        <p>12-mo low 17.75%. Decide if reduced-fee scope expands to ticket-size mix and onboarding-account default.</p>
-        <div class="action-foot"><strong>Owner</strong> [Product lead name] · <strong>Due</strong> May 30 · <strong>Done when</strong> scope decision on whether reduced-fee test extends to mid-rent ($1.5K–$3K) tickets is documented in PRD</div>
-      </div>
-      <div class="action">
-        <span class="action-pill pending">○ Pending</span>
-        <h4>Confirm invite-rate jump cause</h4>
-        <p>April release or campaign? Document if yes; investigate if no. (Apr Invite is partial but directional ATH — even at the closed Feb rate, the trajectory is up.)</p>
-        <div class="action-foot"><strong>Owner</strong> [Product lead name] · <strong>Due</strong> May 16 · <strong>Done when</strong> source of invite-rate jump is identified and shared in next squad sync</div>
-      </div>
-      <div class="action">
-        <span class="action-pill live">● Live</span>
-        <h4>Carry forward 3-track research</h4>
-        <p>Survey (PM behaviors), Data (high-adoption PM signals), Interviews (high vs low adoption).</p>
-        <div class="action-foot"><strong>Owner</strong> [PM name] · <strong>Status</strong> 1 Live, 2 WIP, 3 Pending (carried from March) · <strong>Done when</strong> each track has a one-line update in May deck</div>
-      </div>
-    </div>
+    <!-- Body intentionally left blank -->
   </div>
 </section>
 
@@ -4325,11 +4168,11 @@ function renderFcWaterfall() {
 
   // Stages with their cumulative count + pct (relative to total)
   const stages = [
-    { id: 'total',      name: '① New active leases',  sub: '',                                                    count: k.total,         metric: null },
-    { id: 'invited',    name: '② Invited',            sub: 'Invite Rate · ' + k.invite.toFixed(1) + '%',          count: k.invited,       metric: 'invite' },
-    { id: 'portal',     name: '③ Portal-active',      sub: 'Activation (of invited) · ' + k.activation.toFixed(1) + '%', count: k.portal_active, metric: 'activation' },
-    { id: 'converted',  name: '④ Converted',          sub: 'FPC (of activated) · ' + k.fpc.toFixed(1) + '%',      count: k.converted,     metric: 'fpc' },
-    { id: 'retained',   name: '⑤ Retained',           sub: 'Retention (of converted) · ' + k.p1.toFixed(1) + '%', count: k.retained,      metric: 'p1' },
+    { id: 'total',      name: '① New active leases',  sub: '',                                            count: k.total,         metric: null },
+    { id: 'invited',    name: '② Invited',            sub: k.invite.toFixed(1) + '% step conversion',     count: k.invited,       metric: 'invite' },
+    { id: 'portal',     name: '③ Portal-active',      sub: k.activation.toFixed(1) + '% step conversion', count: k.portal_active, metric: 'activation' },
+    { id: 'converted',  name: '④ Converted',          sub: k.fpc.toFixed(1) + '% step conversion',        count: k.converted,     metric: 'fpc' },
+    { id: 'retained',   name: '⑤ Retained',           sub: k.p1.toFixed(1) + '% step conversion',         count: k.retained,      metric: 'p1' },
   ];
 
   // Find biggest single-step loss (stage→stage drop)
@@ -4343,15 +4186,21 @@ function renderFcWaterfall() {
   let html = `
     <div class="fc-cascade">
       <div class="fc-cascade-head">
-        <div class="fc-cascade-title">Lease funnel cascade · ${fcMonthFmt(fcMonth)} ${kpiCohort}</div>
-        <div class="fc-cascade-meta">${fmtN(k.total)} leases (after exclusion filter)</div>
+        <div class="fc-cascade-title">Lease funnel · ${fcMonthFmt(fcMonth)} ${kpiCohort}</div>
+      </div>
+      <div class="wf-colhead">
+        <div></div>
+        <div>Stage</div>
+        <div>Funnel · cumulative loss</div>
+        <div>%</div>
+        <div class="wf-colhead-trend">Is this stage getting better or worse over time?</div>
       </div>
   `;
 
   for (let i = 0; i < stages.length; i++) {
-    // Side-group dividers: PM Side covers stages 0-1, Tenant Side covers 2-4
-    if (i === 0) html += `<div class="wf-side pm">PM Side</div>`;
-    if (i === 2) html += `<div class="wf-side tn">Tenant Side</div>`;
+    // Side-group dividers: open group container at PM Side (0) and Tenant Side (2), close at end
+    if (i === 0) html += `<div class="wf-side-group pm"><div class="wf-side-label">PM Side</div><div class="wf-side-rows">`;
+    if (i === 2) html += `</div></div><div class="wf-side-group tn"><div class="wf-side-label">Tenant Side</div><div class="wf-side-rows">`;
 
     const s = stages[i];
     const stagePct = 100 * s.count / total;          // remaining as % of total
@@ -4373,7 +4222,7 @@ function renderFcWaterfall() {
         html += `<div class="wf-step-spacer" style="width: ${priorLossPct.toFixed(2)}%"></div>`;
       }
       if (stepLossPct > 0) {
-        html += `<div class="wf-step-loss${isBiggest ? ' biggest' : ''}" style="width: ${stepLossPct.toFixed(2)}%">−${fmtN(stepLoss)}</div>`;
+        html += `<div class="wf-step-loss${isBiggest ? ' biggest' : ''}" style="width: ${stepLossPct.toFixed(2)}%">−${fmtN(stepLoss)}${isBiggest ? '<span class="wf-step-loss-tag">biggest leak</span>' : ''}</div>`;
       }
     }
 
@@ -4387,6 +4236,9 @@ function renderFcWaterfall() {
       </div>
     </div>`;
   }
+
+  // Close the last side-group (Tenant Side wrapper opened at i===2)
+  html += '</div></div>';
 
   html += '</div>';
   el.innerHTML = html;
@@ -5336,7 +5188,7 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   const tocGroups = [
     { name: 'Business Overview', from: 1, to: 6 },
     { name: 'PM Side', from: 7, to: 9 },
-    { name: 'Lease Funnel', from: 10, to: 13 },
+    { name: 'Lease Funnel', from: 10, to: 12 },
   ];
 
   function escapeHtml(s) {

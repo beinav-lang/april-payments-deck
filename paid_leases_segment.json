@@ -1,0 +1,562 @@
+[
+    {
+        "MONTH": "2025-01-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 9958.0,
+        "PAID_LEASES": 5020,
+        "PCT_PAID": 0.5041172926290419
+    },
+    {
+        "MONTH": "2025-01-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 139530.0,
+        "PAID_LEASES": 55716,
+        "PCT_PAID": 0.3993119759191572
+    },
+    {
+        "MONTH": "2025-01-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 83935.0,
+        "PAID_LEASES": 39057,
+        "PCT_PAID": 0.4653243581342706
+    },
+    {
+        "MONTH": "2025-01-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 398,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-01-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 26238.0,
+        "PAID_LEASES": 10326,
+        "PCT_PAID": 0.393551337754402
+    },
+    {
+        "MONTH": "2025-02-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 10058.0,
+        "PAID_LEASES": 5236,
+        "PCT_PAID": 0.5205806323324716
+    },
+    {
+        "MONTH": "2025-02-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 145131.0,
+        "PAID_LEASES": 58236,
+        "PCT_PAID": 0.40126506397668316
+    },
+    {
+        "MONTH": "2025-02-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 86907.0,
+        "PAID_LEASES": 40754,
+        "PCT_PAID": 0.4689380602252983
+    },
+    {
+        "MONTH": "2025-02-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 492,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-02-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 28232.0,
+        "PAID_LEASES": 10710,
+        "PCT_PAID": 0.379356758288467
+    },
+    {
+        "MONTH": "2025-03-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 10226.0,
+        "PAID_LEASES": 5319,
+        "PCT_PAID": 0.5201447291218463
+    },
+    {
+        "MONTH": "2025-03-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 150397.0,
+        "PAID_LEASES": 60798,
+        "PCT_PAID": 0.4042500847756272
+    },
+    {
+        "MONTH": "2025-03-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 88385.0,
+        "PAID_LEASES": 41623,
+        "PCT_PAID": 0.47092832494201503
+    },
+    {
+        "MONTH": "2025-03-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 380,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-03-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 31645.0,
+        "PAID_LEASES": 11746,
+        "PCT_PAID": 0.3711802812450624
+    },
+    {
+        "MONTH": "2025-04-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 10525.0,
+        "PAID_LEASES": 5489,
+        "PCT_PAID": 0.5215201900237529
+    },
+    {
+        "MONTH": "2025-04-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 154105.0,
+        "PAID_LEASES": 64452,
+        "PCT_PAID": 0.4182343207553292
+    },
+    {
+        "MONTH": "2025-04-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 90917.0,
+        "PAID_LEASES": 43233,
+        "PCT_PAID": 0.4755216296182232
+    },
+    {
+        "MONTH": "2025-04-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 352,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-04-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 33637.0,
+        "PAID_LEASES": 12499,
+        "PCT_PAID": 0.371584861908018
+    },
+    {
+        "MONTH": "2025-05-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 10761.0,
+        "PAID_LEASES": 5565,
+        "PCT_PAID": 0.5171452467242821
+    },
+    {
+        "MONTH": "2025-05-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 159687.0,
+        "PAID_LEASES": 66206,
+        "PCT_PAID": 0.41459855842992854
+    },
+    {
+        "MONTH": "2025-05-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 93277.0,
+        "PAID_LEASES": 44340,
+        "PCT_PAID": 0.47535834128456106
+    },
+    {
+        "MONTH": "2025-05-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 266,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-05-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 34333.0,
+        "PAID_LEASES": 11968,
+        "PCT_PAID": 0.3485859086010544
+    },
+    {
+        "MONTH": "2025-06-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 10758.0,
+        "PAID_LEASES": 5626,
+        "PCT_PAID": 0.5229596579289831
+    },
+    {
+        "MONTH": "2025-06-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 165894.0,
+        "PAID_LEASES": 69326,
+        "PCT_PAID": 0.4178933535872304
+    },
+    {
+        "MONTH": "2025-06-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 94413.0,
+        "PAID_LEASES": 45174,
+        "PCT_PAID": 0.47847224428839247
+    },
+    {
+        "MONTH": "2025-06-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 426,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-06-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 36825.0,
+        "PAID_LEASES": 12347,
+        "PCT_PAID": 0.3352885268160217
+    },
+    {
+        "MONTH": "2025-07-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 10866.0,
+        "PAID_LEASES": 5611,
+        "PCT_PAID": 0.5163813730903737
+    },
+    {
+        "MONTH": "2025-07-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 170573.0,
+        "PAID_LEASES": 71788,
+        "PCT_PAID": 0.4208637943871539
+    },
+    {
+        "MONTH": "2025-07-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 96589.0,
+        "PAID_LEASES": 46568,
+        "PCT_PAID": 0.48212529377051216
+    },
+    {
+        "MONTH": "2025-07-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 348,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-07-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 37817.0,
+        "PAID_LEASES": 13602,
+        "PCT_PAID": 0.35967950921543224
+    },
+    {
+        "MONTH": "2025-08-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11088.0,
+        "PAID_LEASES": 5758,
+        "PCT_PAID": 0.5193001443001443
+    },
+    {
+        "MONTH": "2025-08-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 174983.0,
+        "PAID_LEASES": 74367,
+        "PCT_PAID": 0.4249955709983256
+    },
+    {
+        "MONTH": "2025-08-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 98111.0,
+        "PAID_LEASES": 47845,
+        "PCT_PAID": 0.487661933931975
+    },
+    {
+        "MONTH": "2025-08-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 146,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-08-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 38853.0,
+        "PAID_LEASES": 13494,
+        "PCT_PAID": 0.3473090881013049
+    },
+    {
+        "MONTH": "2025-09-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11373.0,
+        "PAID_LEASES": 5842,
+        "PCT_PAID": 0.513672733667458
+    },
+    {
+        "MONTH": "2025-09-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 177617.0,
+        "PAID_LEASES": 77061,
+        "PCT_PAID": 0.4338604975875057
+    },
+    {
+        "MONTH": "2025-09-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 99873.0,
+        "PAID_LEASES": 49197,
+        "PCT_PAID": 0.49259559640743744
+    },
+    {
+        "MONTH": "2025-09-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 144,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-09-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 39253.0,
+        "PAID_LEASES": 14103,
+        "PCT_PAID": 0.3592846406644078
+    },
+    {
+        "MONTH": "2025-10-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11305.0,
+        "PAID_LEASES": 5931,
+        "PCT_PAID": 0.5246351172047766
+    },
+    {
+        "MONTH": "2025-10-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 183872.0,
+        "PAID_LEASES": 80204,
+        "PCT_PAID": 0.4361947441698573
+    },
+    {
+        "MONTH": "2025-10-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 102338.0,
+        "PAID_LEASES": 50142,
+        "PCT_PAID": 0.48996462702026616
+    },
+    {
+        "MONTH": "2025-10-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 121,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-10-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 40578.0,
+        "PAID_LEASES": 15119,
+        "PCT_PAID": 0.3725910591946375
+    },
+    {
+        "MONTH": "2025-11-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11298.0,
+        "PAID_LEASES": 5933,
+        "PCT_PAID": 0.5251371924234378
+    },
+    {
+        "MONTH": "2025-11-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 189834.0,
+        "PAID_LEASES": 83227,
+        "PCT_PAID": 0.43841988263430154
+    },
+    {
+        "MONTH": "2025-11-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 103741.0,
+        "PAID_LEASES": 51151,
+        "PCT_PAID": 0.4930644586036379
+    },
+    {
+        "MONTH": "2025-11-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 195,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-11-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 39146.0,
+        "PAID_LEASES": 15434,
+        "PCT_PAID": 0.3942676135492771
+    },
+    {
+        "MONTH": "2025-12-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11319.0,
+        "PAID_LEASES": 5919,
+        "PCT_PAID": 0.5229260535382985
+    },
+    {
+        "MONTH": "2025-12-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 194126.0,
+        "PAID_LEASES": 85123,
+        "PCT_PAID": 0.4384935557318443
+    },
+    {
+        "MONTH": "2025-12-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 105975.0,
+        "PAID_LEASES": 51809,
+        "PCT_PAID": 0.4888794527011088
+    },
+    {
+        "MONTH": "2025-12-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 227,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2025-12-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 39856.0,
+        "PAID_LEASES": 15826,
+        "PCT_PAID": 0.3970794861501405
+    },
+    {
+        "MONTH": "2026-01-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11172.0,
+        "PAID_LEASES": 5924,
+        "PCT_PAID": 0.5302542069459363
+    },
+    {
+        "MONTH": "2026-01-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 197709.0,
+        "PAID_LEASES": 88158,
+        "PCT_PAID": 0.4458977588273675
+    },
+    {
+        "MONTH": "2026-01-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 107993.0,
+        "PAID_LEASES": 53429,
+        "PCT_PAID": 0.4947450297704481
+    },
+    {
+        "MONTH": "2026-01-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 225,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2026-01-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 40351.0,
+        "PAID_LEASES": 17416,
+        "PCT_PAID": 0.43161259943991476
+    },
+    {
+        "MONTH": "2026-02-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11197.0,
+        "PAID_LEASES": 6086,
+        "PCT_PAID": 0.5435384477985175
+    },
+    {
+        "MONTH": "2026-02-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 201672.0,
+        "PAID_LEASES": 92672,
+        "PCT_PAID": 0.4595184259589829
+    },
+    {
+        "MONTH": "2026-02-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 109443.0,
+        "PAID_LEASES": 55975,
+        "PCT_PAID": 0.5114534506546787
+    },
+    {
+        "MONTH": "2026-02-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 234,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2026-02-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 41461.0,
+        "PAID_LEASES": 17761,
+        "PCT_PAID": 0.4283784761583175
+    },
+    {
+        "MONTH": "2026-03-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11240.0,
+        "PAID_LEASES": 6060,
+        "PCT_PAID": 0.5391459074733096
+    },
+    {
+        "MONTH": "2026-03-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 205420.0,
+        "PAID_LEASES": 93190,
+        "PCT_PAID": 0.4536559244474735
+    },
+    {
+        "MONTH": "2026-03-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 110971.0,
+        "PAID_LEASES": 56175,
+        "PCT_PAID": 0.5062133350154545
+    },
+    {
+        "MONTH": "2026-03-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 189,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2026-03-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 44490.0,
+        "PAID_LEASES": 19062,
+        "PCT_PAID": 0.4284558327714093
+    },
+    {
+        "MONTH": "2026-04-01",
+        "SEGMENT": "Emerging",
+        "ACTIVE_LEASES": 11209.0,
+        "PAID_LEASES": 6251,
+        "PCT_PAID": 0.5576768668034615
+    },
+    {
+        "MONTH": "2026-04-01",
+        "SEGMENT": "MidMarket",
+        "ACTIVE_LEASES": 209443.0,
+        "PAID_LEASES": 97539,
+        "PCT_PAID": 0.46570666004593136
+    },
+    {
+        "MONTH": "2026-04-01",
+        "SEGMENT": "SMB",
+        "ACTIVE_LEASES": 113396.0,
+        "PAID_LEASES": 58192,
+        "PCT_PAID": 0.5131750679036298
+    },
+    {
+        "MONTH": "2026-04-01",
+        "SEGMENT": "Unknown",
+        "ACTIVE_LEASES": 0.0,
+        "PAID_LEASES": 207,
+        "PCT_PAID": null
+    },
+    {
+        "MONTH": "2026-04-01",
+        "SEGMENT": "UpMarket",
+        "ACTIVE_LEASES": 44005.0,
+        "PAID_LEASES": 19498,
+        "PCT_PAID": 0.44308601295307354
+    }
+]

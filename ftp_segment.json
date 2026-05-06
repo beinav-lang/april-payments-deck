@@ -1,0 +1,506 @@
+[
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1713,
+        "DBTENANTS": 607
+    },
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 3418,
+        "DBTENANTS": 580
+    },
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 4139,
+        "DBTENANTS": 1406
+    },
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 3119,
+        "DBTENANTS": 376
+    },
+    {
+        "MONTH": "2025-01-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 48,
+        "DBTENANTS": 8
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1826,
+        "DBTENANTS": 591
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2607,
+        "DBTENANTS": 609
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 4270,
+        "DBTENANTS": 1585
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2505,
+        "DBTENANTS": 403
+    },
+    {
+        "MONTH": "2025-02-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 65,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1927,
+        "DBTENANTS": 619
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2249,
+        "DBTENANTS": 606
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 4535,
+        "DBTENANTS": 1664
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2935,
+        "DBTENANTS": 371
+    },
+    {
+        "MONTH": "2025-03-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 74,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 2037,
+        "DBTENANTS": 655
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2741,
+        "DBTENANTS": 654
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 5098,
+        "DBTENANTS": 1793
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2762,
+        "DBTENANTS": 316
+    },
+    {
+        "MONTH": "2025-04-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 81,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 2031,
+        "DBTENANTS": 646
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2342,
+        "DBTENANTS": 616
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 5208,
+        "DBTENANTS": 1909
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2169,
+        "DBTENANTS": 301
+    },
+    {
+        "MONTH": "2025-05-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 30,
+        "DBTENANTS": 5
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1814,
+        "DBTENANTS": 635
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2697,
+        "DBTENANTS": 613
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 5988,
+        "DBTENANTS": 2039
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2610,
+        "DBTENANTS": 328
+    },
+    {
+        "MONTH": "2025-06-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 39,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 2022,
+        "DBTENANTS": 648
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2405,
+        "DBTENANTS": 599
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 6523,
+        "DBTENANTS": 2087
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2786,
+        "DBTENANTS": 300
+    },
+    {
+        "MONTH": "2025-07-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 39,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 2024,
+        "DBTENANTS": 669
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2678,
+        "DBTENANTS": 583
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 7045,
+        "DBTENANTS": 2192
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2108,
+        "DBTENANTS": 292
+    },
+    {
+        "MONTH": "2025-08-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 42,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1834,
+        "DBTENANTS": 676
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2602,
+        "DBTENANTS": 555
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 6675,
+        "DBTENANTS": 2232
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2267,
+        "DBTENANTS": 268
+    },
+    {
+        "MONTH": "2025-09-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 28,
+        "DBTENANTS": 6
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1752,
+        "DBTENANTS": 663
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2629,
+        "DBTENANTS": 534
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 6209,
+        "DBTENANTS": 2227
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 1951,
+        "DBTENANTS": 275
+    },
+    {
+        "MONTH": "2025-10-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 345,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1719,
+        "DBTENANTS": 624
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2366,
+        "DBTENANTS": 541
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 6063,
+        "DBTENANTS": 2251
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2237,
+        "DBTENANTS": 264
+    },
+    {
+        "MONTH": "2025-11-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 916,
+        "DBTENANTS": 5
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1760,
+        "DBTENANTS": 675
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 1709,
+        "DBTENANTS": 460
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 5602,
+        "DBTENANTS": 2189
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 1711,
+        "DBTENANTS": 247
+    },
+    {
+        "MONTH": "2025-12-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 159,
+        "DBTENANTS": 4
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1889,
+        "DBTENANTS": 612
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 3104,
+        "DBTENANTS": 523
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 6441,
+        "DBTENANTS": 2283
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 3222,
+        "DBTENANTS": 312
+    },
+    {
+        "MONTH": "2026-01-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 13,
+        "DBTENANTS": 3
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1854,
+        "DBTENANTS": 636
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 2838,
+        "DBTENANTS": 552
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 7087,
+        "DBTENANTS": 2573
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2720,
+        "DBTENANTS": 329
+    },
+    {
+        "MONTH": "2026-02-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 21,
+        "DBTENANTS": 5
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1545,
+        "DBTENANTS": 599
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 3073,
+        "DBTENANTS": 508
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 7147,
+        "DBTENANTS": 2502
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2249,
+        "DBTENANTS": 288
+    },
+    {
+        "MONTH": "2026-03-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 19,
+        "DBTENANTS": 4
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 1941,
+        "DBTENANTS": 624
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 3326,
+        "DBTENANTS": 525
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 7927,
+        "DBTENANTS": 2674
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 2026,
+        "DBTENANTS": 294
+    },
+    {
+        "MONTH": "2026-04-01",
+        "ACCOUNT_AGE_BUCKET": "Unknown",
+        "TENANTS": 34,
+        "DBTENANTS": 7
+    },
+    {
+        "MONTH": "2026-05-01",
+        "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+        "TENANTS": 305,
+        "DBTENANTS": 201
+    },
+    {
+        "MONTH": "2026-05-01",
+        "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+        "TENANTS": 496,
+        "DBTENANTS": 222
+    },
+    {
+        "MONTH": "2026-05-01",
+        "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+        "TENANTS": 1358,
+        "DBTENANTS": 905
+    },
+    {
+        "MONTH": "2026-05-01",
+        "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+        "TENANTS": 280,
+        "DBTENANTS": 106
+    }
+]

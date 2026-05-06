@@ -1,0 +1,3511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>April 2026 — Tenant Payments</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<style>
+  :root {
+    /* DoorLoop brand palette: brand blue #3185FC, navy #162050, light tint #ECEEF5, lime accent #dffe02 */
+    --bg:        #ECEEF5;
+    --surface:   #ffffff;
+    --border:    #d8e1f0;
+    --divider:   #e8ecf5;
+    --blue:      #3185FC;
+    --blue-lt:   rgba(49,133,252,0.08);
+    --green:     #059669;
+    --green-lt:  rgba(5,150,105,0.08);
+    --purple:    #7c3aed;
+    --purple-lt: rgba(124,58,237,0.08);
+    --warn:      #dc2626;
+    --warn-lt:   rgba(220,38,38,0.08);
+    --orange:    #ea580c;
+    --orange-lt: rgba(234,88,12,0.08);
+    --text:      #162050;
+    --muted:     #64748b;
+    --subtle:    #94a3b8;
+    --ink:       #162050;
+    --paper:     #fafbff;
+    --accent:    #dffe02;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  /* layout container — editorial column */
+  .wrap { max-width: 1340px; margin: 0 auto; padding: 0 44px; }
+  .wrap-narrow { max-width: 1100px; margin: 0 auto; padding: 0 44px; }
+
+  /* COVER — full-bleed header */
+  .cover {
+    background:
+      radial-gradient(ellipse at 90% 0%, rgba(37,99,235,0.10), transparent 60%),
+      radial-gradient(ellipse at 10% 100%, rgba(124,58,237,0.06), transparent 50%),
+      var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 0 40px;
+    margin-bottom: 0;
+  }
+  .cover-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 26px;
+  }
+  .cover-meta .dot { color: var(--subtle); margin: 0 8px; }
+  .cover h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    margin-bottom: 18px;
+    max-width: 980px;
+  }
+  .cover h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+  .cover-deck {
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 820px;
+    margin-bottom: 32px;
+  }
+  .cover-deck strong { color: var(--text); font-weight: 700; }
+  .cover-deck .red { color: var(--warn); font-weight: 700; }
+
+  /* TL;DR pull-quote — sits at end of cover */
+  .tldr {
+    border-left: 4px solid var(--blue);
+    padding: 4px 0 4px 22px;
+    max-width: 860px;
+  }
+  .tldr-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .tldr p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tldr p strong { font-weight: 700; }
+  .tldr p .red { color: var(--warn); font-weight: 700; }
+
+  /* HEADLINE METRICS BAND — full-bleed ribbon, 8 cells */
+  .metrics-band {
+    background: var(--ink);
+    color: #fff;
+    padding: 56px 0 60px;
+    margin-top: 0;
+  }
+  .metrics-band .wrap { max-width: 1320px; }
+  .metrics-band-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 32px;
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .metric {
+    padding: 14px 30px 14px 0;
+    border-right: 1px solid rgba(255,255,255,0.10);
+  }
+  .metric:nth-child(4n) { border-right: none; padding-right: 0; }
+  .metric:nth-child(4n+1) { padding-left: 0; }
+  .metric:not(:nth-child(4n+1)) { padding-left: 30px; }
+  .metric:nth-child(n+5) { padding-top: 36px; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.10); }
+  .metric-num {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.6px;
+    margin-bottom: 10px;
+  }
+  .metric-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .metric-tag {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  .metric-tag .pos { color: #4ade80; font-weight: 700; }
+  .metric-tag .neg { color: #f87171; font-weight: 700; }
+  .metric.up   .metric-num { color: #fff; }
+  .metric.down .metric-num { color: #fca5a5; }
+  .metric.flag .metric-num { color: #fcd34d; }
+
+  /* SECTION SHELL */
+  section { padding: 48px 0; }
+  section.tight { padding: 28px 0; }
+  section.compact { padding: 22px 0; }
+  section.dark { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  section.paper { background: var(--paper); }
+
+  /* eyebrow + title */
+  .eyebrow {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow .num {
+    font-size: 11px;
+    color: var(--subtle);
+    font-weight: 600;
+  }
+  .eyebrow.blue   { color: var(--blue); }
+  .eyebrow.green  { color: var(--green); }
+  .eyebrow.purple { color: var(--purple); }
+  .eyebrow.orange { color: var(--orange); }
+  .eyebrow.warn   { color: var(--warn); }
+
+  h2.section-title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 14px;
+    max-width: 880px;
+  }
+  h2.section-title em { font-style: normal; color: var(--warn); font-weight: 800; }
+  h2.section-title .accent { color: var(--blue); font-weight: 800; }
+  .lede {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 760px;
+    font-weight: 400;
+    margin-bottom: 28px;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  /* CHAPTER MARKER — section divider */
+  .chapter {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 38px 0 6px;
+  }
+  .chapter-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .chapter-meta {
+    flex: 1;
+    border-top: 2px solid var(--border);
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .chapter-name {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .chapter-tag {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* TWO-COLUMN narrative spread */
+  .spread {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 44px;
+    align-items: start;
+  }
+  .spread.even { grid-template-columns: 1fr 1fr; }
+  .spread.right-heavy { grid-template-columns: 1fr 1.7fr; }
+  .spread.left-heavy { grid-template-columns: 1.5fr 1fr; }
+  @media (max-width: 1024px) { .spread, .spread.even, .spread.right-heavy, .spread.left-heavy { grid-template-columns: 1fr; } }
+
+  .narrative h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .narrative p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .narrative p strong { color: var(--text); font-weight: 600; }
+  .narrative p .red { color: var(--warn); font-weight: 600; }
+  .narrative p .green { color: var(--green); font-weight: 600; }
+  .narrative ul { list-style: none; margin: 4px 0 0; padding: 0; }
+  .narrative ul li {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .narrative ul li:before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 6px; height: 6px;
+    background: var(--subtle);
+    border-radius: 50%;
+  }
+  .narrative ul li strong { color: var(--text); font-weight: 600; }
+
+  /* HERO NUMBER block */
+  .hero-num-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 30px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  }
+  .hero-num-box .label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .hero-num-box .num {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    color: var(--text);
+  }
+  .hero-num-box .num.warn { color: var(--warn); }
+  .hero-num-box .num.green { color: var(--green); }
+  .hero-num-box .num.blue { color: var(--blue); }
+  .hero-num-box .num.orange { color: var(--orange); }
+  .hero-num-box .num.purple { color: var(--purple); }
+  .hero-num-box .delta {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .hero-num-box .delta strong { color: var(--text); font-weight: 700; }
+  .hero-num-box .delta .pos { color: var(--green); font-weight: 700; }
+  .hero-num-box .delta .neg { color: var(--warn); font-weight: 700; }
+
+  /* CHART SHELL */
+  .chart-shell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 26px 18px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  }
+  .chart-shell .ch-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .chart-shell .ch-sub {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .chart-wrap { position: relative; }
+  .chart-wrap.h180 { height: 180px; }
+  .chart-wrap.h220 { height: 220px; }
+  .chart-wrap.h260 { height: 260px; }
+  .chart-wrap.h300 { height: 300px; }
+  .chart-wrap.h340 { height: 340px; }
+  .chart-wrap.h380 { height: 380px; }
+
+  /* HERO CHART (full bleed, no shell) */
+  .hero-chart {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 30px 36px 26px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.04);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-chart .hero-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-chart h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+  }
+  .hero-chart .hero-tag {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+  }
+
+  /* TILE GRID (compact stat rows) */
+  .tiles {
+    display: grid;
+    gap: 14px;
+  }
+  .tiles.c2 { grid-template-columns: repeat(2, 1fr); }
+  .tiles.c3 { grid-template-columns: repeat(3, 1fr); }
+  .tiles.c4 { grid-template-columns: repeat(4, 1fr); }
+  .tiles.c5 { grid-template-columns: repeat(5, 1fr); }
+
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .tile.flat { background: var(--paper); box-shadow: none; }
+  .tile .tile-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tile .tile-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.4px;
+  }
+  .tile .tile-num.blue { color: var(--blue); }
+  .tile .tile-num.green { color: var(--green); }
+  .tile .tile-num.purple { color: var(--purple); }
+  .tile .tile-num.orange { color: var(--orange); }
+  .tile .tile-num.warn { color: var(--warn); }
+  .tile .tile-sub {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .tile .tile-sub strong { color: var(--text); font-weight: 600; }
+  .tile.bordered.blue   { border-left: 3px solid var(--blue); }
+  .tile.bordered.green  { border-left: 3px solid var(--green); }
+  .tile.bordered.warn   { border-left: 3px solid var(--warn); }
+  .tile.bordered.orange { border-left: 3px solid var(--orange); }
+  .tile.bordered.purple { border-left: 3px solid var(--purple); }
+
+  /* CALLOUT — pull quote / key insight */
+  .pullquote {
+    border-left: 4px solid var(--warn);
+    padding: 6px 0 6px 24px;
+    margin: 14px 0 4px;
+  }
+  .pullquote.blue   { border-left-color: var(--blue); }
+  .pullquote.green  { border-left-color: var(--green); }
+  .pullquote.purple { border-left-color: var(--purple); }
+  .pullquote.orange { border-left-color: var(--orange); }
+  .pullquote .pq-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warn);
+    margin-bottom: 6px;
+  }
+  .pullquote.blue   .pq-label { color: var(--blue); }
+  .pullquote.green  .pq-label { color: var(--green); }
+  .pullquote.purple .pq-label { color: var(--purple); }
+  .pullquote.orange .pq-label { color: var(--orange); }
+  .pullquote p {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .pullquote p strong { font-weight: 700; }
+
+  /* JOURNEY STRIP (tenant funnel marker) */
+  .journey {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .j-step {
+    flex: 1;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text);
+    border-right: 1px solid var(--divider);
+    position: relative;
+  }
+  .j-step:last-child { border-right: none; }
+  .j-step.active {
+    background: linear-gradient(90deg, var(--warn-lt), transparent);
+  }
+  .j-step.active .j-num { background: var(--warn); }
+  .j-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--subtle);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .j-step.s1 .j-num { background: #94a3b8; }
+  .j-step.s2 .j-num { background: var(--orange); }
+  .j-step.s3 .j-num { background: var(--blue); }
+  .j-step.s4 .j-num { background: var(--green); }
+  .j-step.s5 .j-num { background: var(--purple); }
+  .j-tag {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* MINI ROW (stat-line) */
+  .stat-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .stat-line:last-child { border-bottom: none; }
+  .stat-line .sl-label {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .stat-line .sl-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  /* PLAN STRIP */
+  .plan-strip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 28px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  .plan-strip .ps-head h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.35;
+  }
+  .plan-strip .ps-head p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .plan-cell .pl-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .plan-cell .pl-actual {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.4px;
+  }
+  .plan-cell .pl-vs {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .plan-cell .pl-gap {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 10px;
+    background: var(--warn-lt);
+    color: var(--warn);
+  }
+
+  /* TABLE */
+  table.decomp { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.decomp thead tr {
+    background: var(--paper);
+    border-bottom: 2px solid var(--border);
+  }
+  table.decomp thead th {
+    padding: 10px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    text-align: right;
+  }
+  table.decomp thead th.left { text-align: left; }
+  table.decomp tbody tr { border-bottom: 1px solid var(--divider); }
+  table.decomp tbody tr:last-child { border-bottom: none; }
+  table.decomp tbody td {
+    padding: 11px 12px;
+    text-align: right;
+    font-weight: 500;
+  }
+  table.decomp tbody td.left { text-align: left; font-weight: 600; }
+  table.decomp tbody tr.flag { background: rgba(220,38,38,0.04); }
+  table.decomp tbody tr.flag td { color: var(--warn); font-weight: 700; }
+  table.decomp tbody tr.total { background: var(--paper); font-weight: 800; }
+  table.decomp tbody tr.total td { font-weight: 800; }
+
+  /* ACTION ITEMS */
+  .actions-wrap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 1280px) { .actions-wrap { grid-template-columns: repeat(2, 1fr); } }
+  .action {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .action-pill {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+  .action-pill.live    { background: var(--green-lt);  color: var(--green); }
+  .action-pill.wip     { background: rgba(217,119,6,0.10); color: #b45309; }
+  .action-pill.pending { background: rgba(148,163,184,0.18); color: var(--muted); }
+  .action h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+  }
+  .action p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .action-foot {
+    border-top: 1px solid var(--divider);
+    padding-top: 10px;
+    font-size: 11px;
+    color: var(--subtle);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .action-foot strong { color: var(--muted); font-weight: 700; }
+
+  /* WEDGES */
+  .wedges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .wedge {
+    background: var(--paper);
+    border: 1px solid var(--divider);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .wedge.alert { border-left: 3px solid var(--warn); }
+  .wedge .w-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .wedge .w-tag.blue   { color: var(--blue); }
+  .wedge .w-tag.orange { color: var(--orange); }
+  .wedge .w-tag.warn   { color: var(--warn); }
+  .wedge h5 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .wedge p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .wedge p strong { color: var(--text); font-weight: 600; }
+
+  /* SEGMENT ROW + winner ribbon */
+  .winner-ribbon {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 24px;
+    background: linear-gradient(90deg, rgba(234,88,12,0.08), transparent 80%);
+    border: 1px solid rgba(234,88,12,0.20);
+    border-radius: 14px;
+    margin-bottom: 18px;
+  }
+  .winner-ribbon .wr-tag {
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--orange);
+    padding: 4px 12px;
+    border: 1px solid rgba(234,88,12,0.35);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+  }
+  .winner-ribbon .wr-text {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .winner-ribbon .wr-text strong { font-weight: 700; }
+  .winner-ribbon .wr-num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+    letter-spacing: -0.4px;
+  }
+
+  /* compact NSF banner */
+  .nsf-band {
+    display: grid;
+    grid-template-columns: 1.2fr repeat(4, 1fr);
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .nsf-band .nsf-cell {
+    padding: 18px 22px;
+    border-right: 1px solid var(--divider);
+  }
+  .nsf-band .nsf-cell:last-child { border-right: none; }
+  .nsf-band .nsf-head h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .nsf-band .nsf-head p {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .nsf-band .nsf-cell .n-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .nsf-band .nsf-cell .n-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0e7490;
+    line-height: 1;
+    letter-spacing: -0.3px;
+  }
+  .nsf-band .nsf-cell .n-sub {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .nsf-band .nsf-cell .n-sub .pos { color: var(--green); font-weight: 700; }
+
+  /* footnote */
+  .footnote {
+    padding: 26px 0 40px;
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 400;
+    border-top: 1px solid var(--divider);
+    margin-top: 24px;
+  }
+  .footnote code {
+    font-family: 'Menlo', monospace;
+    font-size: 10.5px;
+    color: var(--text);
+    background: var(--paper);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  /* small caveat band */
+  .caveat {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--warn-lt);
+    border: 1px solid rgba(220,38,38,0.20);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--warn);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .caveat .cav-icon {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--warn);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .caveat span.normal { color: var(--muted); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER                                                         -->
+<!-- ============================================================ -->
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-meta" style="display:flex; align-items:center; justify-content:space-between; gap:24px">
+      <div>April 2026 <span class="dot">·</span> Tenant Payments <span class="dot">·</span> Monthly Performance</div>
+      <img src="https://cdn.prod.website-files.com/5f073e32d304276cc8b4ff30/69e28be1a819deda2556a0a3_doorloop_logo_2026.svg"
+           alt="DoorLoop"
+           style="height:32px; width:auto; flex-shrink:0" />
+    </div>
+    <h1>April hit plan — but <em>card mix is in a 13-month structural decline</em>, driven by first-timer adoption.</h1>
+    <div class="tldr">
+      <div class="tldr-label">TL;DR</div>
+      <p>
+        <strong>Verdict:</strong> April hit plan — ARR $15.49M (−$61K), paid leases 48.06% (47.6% adjusted for mechanical reactivation), first PM-churn relief in 7 months, NSF normalized.
+        <strong>But the engine didn't do it.</strong> ~Half the paid-leases lift is calendar mechanics from Feb's compressed cycle. Real engine improvement underneath (record M0 conversion, retention up) is smaller than the calendar effect.
+        <strong>Structural drag:</strong> <span class="red">first-timer card adoption in 13-mo decline</span> (38% → 29%) — mix problem, not yield.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- HEADLINE METRICS BAND — full-bleed dark ribbon                -->
+<!-- ============================================================ -->
+<section class="metrics-band">
+  <div class="wrap">
+    <div class="metrics-band-title">The April Numbers · in one breath</div>
+    <div class="metrics-grid">
+      <div class="metric up">
+        <div class="metric-label">Total ARR</div>
+        <div class="metric-num">$15.49M</div>
+        <div class="metric-tag"><span class="pos">▲ recovered</span> to Feb peak · +43.9% YoY</div>
+      </div>
+      <div class="metric up">
+        <div class="metric-label">ARR vs Plan</div>
+        <div class="metric-num">−$60K</div>
+        <div class="metric-tag">Expected <strong style="color:#fff">$15.548M</strong> · landed <strong style="color:#fff">$15.487M</strong> · <span class="pos">essentially on plan</span> (99.6%)</div>
+      </div>
+      <div class="metric up">
+        <div class="metric-label">Paid Leases</div>
+        <div class="metric-num">48.06%</div>
+        <div class="metric-tag"><span class="pos">▲ ATH</span> · +1.13pp MoM · +4.48pp YoY · 181.7K paid</div>
+      </div>
+      <div class="metric up">
+        <div class="metric-label">First-time Payers</div>
+        <div class="metric-num">15.3K</div>
+        <div class="metric-tag"><span class="pos">▲ Record</span> · +20% YoY · 52% from Mature accounts</div>
+      </div>
+      <div class="metric up">
+        <div class="metric-label">Invite Rate · Mature</div>
+        <div class="metric-num">75.1% <span style="font-size: 11px; color: var(--muted); font-weight: 600">/ 85.6% ★</span></div>
+        <div class="metric-tag">Feb '26 closed (highest in series) · <span class="pos">Apr ★ partial</span> trending up</div>
+      </div>
+      <div class="metric flag">
+        <div class="metric-label">Card Volume / Share</div>
+        <div class="metric-num">$54.7M / 17.75%</div>
+        <div class="metric-tag">Volume <span class="pos">▲ record</span> · share <span class="neg">▼ 12-mo low</span></div>
+      </div>
+      <div class="metric flag">
+        <div class="metric-label">NSF</div>
+        <div class="metric-num">$1.84M ARR</div>
+        <div class="metric-tag">3.20% rate · 5,072 txns · $30.2 rev/txn · inside band</div>
+      </div>
+      <div class="metric up">
+        <div class="metric-label">Churned Paid Accounts</div>
+        <div class="metric-num">90 / $125K</div>
+        <div class="metric-tag"><span class="pos">▲ −37 MoM</span> · first material relief in 7 months</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION · PLANNED vs ACTUAL (redesigned: hero + tiers + table) -->
+<!-- ============================================================ -->
+<style>
+  /* ---- PVA editorial layout ---- */
+  .pva2-hero {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 56px;
+    align-items: end;
+    padding-top: 12px;
+    margin-bottom: 36px;
+  }
+  @media (max-width: 1024px) { .pva2-hero { grid-template-columns: 1fr; gap: 28px } }
+  .pva2-hero .lede strong { color: var(--text); font-weight: 600 }
+  .pva2-hero .lede .red   { color: var(--warn); font-weight: 700 }
+  .pva2-hero .lede .green { color: var(--green); font-weight: 700 }
+
+  .pva2-bigstat { text-align: right }
+  .pva2-bigstat .label {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 2.6px;
+    color: var(--muted); font-weight: 700; margin-bottom: 10px;
+  }
+  .pva2-bigstat .num {
+    font-size: 84px; font-weight: 800; line-height: 0.95; letter-spacing: -2.5px;
+    color: var(--text); margin-bottom: 10px;
+  }
+  .pva2-bigstat .num .unit { font-size: 38px; color: var(--muted); font-weight: 600; letter-spacing:-0.5px }
+  .pva2-bigstat .ctx {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+  }
+  .pva2-bigstat .ctx .pill {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    background: rgba(5,150,105,0.10); color: var(--green);
+    font-weight: 700; font-size: 12px; letter-spacing: 0.2px;
+  }
+  .pva2-bigstat .vs { font-size: 14px; color: var(--text); font-weight: 600; margin-bottom: 6px }
+  .pva2-bigstat .vs .muted { color: var(--muted); font-weight: 500 }
+
+  /* ---- Funnel tiers ---- */
+  .pva2-tiers {
+    display: grid;
+    grid-template-columns: 168px 1fr 200px;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .pva2-tier {
+    display: contents;
+  }
+  .pva2-tier-label, .pva2-tier-bars, .pva2-tier-take {
+    border-bottom: 1px solid var(--divider);
+    padding: 22px 0;
+  }
+  .pva2-tier:last-child .pva2-tier-label,
+  .pva2-tier:last-child .pva2-tier-bars,
+  .pva2-tier:last-child .pva2-tier-take { border-bottom: none }
+
+  .pva2-tier-label { padding-right: 26px }
+  .pva2-tier-label .step {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: 2.4px;
+    font-weight: 800; color: var(--subtle); margin-bottom: 4px;
+  }
+  .pva2-tier-label .name {
+    font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.3;
+  }
+  .pva2-tier-label .name .verdict {
+    display: block; font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+    text-transform: uppercase; margin-top: 6px;
+  }
+  .pva2-tier-label .verdict.miss { color: var(--warn) }
+  .pva2-tier-label .verdict.beat { color: var(--green) }
+  .pva2-tier-label .verdict.flat { color: var(--muted) }
+
+  .pva2-tier-bars { padding: 22px 28px }
+  .pva2-bar-row {
+    display: grid;
+    grid-template-columns: 230px 1fr 170px;
+    gap: 18px; align-items: center;
+    margin-bottom: 14px;
+  }
+  .pva2-bar-row:last-child { margin-bottom: 0 }
+  .pva2-bar-row .metric-name {
+    font-size: 13px; font-weight: 600; color: var(--text);
+  }
+  .pva2-bar-row .metric-name .sub {
+    display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 2px;
+  }
+  .pva2-bar-track {
+    position: relative; width: 100%; height: 28px;
+    background: #f1f4fb; border-radius: 6px; overflow: hidden;
+  }
+  .pva2-bar-plan, .pva2-bar-actual {
+    position: absolute; top: 0; bottom: 0; left: 0;
+    border-radius: 6px;
+  }
+  .pva2-bar-plan {
+    background: repeating-linear-gradient(45deg, rgba(100,116,139,0.18) 0 6px, rgba(100,116,139,0.08) 6px 12px);
+    border: 1px dashed rgba(100,116,139,0.55);
+  }
+  .pva2-bar-actual.beat { background: linear-gradient(90deg, rgba(5,150,105,0.85), rgba(5,150,105,1)); }
+  .pva2-bar-actual.miss { background: linear-gradient(90deg, rgba(220,38,38,0.85), rgba(220,38,38,1)); }
+  .pva2-bar-actual.flat { background: linear-gradient(90deg, rgba(37,99,235,0.85), rgba(37,99,235,1)); }
+  .pva2-bar-actual { height: 14px; top: 7px; bottom: 7px; box-shadow: 0 1px 3px rgba(0,0,0,0.08) }
+  .pva2-bar-plan   { height: 28px }
+
+  .pva2-bar-row .delta {
+    text-align: right; font-size: 13px; font-weight: 600;
+    color: var(--text); white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .pva2-bar-row .delta .pct { font-size: 11px; color: var(--muted); font-weight: 500; display: block; margin-top: 2px }
+  .pva2-bar-row .delta.beat .head { color: var(--green) }
+  .pva2-bar-row .delta.miss .head { color: var(--warn) }
+  .pva2-bar-row .delta.flat .head { color: var(--blue) }
+
+  .pva2-tier-take { padding-left: 26px; font-size: 12.5px; color: var(--muted); line-height: 1.6 }
+  .pva2-tier-take strong { color: var(--text); font-weight: 700 }
+  .pva2-tier-take .red   { color: var(--warn); font-weight: 700 }
+  .pva2-tier-take .green { color: var(--green); font-weight: 700 }
+
+  /* ---- Bridge: where the −$61K lives ---- */
+  .pva2-bridge {
+    margin-top: 36px; padding: 26px 28px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  }
+  .pva2-bridge .head { display:flex; align-items:baseline; justify-content:space-between; gap:18px; margin-bottom: 18px; flex-wrap:wrap }
+  .pva2-bridge h4 {
+    font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -0.1px;
+  }
+  .pva2-bridge .sub { font-size: 11.5px; color: var(--muted); font-weight: 500 }
+  .pva2-bridge-track {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end;
+  }
+  .pva2-bb {
+    position: relative; padding: 10px 12px 12px;
+    border-radius: 8px; min-height: 100px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .pva2-bb.start, .pva2-bb.end { background: #eef2fa; border: 1px solid var(--border) }
+  .pva2-bb.pos  { background: rgba(5,150,105,0.10); border: 1px solid rgba(5,150,105,0.30) }
+  .pva2-bb.neg  { background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.28) }
+  .pva2-bb .lab { font-size: 10px; text-transform: uppercase; letter-spacing: 1.6px; font-weight: 700; color: var(--muted); margin-bottom: 4px }
+  .pva2-bb .val { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.4px; line-height: 1 }
+  .pva2-bb.pos .val { color: var(--green) }
+  .pva2-bb.neg .val { color: var(--warn) }
+  .pva2-bb .det { font-size: 11px; color: var(--muted); margin-top: 6px; font-weight: 500; line-height: 1.4 }
+
+  /* ---- Compressed all-21 table (collapsed by default) ---- */
+  .pva2-details { margin-top: 28px; border-top: 1px solid var(--divider); padding-top: 18px }
+  .pva2-details summary {
+    cursor: pointer; list-style: none; user-select: none;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2.4px; font-weight: 800;
+    color: var(--muted); display: flex; align-items: center; gap: 10px;
+  }
+  .pva2-details summary::-webkit-details-marker { display: none }
+  .pva2-details summary::before {
+    content: '+'; display: inline-block; width: 18px; height: 18px;
+    border: 1px solid var(--border); border-radius: 50%; text-align: center;
+    line-height: 16px; font-size: 14px; color: var(--muted); font-weight: 600;
+  }
+  .pva2-details[open] summary::before { content: '−' }
+  .pva2-details .summary-tag { font-size: 11px; color: var(--subtle); font-weight: 500; letter-spacing: 0.4px; text-transform: none }
+
+  .pva2-table {
+    width:100%; border-collapse: collapse; margin-top: 16px;
+    font-size: 12.5px; font-variant-numeric: tabular-nums;
+  }
+  .pva2-table thead th {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1.4px;
+    color: var(--muted); font-weight: 700; padding: 10px 12px;
+    text-align: right; border-bottom: 1px solid var(--border);
+  }
+  .pva2-table thead th.left { text-align: left; padding-left: 0 }
+  .pva2-table tbody td {
+    padding: 7px 12px; text-align: right; border-bottom: 1px solid var(--divider);
+    color: var(--text); white-space: nowrap;
+  }
+  .pva2-table tbody td.left { text-align: left; padding-left: 0; color: var(--text); font-weight: 600 }
+  .pva2-table tbody td.muted-c { color: var(--muted); font-weight: 400 }
+  .pva2-table tbody tr.tier-head td {
+    background: transparent; padding-top: 16px; padding-bottom: 6px;
+    font-size: 9.5px; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 800; color: var(--subtle); border-bottom: 1px solid var(--border);
+  }
+  .pva2-table tbody tr.tier-head td.left { color: var(--text) }
+  .pva2-table tbody tr.is-total td { font-weight: 800; color: var(--text) }
+  .pva2-table tbody tr.is-total td.left { color: var(--text) }
+  .pva2-table .att {
+    display: inline-block; min-width: 58px; padding: 2px 8px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2px;
+  }
+  .pva2-table .att.beat { background: rgba(5,150,105,0.10); color: var(--green) }
+  .pva2-table .att.miss { background: rgba(220,38,38,0.08); color: var(--warn) }
+  .pva2-table .att.flat { background: rgba(37,99,235,0.08); color: var(--blue) }
+  .pva2-table .att.na   { background: #eef2fa; color: var(--subtle) }
+
+  /* ---- legend ---- */
+  .pva2-legend { display: flex; gap: 22px; align-items: center; font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 4px }
+  .pva2-legend .swatch { display:inline-block; width: 22px; height: 10px; border-radius: 3px; vertical-align: middle; margin-right: 6px }
+  .pva2-legend .swatch.plan { background: repeating-linear-gradient(45deg, rgba(100,116,139,0.32) 0 5px, rgba(100,116,139,0.10) 5px 10px); border: 1px dashed rgba(100,116,139,0.55) }
+  .pva2-legend .swatch.beat { background: var(--green) }
+  .pva2-legend .swatch.miss { background: var(--warn) }
+</style>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="eyebrow blue"><span class="num">00</span> Planned vs Actual · April 2026</div>
+    <h2 class="section-title">Top of funnel missed. Conversion <span class="accent">beat plan</span>. ARR landed within <em style="color:var(--text)">−$61K</em> of plan.</h2>
+
+    <div class="pva2-hero">
+      <p class="lede" style="margin-bottom:0">
+        Net New Price Units came in at <span class="red">24% of plan</span> — the biggest miss in the deck. But every downstream conversion ratio <span class="green">beat plan</span>: eligibility +3.8pp, % paid from active +2.2pp, paid leases +1,738. The conversion engine fully absorbed a soft top-of-funnel and ARR landed essentially on plan. The one structural drag below ARR is <strong>card mix</strong> (17.49% vs 18.23% planned) — that gap is what Chapter 03 unpacks.
+      </p>
+      <div class="pva2-bigstat">
+        <div class="label">April Total Payments ARR</div>
+        <div class="num">$15.49<span class="unit">M</span></div>
+        <div class="vs">vs plan <span class="muted">$15.55M</span></div>
+        <div class="ctx"><span class="pill">−$61K · 99.6% of plan</span> &nbsp; +43.9% YoY</div>
+      </div>
+    </div>
+
+    <!-- ============ FUNNEL TIERS ============ -->
+    <div class="pva2-legend" style="margin-bottom:8px">
+      <span><span class="swatch plan"></span>Plan (target)</span>
+      <span><span class="swatch beat"></span>Actual · beat</span>
+      <span><span class="swatch miss"></span>Actual · miss</span>
+      <span style="color:var(--subtle)">bars sized to % of plan</span>
+    </div>
+
+    <div class="pva2-tiers">
+
+      <!-- TIER 1: TOP OF FUNNEL -->
+      <div class="pva2-tier">
+        <div class="pva2-tier-label">
+          <div class="step">Tier 1</div>
+          <div class="name">Top of Funnel
+            <span class="verdict miss">▼ Missed plan</span>
+          </div>
+        </div>
+        <div class="pva2-tier-bars">
+          <div class="pva2-bar-row">
+            <div class="metric-name">Net New Price Units<span class="sub">almost the entire new-units acquisition was offset by churn in April</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 23.8%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">3,242</span>
+              <span class="pct">vs 13,628 plan · 23.8%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Price Units<span class="sub">total billable rentable units</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 95.4%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">498,944</span>
+              <span class="pct">vs 523,240 plan · 95.4%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Product Units<span class="sub">price units × product attach (90.2% vs 89.0% plan)</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 96.7%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">450,239</span>
+              <span class="pct">vs 465,684 plan · 96.7%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pva2-tier-take">
+          New customer onboarding fell <strong class="red">~10K Price Units short</strong>. <strong>Product attach actually beat</strong> (90.2% vs 89.0%) — the attach engine is fine; the inflow is what missed.
+        </div>
+      </div>
+
+      <!-- TIER 2: ELIGIBILITY -->
+      <div class="pva2-tier">
+        <div class="pva2-tier-label">
+          <div class="step">Tier 2</div>
+          <div class="name">Eligibility
+            <span class="verdict beat">▲ Beat plan</span>
+          </div>
+        </div>
+        <div class="pva2-tier-bars">
+          <div class="pva2-bar-row">
+            <div class="metric-name">Active Leases<span class="sub">smaller base — but converted harder</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 96.3%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">377,970</span>
+              <span class="pct">vs 392,414 plan · 96.3%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Active Leases with MA<span class="sub">MA attach 91.1% vs 91.0% plan</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 96.8%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">344,427</span>
+              <span class="pct">vs 355,701 plan · 96.8%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Eligible Leases<span class="sub">% Eligible 71.8% vs 68.0% plan — <strong style="color:var(--green)">+3.8pp</strong></sub></span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 91.4%"></div>
+              <div class="pva2-bar-actual beat" style="width: 100%"></div>
+            </div>
+            <div class="delta beat">
+              <span class="head">271,434</span>
+              <span class="pct">vs 265,897 plan · 102.1%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pva2-tier-take">
+          Even with a smaller Active Lease base, <strong class="green">Eligible Leases beat plan by +5.5K</strong>. MA attach and active-tenant attach both ran hot. Eligibility funnel is healthier than commit assumed.
+        </div>
+      </div>
+
+      <!-- TIER 3: CONVERSION -->
+      <div class="pva2-tier">
+        <div class="pva2-tier-label">
+          <div class="step">Tier 3</div>
+          <div class="name">Conversion to Paid
+            <span class="verdict beat">▲ Beat plan</span>
+          </div>
+        </div>
+        <div class="pva2-tier-bars">
+          <div class="pva2-bar-row">
+            <div class="metric-name">Paid Leases<span class="sub">+44.2% YoY · record month</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 99.0%"></div>
+              <div class="pva2-bar-actual beat" style="width: 100%"></div>
+            </div>
+            <div class="delta beat">
+              <span class="head">181,687</span>
+              <span class="pct">vs 179,949 plan · 101.0%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">% Paid from Active Lease<span class="sub">48.07% vs 45.9% plan — <strong style="color:var(--green)">+2.2pp</strong></sub></span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 95.5%"></div>
+              <div class="pva2-bar-actual beat" style="width: 100%"></div>
+            </div>
+            <div class="delta beat">
+              <span class="head">48.07%</span>
+              <span class="pct">vs 45.9% plan · 104.7%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Avg Volume per Paid Lease<span class="sub">$1,720 vs $1,682 plan</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 97.8%"></div>
+              <div class="pva2-bar-actual beat" style="width: 100%"></div>
+            </div>
+            <div class="delta beat">
+              <span class="head">$1,720</span>
+              <span class="pct">vs $1,682 plan · 102.3%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pva2-tier-take">
+          Conversion <strong class="green">absorbed the top-of-funnel softness</strong>. +2.2pp on % paid from active is the single largest driver of why ARR didn't miss. Engagement quality up across the board.
+        </div>
+      </div>
+
+      <!-- TIER 4: OUTCOME -->
+      <div class="pva2-tier">
+        <div class="pva2-tier-label">
+          <div class="step">Tier 4</div>
+          <div class="name">Outcome — ARR
+            <span class="verdict flat">≈ On plan</span>
+          </div>
+        </div>
+        <div class="pva2-tier-bars">
+          <div class="pva2-bar-row">
+            <div class="metric-name">Total Payments ARR</div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual flat" style="width: 99.6%"></div>
+            </div>
+            <div class="delta flat">
+              <span class="head">$15.49M</span>
+              <span class="pct">vs $15.55M plan · 99.6%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Additional ARR<span class="sub">Feb's calendar-inflated cycle pulled ARR forward · skews Additional ARR in the months that follow</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 67.4%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">$510.6K</span>
+              <span class="pct">vs $757.7K plan · 67.4%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">Card Amount<span class="sub">structural drag — Chapter 03 unpacks</span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 99.1%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">$54.66M</span>
+              <span class="pct">vs $55.17M plan · 99.1%</span>
+            </div>
+          </div>
+          <div class="pva2-bar-row">
+            <div class="metric-name">% Card<span class="sub">17.49% vs 18.23% plan — <strong style="color:var(--warn)">−0.74pp</strong></sub></span></div>
+            <div class="pva2-bar-track">
+              <div class="pva2-bar-plan"   style="width: 100%"></div>
+              <div class="pva2-bar-actual miss" style="width: 96.0%"></div>
+            </div>
+            <div class="delta miss">
+              <span class="head">17.49%</span>
+              <span class="pct">vs 18.23% plan · 96.0%</span>
+            </div>
+          </div>
+        </div>
+        <div class="pva2-tier-take">
+          ARR <em>level</em> is <strong>essentially on plan</strong> (−$61K, 99.6%) — but Additional ARR <strong class="red">missed by $247K (67% of plan)</strong>. The structural drag is <strong class="red">card mix −0.74pp</strong> — ACH outgrew card again. Chapter 03 unpacks why.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bridge component removed per user request -->
+
+    <!-- ============ FULL TABLE — collapsed by default ============ -->
+    <details class="pva2-details">
+      <summary>
+        Full 21-metric Planned vs Actual table
+      </summary>
+      <table class="pva2-table">
+        <thead>
+          <tr>
+            <th class="left">Metric</th>
+            <th>Planned</th>
+            <th>Actual</th>
+            <th>Δ vs Plan</th>
+            <th>% of Plan</th>
+            <th>MoM</th>
+            <th>YoY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tier-head"><td class="left" colspan="7">Tier 1 · Top of Funnel</td></tr>
+          <tr><td class="left">Price Units</td><td>523,240</td><td>498,944</td><td class="muted-c">−24,296</td><td><span class="att miss">95.4%</span></td><td>+0.7%</td><td>+30.6%</td></tr>
+          <tr><td class="left">Net New Price Units</td><td>13,628</td><td>3,242</td><td class="muted-c">−10,386</td><td><span class="att miss">23.8%</span></td><td>−32.3%</td><td>−65.2%</td></tr>
+          <tr><td class="left">Product Units</td><td>465,684</td><td>450,239</td><td class="muted-c">−15,445</td><td><span class="att miss">96.7%</span></td><td>+1.0%</td><td>+31.3%</td></tr>
+          <tr><td class="left">Product Units to Price Units</td><td>89.0%</td><td>90.2%</td><td class="muted-c">+1.2pp</td><td><span class="att beat">101.4%</span></td><td>+0.3pp</td><td>+0.5pp</td></tr>
+
+          <tr class="tier-head"><td class="left" colspan="7">Tier 2 · Eligibility</td></tr>
+          <tr><td class="left">Active Leases</td><td>392,414</td><td>377,970</td><td class="muted-c">−14,444</td><td><span class="att miss">96.3%</span></td><td>+1.6%</td><td>+30.7%</td></tr>
+          <tr><td class="left">Active Leases to Product Units</td><td>84.0%</td><td>83.9%</td><td class="muted-c">−0.1pp</td><td><span class="att flat">99.9%</span></td><td>+0.5pp</td><td>−0.4pp</td></tr>
+          <tr><td class="left">Active Lease with MA</td><td>355,701</td><td>344,427</td><td class="muted-c">−11,274</td><td><span class="att miss">96.8%</span></td><td>+1.7%</td><td>+33.6%</td></tr>
+          <tr><td class="left">MA Attach Rate</td><td>91.0%</td><td>91.1%</td><td class="muted-c">+0.1pp</td><td><span class="att beat">100.1%</span></td><td>+0.1pp</td><td>+2.0pp</td></tr>
+          <tr><td class="left">Active Leases with Active Tenant</td><td>280,550</td><td>279,395</td><td class="muted-c">−1,155</td><td><span class="att flat">99.6%</span></td><td>+2.4%</td><td>—</td></tr>
+          <tr><td class="left">Active Tenants Leases Attach Rate</td><td>72.0%</td><td>73.9%</td><td class="muted-c">+1.9pp</td><td><span class="att beat">102.6%</span></td><td>+0.6pp</td><td>—</td></tr>
+          <tr><td class="left">Eligible Leases (active tenant + MA)</td><td>265,897</td><td>271,434</td><td class="muted-c">+5,537</td><td><span class="att beat">102.1%</span></td><td>+2.4%</td><td>—</td></tr>
+          <tr><td class="left">% Eligible from Active Leases</td><td>68.0%</td><td>71.8%</td><td class="muted-c">+3.8pp</td><td><span class="att beat">105.6%</span></td><td>+0.6pp</td><td>—</td></tr>
+
+          <tr class="tier-head"><td class="left" colspan="7">Tier 3 · Conversion to Paid</td></tr>
+          <tr><td class="left">Paid Leases</td><td>179,949</td><td>181,687</td><td class="muted-c">+1,738</td><td><span class="att beat">101.0%</span></td><td>+4.0%</td><td>+44.2%</td></tr>
+          <tr><td class="left">% Paid from Active Lease</td><td>45.9%</td><td>48.07%</td><td class="muted-c">+2.2pp</td><td><span class="att beat">104.7%</span></td><td>+1.1pp</td><td>+4.5pp</td></tr>
+          <tr><td class="left">% Paid from Eligible</td><td>68.0%</td><td>66.94%</td><td class="muted-c">−1.1pp</td><td><span class="att miss">98.4%</span></td><td>+1.0pp</td><td>—</td></tr>
+          <tr><td class="left">Avg Volume per Paid Lease</td><td>$1,682</td><td>$1,720</td><td class="muted-c">+$38</td><td><span class="att beat">102.3%</span></td><td>+1.0%</td><td>+4.7%</td></tr>
+
+          <tr class="tier-head"><td class="left" colspan="7">Tier 4 · Outcome — ARR</td></tr>
+          <tr><td class="left">Total Volume</td><td>$302.59M</td><td>$312.44M</td><td class="muted-c">+$9.85M</td><td><span class="att beat">103.3%</span></td><td>+5.1%</td><td>+50.9%</td></tr>
+          <tr><td class="left">Card Amount</td><td>$55.17M</td><td>$54.66M</td><td class="muted-c">−$510K</td><td><span class="att miss">99.1%</span></td><td>+3.6%</td><td>+45.2%</td></tr>
+          <tr><td class="left">% Card</td><td>18.23%</td><td>17.49%</td><td class="muted-c">−0.74pp</td><td><span class="att miss">96.0%</span></td><td>−0.25pp</td><td>−0.69pp</td></tr>
+          <tr><td class="left">Platform Fee ARR (NSF)</td><td>$1.80M</td><td>$1.82M</td><td class="muted-c">+$20K</td><td><span class="att beat">101.1%</span></td><td>+11.8%</td><td>+91.2%</td></tr>
+          <tr class="is-total"><td class="left">Total Payments ARR</td><td>$15.55M</td><td>$15.49M</td><td class="muted-c">−$61K</td><td><span class="att flat">99.6%</span></td><td>+3.4%</td><td>+43.9%</td></tr>
+          <tr><td class="left">Additional ARR</td><td>$757,686</td><td>$510,618</td><td class="muted-c">−$247K</td><td><span class="att miss">67.4%</span></td><td>recovery</td><td>−5.1%</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 01 · THE PLAN GAP                                     -->
+<!-- ============================================================ -->
+<section class="tight">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">01</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">The Plan Gap</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compact">
+  <div class="wrap">
+    <div class="plan-strip">
+      <div class="ps-head">
+        <h3>ARR on plan — top-of-funnel miss, conversion beat, card-mix the only unrecovered drag.</h3>
+        <p>Three numbers carry the rest of the deck. Calendar unwind (Ch. 02) explains the ARR rebound; card-mix (Ch. 03) explains the only structural miss.</p>
+      </div>
+      <div class="plan-cell">
+        <div class="pl-label">April ARR</div>
+        <div class="pl-actual">$15.49M</div>
+        <div class="pl-vs">Plan $15.55M</div>
+        <span class="pl-gap">−$61K · 99.6%</span>
+      </div>
+      <div class="plan-cell">
+        <div class="pl-label">April Card Volume</div>
+        <div class="pl-actual">$54.66M</div>
+        <div class="pl-vs">Plan $55.17M</div>
+        <span class="pl-gap">−$510K · 99.1%</span>
+      </div>
+      <div class="plan-cell">
+        <div class="pl-label">Net New Price Units</div>
+        <div class="pl-actual">3,242</div>
+        <div class="pl-vs">Plan 13,628</div>
+        <span class="pl-gap">−10,386 · 24% of plan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 02 · THE CALENDAR UNWIND (ARR + paid leases)           -->
+<!-- ============================================================ -->
+<section class="paper">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">02</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">The Calendar Unwind</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px">
+      <div class="eyebrow blue"><span class="num">2.1</span> ARR · 12-month trend</div>
+      <h2 class="section-title">ARR snapped back to the <span class="accent">February high</span> — the calendar effect cleanly unwound.</h2>
+      <p class="lede">
+        February's compressed cycle pulled ARR forward. March gave it back. April closed the loop at <strong>$15.49M</strong>, equal to the Feb peak.
+        Net of the calendar swing, the underlying engine added <strong>~+5K paid leases / month</strong> Feb→Apr — that's real momentum, not just a rebound.
+      </p>
+    </div>
+
+    <div class="spread right-heavy" style="margin-top: 14px">
+      <div>
+        <div class="hero-num-box">
+          <div class="label">April ARR</div>
+          <div class="num blue">$15.49M</div>
+          <div class="delta">
+            = Feb peak · <span class="pos">+$0.51M MoM</span> · <span class="pos">+43.9% YoY</span><br>
+            April vs plan: <strong>$15.49M</strong> vs <strong>$15.55M</strong> · <span class="neg">−$61K (99.6%)</span>
+          </div>
+        </div>
+        <div class="pullquote blue" style="margin-top: 22px">
+          <div class="pq-label">Why it happened</div>
+          <p>Reactivated paid leases <strong>jumped 50% MoM</strong> (6.3K → 9.5K) — the cleanest fingerprint of the unwind. Tenants who pre-paid in Feb's compressed cycle, missed March, and resumed in April are mechanically routed to "Reactivated."</p>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">Total Payments ARR · 17 months · plan overlay</div>
+        <div class="ch-sub">Apr returns to Feb peak. Plan line indicative.</div>
+        <div class="chart-wrap h340"><canvas id="chart-arr"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div style="margin-bottom: 22px">
+      <div class="eyebrow purple"><span class="num">2.2</span> Paid Leases · the milestone</div>
+      <h2 class="section-title">48.06% paid — record, but <em>~0.5pp is mechanical</em>.</h2>
+      <p class="lede">
+        The +1.13pp MoM lift was <strong>conversion-led</strong>: unpaid → paid hit <strong>9.4%</strong> (vs 7.8% baseline) and delivered <strong>+0.45pp</strong> on its own — more than retention, churn, and new-active combined.
+      </p>
+      <p class="lede" style="margin-top:8px">
+        <strong>The asterisk:</strong> ~1.7K of the gain is <strong>mechanical reactivation, not engine output</strong>. Leases that pre-paid in February's compressed cycle (calendar carryover) skipped March and resumed in April — landed in the "Reactivated" bucket but aren't real recovery. <strong>Without that lift, paid % sits at ~47.6%</strong> — still an all-time high, just less dramatic than 48.06%.
+      </p>
+    </div>
+
+    <div class="chart-shell" style="margin-bottom: 20px">
+      <div class="ch-title">% Paid Leases · 18-month trend</div>
+      <div class="ch-sub">Monotonic up except March dip; April closes the gap and crosses 48%.</div>
+      <div class="chart-wrap h300"><canvas id="chart-pct-paid"></canvas></div>
+    </div>
+
+    <div class="chart-shell">
+      <div class="ch-title">Paid leases breakdown</div>
+      <div class="chart-wrap" style="height:480px"><canvas id="chart-breakdown"></canvas></div>
+      <div style="margin-top:14px; padding:12px 16px; background:#f7f9fd; border:1px solid var(--divider); border-radius:8px; font-size:12px; color:var(--muted); line-height:1.7">
+        <strong style="color:var(--text)">Definitions →</strong>
+        <span style="color:var(--green); font-weight:700">Reactivated</span> = lease paid this month + in some prior month, but not in the previous month ·
+        <span style="color:var(--blue); font-weight:700">First-time</span> = lease paid for the first time ·
+        <span style="color:var(--purple); font-weight:700">Existing</span> = lease paid both this and the previous month ·
+        <span style="color:var(--warn); font-weight:700">Churned</span> = lease paid previous month, not paid this month
+      </div>
+    </div>
+
+    <div class="pullquote" style="margin-top: 20px">
+      <div class="pq-label">⚠ Watch</div>
+      <p>Churn baseline appears to have <strong>stepped up</strong> from ~14K (Sep '25–Feb '26) to ~16–17K. That's not a calendar story.</p>
+    </div>
+
+    <details class="pva2-details">
+      <summary>April pp-driver decomposition · +1.13pp MoM</summary>
+
+      <!-- Driver definitions -->
+      <div style="margin-top:18px; padding:14px 18px; background:#f7f9fd; border:1px solid var(--divider); border-radius:10px; font-size:12.5px; color:var(--muted); line-height:1.75">
+        <strong style="color:var(--text)">What each driver means →</strong><br>
+        <span style="color:var(--green); font-weight:700">Conversion (unpaid → paid)</span> = leases that were active and unpaid in March, paid in April · the recovery engine ·
+        <span style="color:var(--purple); font-weight:700">Retention (paid → paid)</span> = leases that paid in both March and April · the steady base ·
+        <span style="color:var(--blue); font-weight:700">Churn improvement</span> = fewer paid leases dropped to unpaid/inactive vs March (paid Mar 18.4K → 17.5K Apr) ·
+        <span style="color:var(--orange); font-weight:700">New active paid</span> = leases that became active in April AND paid same month ·
+        <span style="font-weight:700; color:#7c3aed">Unpaid that left the base</span> = leases that were unpaid in March and dropped from the active denominator in April (a denominator effect)
+      </div>
+
+      <!-- 5-up driver stat row -->
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; margin-top:16px">
+        <div style="padding:14px 16px; background:#fff; border:1px solid var(--border); border-left:3px solid var(--green); border-radius:8px">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:6px">Conversion (unpaid → paid)</div>
+          <div style="font-size:22px; font-weight:800; color:var(--green)">+0.45pp</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5">18.9K (vs 15.4K Mar) · <strong>+3.4K</strong> · the lead lever</div>
+        </div>
+        <div style="padding:14px 16px; background:#fff; border:1px solid var(--border); border-left:3px solid var(--purple); border-radius:8px">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:6px">Retention</div>
+          <div style="font-size:22px; font-weight:800; color:var(--purple)">+0.20pp</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5">155.9K paid Mar+Apr (vs 153.1K) · +2.8K</div>
+        </div>
+        <div style="padding:14px 16px; background:#fff; border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:8px">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:6px">Churn improvement</div>
+          <div style="font-size:22px; font-weight:800; color:var(--blue)">+0.30pp</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5">17.5K paid-churn (vs 18.4K Mar) · −0.9K</div>
+        </div>
+        <div style="padding:14px 16px; background:#fff; border:1px solid var(--border); border-left:3px solid var(--orange); border-radius:8px">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:6px">New active paid</div>
+          <div style="font-size:22px; font-weight:800; color:var(--orange)">+0.17pp</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5">5.6K (vs 4.9K Mar) · +0.7K · record M0</div>
+        </div>
+        <div style="padding:14px 16px; background:#fff; border:1px solid var(--border); border-left:3px solid #7c3aed; border-radius:8px">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:6px">Unpaid that left base</div>
+          <div style="font-size:22px; font-weight:800; color:#7c3aed">+0.01pp</div>
+          <div style="font-size:11px; color:var(--muted); margin-top:4px; line-height:1.5">14.4K dropped (vs 12.2K Mar) · +2.2K · denominator shrunk slightly</div>
+        </div>
+      </div>
+
+      <!-- Bridge chart -->
+      <div class="chart-shell" style="margin-top: 18px">
+        <div class="ch-title">April pp-driver bridge · Mar 46.94% → Apr 48.06%</div>
+        <div class="chart-wrap h300"><canvas id="chart-waterfall"></canvas></div>
+      </div>
+    </details>
+
+    <!-- ===== New-active-lease cohorts ============================ -->
+    <style>
+      .cohort-toggle { display:flex; gap:6px; align-items:center; margin-left:auto }
+      .cohort-toggle button {
+        font-family: inherit; font-size: 12px; font-weight: 700;
+        padding: 7px 14px; border-radius: 8px; cursor: pointer;
+        border: 1px solid var(--border); background: #fff; color: var(--muted);
+        transition: all 0.15s;
+      }
+      .cohort-toggle button:hover { color: var(--text); border-color: var(--purple) }
+      .cohort-toggle button.active {
+        background: var(--purple); color: #fff; border-color: var(--purple);
+      }
+      .cohort-meta {
+        display:flex; align-items:baseline; justify-content:space-between;
+        gap:18px; margin-bottom: 10px; flex-wrap: wrap;
+      }
+      .heatmap {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 4px 4px;
+        font-size: 12.5px;
+        font-variant-numeric: tabular-nums;
+      }
+      .heatmap thead th {
+        font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        color: var(--muted); padding: 8px 10px;
+        background: #f7f9fd; border-radius: 6px;
+      }
+      .heatmap thead th.left { text-align: left }
+      .heatmap thead th.right { text-align: right }
+      .heatmap tbody td {
+        padding: 0;
+      }
+      .heatmap tbody td.cohort-name {
+        font-size: 13px; font-weight: 700; color: var(--text);
+        padding: 10px 12px; white-space: nowrap;
+      }
+      .heatmap tbody td.cohort-size {
+        font-size: 12.5px; font-weight: 600; color: var(--muted);
+        padding: 10px 12px; text-align: right;
+      }
+      .heatmap tbody td.heat {
+        text-align: center;
+        padding: 10px 6px;
+        border-radius: 6px;
+        font-weight: 700;
+        min-width: 56px;
+      }
+      .heatmap tbody td.heat.empty {
+        background: #f8fafc;
+        color: #cbd5e1;
+        font-weight: 500;
+      }
+    </style>
+
+    <div style="margin-top: 32px">
+      <div class="eyebrow purple">Lease cohorts · Sep '25 → Apr '26</div>
+      <h2 class="section-title">A record M0 + a Feb '26 conversion bump = <em>April's +1.13pp</em>.</h2>
+      <p class="lede">
+        Each row = leases that <strong>became active</strong> in that payments-month, tracked across M0 → M7.
+        <strong>Mature accounts</strong> (3+ mo on platform) ramp fast — ~30% paid at M0, 47–51% by M2.
+        <strong>Onboarding accounts</strong> (0–3 mo) start slow (~9% at M0) and converge into the 30s by M3.
+        Both plateau around <strong>40–45%</strong> at M2–M3 — that's the activation ceiling.
+      </p>
+    </div>
+
+    <div class="chart-shell" style="margin-top: 16px">
+      <div class="cohort-meta">
+        <div class="ch-title" id="cohort-title" style="margin-bottom:0">% Paid leases by cohort · M0 → M7 · All accounts</div>
+      </div>
+
+      <!-- Toggles: account type (left) + value mode (right) -->
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin: 14px 0 16px; flex-wrap:wrap">
+        <div>
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); margin-bottom:6px">Account type</div>
+          <div class="cohort-toggle" style="margin-left:0">
+            <button class="active" data-view="All" onclick="setCohortView('All')">All</button>
+            <button data-view="Mature" onclick="setCohortView('Mature')">Mature (3+ mo)</button>
+            <button data-view="Onboarding" onclick="setCohortView('Onboarding')">Onboarding (0–3 mo)</button>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); margin-bottom:6px; text-align:right">Value</div>
+          <div class="cohort-toggle" id="cohort-mode-toggle" style="margin-left:0">
+            <button class="active" data-mode="pct" onclick="setCohortMode('pct')">%</button>
+            <button data-mode="count" onclick="setCohortMode('count')"># Leases</button>
+            <button data-mode="delta" onclick="setCohortMode('delta')">Δ MoM</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="cohort-heatmap"></div>
+    </div>
+
+    <!-- April insight tying cohort to the headline conversion-led + new-active story -->
+    <div style="margin-top: 18px; padding:18px 22px; background:#fff; border:1px solid var(--border); border-left:4px solid var(--purple); border-radius:10px">
+      <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--purple); margin-bottom:6px">⚡ What's actually happening</div>
+      <p style="font-size:13.5px; line-height:1.7; color:var(--muted); margin:0">
+        Two positives lifted April, both visible in the heatmap:
+      </p>
+      <ul style="font-size:13px; line-height:1.7; color:var(--muted); margin:8px 0 0 0; padding-left:22px">
+        <li><strong style="color:var(--text)">Conversion surge in mid-aged cohorts</strong> (the +3.4K unpaid → paid lift). In <strong style="color:var(--text)">Δ MoM</strong> view, the fingerprint is the <strong style="color:var(--text)">Feb '26 cohort M1→M2 jumping +5.4pp</strong> (42.6% → 48.0%).</li>
+        <li><strong style="color:var(--text)">Strong M0 from the Apr '26 cohort itself</strong> — 25.2% paid at M0 (<strong style="color:var(--text)">highest M0 in the series</strong>); Onboarding M0 hit 12.0% (also a series peak). New leases activated and paid same-month at a record clip.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 03 · STRUCTURAL DRIFT — CARD                          -->
+<!-- ============================================================ -->
+<section class="paper">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">03</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">Structural Drift · Card</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px">
+      <h2 class="section-title">Adoption is the cause · <em>share is the symptom</em>.</h2>
+      <p class="lede">
+        Card share fell to a 12-month low (17.75%) even though <strong>absolute card volume hit a record</strong> ($54.66M).
+        The drift is being driven by <strong>each new cohort entering with less card</strong> — a pattern visible for several months: first-time-tenant card adoption has fallen <strong>~9pp since Mar '25</strong> (38.32% → 29.19%), while returning-tenant adoption has held flat near 27%.
+        Stayer drift has been a steady <strong>~0.65pp/month for 15 months</strong> — that's the constant headwind, not the mover.
+        <strong>What's changed is the refill: each cohort is doing less to offset it.</strong>
+      </p>
+    </div>
+
+    <div class="hero-chart" style="margin-top: 8px">
+      <div class="hero-band">
+        <h3>Card adoption — % of paying tenants paying via card</h3>
+      </div>
+      <div class="chart-wrap h380"><canvas id="chart-card-adoption"></canvas></div>
+    </div>
+
+    <div class="tiles c2" style="margin-top: 22px">
+      <div class="tile bordered warn">
+        <div class="tile-label">FT card adoption · % of FT tenants on card</div>
+        <div class="tile-num warn">42.7%</div>
+        <div class="tile-sub"><strong>16-mo low</strong> · −9.9pp from Mar '25 peak (52.6%)</div>
+      </div>
+      <div class="tile bordered blue">
+        <div class="tile-label">Returning card adoption · same basis</div>
+        <div class="tile-num blue">26.9%</div>
+        <div class="tile-sub">Range 25.4–27.4% across 16 months · <strong>structurally flat</strong></div>
+      </div>
+    </div>
+
+    <!-- Decomposition receipts -->
+    <div style="margin-top: 32px">
+      <div class="eyebrow warn">The receipts</div>
+      <h2 class="section-title" style="font-size:24px">Mar → Apr volume share decomposition.</h2>
+      <p class="lede" style="font-size:13.5px">
+        Card share is calculated on volume, not tenants. The April −0.27pp drop decomposed by tenant group, with each group's contribution:
+      </p>
+    </div>
+
+    <div class="spread left-heavy" style="margin-top: 18px">
+      <div class="chart-shell">
+        <div class="ch-title">First-time vs Returning card share · 13-month bridge</div>
+        <div class="ch-sub">First-timers: 13-month decline. Returners: flat.</div>
+        <div class="chart-wrap h300"><canvas id="chart-card-cause"></canvas></div>
+      </div>
+      <div>
+        <div class="tiles c2" style="grid-template-columns: 1fr">
+          <div class="tile">
+            <div class="tile-label">Headline · April card share</div>
+            <div class="tile-num warn">17.75%</div>
+            <div class="tile-sub">−0.27pp MoM · 12-mo low</div>
+          </div>
+          <div class="tile bordered warn">
+            <div class="tile-label">First-timer · the driver</div>
+            <div class="tile-num warn">29.19%</div>
+            <div class="tile-sub">−9.1pp from Mar '25 peak</div>
+          </div>
+          <div class="tile">
+            <div class="tile-label">Returner · the constant</div>
+            <div class="tile-num blue">16.68%</div>
+            <div class="tile-sub">±0.5pp range for 15 months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 04 · NSF                                              -->
+<!-- ============================================================ -->
+<section class="paper">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">04</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">NSF</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 28px">
+      <div class="eyebrow" style="color:#0e7490">vs plan + 12-month context</div>
+      <h2 class="section-title">NSF rebounded with ACH normalization — <em>and beat plan on every metric</em>.</h2>
+      <p class="lede">
+        March's NSF dip was the same calendar mechanic; April normalized as ACH txns rose +9.1K MoM.
+        % NSF stayed <strong>inside the 12-month band</strong> (3.09–3.99%) — no credit-quality regression.
+      </p>
+    </div>
+
+    <!-- 4-tile vs Plan grid -->
+    <div class="tiles c4" style="margin-top: 22px; grid-template-columns: repeat(4, 1fr); gap: 14px">
+      <div class="tile" style="border-left: 3px solid #0e7490">
+        <div class="tile-label">NSF ARR</div>
+        <div class="tile-num" style="color:#0e7490; font-size: 30px">$1.82M</div>
+        <div class="tile-sub" style="line-height:1.55">
+          <span style="color:var(--green); font-weight:700">▲ Plan $1.80M · +1.0%</span><br>
+          +11.7% MoM · +91.6% YoY
+        </div>
+      </div>
+      <div class="tile" style="border-left: 3px solid #0e7490">
+        <div class="tile-label">NSF Transactions</div>
+        <div class="tile-num" style="color:#0e7490; font-size: 30px">5,072</div>
+        <div class="tile-sub" style="line-height:1.55">
+          <span style="color:var(--green); font-weight:700">▲ Plan 5,190 · −2.3% (under)</span><br>
+          +458 MoM · +56.5% YoY
+        </div>
+      </div>
+      <div class="tile" style="border-left: 3px solid #0e7490">
+        <div class="tile-label">Revenue / txn</div>
+        <div class="tile-num" style="color:#0e7490; font-size: 30px">$30.2</div>
+        <div class="tile-sub" style="line-height:1.55">
+          <span style="color:var(--green); font-weight:700">▲ Plan $29 · +4.1%</span><br>
+          +1.7% MoM · +13.3% YoY
+        </div>
+      </div>
+      <div class="tile" style="border-left: 3px solid #0e7490">
+        <div class="tile-label">% NSF (of ACH)</div>
+        <div class="tile-num" style="color:#0e7490; font-size: 30px">3.20%</div>
+        <div class="tile-sub" style="line-height:1.55">
+          <span style="color:var(--green); font-weight:700">▲ Plan 3.30% · −0.10pp (under)</span><br>
+          +0.11pp MoM · inside band
+        </div>
+      </div>
+    </div>
+
+    <!-- Two charts side-by-side -->
+    <div class="spread even" style="margin-top: 24px">
+      <div class="chart-shell">
+        <div class="ch-title">NSF ARR · Jan '25 → Apr '26</div>
+        <div class="ch-sub">Every month labeled · April highlighted</div>
+        <div class="chart-wrap h300"><canvas id="chart-nsf-arr"></canvas></div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">NSF transactions + % NSF · 14 months</div>
+        <div class="ch-sub">Every month labeled · bars are NSF txn count, line is % of ACH</div>
+        <div class="chart-wrap h300"><canvas id="chart-nsf-txns"></canvas></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 05 · TENANT FUNNEL                                    -->
+<!-- ============================================================ -->
+<style>
+  .w45-band {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 28px;
+    padding: 24px 28px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    align-items: center;
+  }
+  .w45-narr { display:flex; flex-direction:column; gap:10px }
+  .w45-eyebrow { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--blue) }
+  .w45-title { font-size:18px; font-weight:800; color:var(--text); letter-spacing:-0.2px; line-height:1.25 }
+  .w45-lede { font-size:13px; line-height:1.65; color:var(--muted) }
+  .w45-lede strong { color:var(--text); font-weight:700 }
+  .w45-stat { display:flex; gap:14px; padding:12px 0 4px; margin-top:6px; border-top:1px solid var(--divider) }
+  .w45-stat-num { font-size:28px; font-weight:800; line-height:1 }
+  .w45-stat-cap { font-size:11.5px; color:var(--muted); margin-top:4px; line-height:1.45 }
+  .w45-chart-wrap { background:#fff; padding:6px 4px 4px }
+  .w45-chart-title { font-size:13px; font-weight:700; color:var(--text); text-align:center; margin-bottom:6px }
+  .w45-chart-legend { display:flex; gap:18px; justify-content:center; margin-bottom:8px; font-size:11.5px; color:var(--muted); font-weight:600 }
+  .w45-chart-legend .sw { display:inline-block; width:14px; height:14px; border-radius:3px; margin-right:6px; vertical-align:middle }
+
+  /* Eligibility / scope banner — used at the top of Tenant Funnel + PM Side chapters */
+  .elig-band {
+    margin-top: 18px;
+    padding: 14px 18px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px;
+  }
+  .elig-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.1px;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .elig-body { font-size: 12.5px; line-height: 1.65; color: var(--muted) }
+  .elig-body strong { color: var(--text); font-weight: 700 }
+
+  /* Standardized KPI definition box — used at the top of each KPI section */
+  .kpi-def {
+    margin: 14px 0 16px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 6px 14px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .kpi-def-key {
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--muted);
+    padding-top: 1px;
+  }
+  .kpi-def-val { color: var(--text) }
+  .kpi-def-val code {
+    font-family: "SF Mono", Menlo, monospace; font-size: 11px;
+    background: #fff; padding: 1px 5px; border: 1px solid var(--divider);
+    border-radius: 3px; color: var(--blue);
+  }
+
+  /* Chart footnote — used below each funnel chart to legend the ★ partial-window marker */
+  .ch-note {
+    font-size: 10.5px; color: var(--muted); font-weight: 600;
+    text-align: center; margin-top: 6px; letter-spacing: 0.2px;
+  }
+  .ch-note .star { color: var(--warn); font-weight: 800 }
+</style>
+
+<section>
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">05</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">Tenant Funnel · One crack in closed data</div>
+      </div>
+    </div>
+
+    <div class="elig-band">
+      <div class="elig-label">Scope · Eligibility filters</div>
+      <div class="elig-body">
+        Every metric in this chapter — and the PM Side chapter — is computed on <strong>Mature accounts only</strong> (≥90 days since the PM's first invoice). Cohort = leases that became <strong>ACTIVE</strong> for the first time between Sep '25 and Apr '26, on a <strong>PM with an active Merchant Account</strong> (MA flag = 1) and a <strong>rent frequency of Monthly or shorter</strong> (Daily / Weekly / Every-2-Weeks / Monthly).
+      </div>
+    </div>
+
+    <div class="journey" style="margin-top: 22px">
+      <div class="j-step s1"><span class="j-num">1</span><div>Lease activated<span class="j-tag">Step 1</span></div></div>
+      <div class="j-step s2"><span class="j-num">2</span><div>PM invite sent<span class="j-tag">PM · stable, biggest leak</span></div></div>
+      <div class="j-step s3 active"><span class="j-num">3</span><div>Tenant activates portal<span class="j-tag">KPI 1 · ▼ −6pp Mar '26</span></div></div>
+      <div class="j-step s4"><span class="j-num">4</span><div>First payment<span class="j-tag">KPI 2 · stable in closed data</span></div></div>
+      <div class="j-step s5"><span class="j-num">5</span><div>Payment retained<span class="j-tag">KPI 3 · stable in closed data</span></div></div>
+    </div>
+
+    <!-- ===== Funnel Leakage Waterfall · Jan '26 Mature ===== -->
+    <style>
+      .wf-band { margin-top: 22px; padding: 22px 26px; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.04) }
+      .wf-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px }
+      .wf-title { font-size: 14px; font-weight: 800; color: var(--text); letter-spacing: -0.1px }
+      .wf-meta { font-size: 11px; color: var(--muted); font-weight: 600 }
+      .wf-lede { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin-bottom: 14px }
+      .wf-lede strong { color: var(--text); font-weight: 700 }
+      .wf-rows { display: flex; flex-direction: column; gap: 2px }
+      .wf-stage { display: grid; grid-template-columns: 280px 1fr 110px; align-items: center; gap: 14px; padding: 4px 0 }
+      .wf-stage-name { font-size: 12px; font-weight: 700; color: var(--text) }
+      .wf-stage-name .wf-sub { display: block; font-size: 10.5px; font-weight: 500; color: var(--muted); margin-top: 1px }
+      .wf-bar-wrap { background: #f1f5f9; border-radius: 4px; height: 30px; position: relative; overflow: hidden }
+      .wf-bar { height: 100%; display: flex; align-items: center; padding: 0 12px; color: white; font-weight: 800; font-size: 13px; border-radius: 4px; transition: width 0.4s }
+      .wf-stage-pct { font-size: 12px; color: var(--muted); font-weight: 700; text-align: right }
+      .wf-loss { display: grid; grid-template-columns: 280px 1fr 110px; align-items: center; gap: 14px; padding: 2px 0 }
+      .wf-loss-name { font-size: 11px; color: var(--red); font-style: italic; padding-left: 18px; line-height: 1.4 }
+      .wf-loss-bar-wrap { height: 18px; display: flex; align-items: center; gap: 6px }
+      .wf-loss-bar { height: 100%; background: rgba(220,38,38,0.18); border-left: 3px solid var(--red); display: flex; align-items: center; padding: 0 8px; font-size: 11px; font-weight: 700; color: #991b1b; border-radius: 0 3px 3px 0 }
+      .wf-loss-pct { font-size: 11px; color: var(--red); font-weight: 700; text-align: right }
+      .wf-summary { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--divider); display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; font-size: 12px }
+      .wf-summary-item .wf-summary-label { font-size: 10.5px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 3px }
+      .wf-summary-item .wf-summary-num { font-size: 20px; font-weight: 800; color: var(--text); line-height: 1.1 }
+      .wf-summary-item .wf-summary-note { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4 }
+    </style>
+
+    <div class="wf-band">
+      <div class="wf-head">
+        <div class="wf-title">Funnel leakage waterfall · Jan '26 Mature cohort</div>
+        <div class="wf-meta">Latest cohort fully closed across all stages · 12,137 leases</div>
+      </div>
+      <div class="wf-rows">
+        <!-- Stage 1: Activated -->
+        <div class="wf-stage">
+          <div class="wf-stage-name">① New active leases</div>
+          <div class="wf-bar-wrap"><div class="wf-bar" style="width: 100%; background: #1e293b">12,137</div></div>
+          <div class="wf-stage-pct">100.00%</div>
+        </div>
+
+        <!-- Loss 1→2 -->
+        <div class="wf-loss">
+          <div class="wf-loss-name">↓ PM didn't send invite within ±45d</div>
+          <div class="wf-loss-bar-wrap"><div class="wf-loss-bar" style="width: 28.11%">−3,412 leases</div></div>
+          <div class="wf-loss-pct">−28.11%</div>
+        </div>
+
+        <!-- Stage 2: Invited -->
+        <div class="wf-stage">
+          <div class="wf-stage-name">② Invited</div>
+          <div class="wf-bar-wrap"><div class="wf-bar" style="width: 71.89%; background: var(--orange)">8,725</div></div>
+          <div class="wf-stage-pct">71.89%</div>
+        </div>
+
+        <!-- Loss 2→3 -->
+        <div class="wf-loss">
+          <div class="wf-loss-name">↓ Invited but tenant didn't activate the portal within ±45d</div>
+          <div class="wf-loss-bar-wrap"><div class="wf-loss-bar" style="width: 3.85%">−467</div></div>
+          <div class="wf-loss-pct">−3.85%</div>
+        </div>
+
+        <!-- Stage 3: Activated -->
+        <div class="wf-stage">
+          <div class="wf-stage-name">③ Activated<span class="wf-sub">Portal Activation Rate (of invited) · 94.65%</span></div>
+          <div class="wf-bar-wrap"><div class="wf-bar" style="width: 68.04%; background: var(--blue)">8,258</div></div>
+          <div class="wf-stage-pct">68.04%</div>
+        </div>
+
+        <!-- Loss 3→4 -->
+        <div class="wf-loss">
+          <div class="wf-loss-name">↓ Activated but didn't pay within 45d of activation</div>
+          <div class="wf-loss-bar-wrap"><div class="wf-loss-bar" style="width: 16.90%">−2,051 leases</div></div>
+          <div class="wf-loss-pct">−16.90%</div>
+        </div>
+
+        <!-- Stage 4: Converted -->
+        <div class="wf-stage">
+          <div class="wf-stage-name">④ Converted<span class="wf-sub">FPC (of attached) · 75.16%</span></div>
+          <div class="wf-bar-wrap"><div class="wf-bar" style="width: 51.14%; background: var(--green)">6,207</div></div>
+          <div class="wf-stage-pct">51.14%</div>
+        </div>
+
+        <!-- Loss 4→5 -->
+        <div class="wf-loss">
+          <div class="wf-loss-name">↓ Paid first time but didn't complete 2nd payment within 45d</div>
+          <div class="wf-loss-bar-wrap"><div class="wf-loss-bar" style="width: 6.26%">−760</div></div>
+          <div class="wf-loss-pct">−6.26%</div>
+        </div>
+
+        <!-- Stage 5: Retained -->
+        <div class="wf-stage">
+          <div class="wf-stage-name">⑤ Retained<span class="wf-sub">Payment Retention (of converted) · 87.76%</span></div>
+          <div class="wf-bar-wrap"><div class="wf-bar" style="width: 44.88%; background: var(--purple)">5,447</div></div>
+          <div class="wf-stage-pct">44.88%</div>
+        </div>
+      </div>
+
+      <div class="wf-summary">
+        <div class="wf-summary-item">
+          <div class="wf-summary-label">End-to-end yield</div>
+          <div class="wf-summary-num" style="color: var(--purple)">44.88%</div>
+          <div class="wf-summary-note">5,447 / 12,137 — 1 in ~2.2 leases becomes a retained paying tenant.</div>
+        </div>
+        <div class="wf-summary-item">
+          <div class="wf-summary-label">Biggest single leak</div>
+          <div class="wf-summary-num" style="color: var(--red)">PM Invite</div>
+          <div class="wf-summary-note">3,412 leases lost (28.11%) — 7× bigger than the Activation gap, even after the Mar drop.</div>
+        </div>
+        <div class="wf-summary-item">
+          <div class="wf-summary-label">Smallest stable leak</div>
+          <div class="wf-summary-num" style="color: var(--blue)">Activation</div>
+          <div class="wf-summary-note">467 leases lost in steady state (3.85%) — but Mar '26 cohort drop took Activation from ~94% to ~87% (still a small absolute leak — ~700 leases — but a real trend change).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Methodology callout — why the 45-day window -->
+    <div class="w45-band" style="margin-top: 22px">
+      <div class="w45-narr">
+        <div class="w45-eyebrow">Methodology · KPI 1 &amp; KPI 2</div>
+        <div class="w45-title">Why the funnel uses a 45-day window</div>
+        <p class="w45-lede">
+          Of leases that eventually pay, <strong>89.6% pay within 45 days</strong> of lease activation.
+          Going to 60 days adds 4.2pp; everything past 90 days is &lt;2.5pp of the signal.
+          A 45-day cutoff captures almost all the signal while keeping the read fast.
+        </p>
+        <div class="w45-stat">
+          <div>
+            <div class="w45-stat-num" style="color:var(--blue)">89.6%</div>
+            <div class="w45-stat-cap">of paying leases captured<br>within 45 days</div>
+          </div>
+          <div style="border-left:1px solid var(--divider); padding-left:14px">
+            <div class="w45-stat-num" style="color:var(--muted); font-size:24px">10.4%</div>
+            <div class="w45-stat-cap">tail beyond 45 days<br>(spread over 135+ days)</div>
+          </div>
+        </div>
+      </div>
+      <div class="w45-chart-wrap">
+        <div class="w45-chart-title">Days from lease activation → first payment</div>
+        <div class="w45-chart-legend">
+          <span><span class="sw" style="background:var(--blue)"></span>Within 45-day KPI window</span>
+          <span><span class="sw" style="background:#cbd5e1"></span>After cutoff</span>
+        </div>
+        <div class="chart-wrap" style="height:280px"><canvas id="chart-w45"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Overall · Portal Attach Rate (chapter-level headline) ===== -->
+<section class="paper compact">
+  <div class="wrap">
+    <div class="eyebrow blue">Overall · Portal Attach Rate</div>
+    <h2 class="section-title">Closed data is stable through Feb '26 (<em>70.20%</em>, high in series). Mar '26 (~98% closed) drops to 64.83% — driven by Activation, not Invite.</h2>
+
+    <div class="kpi-def">
+      <div class="kpi-def-key">Definition</div><div class="kpi-def-val">Of all new active eligible leases, the % where ≥1 tenant registered to the portal.</div>
+      <div class="kpi-def-key">Time window</div><div class="kpi-def-val">±45 days from lease activation.</div>
+      <div class="kpi-def-key">Calculation</div><div class="kpi-def-val"><code>portal-active leases ÷ total new active leases</code></div>
+      <div class="kpi-def-key">Read</div><div class="kpi-def-val">End-to-end yield of "lease activates → tenant in portal." Decomposes as PM Invite × Activation.</div>
+    </div>
+
+    <div class="spread right-heavy">
+      <div>
+        <div class="tiles c2">
+          <div class="tile flat">
+            <div class="tile-label">Latest full month <span style="font-size: 9px; color: var(--green); font-weight: 700">FEB '26</span></div>
+            <div class="tile-num blue">70.20%</div>
+            <div class="tile-sub">9,450 / 13,461 · high in closed series</div>
+          </div>
+          <div class="tile flat">
+            <div class="tile-label">6-mo avg <span style="font-size: 9px; color: var(--muted); font-weight: 600">SEP '25 – FEB '26</span></div>
+            <div class="tile-num blue">67.23%</div>
+            <div class="tile-sub">band 64.29 – 70.20%</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">Portal Attach Rate · Mature · 8 months</div>
+        <div class="chart-wrap h340"><canvas id="chart-attach-gap"></canvas></div>
+        <div class="ch-note"><span class="star">★</span> = activation cohort window not yet closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KPI 1 · Portal Activation Rate (tenant-attributable) ===== -->
+<section class="paper compact">
+  <div class="wrap">
+    <div class="eyebrow warn">KPI 1 · Portal Activation Rate</div>
+    <h2 class="section-title">The deck's only closed-data signal: Mar '26 (~98% closed) drops to <em>87.26%</em> (−6pp vs Feb's 93.44%). Tenant-side regression — small in volume, real in trend.</h2>
+
+    <div class="kpi-def">
+      <div class="kpi-def-key">Definition</div><div class="kpi-def-val">Of leases where the PM sent an invite, the % where ≥1 tenant on the lease accepted (tenant-attributable share of Attach).</div>
+      <div class="kpi-def-key">Time window</div><div class="kpi-def-val">±45 days from lease activation (median activation→invite delay = 0d, so this ≈ "within 45d of invite send").</div>
+      <div class="kpi-def-key">Calculation</div><div class="kpi-def-val"><code>portal-active leases ÷ invited leases</code></div>
+      <div class="kpi-def-key">Read</div><div class="kpi-def-val">Isolates tenant behavior from PM behavior. A drop here means the tenant pool isn't responding to invites — invitee quality / intent issue.</div>
+    </div>
+
+    <div class="spread right-heavy">
+      <div>
+        <div class="tiles c2">
+          <div class="tile flat">
+            <div class="tile-label">Latest full month <span style="font-size: 9px; color: var(--green); font-weight: 700">FEB '26</span></div>
+            <div class="tile-num warn">93.44%</div>
+            <div class="tile-sub">9,450 / 10,113 invited</div>
+          </div>
+          <div class="tile flat">
+            <div class="tile-label">6-mo avg <span style="font-size: 9px; color: var(--muted); font-weight: 600">SEP '25 – FEB '26</span></div>
+            <div class="tile-num warn">94.76%</div>
+            <div class="tile-sub">band 93.44 – 95.97%</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">Portal Activation Rate · Mature · 8 months</div>
+        <div class="chart-wrap h340"><canvas id="chart-portal-activation"></canvas></div>
+        <div class="ch-note"><span class="star">★</span> = activation cohort window not yet closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compact">
+  <div class="wrap">
+    <div class="spread even">
+      <div>
+        <div class="eyebrow green">KPI 2 · First Payment Conversion Rate</div>
+        <h2 class="section-title">Latest closed (Feb '26): <em>77.20%</em> — high in series; no regression in the closed data.</h2>
+
+        <div class="kpi-def">
+          <div class="kpi-def-key">Definition</div><div class="kpi-def-val">Of leases that attached to the portal, the % whose first payment landed within the measurement window.</div>
+          <div class="kpi-def-key">Time window</div><div class="kpi-def-val">+45 days from lease activation (anchored to lease activation to share one time horizon with KPI 1).</div>
+          <div class="kpi-def-key">Calculation</div><div class="kpi-def-val"><code>converted leases ÷ portal-active leases</code></div>
+          <div class="kpi-def-key">Read</div><div class="kpi-def-val">Once a tenant is in the portal, do they actually pay? Stable here = funnel weakness is upstream (Activation), not at the payment step.</div>
+        </div>
+
+        <div class="tiles c2" style="margin-top: 14px">
+          <div class="tile flat">
+            <div class="tile-label">Latest full month <span style="font-size: 9px; color: var(--green); font-weight: 700">FEB '26</span></div>
+            <div class="tile-num green">77.20%</div>
+            <div class="tile-sub">high in closed series</div>
+          </div>
+          <div class="tile flat">
+            <div class="tile-label">6-mo avg <span style="font-size: 9px; color: var(--muted); font-weight: 600">SEP '25 – FEB '26</span></div>
+            <div class="tile-num green">75.30%</div>
+            <div class="tile-sub">band 73.58 – 77.20%</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">First-payment conversion · Mature · 8 months</div>
+        <div class="chart-wrap h340"><canvas id="chart-activation"></canvas></div>
+        <div class="ch-note"><span class="star">★</span> = activation cohort window not yet closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KPI 3 · Payment Retention (2nd payment within 45d of first) ===== -->
+<section class="paper compact">
+  <div class="wrap">
+    <div class="spread even">
+      <div>
+        <div class="eyebrow purple">KPI 3 · Payment Retention Rate</div>
+        <h2 class="section-title">Latest closed (Jan '26): <em>87.76%</em> — high in band; no regression.</h2>
+
+        <div class="kpi-def">
+          <div class="kpi-def-key">Definition</div><div class="kpi-def-val">Of leases that paid a first time within the FPC window, the % that completed a 2nd payment.</div>
+          <div class="kpi-def-key">Time window</div><div class="kpi-def-val">2nd payment within 45 days of the first payment (worst-case closure = activation + 90d).</div>
+          <div class="kpi-def-key">Calculation</div><div class="kpi-def-val"><code>leases with 2nd pmt within 45d of first ÷ converted leases</code></div>
+          <div class="kpi-def-key">Read</div><div class="kpi-def-val">Month-over-month payment continuity. Tells us if first-time payers became repeat payers.</div>
+        </div>
+
+        <div class="tiles c2" style="margin-top: 14px">
+          <div class="tile flat">
+            <div class="tile-label">Latest full month <span style="font-size: 9px; color: var(--green); font-weight: 700">JAN '26</span></div>
+            <div class="tile-num" style="color:var(--purple)">87.76%</div>
+            <div class="tile-sub">5,447 / 6,207 converted · high in band</div>
+          </div>
+          <div class="tile flat">
+            <div class="tile-label">5-mo avg <span style="font-size: 9px; color: var(--muted); font-weight: 600">SEP '25 – JAN '26</span></div>
+            <div class="tile-num" style="color:var(--purple)">86.81%</div>
+            <div class="tile-sub">band 85.79 – 87.76%</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">Payment Retention · Mature · 8 months</div>
+        <div class="chart-wrap h340"><canvas id="chart-retention"></canvas></div>
+        <div class="ch-note"><span class="star">★</span> = activation cohort window not yet closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 06 · PM SIDE — invite + churn                         -->
+<!-- ============================================================ -->
+<section class="paper">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">06</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">PM Side · The wins</div>
+        <div class="chapter-tag">Record invites · first material churn relief in 7 months</div>
+      </div>
+    </div>
+
+    <div class="elig-band">
+      <div class="elig-label">Scope · Eligibility filters</div>
+      <div class="elig-body">
+        Invite Rate is computed on the same cohort as the Tenant KPIs — <strong>Mature accounts</strong> (≥90 days since first invoice), new <strong>ACTIVE</strong> leases Sep '25 → Apr '26, on a <strong>PM with active Merchant Account</strong> (MA flag = 1) and <strong>rent frequency Monthly or shorter</strong>. Window: invite sent within <strong>±45 days of lease activation</strong>. Churned-Accounts (below) is a separate scope: PM accounts that received any payments before subscription end-date — Mature/Onboarding split does not apply there.
+      </div>
+    </div>
+
+    <div style="margin-top: 28px">
+      <div class="eyebrow orange">PM Invite Rate</div>
+      <h2 class="section-title">Latest closed (Feb '26): <em>75.13%</em> — high in series, +5.94pp above 6-mo avg.</h2>
+    </div>
+
+    <div class="kpi-def">
+      <div class="kpi-def-key">Definition</div><div class="kpi-def-val">Of all new active eligible leases, the % where the PM sent a portal invite (PM-attributable share of Attach).</div>
+      <div class="kpi-def-key">Time window</div><div class="kpi-def-val">±45 days from lease activation.</div>
+      <div class="kpi-def-key">Calculation</div><div class="kpi-def-val"><code>invited leases ÷ total new active leases</code></div>
+      <div class="kpi-def-key">Read</div><div class="kpi-def-val">PM-side promptness in onboarding new tenants. The biggest single funnel leak — 28% of leases never invited within window.</div>
+    </div>
+
+    <div class="spread right-heavy" style="margin-top: 14px">
+      <div>
+        <div class="tiles c2">
+          <div class="tile flat">
+            <div class="tile-label">Latest full month <span style="font-size: 9px; color: var(--green); font-weight: 700">FEB '26</span></div>
+            <div class="tile-num orange">75.13%</div>
+            <div class="tile-sub">10,113 / 13,461 · high in series</div>
+          </div>
+          <div class="tile flat">
+            <div class="tile-label">6-mo avg <span style="font-size: 9px; color: var(--muted); font-weight: 600">SEP '25 – FEB '26</span></div>
+            <div class="tile-num orange">70.97%</div>
+            <div class="tile-sub">band 67.45 – 75.13%</div>
+          </div>
+        </div>
+        <div class="pullquote orange" style="margin-top: 14px">
+          <div class="pq-label">⚠ Read with KPI 1</div>
+          <p>PM trajectory is intact, but if invite volume keeps growing, marginal new invitees may be the <strong>lower-intent leases driving Activation down</strong>. Next month: reframe as invite-<em>quality</em>, not volume.</p>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">PM Invite Rate · Mature · 8 months</div>
+        <div class="chart-wrap h340"><canvas id="chart-invite"></canvas></div>
+        <div class="ch-note"><span class="star">★</span> = activation cohort window not yet closed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div style="margin-bottom: 22px">
+      <div class="eyebrow orange">Churned Accounts</div>
+      <h2 class="section-title">PM-account churn fell sharply — <span class="accent">first material relief in 7 months</span>.</h2>
+      <p class="lede">
+        <strong>Scope:</strong> only accounts that received payments (payments ARR &gt; 0) before churning — pure churn-of-paying-accounts, not total churn.
+        Climbed from Sep '25 (67 accts / $77K) to a March peak of 127 / $244K. <strong>April fell to 90 / $125K</strong> — biggest single-month drop since Sep '25.
+        Tracked on subscription end-date, so not a calendar artifact. YoY flat (88 → 90); ARR per churned account stable at ~$1.4K.
+      </p>
+      <div style="margin-top:10px; padding:10px 14px; background:#fff7ed; border-left:3px solid var(--orange); border-radius:6px; font-size:12px; color:var(--muted); line-height:1.6">
+        <strong style="color:var(--text)">How "Lost Payments ARR" is calculated:</strong> for each churned account, take the <strong>max monthly payments ARR observed in the 6 months before its churn date</strong>. That's the recurring revenue that walks out the door. Sum across accounts that churned in the month.
+      </div>
+    </div>
+
+    <div class="chart-shell">
+      <div class="ch-title">Churned accounts and lost ARR · 16 months</div>
+      <div class="ch-sub">Bars: lost ARR ($K). Line: # accounts churned. Accounts that received payments only.</div>
+      <div class="chart-wrap h340"><canvas id="chart-churned-accounts"></canvas></div>
+    </div>
+
+    <div class="tiles c3" style="margin-top: 22px">
+      <div class="tile">
+        <div class="tile-label">April · accounts churned</div>
+        <div class="tile-num orange">90</div>
+        <div class="tile-sub">−37 MoM · +2 YoY · lowest since Sep '25</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">April · Lost Payments ARR</div>
+        <div class="tile-num orange">$125K</div>
+        <div class="tile-sub">−$119K MoM · −$1K YoY · back to pre-Q4 baseline</div>
+      </div>
+      <div class="tile bordered warn">
+        <div class="tile-label">Mar peak (the floor we just escaped)</div>
+        <div class="tile-num warn">$244K</div>
+        <div class="tile-sub">All-time high · +97% above Apr · still-elevated tail risk</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Segments section REMOVED per user request -->
+
+<!-- ============================================================ -->
+<!-- SECTION 07 · ACTION ITEMS                                     -->
+<!-- ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">07</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">Action Items</div>
+      </div>
+    </div>
+
+    <div style="margin: 24px 0 18px">
+      <h2 class="section-title" style="font-size:24px">May is the structural test.</h2>
+      <p class="lede">First cycle free of calendar carryover and the first month that closes Mar's Activation read at full window. Top priorities: PM Invite gap (largest leak) and Mar Activation drop (only closed-data signal). Five tracks below; March's 3-track research carries forward as one.</p>
+    </div>
+
+    <div class="actions-wrap">
+      <div class="action">
+        <span class="action-pill live">● Live</span>
+        <h4>PM Invite gap (the largest leak by 7×)</h4>
+        <p>3,159 of 11,183 Dec '25 leases (28%) never got invited within ±45d — biggest single funnel leak by absolute volume. Has held steady at this scale for 6+ months. Even with Apr's invite ATH, the gap to 100% is the highest-ROI lever. Decompose by PM segment / lease-creation-channel / lease size to identify which PMs systematically don't invite.</p>
+        <div class="action-foot"><strong>Owner</strong> [Data lead name] · <strong>Due</strong> May 23 · <strong>Done when</strong> PM-segment + channel breakdown of un-invited leases is shared in #payments-data</div>
+      </div>
+      <div class="action">
+        <span class="action-pill live">● Live</span>
+        <h4>Mar '26 Activation Rate drop (KPI 1)</h4>
+        <p>Closed-enough signal (~98% closed): Activation 93.4% → 87.3% Feb → Mar with PM Invite essentially flat. Tenant-side regression — small in absolute volume (~700 leases) but a real change in trend. Hypothesis: marginal invitees in record-volume Mar/Apr cohorts are lower-intent. Compare invite-channel mix + activation-by-segment Feb vs Mar.</p>
+        <div class="action-foot"><strong>Owner</strong> [Data lead name] · <strong>Due</strong> May 23 · <strong>Done when</strong> Activation Rate by invite-channel + segment Feb vs Mar is shared in #payments-data</div>
+      </div>
+      <div class="action">
+        <span class="action-pill wip">● WIP</span>
+        <h4>Wait for May to read Mar Activation at full close</h4>
+        <p>April KPIs are heavily partial-window (Attach +37d short, FPC +82d short) — too early to call. May closes Mar's Activation read fully and gives us the first April cohort read. That tells us whether Mar's −6pp Activation drop is a one-cohort blip or the start of structural slippage. Also: do reactivated leases drop to ~6K (from 9.5K) and ARR hold $15.5M+ once calendar carryover is gone?</p>
+        <div class="action-foot"><strong>Owner</strong> [PM name] · <strong>Due</strong> May payments-month review · <strong>Done when</strong> next deck reports Mar's Activation Rate at full close + May cohort early read</div>
+      </div>
+      <div class="action">
+        <span class="action-pill pending">○ Pending</span>
+        <h4>Card-share decline</h4>
+        <p>12-mo low 17.75%. Decide if reduced-fee scope expands to ticket-size mix and onboarding-account default.</p>
+        <div class="action-foot"><strong>Owner</strong> [Product lead name] · <strong>Due</strong> May 30 · <strong>Done when</strong> scope decision on whether reduced-fee test extends to mid-rent ($1.5K–$3K) tickets is documented in PRD</div>
+      </div>
+      <div class="action">
+        <span class="action-pill pending">○ Pending</span>
+        <h4>Confirm invite-rate jump cause</h4>
+        <p>April release or campaign? Document if yes; investigate if no. (Apr Invite is partial but directional ATH — even at the closed Feb rate, the trajectory is up.)</p>
+        <div class="action-foot"><strong>Owner</strong> [Product lead name] · <strong>Due</strong> May 16 · <strong>Done when</strong> source of invite-rate jump is identified and shared in next squad sync</div>
+      </div>
+      <div class="action">
+        <span class="action-pill live">● Live</span>
+        <h4>Carry forward 3-track research</h4>
+        <p>Survey (PM behaviors), Data (high-adoption PM signals), Interviews (high vs low adoption).</p>
+        <div class="action-foot"><strong>Owner</strong> [PM name] · <strong>Status</strong> 1 Live, 2 WIP, 3 Pending (carried from March) · <strong>Done when</strong> each track has a one-line update in May deck</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="footnote">
+    <strong>Sources:</strong>
+    <code>/Users/bene/Projects/april_payments_deck/summary.json</code> ·
+    <code>kpi_dashboard.json</code> ·
+    <code>paid_leases_breakdown.json</code> ·
+    <code>card_new_vs_returning.json</code>.
+    <br>
+    <strong>Period:</strong> Mar 25 → Apr 24, 2026 (the April payments month). Future-month references (e.g., "May") refer to the Apr 25 → May 24 cycle.
+    Plan figures and locked headline numbers reused from the user's draft.
+    Window-honesty: KPI 1 &amp; KPI 2 April reads carry partial-window dashed segments and ★ markers; matured cohorts use solid lines.
+  </div>
+</div>
+
+<script>
+// ---------- Chart.js global setup ----------
+Chart.register(ChartDataLabels);
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#64748b';
+Chart.defaults.font.size = 11;
+Chart.defaults.font.weight = '500';
+Chart.defaults.set('plugins.datalabels', { display: false });
+
+const C = {
+  blue:    '#3185FC',
+  green:   '#059669',
+  purple:  '#7c3aed',
+  orange:  '#ea580c',
+  warn:    '#dc2626',
+  text:    '#162050',
+  muted:   '#64748b',
+  subtle:  '#94a3b8',
+  grid:    '#e8ecf5',
+  accent:  '#dffe02',
+};
+
+const baseOpts = (extra = {}) => ({
+  responsive: true,
+  maintainAspectRatio: false,
+  layout: { padding: { top: 18, right: 32, bottom: 0, left: 8 } },
+  interaction: { intersect: false, mode: 'index' },
+  plugins: {
+    legend: { display: false, labels: { font: { weight: 600, size: 11 }, color: '#475569' } },
+    tooltip: {
+      backgroundColor: '#162050', titleFont: { weight: 700 },
+      bodyFont: { weight: 500 }, padding: 10, cornerRadius: 8, displayColors: true
+    },
+    datalabels: { display: false }
+  },
+  scales: {
+    x: { grid: { color: C.grid, drawBorder: false }, ticks: { color: C.muted, font: { size: 10 } } },
+    y: { grid: { color: C.grid, drawBorder: false }, ticks: { color: C.muted, font: { size: 10 } } }
+  },
+  ...extra
+});
+
+// ---------- Data ----------
+const trend = [
+  {month:'2024-12', active:301420, paid:130214, pct:43.20},
+  {month:'2025-01', active:307230, paid:135825, pct:44.21},
+  {month:'2025-02', active:312870, paid:139725, pct:44.66},
+  {month:'2025-03', active:316200, paid:138355, pct:43.76},
+  {month:'2025-04', active:317800, paid:138498, pct:43.58},
+  {month:'2025-05', active:319500, paid:138290, pct:43.28},
+  {month:'2025-06', active:320600, paid:139600, pct:43.54},
+  {month:'2025-07', active:321870, paid:140100, pct:43.53},
+  {month:'2025-08', active:323035, paid:141610, pct:43.84},
+  {month:'2025-09', active:328116, paid:146347, pct:44.60},
+  {month:'2025-10', active:338093, paid:151517, pct:44.82},
+  {month:'2025-11', active:344019, paid:155940, pct:45.33},
+  {month:'2025-12', active:351276, paid:158904, pct:45.24},
+  {month:'2026-01', active:357225, paid:165152, pct:46.23},
+  {month:'2026-02', active:363773, paid:172728, pct:47.48},
+  {month:'2026-03', active:372121, paid:174676, pct:46.94},
+  {month:'2026-04', active:378053, paid:181687, pct:48.06}
+];
+const arrPerLease = 15.49e6 / 181687;
+const arrSeries = trend.map(t => +(t.paid * arrPerLease / 1e6).toFixed(2));
+const arrPlanIndicative = trend.map((t,i)=> +(arrSeries[i] + (i / (trend.length-1)) * 0.10 + (i === trend.length-1 ? 0.05 : 0)).toFixed(2));
+
+const cardByPop = [
+  { month:'2025-04', ftCard:6.83, ftAch:13.71, retCard:30.73, retAch:153.45, ftCardShare:33.26, retCardShare:16.69, ftTenants:12718, retTenants:115281 },
+  { month:'2025-05', ftCard:6.62, ftAch:13.38, retCard:32.30, retAch:157.15, ftCardShare:33.12, retCardShare:17.05, ftTenants:11780, retTenants:118458 },
+  { month:'2025-06', ftCard:6.94, ftAch:15.52, retCard:33.38, retAch:163.85, ftCardShare:30.88, retCardShare:16.93, ftTenants:13147, retTenants:121660 },
+  { month:'2025-07', ftCard:7.02, ftAch:16.14, retCard:34.94, retAch:169.92, ftCardShare:30.32, retCardShare:17.06, ftTenants:13775, retTenants:126018 },
+  { month:'2025-08', ftCard:7.02, ftAch:16.66, retCard:36.10, retAch:176.08, ftCardShare:29.63, retCardShare:17.01, ftTenants:13897, retTenants:129726 },
+  { month:'2025-09', ftCard:7.01, ftAch:15.23, retCard:37.51, retAch:184.32, ftCardShare:31.51, retCardShare:16.91, ftTenants:13406, retTenants:135471 },
+  { month:'2025-10', ftCard:6.48, ftAch:14.33, retCard:38.80, retAch:192.30, ftCardShare:31.15, retCardShare:16.79, ftTenants:12886, retTenants:140985 },
+  { month:'2025-11', ftCard:7.33, ftAch:13.85, retCard:40.40, retAch:198.14, ftCardShare:34.62, retCardShare:16.94, ftTenants:13302, retTenants:145025 },
+  { month:'2025-12', ftCard:5.64, ftAch:12.07, retCard:41.99, retAch:204.77, ftCardShare:31.85, retCardShare:17.02, ftTenants:10941, retTenants:150040 },
+  { month:'2026-01', ftCard:7.42, ftAch:16.21, retCard:42.76, retAch:206.42, ftCardShare:31.40, retCardShare:17.16, ftTenants:14669, retTenants:152522 },
+  { month:'2026-02', ftCard:7.67, ftAch:17.17, retCard:46.06, retAch:223.67, ftCardShare:30.88, retCardShare:17.08, ftTenants:14520, retTenants:160441 },
+  { month:'2026-03', ftCard:7.16, ftAch:16.80, retCard:45.60, retAch:223.19, ftCardShare:29.87, retCardShare:16.97, ftTenants:14033, retTenants:162512 },
+  { month:'2026-04', ftCard:7.67, ftAch:18.61, retCard:46.98, retAch:234.72, ftCardShare:29.19, retCardShare:16.68, ftTenants:15254, retTenants:168631 }
+];
+
+// Lease cohorts (lease_cohort.sql) — % paid leases AND # paid leases at M0..M7 per cohort
+// Cohort = leases that became active in the payments-month (Sep '25 → Apr '26)
+// Three account-type views: All | Mature (3+ mo) | Onboarding (0–3 mo)
+const cohortDataAll = {
+  All: [
+    { cohort: "Sep '25", size: 22118, pct: [21.0, 38.4, 41.2, 40.2, 39.1, 38.5, 36.2, 35.3], counts: [4655, 8484, 9111, 8890, 8658, 8520, 8012, 7803] },
+    { cohort: "Oct '25", size: 23356, pct: [19.9, 40.1, 42.0, 42.3, 41.7, 39.1, 37.8, null], counts: [4647, 9355, 9809, 9885, 9747, 9131, 8824, null] },
+    { cohort: "Nov '25", size: 22640, pct: [19.9, 33.5, 39.3, 40.2, 38.7, 37.5, null, null], counts: [4497, 7575, 8899, 9090, 8759, 8485, null, null] },
+    { cohort: "Dec '25", size: 20991, pct: [18.0, 38.3, 44.1, 42.9, 41.4, null, null, null], counts: [3775, 8039, 9252, 9013, 8697, null, null, null] },
+    { cohort: "Jan '26", size: 20097, pct: [24.6, 43.2, 45.1, 45.2, null, null, null, null], counts: [4947, 8687, 9060, 9080, null, null, null, null] },
+    { cohort: "Feb '26", size: 22348, pct: [24.5, 42.6, 48.0, null, null, null, null, null], counts: [5486, 9525, 10733, null, null, null, null, null] },
+    { cohort: "Mar '26", size: 22350, pct: [22.4, 40.4, null, null, null, null, null, null], counts: [5008, 9027, null, null, null, null, null, null] },
+    { cohort: "Apr '26", size: 23908, pct: [25.2, null, null, null, null, null, null, null], counts: [6018, null, null, null, null, null, null, null] }
+  ],
+  Mature: [
+    { cohort: "Sep '25", size: 12456, pct: [31.7, 48.9, 51.2, 49.1, 47.6, 46.7, 43.8, 42.2], counts: [3953, 6092, 6372, 6112, 5929, 5819, 5451, 5255] },
+    { cohort: "Oct '25", size: 12555, pct: [29.8, 44.8, 46.5, 45.3, 44.2, 41.6, 40.0, null], counts: [3737, 5619, 5841, 5690, 5552, 5217, 5026, null] },
+    { cohort: "Nov '25", size: 12513, pct: [31.9, 46.3, 48.4, 48.3, 45.5, 43.9, null, null], counts: [3987, 5792, 6051, 6042, 5698, 5491, null, null] },
+    { cohort: "Dec '25", size: 11239, pct: [28.9, 47.5, 50.5, 48.6, 46.2, null, null, null], counts: [3243, 5338, 5677, 5466, 5190, null, null, null] },
+    { cohort: "Jan '26", size: 12222, pct: [33.4, 49.7, 51.0, 49.8, null, null, null, null], counts: [4088, 6078, 6237, 6086, null, null, null, null] },
+    { cohort: "Feb '26", size: 13608, pct: [33.5, 47.1, 50.7, null, null, null, null, null], counts: [4557, 6406, 6904, null, null, null, null, null] },
+    { cohort: "Mar '26", size: 14785, pct: [28.5, 45.4, null, null, null, null, null, null], counts: [4215, 6706, null, null, null, null, null, null] },
+    { cohort: "Apr '26", size: 15374, pct: [32.5, null, null, null, null, null, null, null], counts: [4992, null, null, null, null, null, null, null] }
+  ],
+  Onboarding: [
+    { cohort: "Sep '25", size: 9662,  pct: [7.3, 24.8, 28.3, 28.8, 28.2, 28.0, 26.5, 26.4], counts: [702, 2392, 2739, 2778, 2729, 2701, 2561, 2548] },
+    { cohort: "Oct '25", size: 10801, pct: [8.4, 34.6, 36.7, 38.8, 38.8, 36.2, 35.2, null], counts: [910, 3736, 3968, 4195, 4195, 3914, 3798, null] },
+    { cohort: "Nov '25", size: 10127, pct: [5.0, 17.6, 28.1, 30.1, 30.2, 29.6, null, null], counts: [510, 1783, 2848, 3048, 3061, 2994, null, null] },
+    { cohort: "Dec '25", size: 9752,  pct: [5.5, 27.7, 36.7, 36.4, 36.0, null, null, null], counts: [532, 2701, 3575, 3547, 3507, null, null, null] },
+    { cohort: "Jan '26", size: 7875,  pct: [10.9, 33.1, 35.8, 38.0, null, null, null, null], counts: [859, 2609, 2823, 2994, null, null, null, null] },
+    { cohort: "Feb '26", size: 8740,  pct: [10.6, 35.7, 43.8, null, null, null, null, null], counts: [929, 3119, 3829, null, null, null, null, null] },
+    { cohort: "Mar '26", size: 7565,  pct: [10.5, 30.7, null, null, null, null, null, null], counts: [793, 2321, null, null, null, null, null, null] },
+    { cohort: "Apr '26", size: 8534,  pct: [12.0, null, null, null, null, null, null, null], counts: [1026, null, null, null, null, null, null, null] }
+  ]
+};
+
+const churnedAccounts = [
+  { month:"Jan 25", accts: 82,  arr: 104 },
+  { month:"Feb 25", accts: 111, arr: 121 },
+  { month:"Mar 25", accts: 63,  arr: 71  },
+  { month:"Apr 25", accts: 88,  arr: 126 },
+  { month:"May 25", accts: 84,  arr: 102 },
+  { month:"Jun 25", accts: 85,  arr: 110 },
+  { month:"Jul 25", accts: 88,  arr: 135 },
+  { month:"Aug 25", accts: 101, arr: 120 },
+  { month:"Sep 25", accts: 67,  arr: 77  },
+  { month:"Oct 25", accts: 97,  arr: 115 },
+  { month:"Nov 25", accts: 87,  arr: 165 },
+  { month:"Dec 25", accts: 113, arr: 191 },
+  { month:"Jan 26", accts: 117, arr: 155 },
+  { month:"Feb 26", accts: 136, arr: 192 },
+  { month:"Mar 26", accts: 127, arr: 244 },
+  { month:"Apr 26", accts: 90,  arr: 125 }
+];
+
+const cardAdoption = [
+  { month:"Jan 25", ft:44.8, ret:25.4 },
+  { month:"Feb 25", ft:47.5, ret:25.6 },
+  { month:"Mar 25", ft:52.6, ret:26.1 },
+  { month:"Apr 25", ft:48.5, ret:26.6 },
+  { month:"May 25", ft:48.2, ret:27.1 },
+  { month:"Jun 25", ft:44.0, ret:27.1 },
+  { month:"Jul 25", ft:44.9, ret:27.4 },
+  { month:"Aug 25", ft:44.5, ret:27.2 },
+  { month:"Sep 25", ft:44.5, ret:27.2 },
+  { month:"Oct 25", ft:45.6, ret:26.9 },
+  { month:"Nov 25", ft:49.7, ret:27.1 },
+  { month:"Dec 25", ft:47.1, ret:27.2 },
+  { month:"Jan 26", ft:44.8, ret:27.4 },
+  { month:"Feb 26", ft:44.9, ret:27.2 },
+  { month:"Mar 26", ft:43.7, ret:27.1 },
+  { month:"Apr 26", ft:42.7, ret:26.9 }
+];
+
+// Why 45 days — distribution of paying leases by days-to-first-payment bucket.
+// Of the 46,994 leases that eventually paid, what bucket did they land in?
+// Sample: 74,942 new active leases activated Sep '25 – Jan '26.
+const w45Data = [
+  { bucket: 'Days 0–30',   pct: 80.9, withinWindow: true },
+  { bucket: 'Days 31–45',  pct:  8.7, withinWindow: true },
+  { bucket: 'Days 46–60',  pct:  4.2, withinWindow: false },
+  { bucket: 'Days 61–90',  pct:  3.6, withinWindow: false },
+  { bucket: 'Days 91–120', pct:  1.5, withinWindow: false },
+  { bucket: 'Days 121–180',pct:  0.9, withinWindow: false },
+  { bucket: 'Day 181+',    pct:  0.1, withinWindow: false }
+];
+
+const nsfData = [
+  { month:"Jan '25", arr:0.93, txns:null, pct:null, partial:false },
+  { month:"Feb '25", arr:0.87, txns:null, pct:null, partial:false },
+  { month:"Mar '25", arr:0.81, txns:2848, pct:2.78, partial:false },
+  { month:"Apr '25", arr:0.95, txns:3241, pct:2.97, partial:false },
+  { month:"May '25", arr:1.02, txns:3456, pct:3.14, partial:false },
+  { month:"Jun '25", arr:1.22, txns:4084, pct:3.51, partial:false },
+  { month:"Jul '25", arr:1.31, txns:4260, pct:3.58, partial:false },
+  { month:"Aug '25", arr:1.28, txns:4123, pct:3.33, partial:false },
+  { month:"Sep '25", arr:1.58, txns:5116, pct:3.99, partial:false },
+  { month:"Oct '25", arr:1.45, txns:4621, pct:3.49, partial:false },
+  { month:"Nov '25", arr:1.43, txns:4493, pct:3.32, partial:false },
+  { month:"Dec '25", arr:1.58, txns:4940, pct:3.60, partial:false },
+  { month:"Jan '26", arr:1.66, txns:5122, pct:3.61, partial:false },
+  { month:"Feb '26", arr:1.78, txns:5236, pct:3.43, partial:false },
+  { month:"Mar '26", arr:1.63, txns:4614, pct:3.09, partial:false },
+  { month:"Apr '26", arr:1.82, txns:5072, pct:3.20, partial:false }
+];
+
+const breakdown = [
+  {month:'2025-04', existing:107496, first_time:12624, reactivated:5907, churned:12371},
+  {month:'2025-05', existing:112049, first_time:11519, reactivated:4779, churned:13978},
+  {month:'2025-06', existing:114463, first_time:12669, reactivated:5769, churned:13884},
+  {month:'2025-07', existing:118435, first_time:13479, reactivated:6006, churned:14466},
+  {month:'2025-08', existing:121708, first_time:13437, reactivated:6467, churned:16212},
+  {month:'2025-09', existing:127347, first_time:12884, reactivated:6118, churned:14265},
+  {month:'2025-10', existing:132342, first_time:12841, reactivated:6335, churned:14007},
+  {month:'2025-11', existing:136409, first_time:13296, reactivated:6236, churned:15109},
+  {month:'2025-12', existing:141465, first_time:10868, reactivated:6572, churned:14476},
+  {month:'2026-01', existing:142354, first_time:14698, reactivated:8101, churned:16551},
+  {month:'2026-02', existing:150206, first_time:14434, reactivated:8088, churned:14947},
+  {month:'2026-03', existing:154220, first_time:14114, reactivated:6342, churned:18508},
+  {month:'2026-04', existing:157023, first_time:15116, reactivated:9548, churned:17653}
+];
+
+// V2 metrics (kpi_dashboard_v2.json): FPC + Retention re-anchored to lease activation.
+// FPC = first payment within 45d of activation. Retention = 2nd payment within 45d after first payment (= P1 column in SQL).
+// activation = portal-activated leases ÷ invited leases (Mature, population proxy ≈ per-lease conditional since median invite delay = 0d).
+const kpi = {
+  '2025-09':{Mature:{attach:66.41, activation:95.97, fpc:76.39, invite:69.19, retention:85.12, p1:87.50, p2:84.32, habit:81.51, total:9115, invited:6307, attached:6053, converted:4624, retained:3936}, Onboarding:{attach:42.59, fpc:69.09, invite:47.46, p1:89.41, p2:85.51, habit:82.55}},
+  '2025-10':{Mature:{attach:64.29, activation:95.32, fpc:74.87, invite:67.45, retention:82.81, p1:86.45, p2:82.34, habit:80.30, total:12191, invited:8223, attached:7838, converted:5868, retained:4859}, Onboarding:{attach:50.71, fpc:75.51, invite:55.14, p1:90.21, p2:84.98, habit:83.08}},
+  '2025-11':{Mature:{attach:66.78, activation:94.85, fpc:74.62, invite:70.41, retention:82.93, p1:85.79, p2:82.31, habit:80.06, total:12345, invited:8692, attached:8244, converted:6152, retained:5102}, Onboarding:{attach:37.67, fpc:68.82, invite:40.65, p1:90.65, p2:85.53, habit:83.17}},
+  '2025-12':{Mature:{attach:67.67, activation:94.30, fpc:73.58, invite:71.75, retention:84.27, p1:86.53, p2:83.44, habit:80.42, total:11183, invited:8024, attached:7567, converted:5568, retained:4692}, Onboarding:{attach:46.82, fpc:74.59, invite:49.30, p1:91.76, p2:86.78, habit:84.36}},
+  '2026-01':{Mature:{attach:68.04, activation:94.65, fpc:75.16, invite:71.89, retention:83.13, p1:87.76, p2:81.84, habit:73.95, total:12137, invited:8725, attached:8258, converted:6207, retained:5160}, Onboarding:{attach:52.93, fpc:72.56, invite:59.92, p1:87.24, p2:66.44, habit:64.02}},
+  '2026-02':{Mature:{attach:70.20, activation:93.44, fpc:77.20, invite:75.13, retention:65.00, p1:83.47, p2:58.45, habit:33.03, total:13461, invited:10113, attached:9450, converted:7295, retained:4742}, Onboarding:{attach:56.94, fpc:74.90, invite:62.59, p1:74.85, p2:23.11, habit:22.07}},
+  '2026-03':{Mature:{attach:64.83, activation:87.26, fpc:76.05, invite:74.30, retention:33.50, p1:67.90, p2:17.79, habit:4.55,  total:14598, invited:10846, attached:9464, converted:7197, retained:2411}, Onboarding:{attach:51.80, fpc:57.43, invite:66.55, p1:38.76, p2:2.93,  habit:2.76}},
+  '2026-04':{Mature:{attach:60.58, activation:70.75, fpc:59.77, invite:85.62, retention:10.38, p1:36.73, p2:0.00, habit:0.03, total:15273, invited:13077, attached:9252, converted:5530, retained:574},  Onboarding:{attach:39.01, fpc:29.50, invite:71.28, p1:17.62, p2:0.00,  habit:0.00}}
+};
+const kpiMonths = Object.keys(kpi);
+
+const stickinessCharge  = [100, 72.01, 71.08, 70.06, 68.61, 67.76, 67.47, 66.35, 65.82, 65.47, 65.32, 64.96, 65.22];
+const stickinessPayment = [100, 83.17, 84.83, 84.93, 84.35, 83.98, 83.38, 82.70, 82.29, 82.11, 81.24, 81.08, 81.48];
+
+// segMonths/segData arrays REMOVED with Segments section
+
+// helpers
+const fmtMonth = m => {
+  const [y, mo] = m.split('-');
+  return new Date(+y, +mo-1, 1).toLocaleString('en',{month:'short'}) + (mo === '01' ? " '" + y.slice(2) : "");
+};
+const monthLabels = arr => arr.map(x => fmtMonth(x.month || x));
+
+// ---------- charts ----------
+// 1. ARR vs Plan
+new Chart(document.getElementById('chart-arr'), {
+  type: 'line',
+  data: {
+    labels: monthLabels(trend),
+    datasets: [
+      { label: 'ARR', data: arrSeries, borderColor: C.blue,
+        backgroundColor: 'rgba(37,99,235,0.06)', borderWidth: 2.5, fill: true,
+        pointRadius: 5, pointBackgroundColor: C.blue, pointBorderColor: '#fff', pointBorderWidth: 1.5,
+        tension: 0.3,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 6,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : '#475569',
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 10
+          }),
+          formatter: v => '$' + v + 'M'
+        }
+      },
+      { label: 'Plan (indicative)', data: arrPlanIndicative, borderColor: C.subtle,
+        borderWidth: 1.5, borderDash: [5,4], pointRadius: 0, tension: 0.3, fill: false }
+    ]
+  },
+  options: baseOpts({
+    plugins: { legend: { display: true, position: 'top', align: 'end', labels: { boxWidth: 14, boxHeight: 2, font: { size: 11, weight: 600 } } } },
+    scales: { y: { ticks: { callback: v => '$' + v + 'M' } } }
+  })
+});
+
+// 2. Paid Leases Breakdown — diverging stack (positive above zero, churn below)
+//    Stack order bottom→top of positive: Reactivated → First-time → Existing
+//    Churned plotted as negative values, sits visually below the zero axis.
+//    Every segment labeled, centered, format X.XXk (one decimal).
+const fmtK = v => (Math.abs(v)/1000).toFixed(2) + 'k';
+const segLabel = () => ({
+  display: ctx => Math.abs(ctx.dataset.data[ctx.dataIndex]) > 4500,
+  anchor: 'center', align: 'center',
+  color: '#fff',
+  font: { weight: 800, size: 11 },
+  formatter: v => fmtK(v)
+});
+new Chart(document.getElementById('chart-breakdown'), {
+  type: 'bar',
+  data: {
+    labels: monthLabels(breakdown),
+    datasets: [
+      { label: 'Reactivated', data: breakdown.map(b => b.reactivated),
+        backgroundColor: 'rgba(5,150,105,0.90)', stack: 'all',
+        borderRadius: 0, borderSkipped: false, borderWidth: 0,
+        datalabels: segLabel() },
+      { label: 'First-time', data: breakdown.map(b => b.first_time),
+        backgroundColor: 'rgba(37,99,235,0.85)', stack: 'all',
+        borderRadius: 0, borderSkipped: false, borderWidth: 0,
+        datalabels: segLabel() },
+      // Existing — inline center label
+      { label: 'Existing', data: breakdown.map(b => b.existing),
+        backgroundColor: 'rgba(124,58,237,0.85)', stack: 'all',
+        borderRadius: { topLeft: 5, topRight: 5 }, borderSkipped: false, borderWidth: 0,
+        datalabels: segLabel() },
+      // Invisible "total" dataset — same data shape, sits ON TOP of the Existing stack
+      // so its anchor:end / align:top renders the total ABOVE the full positive stack.
+      // Stacked at zero height (data:0) so it doesn't push the bar up.
+      { label: '__total__', data: breakdown.map(b => 0), stack: 'all',
+        backgroundColor: 'rgba(0,0,0,0)', borderWidth: 0,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 6,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : '#0f172a',
+          font: ctx => ({
+            weight: 800,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 14 : 12
+          }),
+          formatter: (v, ctx) => {
+            const i = ctx.dataIndex;
+            const total = breakdown[i].existing + breakdown[i].first_time + breakdown[i].reactivated;
+            return fmtK(total);
+          }
+        } },
+      { label: 'Churned', data: breakdown.map(b => -b.churned),
+        backgroundColor: 'rgba(220,38,38,0.90)', stack: 'all',
+        borderRadius: { bottomLeft: 5, bottomRight: 5 }, borderSkipped: false, borderWidth: 0,
+        datalabels: {
+          // Center label inside the churn bar (white) showing −X.XXk
+          display: ctx => Math.abs(ctx.dataset.data[ctx.dataIndex]) > 4500,
+          anchor: 'center', align: 'center',
+          color: '#fff', font: { weight: 800, size: 11 },
+          formatter: v => '−' + fmtK(v)
+        } }
+    ]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 36, right: 32, bottom: 22, left: 8 } },
+    plugins: {
+      legend: {
+        display: true, position: 'top', align: 'end',
+        labels: {
+          boxWidth: 14, boxHeight: 10, font: { size: 12, weight: 700 }, padding: 14,
+          filter: (item) => item.text !== '__total__'
+        }
+      },
+      tooltip: { filter: (item) => item.dataset.label !== '__total__' }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { color: C.muted, font: { size: 11, weight: 600 } } },
+      y: { stacked: true,
+           ticks: { callback: v => (v === 0 ? '0' : fmtK(v)), color: C.muted, font: { size: 11 } },
+           grid: { color: ctx => ctx.tick.value === 0 ? '#0f172a' : C.grid,
+                   lineWidth: ctx => ctx.tick.value === 0 ? 1.5 : 1 } }
+    }
+  })
+});
+
+// 3. % Paid trend
+new Chart(document.getElementById('chart-pct-paid'), {
+  type: 'line',
+  data: {
+    labels: monthLabels(trend),
+    datasets: [{
+      label: '% Paid Leases', data: trend.map(t => t.pct), borderColor: C.purple,
+      backgroundColor: 'rgba(124,58,237,0.06)', borderWidth: 2.5, fill: true,
+      pointRadius: 5, pointBackgroundColor: C.purple, pointBorderColor: '#fff', pointBorderWidth: 1.5, tension: 0.3,
+      datalabels: {
+        display: true, anchor: 'end', align: 'top', offset: 6,
+        color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : '#475569',
+        font: ctx => ({
+          weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+          size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 10
+        }),
+        formatter: v => v.toFixed(2) + '%'
+      }
+    }]
+  },
+  options: baseOpts({
+    scales: { y: { ticks: { callback: v => v + '%' }, suggestedMin: 42, suggestedMax: 50 } }
+  })
+});
+
+// 4. Waterfall (April pp drivers)
+const wfMar = 46.94;
+new Chart(document.getElementById('chart-waterfall'), {
+  type: 'bar',
+  data: {
+    labels: ['Mar baseline', 'Conversion Δ', 'Churn Δ', 'Retention Δ', 'New paid Δ', 'Apr actual'],
+    datasets: [
+      { label: 'base', data: [0, wfMar, wfMar+0.45, wfMar+0.75, wfMar+0.95, 0], backgroundColor: 'rgba(0,0,0,0)', stack: 'wf', borderWidth: 0 },
+      { label: 'pp', data: [wfMar, 0.45, 0.30, 0.20, 0.18, 48.06], stack: 'wf',
+        backgroundColor: ['#94a3b8', 'rgba(5,150,105,0.85)', 'rgba(5,150,105,0.65)', 'rgba(5,150,105,0.55)', 'rgba(5,150,105,0.45)', 'rgba(124,58,237,0.85)'],
+        borderRadius: 4, borderSkipped: false, borderWidth: 0,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 4,
+          color: ctx => ctx.dataIndex === 5 ? '#dc2626' : (ctx.dataIndex === 0 ? '#1e293b' : '#475569'),
+          font: ctx => ({
+            weight: ctx.dataIndex === 5 ? 800 : (ctx.dataIndex === 0 ? 800 : 600),
+            size: ctx.dataIndex === 5 ? 13 : (ctx.dataIndex === 0 ? 12 : 10)
+          }),
+          formatter: (v, ctx) => {
+            if (ctx.dataIndex === 0) return wfMar.toFixed(2) + '%';
+            if (ctx.dataIndex === 5) return '48.06%';
+            return '+' + v.toFixed(2) + 'pp';
+          }
+        }
+      }
+    ]
+  },
+  options: baseOpts({
+    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: { stacked: true, ticks: { callback: v => v + '%' }, suggestedMin: 46, suggestedMax: 49, display: false }
+    }
+  })
+});
+
+// 5. Card adoption — FT vs Returning · 16-month tenant share
+new Chart(document.getElementById('chart-card-adoption'), {
+  type: 'line',
+  data: {
+    labels: cardAdoption.map(d => d.month),
+    datasets: [
+      {
+        label: 'First-Time Paying Tenants',
+        data: cardAdoption.map(d => d.ft),
+        borderColor: '#60a5fa',
+        backgroundColor: 'rgba(96,165,250,0.07)',
+        borderWidth: 3, tension: 0.35, fill: false,
+        pointRadius: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? 8 : 5),
+        pointBackgroundColor: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? C.warn : '#60a5fa'),
+        pointBorderColor: '#fff', pointBorderWidth: 2,
+        datalabels: {
+          display: true,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length-1 ? C.warn : '#1d4ed8',
+          anchor: 'end', align: 'top', offset: 6,
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
+          }),
+          formatter: v => v.toFixed(1) + '%'
+        }
+      },
+      {
+        label: 'Returning Payers',
+        data: cardAdoption.map(d => d.ret),
+        borderColor: '#1e3a8a',
+        backgroundColor: 'rgba(30,58,138,0.05)',
+        borderWidth: 3, tension: 0.35, fill: false,
+        pointRadius: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? 8 : 5),
+        pointBackgroundColor: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? C.warn : '#1e3a8a'),
+        pointBorderColor: '#fff', pointBorderWidth: 2,
+        datalabels: {
+          display: true,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length-1 ? C.warn : '#1e293b',
+          anchor: 'end', align: 'bottom', offset: 6,
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
+          }),
+          formatter: v => v.toFixed(1) + '%'
+        }
+      }
+    ]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 30, right: 40, bottom: 12, left: 8 } },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'start',
+        labels: { boxWidth: 14, boxHeight: 3, font: { size: 12, weight: 700 }, padding: 14, color: C.text } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: C.muted, font: { size: 10 } } },
+      y: { ticks: { callback: v => v + '%', color: C.muted, font: { size: 11 } },
+        grid: { color: C.grid }, suggestedMin: 20, suggestedMax: 56 }
+    }
+  })
+});
+
+// 6. FTP card adoption by account age — REMOVED (the "Where it broke" sub-section was dropped)
+
+// 7. Card share — First-timer vs Returner share (volume-share view)
+new Chart(document.getElementById('chart-card-cause'), {
+  type: 'line',
+  data: {
+    labels: cardByPop.map(c => c.month.slice(2)),
+    datasets: [
+      {
+        label: 'First-time payers · card share',
+        data: cardByPop.map(c => c.ftCardShare),
+        borderColor: C.warn,
+        backgroundColor: 'rgba(220,38,38,0.07)',
+        borderWidth: 3, tension: 0.3, fill: true,
+        pointRadius: cardByPop.map((_,i)=> i === cardByPop.length-1 ? 8 : 5),
+        pointBackgroundColor: C.warn,
+        pointBorderColor: '#fff', pointBorderWidth: 2,
+        datalabels: {
+          display: true,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length-1 ? C.warn : '#b91c1c',
+          anchor: 'end', align: 'top', offset: 6,
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
+          }),
+          formatter: v => v.toFixed(1) + '%'
+        }
+      },
+      {
+        label: 'Returning payers · card share',
+        data: cardByPop.map(c => c.retCardShare),
+        borderColor: C.blue,
+        backgroundColor: 'rgba(37,99,235,0.05)',
+        borderWidth: 3, tension: 0.3, fill: true,
+        pointRadius: cardByPop.map((_,i)=> i === cardByPop.length-1 ? 8 : 5),
+        pointBackgroundColor: C.blue,
+        pointBorderColor: '#fff', pointBorderWidth: 2,
+        datalabels: {
+          display: true,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length-1 ? C.warn : '#1e40af',
+          anchor: 'end', align: 'bottom', offset: 6,
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
+          }),
+          formatter: v => v.toFixed(1) + '%'
+        }
+      }
+    ]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 28, right: 60, bottom: 8, left: 8 } },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'start',
+        labels: { boxWidth: 14, boxHeight: 3, font: { size: 12, weight: 700 }, padding: 14, color: C.text } },
+      tooltip: {
+        callbacks: {
+          afterBody: (items) => {
+            const c = cardByPop[items[0].dataIndex];
+            const total = c.ftCard + c.ftAch + c.retCard + c.retAch;
+            const blended = +(100*(c.ftCard+c.retCard)/total).toFixed(2);
+            return [`Blended (overall) card share: ${blended}%`];
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: C.muted, font: { size: 11 } } },
+      y: { ticks: { callback: v => v + '%', color: C.muted, font: { size: 11 } },
+        grid: { color: C.grid }, suggestedMin: 14, suggestedMax: 40 }
+    }
+  })
+});
+
+// 7B. Why 45 days — bar chart, Day 45 highlighted in purple
+new Chart(document.getElementById('chart-w45'), {
+  type: 'bar',
+  data: {
+    labels: w45Data.map(d => d.bucket),
+    datasets: [{
+      label: '% of paying leases',
+      data: w45Data.map(d => d.pct),
+      backgroundColor: w45Data.map(d => d.withinWindow ? 'rgba(37,99,235,0.95)' : 'rgba(148,163,184,0.55)'),
+      borderColor: w45Data.map(d => d.withinWindow ? C.blue : 'rgba(148,163,184,0.7)'),
+      borderWidth: 0,
+      borderRadius: 4, borderSkipped: false,
+      datalabels: {
+        display: true, anchor: 'end', align: 'top', offset: 4,
+        color: ctx => w45Data[ctx.dataIndex].withinWindow ? C.blue : '#475569',
+        font: ctx => ({
+          weight: 700,
+          size: w45Data[ctx.dataIndex].withinWindow ? 13 : 11
+        }),
+        formatter: v => v.toFixed(1) + '%'
+      }
+    }]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 28, right: 32, bottom: 4, left: 8 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `${ctx.parsed.y.toFixed(1)}% of paying leases`,
+          afterBody: (items) => {
+            const d = w45Data[items[0].dataIndex];
+            return [d.withinWindow ? '★ Inside KPI window' : 'After cutoff'];
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: C.muted, font: { size: 10, weight: 600 }, maxRotation: 35, minRotation: 30 } },
+      y: { display: false, beginAtZero: true, suggestedMax: 95 }
+    }
+  })
+});
+
+// 8. NSF — ARR line + transactions/% combo
+//    chart-nsf-arr: all 17 months (Jan '25 → May '26), May '26 partial in red dashed
+//    chart-nsf-txns: only months with txns data (filter null), 14 months Mar '25 → Apr '26
+const NSF_TEAL = '#0e7490';
+
+// April '26 is the index of the latest mature month for emphasis (not the trailing partial)
+const nsfApr26Idx = nsfData.findIndex(d => d.month === "Apr '26");
+
+new Chart(document.getElementById('chart-nsf-arr'), {
+  type: 'line',
+  data: {
+    labels: nsfData.map(d => d.month),
+    datasets: [{
+      label: 'NSF ARR ($M)',
+      data: nsfData.map(d => d.arr),
+      borderColor: NSF_TEAL,
+      backgroundColor: 'rgba(14,116,144,0.06)',
+      borderWidth: 2.5, fill: true, tension: 0.3,
+      pointRadius: nsfData.map((d,i)=> i === nsfApr26Idx ? 8 : (d.partial ? 5 : 5)),
+      pointBackgroundColor: nsfData.map(d => d.partial ? '#fff' : (d.month === "Apr '26" ? '#dc2626' : NSF_TEAL)),
+      pointBorderColor: nsfData.map(d => d.partial ? '#dc2626' : '#fff'),
+      pointBorderWidth: nsfData.map(d => d.partial ? 2 : 1.5),
+      segment: {
+        borderDash: ctx => nsfData[ctx.p1DataIndex]?.partial ? [6, 4] : undefined,
+        borderColor: ctx => nsfData[ctx.p1DataIndex]?.partial ? '#dc2626' : NSF_TEAL,
+      },
+      datalabels: {
+        display: true, anchor: 'end', align: 'top', offset: 6,
+        color: ctx => {
+          const d = nsfData[ctx.dataIndex];
+          if (d.partial) return '#dc2626';
+          if (d.month === "Apr '26") return '#dc2626';
+          return '#475569';
+        },
+        font: ctx => {
+          const d = nsfData[ctx.dataIndex];
+          const emphasis = d.partial || d.month === "Apr '26";
+          return { weight: emphasis ? 800 : 600, size: emphasis ? 13 : 10 };
+        },
+        formatter: (v, ctx) => {
+          const d = nsfData[ctx.dataIndex];
+          return d.partial ? '★ $' + v.toFixed(2) + 'M' : '$' + v.toFixed(2) + 'M';
+        }
+      }
+    }]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 28, right: 32, bottom: 8, left: 8 } },
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: C.muted, font: { size: 9 } } },
+      y: { display: false, suggestedMin: 0.6, suggestedMax: 2.1 }
+    }
+  })
+});
+
+// Filter to months that have txns/pct data (drop Jan '25, Feb '25, May '26 partial)
+const nsfTxnsData = nsfData.filter(d => d.txns !== null && d.pct !== null);
+
+new Chart(document.getElementById('chart-nsf-txns'), {
+  type: 'bar',
+  data: {
+    labels: nsfTxnsData.map(d => d.month),
+    datasets: [
+      { type: 'bar', label: 'NSF transactions', yAxisID: 'y',
+        data: nsfTxnsData.map(d => d.txns),
+        backgroundColor: nsfTxnsData.map((d,i)=> i === nsfTxnsData.length-1 ? 'rgba(14,116,144,0.85)' : 'rgba(14,116,144,0.30)'),
+        borderRadius: 4, borderSkipped: false, borderWidth: 0,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 2,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : '#475569',
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 9
+          }),
+          formatter: v => v.toLocaleString()
+        } },
+      { type: 'line', label: '% NSF', yAxisID: 'y2',
+        data: nsfTxnsData.map(d => d.pct),
+        borderColor: C.green,
+        backgroundColor: 'rgba(5,150,105,0.05)',
+        borderWidth: 2.5, fill: false, tension: 0.3,
+        pointRadius: nsfTxnsData.map((d,i)=> i === nsfTxnsData.length-1 ? 6 : 4),
+        pointBackgroundColor: C.green, pointBorderColor: '#fff', pointBorderWidth: 1.5,
+        datalabels: {
+          display: true, anchor: 'end', align: 'bottom', offset: 4,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : C.green,
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 9
+          }),
+          formatter: v => v.toFixed(2) + '%'
+        } }
+    ]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 28 } },
+    plugins: { legend: { display: true, position: 'top', align: 'end', labels: { boxWidth: 12, boxHeight: 8, font: { size: 10, weight: 600 } } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: C.muted, font: { size: 9 } } },
+      y: { display: false, beginAtZero: true, grace: '15%' },
+      y2: { display: false, position: 'right', min: 2, max: 4.5 }
+    }
+  })
+});
+
+// 9. Attach gap chart (Mature) — April is partial-window; dashed final segment + ★ markers
+const lastIdx = kpiMonths.length - 1;
+const partialSegment = (ctx, dashed) => ctx.p1DataIndex === lastIdx ? dashed : undefined;
+new Chart(document.getElementById('chart-attach-gap'), {
+  type: 'line',
+  data: {
+    labels: kpiMonths.map(fmtMonth),
+    datasets: [
+      { label: 'Portal Attach (Mature)', data: kpiMonths.map(m => kpi[m].Mature.attach), borderColor: C.blue,
+        backgroundColor: 'rgba(37,99,235,0.08)', borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: C.blue,
+        pointBorderColor: kpiMonths.map((m,i) => i === lastIdx ? C.warn : '#fff'),
+        pointBorderWidth: kpiMonths.map((m,i) => i === lastIdx ? 2 : 1.5),
+        tension: 0.3, fill: true,
+        segment: { borderDash: ctx => partialSegment(ctx, [5,4]) },
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 6,
+          color: ctx => ctx.dataIndex === lastIdx ? C.warn : C.blue,
+          font: ctx => ({
+            weight: ctx.dataIndex === lastIdx ? 800 : 600,
+            size: ctx.dataIndex === lastIdx ? 13 : 11
+          }),
+          formatter: (v, ctx) => (ctx.dataIndex === lastIdx ? '★ ' : '') + v.toFixed(1) + '%'
+        } }
+    ]
+  },
+  options: baseOpts({
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Lease activation month', font: { size: 11, weight: 600 }, color: '#64748b', padding: { top: 6 } } },
+      y: { ticks: { callback: v => v + '%' }, suggestedMin: 55, suggestedMax: 75 }
+    }
+  })
+});
+
+// 9b. Portal Activation Rate (Mature · Activated ÷ Invited) — April partial-window
+new Chart(document.getElementById('chart-portal-activation'), {
+  type: 'line',
+  data: {
+    labels: kpiMonths.map(fmtMonth),
+    datasets: [
+      { label: 'Activation rate (Mature)',
+        data: kpiMonths.map(m => kpi[m].Mature.activation),
+        borderColor: C.warn,
+        backgroundColor: 'rgba(217,119,6,0.07)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: kpiMonths.map((m,i) => i === lastIdx ? '#fff' : C.warn),
+        pointBorderColor: C.warn,
+        pointBorderWidth: kpiMonths.map((m,i) => i === lastIdx ? 2 : 1.5),
+        tension: 0.3, fill: true,
+        segment: { borderDash: ctx => partialSegment(ctx, [5,4]) },
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 6,
+          color: ctx => ctx.dataIndex === lastIdx ? '#dc2626'
+                       : ctx.dataIndex === lastIdx - 1 ? '#dc2626' : C.warn,
+          font: ctx => ({
+            weight: ctx.dataIndex >= lastIdx - 1 ? 800 : 600,
+            size: ctx.dataIndex >= lastIdx - 1 ? 13 : 11
+          }),
+          formatter: (v, ctx) => (ctx.dataIndex === lastIdx ? '★ ' : '') + v.toFixed(1) + '%'
+        } }
+    ]
+  },
+  options: baseOpts({
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { afterBody: ctx => ctx[0].dataIndex === lastIdx ? ['★ window not yet closed — partial read'] : [] } } },
+    scales: {
+      x: { title: { display: true, text: 'Lease activation month', font: { size: 11, weight: 600 }, color: '#64748b', padding: { top: 6 } } },
+      y: { ticks: { callback: v => v + '%' }, suggestedMin: 65, suggestedMax: 100 }
+    }
+  })
+});
+
+// 10. First Payment Conversion · Mature only · April partial
+new Chart(document.getElementById('chart-activation'), {
+  type: 'bar',
+  data: {
+    labels: kpiMonths.map(fmtMonth),
+    datasets: [
+      { label: 'Mature', data: kpiMonths.map(m => kpi[m].Mature.fpc),
+        backgroundColor: kpiMonths.map(m => m === '2026-04' ? 'rgba(5,150,105,0.20)' : 'rgba(5,150,105,0.75)'),
+        borderColor: kpiMonths.map(m => m === '2026-04' ? C.warn : 'rgba(5,150,105,0)'),
+        borderWidth: kpiMonths.map(m => m === '2026-04' ? 1.5 : 0),
+        borderRadius: 4, borderSkipped: false,
+        datalabels: {
+          display: true,
+          color: ctx => kpiMonths[ctx.dataIndex] === '2026-04' ? C.warn : '#475569',
+          anchor: 'end', align: 'top', offset: 4,
+          font: ctx => ({
+            weight: kpiMonths[ctx.dataIndex] === '2026-04' ? 800 : 600,
+            size: kpiMonths[ctx.dataIndex] === '2026-04' ? 13 : 11
+          }),
+          formatter: (v, ctx) => (kpiMonths[ctx.dataIndex] === '2026-04' ? '★ ' : '') + v.toFixed(1) + '%'
+        } }
+    ]
+  },
+  options: baseOpts({
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { afterBody: ctx => ctx[0].label.includes('Apr') && ctx[0].label.includes("'26") ? ['★ window not yet closed — partial read'] : [] } } },
+    scales: {
+      x: { grid: { display: false }, title: { display: true, text: 'Lease activation month', font: { size: 11, weight: 600 }, color: '#64748b', padding: { top: 6 } } },
+      y: { ticks: { callback: v => v + '%' }, suggestedMax: 80, beginAtZero: true }
+    }
+  })
+});
+
+// 11. Stickiness — REMOVED with the Stickiness chapter
+
+// 11b. Payment Retention (2nd payment within 45d of first) — Mature only
+// Closed cohorts: Sep '25 → Jan '26 fully closed (worst-case act+90d). Feb +21d short, Mar–Apr partial.
+new Chart(document.getElementById('chart-retention'), {
+  type: 'line',
+  data: {
+    labels: kpiMonths.map(fmtMonth),
+    datasets: [
+      { label: 'Payment Retention',
+        data: kpiMonths.map(m => kpi[m].Mature.p1),
+        borderColor: C.purple,
+        backgroundColor: 'rgba(124,58,237,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: kpiMonths.map(m => m >= '2026-02' ? '#fff' : C.purple),
+        pointBorderColor: C.purple,
+        pointBorderWidth: kpiMonths.map(m => m >= '2026-02' ? 2 : 1.5),
+        tension: 0.3, fill: true,
+        segment: { borderDash: ctx => ctx.p1DataIndex >= 4 ? [5,4] : undefined },
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 6,
+          color: ctx => kpiMonths[ctx.dataIndex] >= '2026-02' ? C.subtle : C.purple,
+          font: ctx => ({
+            weight: kpiMonths[ctx.dataIndex] === '2026-01' ? 800 : 600,
+            size: kpiMonths[ctx.dataIndex] === '2026-01' ? 13 : 11
+          }),
+          formatter: (v, ctx) => (kpiMonths[ctx.dataIndex] >= '2026-02' ? '★ ' : '') + v.toFixed(1) + '%'
+        } }
+    ]
+  },
+  options: baseOpts({
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { afterBody: ctx => kpiMonths[ctx[0].dataIndex] >= '2026-02' ? ['★ window not yet closed — partial read'] : [] } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Lease activation month', font: { size: 11, weight: 600 }, color: '#64748b', padding: { top: 6 } } },
+      y: { ticks: { callback: v => v + '%' }, suggestedMin: 0, suggestedMax: 100 }
+    }
+  })
+});
+
+// 12. PM Invite rate · Mature only
+new Chart(document.getElementById('chart-invite'), {
+  type: 'line',
+  data: {
+    labels: kpiMonths.map(fmtMonth),
+    datasets: [
+      { label: 'Mature invite rate', data: kpiMonths.map(m => kpi[m].Mature.invite), borderColor: C.orange,
+        backgroundColor: 'rgba(234,88,12,0.06)', borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: C.orange,
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        tension: 0.3, fill: true,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 6,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : C.orange,
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 11
+          }),
+          formatter: v => v.toFixed(1) + '%'
+        } }
+    ]
+  },
+  options: baseOpts({
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Lease activation month', font: { size: 11, weight: 600 }, color: '#64748b', padding: { top: 6 } } },
+      y: { ticks: { callback: v => v + '%' }, suggestedMin: 65, suggestedMax: 90 }
+    }
+  })
+});
+
+// 13. Segment chart REMOVED with Segments section
+
+// 13b. Lease cohort maturation — heatmap table view
+//      Toggles: account-type (All/Mature/Onboarding) AND value mode (% / # / Δ MoM)
+
+// State
+let cohortView = 'All';
+let cohortMode = 'pct';  // 'pct' | 'count' | 'delta'
+
+// Sequential red→yellow→green scale (used for pct + count modes)
+function heatColorByT(t) {
+  t = Math.max(0, Math.min(1, t));
+  const hue = t * 130;
+  const sat = 65 + t * 5;
+  const light = 80 - t * 18;
+  return `hsl(${hue.toFixed(0)}, ${sat.toFixed(0)}%, ${light.toFixed(0)}%)`;
+}
+function textColorForT(t) {
+  return t >= 0.6 ? '#0f172a' : (t >= 0.3 ? '#3f3f46' : '#7f1d1d');
+}
+
+// Diverging scale for Δ mode: red (neg) → white (0) → green (pos)
+// d in [-1, 1]; |d|=0 white, |d|=1 vivid
+function divergingColor(d) {
+  d = Math.max(-1, Math.min(1, d));
+  const hue = d > 0 ? 130 : 0;        // green or red
+  const sat = 70;
+  const light = 95 - Math.abs(d) * 28; // 95 (~white) → 67 (vivid)
+  return `hsl(${hue}, ${sat}%, ${light.toFixed(0)}%)`;
+}
+function divergingTextColor(d) {
+  return Math.abs(d) >= 0.5 ? '#0f172a' : '#3f3f46';
+}
+
+function maxCount(data) {
+  let m = 0;
+  data.forEach(c => c.counts.forEach(v => { if (v != null && v > m) m = v; }));
+  return m || 1;
+}
+
+// For Δ mode: max absolute pp change across all cells (used to normalize color)
+function maxAbsDelta(data) {
+  let m = 0;
+  data.forEach(c => {
+    for (let i = 1; i < c.pct.length; i++) {
+      if (c.pct[i] != null && c.pct[i-1] != null) {
+        const d = Math.abs(c.pct[i] - c.pct[i-1]);
+        if (d > m) m = d;
+      }
+    }
+  });
+  return m || 1;
+}
+
+function renderCohortHeatmap() {
+  const data = cohortDataAll[cohortView];
+  const months = ['M0','M1','M2','M3','M4','M5','M6','M7'];
+  const mode = cohortMode;
+  const scaleMaxCount = (mode === 'count') ? maxCount(data) : 1;
+  const scaleMaxDelta = (mode === 'delta') ? maxAbsDelta(data) : 1;
+
+  let html = '<table class="heatmap"><thead><tr>';
+  html += '<th class="left">Cohort</th><th class="right">New Active Leases</th>';
+  months.forEach(m => { html += `<th>${m}</th>`; });
+  html += '</tr></thead><tbody>';
+
+  data.forEach(c => {
+    html += `<tr>`;
+    html += `<td class="cohort-name">${c.cohort}</td>`;
+    html += `<td class="cohort-size">${c.size.toLocaleString()}</td>`;
+
+    for (let i = 0; i < 8; i++) {
+      if (mode === 'pct') {
+        const v = c.pct[i];
+        if (v == null) { html += `<td class="heat empty">—</td>`; continue; }
+        const t = v / 50;
+        html += `<td class="heat" style="background:${heatColorByT(t)}; color:${textColorForT(t)}">${v.toFixed(1)}%</td>`;
+      } else if (mode === 'count') {
+        const v = c.counts[i];
+        if (v == null) { html += `<td class="heat empty">—</td>`; continue; }
+        const t = v / scaleMaxCount;
+        html += `<td class="heat" style="background:${heatColorByT(t)}; color:${textColorForT(t)}">${v.toLocaleString()}</td>`;
+      } else {  // delta mode — uses pct values, computes diff vs previous cell
+        if (i === 0) { html += `<td class="heat empty">—</td>`; continue; }
+        const cur = c.pct[i], prev = c.pct[i-1];
+        if (cur == null || prev == null) { html += `<td class="heat empty">—</td>`; continue; }
+        const delta = cur - prev;
+        const norm = delta / scaleMaxDelta;
+        const sign = delta > 0 ? '+' : (delta < 0 ? '−' : '');
+        const fmt = sign + Math.abs(delta).toFixed(1) + 'pp';
+        html += `<td class="heat" style="background:${divergingColor(norm)}; color:${divergingTextColor(norm)}">${fmt}</td>`;
+      }
+    }
+    html += `</tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('cohort-heatmap').innerHTML = html;
+
+  // Update title
+  const accLabel = { All: 'All accounts', Mature: 'Mature accounts (3+ months on platform)', Onboarding: 'Onboarding accounts (0–3 months on platform)' }[cohortView];
+  const valLabel = { pct: '% Paid', count: '# Paid', delta: 'Δ MoM (pp change vs prior month)' }[mode];
+  const t = document.getElementById('cohort-title');
+  if (t) t.textContent = `${valLabel} leases by cohort · M0 → M7 · ${accLabel}`;
+}
+
+window.setCohortView = function(view) {
+  cohortView = view;
+  document.querySelectorAll('.cohort-toggle button[data-view]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.view === view);
+  });
+  renderCohortHeatmap();
+};
+
+window.setCohortMode = function(mode) {
+  cohortMode = mode;
+  document.querySelectorAll('#cohort-mode-toggle button').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+  renderCohortHeatmap();
+};
+
+// Initial render
+renderCohortHeatmap();
+
+// 14. Churned Accounts — combo chart
+new Chart(document.getElementById('chart-churned-accounts'), {
+  type: 'bar',
+  data: {
+    labels: churnedAccounts.map(d => d.month),
+    datasets: [
+      {
+        type: 'bar',
+        label: 'Lost Payments ARR ($K)',
+        yAxisID: 'yArr',
+        data: churnedAccounts.map(d => d.arr),
+        backgroundColor: churnedAccounts.map((_,i)=> i === churnedAccounts.length-1 ? 'rgba(220,38,38,0.85)' : 'rgba(220,38,38,0.30)'),
+        borderRadius: 4, borderSkipped: false, borderWidth: 0,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 2,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? C.warn : '#475569',
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 10
+          }),
+          formatter: v => '$' + v + 'K'
+        }
+      },
+      {
+        type: 'line',
+        label: '# Accounts churned',
+        yAxisID: 'yAcc',
+        data: churnedAccounts.map(d => d.accts),
+        borderColor: C.blue,
+        backgroundColor: 'rgba(37,99,235,0.05)',
+        borderWidth: 2.5, tension: 0.35, fill: false,
+        pointRadius: churnedAccounts.map((_,i)=> i === churnedAccounts.length-1 ? 8 : 5),
+        pointBackgroundColor: churnedAccounts.map((_,i)=> i === churnedAccounts.length-1 ? C.warn : C.blue),
+        pointBorderColor: '#fff', pointBorderWidth: 2,
+        datalabels: {
+          display: true, anchor: 'end', align: 'top', offset: 8,
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? C.warn : '#1d4ed8',
+          font: ctx => ({
+            weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
+            size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 10
+          }),
+          formatter: v => v
+        }
+      }
+    ]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 24, right: 32, bottom: 8, left: 8 } },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'start',
+        labels: { boxWidth: 14, boxHeight: 8, font: { size: 11, weight: 700 }, padding: 12, color: C.text } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: C.muted, font: { size: 10 } } },
+      yArr: { display: false, beginAtZero: true, grace: '20%' },
+      yAcc: { display: false, position: 'right', beginAtZero: true, grace: '20%' }
+    }
+  })
+});
+</script>
+</body>
+</html>

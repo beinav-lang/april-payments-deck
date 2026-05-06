@@ -1,0 +1,210 @@
+[
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 0,
+        "ACTIVE_TENANTS": 142004,
+        "STUCK_TO_FIRST_METHOD": 139604,
+        "SWITCHERS_TO_OTHER_METHOD": 2400,
+        "RETENTION_PCT": "100.00"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 1,
+        "ACTIVE_TENANTS": 94988,
+        "STUCK_TO_FIRST_METHOD": 77548,
+        "SWITCHERS_TO_OTHER_METHOD": 17440,
+        "RETENTION_PCT": "72.01"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 2,
+        "ACTIVE_TENANTS": 85786,
+        "STUCK_TO_FIRST_METHOD": 65514,
+        "SWITCHERS_TO_OTHER_METHOD": 20272,
+        "RETENTION_PCT": "71.08"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 3,
+        "ACTIVE_TENANTS": 76740,
+        "STUCK_TO_FIRST_METHOD": 56192,
+        "SWITCHERS_TO_OTHER_METHOD": 20548,
+        "RETENTION_PCT": "70.06"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 4,
+        "ACTIVE_TENANTS": 67875,
+        "STUCK_TO_FIRST_METHOD": 48334,
+        "SWITCHERS_TO_OTHER_METHOD": 19541,
+        "RETENTION_PCT": "68.61"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 5,
+        "ACTIVE_TENANTS": 61201,
+        "STUCK_TO_FIRST_METHOD": 42563,
+        "SWITCHERS_TO_OTHER_METHOD": 18638,
+        "RETENTION_PCT": "67.76"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 6,
+        "ACTIVE_TENANTS": 54681,
+        "STUCK_TO_FIRST_METHOD": 37360,
+        "SWITCHERS_TO_OTHER_METHOD": 17321,
+        "RETENTION_PCT": "67.47"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 7,
+        "ACTIVE_TENANTS": 48430,
+        "STUCK_TO_FIRST_METHOD": 32498,
+        "SWITCHERS_TO_OTHER_METHOD": 15932,
+        "RETENTION_PCT": "66.35"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 8,
+        "ACTIVE_TENANTS": 43020,
+        "STUCK_TO_FIRST_METHOD": 28422,
+        "SWITCHERS_TO_OTHER_METHOD": 14598,
+        "RETENTION_PCT": "65.82"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 9,
+        "ACTIVE_TENANTS": 37966,
+        "STUCK_TO_FIRST_METHOD": 24852,
+        "SWITCHERS_TO_OTHER_METHOD": 13114,
+        "RETENTION_PCT": "65.47"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 10,
+        "ACTIVE_TENANTS": 33383,
+        "STUCK_TO_FIRST_METHOD": 21673,
+        "SWITCHERS_TO_OTHER_METHOD": 11710,
+        "RETENTION_PCT": "65.32"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 11,
+        "ACTIVE_TENANTS": 28959,
+        "STUCK_TO_FIRST_METHOD": 18721,
+        "SWITCHERS_TO_OTHER_METHOD": 10238,
+        "RETENTION_PCT": "64.96"
+    },
+    {
+        "FIRST_METHOD": "charge",
+        "M_OFFSET": 12,
+        "ACTIVE_TENANTS": 24922,
+        "STUCK_TO_FIRST_METHOD": 16106,
+        "SWITCHERS_TO_OTHER_METHOD": 8816,
+        "RETENTION_PCT": "65.22"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 0,
+        "ACTIVE_TENANTS": 180031,
+        "STUCK_TO_FIRST_METHOD": 179609,
+        "SWITCHERS_TO_OTHER_METHOD": 422,
+        "RETENTION_PCT": "100.00"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 1,
+        "ACTIVE_TENANTS": 140407,
+        "STUCK_TO_FIRST_METHOD": 136882,
+        "SWITCHERS_TO_OTHER_METHOD": 3525,
+        "RETENTION_PCT": "83.17"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 2,
+        "ACTIVE_TENANTS": 133248,
+        "STUCK_TO_FIRST_METHOD": 129307,
+        "SWITCHERS_TO_OTHER_METHOD": 3941,
+        "RETENTION_PCT": "84.83"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 3,
+        "ACTIVE_TENANTS": 123135,
+        "STUCK_TO_FIRST_METHOD": 119200,
+        "SWITCHERS_TO_OTHER_METHOD": 3935,
+        "RETENTION_PCT": "84.93"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 4,
+        "ACTIVE_TENANTS": 112185,
+        "STUCK_TO_FIRST_METHOD": 108367,
+        "SWITCHERS_TO_OTHER_METHOD": 3818,
+        "RETENTION_PCT": "84.35"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 5,
+        "ACTIVE_TENANTS": 103624,
+        "STUCK_TO_FIRST_METHOD": 99941,
+        "SWITCHERS_TO_OTHER_METHOD": 3683,
+        "RETENTION_PCT": "83.98"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 6,
+        "ACTIVE_TENANTS": 94610,
+        "STUCK_TO_FIRST_METHOD": 91016,
+        "SWITCHERS_TO_OTHER_METHOD": 3594,
+        "RETENTION_PCT": "83.38"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 7,
+        "ACTIVE_TENANTS": 85650,
+        "STUCK_TO_FIRST_METHOD": 82314,
+        "SWITCHERS_TO_OTHER_METHOD": 3336,
+        "RETENTION_PCT": "82.70"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 8,
+        "ACTIVE_TENANTS": 77538,
+        "STUCK_TO_FIRST_METHOD": 74440,
+        "SWITCHERS_TO_OTHER_METHOD": 3098,
+        "RETENTION_PCT": "82.29"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 9,
+        "ACTIVE_TENANTS": 69706,
+        "STUCK_TO_FIRST_METHOD": 66770,
+        "SWITCHERS_TO_OTHER_METHOD": 2936,
+        "RETENTION_PCT": "82.11"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 10,
+        "ACTIVE_TENANTS": 61870,
+        "STUCK_TO_FIRST_METHOD": 59187,
+        "SWITCHERS_TO_OTHER_METHOD": 2683,
+        "RETENTION_PCT": "81.24"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 11,
+        "ACTIVE_TENANTS": 54505,
+        "STUCK_TO_FIRST_METHOD": 52040,
+        "SWITCHERS_TO_OTHER_METHOD": 2465,
+        "RETENTION_PCT": "81.08"
+    },
+    {
+        "FIRST_METHOD": "payment",
+        "M_OFFSET": 12,
+        "ACTIVE_TENANTS": 48143,
+        "STUCK_TO_FIRST_METHOD": 45845,
+        "SWITCHERS_TO_OTHER_METHOD": 2298,
+        "RETENTION_PCT": "81.48"
+    }
+]

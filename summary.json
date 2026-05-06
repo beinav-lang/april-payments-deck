@@ -1,0 +1,3467 @@
+{
+  "paid_leases_trend": [
+    {
+      "month": "2024-11",
+      "active": 241601,
+      "paid": 101234,
+      "pct_paid": 41.9
+    },
+    {
+      "month": "2024-12",
+      "active": 251031,
+      "paid": 103717,
+      "pct_paid": 41.32
+    },
+    {
+      "month": "2025-01",
+      "active": 259661,
+      "paid": 110517,
+      "pct_paid": 42.56
+    },
+    {
+      "month": "2025-02",
+      "active": 270328,
+      "paid": 115428,
+      "pct_paid": 42.7
+    },
+    {
+      "month": "2025-03",
+      "active": 280653,
+      "paid": 119866,
+      "pct_paid": 42.71
+    },
+    {
+      "month": "2025-04",
+      "active": 289184,
+      "paid": 126025,
+      "pct_paid": 43.58
+    },
+    {
+      "month": "2025-05",
+      "active": 298058,
+      "paid": 128345,
+      "pct_paid": 43.06
+    },
+    {
+      "month": "2025-06",
+      "active": 307890,
+      "paid": 132899,
+      "pct_paid": 43.16
+    },
+    {
+      "month": "2025-07",
+      "active": 315845,
+      "paid": 137917,
+      "pct_paid": 43.67
+    },
+    {
+      "month": "2025-08",
+      "active": 323035,
+      "paid": 141610,
+      "pct_paid": 43.84
+    },
+    {
+      "month": "2025-09",
+      "active": 328116,
+      "paid": 146347,
+      "pct_paid": 44.6
+    },
+    {
+      "month": "2025-10",
+      "active": 338093,
+      "paid": 151517,
+      "pct_paid": 44.82
+    },
+    {
+      "month": "2025-11",
+      "active": 344019,
+      "paid": 155940,
+      "pct_paid": 45.33
+    },
+    {
+      "month": "2025-12",
+      "active": 351276,
+      "paid": 158904,
+      "pct_paid": 45.24
+    },
+    {
+      "month": "2026-01",
+      "active": 357225,
+      "paid": 165152,
+      "pct_paid": 46.23
+    },
+    {
+      "month": "2026-02",
+      "active": 363773,
+      "paid": 172728,
+      "pct_paid": 47.48
+    },
+    {
+      "month": "2026-03",
+      "active": 372121,
+      "paid": 174676,
+      "pct_paid": 46.94
+    },
+    {
+      "month": "2026-04",
+      "active": 378053,
+      "paid": 181687,
+      "pct_paid": 48.06
+    }
+  ],
+  "paid_leases_drivers": {
+    "apr": {
+      "MONTH": "2026-04-01",
+      "ACTIVE_LEASES_EOM_24": 378053.0,
+      "PAID_LEASES_EOM_24": 181687,
+      "PCT_PAID_EOM_24": 48.1,
+      "PAID_LEASES_MOM_CHANGE": 7011,
+      "ACTIVE_LEASES_MOM_CHANGE": 5932.0,
+      "PCT_PAID_PP_CHANGE": 1.12,
+      "RETAINED_PAID": 155926,
+      "CONVERTED_UNPAID_TO_PAID": 18855,
+      "NEW_PAID_ACTIVE": 5601,
+      "PAID_CHURN_OR_DOWNGRADE": 17498,
+      "ACTIVE_DROPPED_UNPAID": 14389,
+      "RETAINED_UNPAID": 167622,
+      "NEW_UNPAID_ACTIVE": 19789,
+      "FIRST_TIME_PAID_ACTIVE_EOM": 15001
+    },
+    "mar": {
+      "MONTH": "2026-03-01",
+      "ACTIVE_LEASES_EOM_24": 372121.0,
+      "PAID_LEASES_EOM_24": 174676,
+      "PCT_PAID_EOM_24": 46.9,
+      "PAID_LEASES_MOM_CHANGE": 1948,
+      "ACTIVE_LEASES_MOM_CHANGE": 8348.0,
+      "PCT_PAID_PP_CHANGE": -0.54,
+      "RETAINED_PAID": 153116,
+      "CONVERTED_UNPAID_TO_PAID": 15439,
+      "NEW_PAID_ACTIVE": 4869,
+      "PAID_CHURN_OR_DOWNGRADE": 18391,
+      "ACTIVE_DROPPED_UNPAID": 12170,
+      "RETAINED_UNPAID": 167145,
+      "NEW_UNPAID_ACTIVE": 19766,
+      "FIRST_TIME_PAID_ACTIVE_EOM": 14057
+    },
+    "feb": {
+      "MONTH": "2026-02-01",
+      "ACTIVE_LEASES_EOM_24": 363773.0,
+      "PAID_LEASES_EOM_24": 172728,
+      "PCT_PAID_EOM_24": 47.5,
+      "PAID_LEASES_MOM_CHANGE": 7575,
+      "ACTIVE_LEASES_MOM_CHANGE": 6548.0,
+      "PCT_PAID_PP_CHANGE": 1.25,
+      "RETAINED_PAID": 148902,
+      "CONVERTED_UNPAID_TO_PAID": 17198,
+      "NEW_PAID_ACTIVE": 5407,
+      "PAID_CHURN_OR_DOWNGRADE": 14757,
+      "ACTIVE_DROPPED_UNPAID": 14650,
+      "RETAINED_UNPAID": 164557,
+      "NEW_UNPAID_ACTIVE": 19190,
+      "FIRST_TIME_PAID_ACTIVE_EOM": 14578
+    },
+    "apr_vs_mar": {
+      "paid_mom": 7011,
+      "pct_paid_pp": 1.12,
+      "retained_paid_delta": 2810,
+      "converted_unpaid_to_paid_delta": 3416,
+      "churn_delta": -893,
+      "first_time_delta": 944
+    }
+  },
+  "paid_leases_breakdown": [
+    {
+      "month": "2024-12",
+      "paid": 103718,
+      "existing": 91201,
+      "first_time": 8672,
+      "reactivated": 3845,
+      "churned": 10034
+    },
+    {
+      "month": "2025-01",
+      "paid": 110518,
+      "existing": 93028,
+      "first_time": 12457,
+      "reactivated": 5033,
+      "churned": 10690
+    },
+    {
+      "month": "2025-02",
+      "paid": 115429,
+      "existing": 99422,
+      "first_time": 11293,
+      "reactivated": 4714,
+      "churned": 11096
+    },
+    {
+      "month": "2025-03",
+      "paid": 119867,
+      "existing": 103569,
+      "first_time": 11750,
+      "reactivated": 4548,
+      "churned": 11860
+    },
+    {
+      "month": "2025-04",
+      "paid": 126027,
+      "existing": 107496,
+      "first_time": 12624,
+      "reactivated": 5907,
+      "churned": 12371
+    },
+    {
+      "month": "2025-05",
+      "paid": 128347,
+      "existing": 112049,
+      "first_time": 11519,
+      "reactivated": 4779,
+      "churned": 13978
+    },
+    {
+      "month": "2025-06",
+      "paid": 132901,
+      "existing": 114463,
+      "first_time": 12669,
+      "reactivated": 5769,
+      "churned": 13884
+    },
+    {
+      "month": "2025-07",
+      "paid": 137920,
+      "existing": 118435,
+      "first_time": 13479,
+      "reactivated": 6006,
+      "churned": 14466
+    },
+    {
+      "month": "2025-08",
+      "paid": 141612,
+      "existing": 121708,
+      "first_time": 13437,
+      "reactivated": 6467,
+      "churned": 16212
+    },
+    {
+      "month": "2025-09",
+      "paid": 146349,
+      "existing": 127347,
+      "first_time": 12884,
+      "reactivated": 6118,
+      "churned": 14265
+    },
+    {
+      "month": "2025-10",
+      "paid": 151518,
+      "existing": 132342,
+      "first_time": 12841,
+      "reactivated": 6335,
+      "churned": 14007
+    },
+    {
+      "month": "2025-11",
+      "paid": 155941,
+      "existing": 136409,
+      "first_time": 13296,
+      "reactivated": 6236,
+      "churned": 15109
+    },
+    {
+      "month": "2025-12",
+      "paid": 158905,
+      "existing": 141465,
+      "first_time": 10868,
+      "reactivated": 6572,
+      "churned": 14476
+    },
+    {
+      "month": "2026-01",
+      "paid": 165153,
+      "existing": 142354,
+      "first_time": 14698,
+      "reactivated": 8101,
+      "churned": 16551
+    },
+    {
+      "month": "2026-02",
+      "paid": 172728,
+      "existing": 150206,
+      "first_time": 14434,
+      "reactivated": 8088,
+      "churned": 14947
+    },
+    {
+      "month": "2026-03",
+      "paid": 174676,
+      "existing": 154220,
+      "first_time": 14114,
+      "reactivated": 6342,
+      "churned": 18508
+    },
+    {
+      "month": "2026-04",
+      "paid": 181687,
+      "existing": 157023,
+      "first_time": 15116,
+      "reactivated": 9548,
+      "churned": 17653
+    }
+  ],
+  "kpi_dashboard_by_month": {
+    "2025-09": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2025-09-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 9115,
+        "PORTAL_ACTIVE_LEASES": 6053,
+        "PORTAL_ATTACH_RATE": "66.407000",
+        "CONVERTED_LEASES": 4527,
+        "FIRST_PAYMENT_CONVERSION_RATE": "74.789400",
+        "RETENTION_BASE": 4527,
+        "RETAINED_P1_COUNT": 4032,
+        "RETAINED_P2_COUNT": 3844,
+        "RETAINED_P3_COUNT": 3631,
+        "RETENTION_RATE_P1": "89.065600",
+        "RETENTION_RATE_P2": "84.912700",
+        "RETENTION_RATE_P3": "80.207600",
+        "HABIT_FORMED_COUNT": 3690,
+        "HABIT_FORMATION_RATE": "81.510900",
+        "INVITES_SENT": 6307,
+        "INVITE_RATE": "69.193600",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3016,
+        "PMS_WITH_INVITE_SENT": 2571,
+        "PM_INVITE_COVERAGE_RATE": "85.245400"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2025-09-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 6191,
+        "PORTAL_ACTIVE_LEASES": 2637,
+        "PORTAL_ATTACH_RATE": "42.594100",
+        "CONVERTED_LEASES": 1822,
+        "FIRST_PAYMENT_CONVERSION_RATE": "69.093700",
+        "RETENTION_BASE": 1822,
+        "RETAINED_P1_COUNT": 1629,
+        "RETAINED_P2_COUNT": 1558,
+        "RETAINED_P3_COUNT": 1486,
+        "RETENTION_RATE_P1": "89.407200",
+        "RETENTION_RATE_P2": "85.510400",
+        "RETENTION_RATE_P3": "81.558700",
+        "HABIT_FORMED_COUNT": 1504,
+        "HABIT_FORMATION_RATE": "82.546700",
+        "INVITES_SENT": 2938,
+        "INVITE_RATE": "47.456000",
+        "MEDIAN_DAYS_TO_INVITE": "11.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 501,
+        "PMS_WITH_INVITE_SENT": 397,
+        "PM_INVITE_COVERAGE_RATE": "79.241500"
+      }
+    },
+    "2025-10": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2025-10-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 12191,
+        "PORTAL_ACTIVE_LEASES": 7838,
+        "PORTAL_ATTACH_RATE": "64.293300",
+        "CONVERTED_LEASES": 5689,
+        "FIRST_PAYMENT_CONVERSION_RATE": "72.582300",
+        "RETENTION_BASE": 5689,
+        "RETAINED_P1_COUNT": 5032,
+        "RETAINED_P2_COUNT": 4783,
+        "RETAINED_P3_COUNT": 4469,
+        "RETENTION_RATE_P1": "88.451400",
+        "RETENTION_RATE_P2": "84.074500",
+        "RETENTION_RATE_P3": "78.555100",
+        "HABIT_FORMED_COUNT": 4568,
+        "HABIT_FORMATION_RATE": "80.295300",
+        "INVITES_SENT": 8223,
+        "INVITE_RATE": "67.451400",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3318,
+        "PMS_WITH_INVITE_SENT": 2862,
+        "PM_INVITE_COVERAGE_RATE": "86.256800"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2025-10-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 10725,
+        "PORTAL_ACTIVE_LEASES": 5439,
+        "PORTAL_ATTACH_RATE": "50.713300",
+        "CONVERTED_LEASES": 4107,
+        "FIRST_PAYMENT_CONVERSION_RATE": "75.510200",
+        "RETENTION_BASE": 4107,
+        "RETAINED_P1_COUNT": 3705,
+        "RETAINED_P2_COUNT": 3490,
+        "RETAINED_P3_COUNT": 3240,
+        "RETENTION_RATE_P1": "90.211800",
+        "RETENTION_RATE_P2": "84.976900",
+        "RETENTION_RATE_P3": "78.889700",
+        "HABIT_FORMED_COUNT": 3412,
+        "HABIT_FORMATION_RATE": "83.077700",
+        "INVITES_SENT": 5914,
+        "INVITE_RATE": "55.142200",
+        "MEDIAN_DAYS_TO_INVITE": "8.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 579,
+        "PMS_WITH_INVITE_SENT": 452,
+        "PM_INVITE_COVERAGE_RATE": "78.065600"
+      }
+    },
+    "2025-11": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2025-11-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 12345,
+        "PORTAL_ACTIVE_LEASES": 8244,
+        "PORTAL_ATTACH_RATE": "66.780100",
+        "CONVERTED_LEASES": 5997,
+        "FIRST_PAYMENT_CONVERSION_RATE": "72.743800",
+        "RETENTION_BASE": 5997,
+        "RETAINED_P1_COUNT": 5234,
+        "RETAINED_P2_COUNT": 5043,
+        "RETAINED_P3_COUNT": 4507,
+        "RETENTION_RATE_P1": "87.277000",
+        "RETENTION_RATE_P2": "84.092000",
+        "RETENTION_RATE_P3": "75.154200",
+        "HABIT_FORMED_COUNT": 4801,
+        "HABIT_FORMATION_RATE": "80.056700",
+        "INVITES_SENT": 8692,
+        "INVITE_RATE": "70.409100",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3457,
+        "PMS_WITH_INVITE_SENT": 2975,
+        "PM_INVITE_COVERAGE_RATE": "86.057300"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2025-11-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 10106,
+        "PORTAL_ACTIVE_LEASES": 3807,
+        "PORTAL_ATTACH_RATE": "37.670700",
+        "CONVERTED_LEASES": 2620,
+        "FIRST_PAYMENT_CONVERSION_RATE": "68.820600",
+        "RETENTION_BASE": 2620,
+        "RETAINED_P1_COUNT": 2375,
+        "RETAINED_P2_COUNT": 2241,
+        "RETAINED_P3_COUNT": 1632,
+        "RETENTION_RATE_P1": "90.648900",
+        "RETENTION_RATE_P2": "85.534400",
+        "RETENTION_RATE_P3": "62.290100",
+        "HABIT_FORMED_COUNT": 2179,
+        "HABIT_FORMATION_RATE": "83.167900",
+        "INVITES_SENT": 4108,
+        "INVITE_RATE": "40.649100",
+        "MEDIAN_DAYS_TO_INVITE": "14.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 570,
+        "PMS_WITH_INVITE_SENT": 458,
+        "PM_INVITE_COVERAGE_RATE": "80.350900"
+      }
+    },
+    "2025-12": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2025-12-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 11183,
+        "PORTAL_ACTIVE_LEASES": 7567,
+        "PORTAL_ATTACH_RATE": "67.665200",
+        "CONVERTED_LEASES": 5419,
+        "FIRST_PAYMENT_CONVERSION_RATE": "71.613600",
+        "RETENTION_BASE": 5419,
+        "RETAINED_P1_COUNT": 4784,
+        "RETAINED_P2_COUNT": 4574,
+        "RETAINED_P3_COUNT": 2688,
+        "RETENTION_RATE_P1": "88.282000",
+        "RETENTION_RATE_P2": "84.406700",
+        "RETENTION_RATE_P3": "49.603200",
+        "HABIT_FORMED_COUNT": 4358,
+        "HABIT_FORMATION_RATE": "80.420700",
+        "INVITES_SENT": 8024,
+        "INVITE_RATE": "71.751800",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3291,
+        "PMS_WITH_INVITE_SENT": 2811,
+        "PM_INVITE_COVERAGE_RATE": "85.414800"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2025-12-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 9724,
+        "PORTAL_ACTIVE_LEASES": 4553,
+        "PORTAL_ATTACH_RATE": "46.822300",
+        "CONVERTED_LEASES": 3396,
+        "FIRST_PAYMENT_CONVERSION_RATE": "74.588200",
+        "RETENTION_BASE": 3396,
+        "RETAINED_P1_COUNT": 3116,
+        "RETAINED_P2_COUNT": 2947,
+        "RETAINED_P3_COUNT": 1067,
+        "RETENTION_RATE_P1": "91.755000",
+        "RETENTION_RATE_P2": "86.778600",
+        "RETENTION_RATE_P3": "31.419300",
+        "HABIT_FORMED_COUNT": 2865,
+        "HABIT_FORMATION_RATE": "84.364000",
+        "INVITES_SENT": 4794,
+        "INVITE_RATE": "49.300700",
+        "MEDIAN_DAYS_TO_INVITE": "14.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 549,
+        "PMS_WITH_INVITE_SENT": 450,
+        "PM_INVITE_COVERAGE_RATE": "81.967200"
+      }
+    },
+    "2026-01": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2026-01-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 12137,
+        "PORTAL_ACTIVE_LEASES": 8258,
+        "PORTAL_ATTACH_RATE": "68.039900",
+        "CONVERTED_LEASES": 6065,
+        "FIRST_PAYMENT_CONVERSION_RATE": "73.443900",
+        "RETENTION_BASE": 6065,
+        "RETAINED_P1_COUNT": 5348,
+        "RETAINED_P2_COUNT": 4659,
+        "RETAINED_P3_COUNT": 866,
+        "RETENTION_RATE_P1": "88.178100",
+        "RETENTION_RATE_P2": "76.817800",
+        "RETENTION_RATE_P3": "14.278600",
+        "HABIT_FORMED_COUNT": 4485,
+        "HABIT_FORMATION_RATE": "73.948900",
+        "INVITES_SENT": 8725,
+        "INVITE_RATE": "71.887600",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3458,
+        "PMS_WITH_INVITE_SENT": 3017,
+        "PM_INVITE_COVERAGE_RATE": "87.247000"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2026-01-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 7752,
+        "PORTAL_ACTIVE_LEASES": 4103,
+        "PORTAL_ATTACH_RATE": "52.928300",
+        "CONVERTED_LEASES": 2977,
+        "FIRST_PAYMENT_CONVERSION_RATE": "72.556700",
+        "RETENTION_BASE": 2977,
+        "RETAINED_P1_COUNT": 2597,
+        "RETAINED_P2_COUNT": 1978,
+        "RETAINED_P3_COUNT": 217,
+        "RETENTION_RATE_P1": "87.235500",
+        "RETENTION_RATE_P2": "66.442700",
+        "RETENTION_RATE_P3": "7.289200",
+        "HABIT_FORMED_COUNT": 1906,
+        "HABIT_FORMATION_RATE": "64.024200",
+        "INVITES_SENT": 4645,
+        "INVITE_RATE": "59.920000",
+        "MEDIAN_DAYS_TO_INVITE": "9.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 515,
+        "PMS_WITH_INVITE_SENT": 460,
+        "PM_INVITE_COVERAGE_RATE": "89.320400"
+      }
+    },
+    "2026-02": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2026-02-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 13461,
+        "PORTAL_ACTIVE_LEASES": 9450,
+        "PORTAL_ATTACH_RATE": "70.202800",
+        "CONVERTED_LEASES": 7006,
+        "FIRST_PAYMENT_CONVERSION_RATE": "74.137600",
+        "RETENTION_BASE": 7006,
+        "RETAINED_P1_COUNT": 5579,
+        "RETAINED_P2_COUNT": 2458,
+        "RETAINED_P3_COUNT": 19,
+        "RETENTION_RATE_P1": "79.631700",
+        "RETENTION_RATE_P2": "35.084200",
+        "RETENTION_RATE_P3": "0.271200",
+        "HABIT_FORMED_COUNT": 2314,
+        "HABIT_FORMATION_RATE": "33.028800",
+        "INVITES_SENT": 10113,
+        "INVITE_RATE": "75.128100",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3772,
+        "PMS_WITH_INVITE_SENT": 3366,
+        "PM_INVITE_COVERAGE_RATE": "89.236500"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2026-02-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 8734,
+        "PORTAL_ACTIVE_LEASES": 4973,
+        "PORTAL_ATTACH_RATE": "56.938400",
+        "CONVERTED_LEASES": 3725,
+        "FIRST_PAYMENT_CONVERSION_RATE": "74.904500",
+        "RETENTION_BASE": 3725,
+        "RETAINED_P1_COUNT": 2788,
+        "RETAINED_P2_COUNT": 861,
+        "RETAINED_P3_COUNT": 3,
+        "RETENTION_RATE_P1": "74.845600",
+        "RETENTION_RATE_P2": "23.114100",
+        "RETENTION_RATE_P3": "0.080500",
+        "HABIT_FORMED_COUNT": 822,
+        "HABIT_FORMATION_RATE": "22.067100",
+        "INVITES_SENT": 5467,
+        "INVITE_RATE": "62.594500",
+        "MEDIAN_DAYS_TO_INVITE": "9.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 514,
+        "PMS_WITH_INVITE_SENT": 457,
+        "PM_INVITE_COVERAGE_RATE": "88.910500"
+      }
+    },
+    "2026-03": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2026-03-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 14598,
+        "PORTAL_ACTIVE_LEASES": 9464,
+        "PORTAL_ATTACH_RATE": "64.830800",
+        "CONVERTED_LEASES": 6445,
+        "FIRST_PAYMENT_CONVERSION_RATE": "68.100200",
+        "RETENTION_BASE": 6445,
+        "RETAINED_P1_COUNT": 3085,
+        "RETAINED_P2_COUNT": 308,
+        "RETAINED_P3_COUNT": 0,
+        "RETENTION_RATE_P1": "47.866600",
+        "RETENTION_RATE_P2": "4.778900",
+        "RETENTION_RATE_P3": "0.000000",
+        "HABIT_FORMED_COUNT": 293,
+        "HABIT_FORMATION_RATE": "4.546200",
+        "INVITES_SENT": 10846,
+        "INVITE_RATE": "74.297800",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3701,
+        "PMS_WITH_INVITE_SENT": 3420,
+        "PM_INVITE_COVERAGE_RATE": "92.407500"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2026-03-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 7564,
+        "PORTAL_ACTIVE_LEASES": 3918,
+        "PORTAL_ATTACH_RATE": "51.798000",
+        "CONVERTED_LEASES": 2250,
+        "FIRST_PAYMENT_CONVERSION_RATE": "57.427300",
+        "RETENTION_BASE": 2250,
+        "RETAINED_P1_COUNT": 872,
+        "RETAINED_P2_COUNT": 66,
+        "RETAINED_P3_COUNT": 0,
+        "RETENTION_RATE_P1": "38.755600",
+        "RETENTION_RATE_P2": "2.933300",
+        "RETENTION_RATE_P3": "0.000000",
+        "HABIT_FORMED_COUNT": 62,
+        "HABIT_FORMATION_RATE": "2.755600",
+        "INVITES_SENT": 5034,
+        "INVITE_RATE": "66.552100",
+        "MEDIAN_DAYS_TO_INVITE": "14.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 445,
+        "PMS_WITH_INVITE_SENT": 401,
+        "PM_INVITE_COVERAGE_RATE": "90.112400"
+      }
+    },
+    "2026-04": {
+      "Mature": {
+        "LEASEACTIVATIONMONTH": "2026-04-01",
+        "COHORT_STATUS": "Mature",
+        "TOTAL_NEW_ACTIVE_LEASES": 15273,
+        "PORTAL_ACTIVE_LEASES": 9252,
+        "PORTAL_ATTACH_RATE": "60.577500",
+        "CONVERTED_LEASES": 3817,
+        "FIRST_PAYMENT_CONVERSION_RATE": "41.255900",
+        "RETENTION_BASE": 3817,
+        "RETAINED_P1_COUNT": 970,
+        "RETAINED_P2_COUNT": 1,
+        "RETAINED_P3_COUNT": 0,
+        "RETENTION_RATE_P1": "25.412600",
+        "RETENTION_RATE_P2": "0.026200",
+        "RETENTION_RATE_P3": "0.000000",
+        "HABIT_FORMED_COUNT": 1,
+        "HABIT_FORMATION_RATE": "0.026200",
+        "INVITES_SENT": 13077,
+        "INVITE_RATE": "85.621700",
+        "MEDIAN_DAYS_TO_INVITE": "0.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 3938,
+        "PMS_WITH_INVITE_SENT": 3682,
+        "PM_INVITE_COVERAGE_RATE": "93.499200"
+      },
+      "Onboarding": {
+        "LEASEACTIVATIONMONTH": "2026-04-01",
+        "COHORT_STATUS": "Onboarding",
+        "TOTAL_NEW_ACTIVE_LEASES": 8534,
+        "PORTAL_ACTIVE_LEASES": 3329,
+        "PORTAL_ATTACH_RATE": "39.008700",
+        "CONVERTED_LEASES": 982,
+        "FIRST_PAYMENT_CONVERSION_RATE": "29.498300",
+        "RETENTION_BASE": 982,
+        "RETAINED_P1_COUNT": 173,
+        "RETAINED_P2_COUNT": 0,
+        "RETAINED_P3_COUNT": 0,
+        "RETENTION_RATE_P1": "17.617100",
+        "RETENTION_RATE_P2": "0.000000",
+        "RETENTION_RATE_P3": "0.000000",
+        "HABIT_FORMED_COUNT": 0,
+        "HABIT_FORMATION_RATE": "0.000000",
+        "INVITES_SENT": 6083,
+        "INVITE_RATE": "71.279600",
+        "MEDIAN_DAYS_TO_INVITE": "6.000",
+        "TOTAL_PMS_WITH_NEW_LEASES": 503,
+        "PMS_WITH_INVITE_SENT": 450,
+        "PM_INVITE_COVERAGE_RATE": "89.463200"
+      }
+    }
+  },
+  "card_volume_trend": [
+    {
+      "month": "2024-12",
+      "card_total": 28011198.91,
+      "ach_total": 139306418.85,
+      "total": 167317617.76,
+      "card_share": 16.741332613388746,
+      "new_card": 4318559.35,
+      "returning_card": 23692639.56,
+      "pct_new_of_card": 15.417259946193425
+    },
+    {
+      "month": "2025-01",
+      "card_total": 31410928.25,
+      "ach_total": 146715060.36,
+      "total": 178125988.61,
+      "card_share": 17.63410746242819,
+      "new_card": 6169011.04,
+      "returning_card": 25241917.21,
+      "pct_new_of_card": 19.639696703328084
+    },
+    {
+      "month": "2025-02",
+      "card_total": 34006813.07,
+      "ach_total": 156110755.63,
+      "total": 190117568.7,
+      "card_share": 17.88725434610505,
+      "new_card": 6069670.37,
+      "returning_card": 27937142.7,
+      "pct_new_of_card": 17.848395136310256
+    },
+    {
+      "month": "2025-03",
+      "card_total": 36075872.92,
+      "ach_total": 157695364.76,
+      "total": 193771237.68,
+      "card_share": 18.617764613537148,
+      "new_card": 6982262.16,
+      "returning_card": 29093610.76,
+      "pct_new_of_card": 19.3543817372999
+    },
+    {
+      "month": "2025-04",
+      "card_total": 37642513.18,
+      "ach_total": 167086162.22,
+      "total": 204728675.4,
+      "card_share": 18.386536769435864,
+      "new_card": 6910202.7,
+      "returning_card": 30732310.48,
+      "pct_new_of_card": 18.357442466597817
+    },
+    {
+      "month": "2025-05",
+      "card_total": 38979220.34,
+      "ach_total": 170472427.75,
+      "total": 209451648.09,
+      "card_share": 18.610128254159587,
+      "new_card": 6682261.82,
+      "returning_card": 32296958.52,
+      "pct_new_of_card": 17.14313873318483
+    },
+    {
+      "month": "2025-06",
+      "card_total": 40305370.99,
+      "ach_total": 179392707.68,
+      "total": 219698078.67,
+      "card_share": 18.345800397526986,
+      "new_card": 6921461.19,
+      "returning_card": 33383909.8,
+      "pct_new_of_card": 17.172552987335745
+    },
+    {
+      "month": "2025-07",
+      "card_total": 41939032.57,
+      "ach_total": 186086266.31,
+      "total": 228025298.88,
+      "card_share": 18.392271724231236,
+      "new_card": 6997613.81,
+      "returning_card": 34941418.76,
+      "pct_new_of_card": 16.68520559772178
+    },
+    {
+      "month": "2025-08",
+      "card_total": 43166609.28,
+      "ach_total": 192688145.55,
+      "total": 235854754.83,
+      "card_share": 18.302200144794085,
+      "new_card": 7071608.75,
+      "returning_card": 36095000.53,
+      "pct_new_of_card": 16.382126991096392
+    },
+    {
+      "month": "2025-09",
+      "card_total": 44541608.67,
+      "ach_total": 199522810.05,
+      "total": 244064418.72,
+      "card_share": 18.249939464178855,
+      "new_card": 7032246.47,
+      "returning_card": 37509362.2,
+      "pct_new_of_card": 15.788038824777361
+    },
+    {
+      "month": "2025-10",
+      "card_total": 45292821.23,
+      "ach_total": 206615379.48,
+      "total": 251908200.71,
+      "card_share": 17.979891524905806,
+      "new_card": 6495636.23,
+      "returning_card": 38797185.0,
+      "pct_new_of_card": 14.34142553632224
+    },
+    {
+      "month": "2025-11",
+      "card_total": 47733143.76,
+      "ach_total": 211985496.07,
+      "total": 259718639.83,
+      "card_share": 18.378790136604728,
+      "new_card": 7331282.47,
+      "returning_card": 40401861.29,
+      "pct_new_of_card": 15.358892988195672
+    },
+    {
+      "month": "2025-12",
+      "card_total": 47637236.77,
+      "ach_total": 216828308.69,
+      "total": 264465545.46,
+      "card_share": 18.012643835000073,
+      "new_card": 5647941.61,
+      "returning_card": 41989295.16,
+      "pct_new_of_card": 11.85614866216767
+    },
+    {
+      "month": "2026-01",
+      "card_total": 50233165.8,
+      "ach_total": 222580682.19,
+      "total": 272813847.99,
+      "card_share": 18.41298239444256,
+      "new_card": 7473445.05,
+      "returning_card": 42759720.75,
+      "pct_new_of_card": 14.877511562291382
+    },
+    {
+      "month": "2026-02",
+      "card_total": 53723511.68,
+      "ach_total": 240843113.68,
+      "total": 294566625.36,
+      "card_share": 18.238152952440775,
+      "new_card": 7667131.99,
+      "returning_card": 46056379.69,
+      "pct_new_of_card": 14.271464672057716
+    },
+    {
+      "month": "2026-03",
+      "card_total": 52754147.81,
+      "ach_total": 239988113.17,
+      "total": 292742260.98,
+      "card_share": 18.02068059233994,
+      "new_card": 7153387.75,
+      "returning_card": 45600760.06,
+      "pct_new_of_card": 13.559858412960685
+    },
+    {
+      "month": "2026-04",
+      "card_total": 54659554.04,
+      "ach_total": 253317585.66,
+      "total": 307977139.7,
+      "card_share": 17.747925736710126,
+      "new_card": 7684313.89,
+      "returning_card": 46975240.15,
+      "pct_new_of_card": 14.058500887834905
+    }
+  ],
+  "paid_leases_by_segment": {
+    "2025-01": [
+      {
+        "segment": "Emerging",
+        "active": 9958.0,
+        "paid": 5020,
+        "pct_paid": 50.41
+      },
+      {
+        "segment": "MidMarket",
+        "active": 139530.0,
+        "paid": 55716,
+        "pct_paid": 39.93
+      },
+      {
+        "segment": "SMB",
+        "active": 83935.0,
+        "paid": 39057,
+        "pct_paid": 46.53
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 398,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 26238.0,
+        "paid": 10326,
+        "pct_paid": 39.36
+      }
+    ],
+    "2025-02": [
+      {
+        "segment": "Emerging",
+        "active": 10058.0,
+        "paid": 5236,
+        "pct_paid": 52.06
+      },
+      {
+        "segment": "MidMarket",
+        "active": 145131.0,
+        "paid": 58236,
+        "pct_paid": 40.13
+      },
+      {
+        "segment": "SMB",
+        "active": 86907.0,
+        "paid": 40754,
+        "pct_paid": 46.89
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 492,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 28232.0,
+        "paid": 10710,
+        "pct_paid": 37.94
+      }
+    ],
+    "2025-03": [
+      {
+        "segment": "Emerging",
+        "active": 10226.0,
+        "paid": 5319,
+        "pct_paid": 52.01
+      },
+      {
+        "segment": "MidMarket",
+        "active": 150397.0,
+        "paid": 60798,
+        "pct_paid": 40.43
+      },
+      {
+        "segment": "SMB",
+        "active": 88385.0,
+        "paid": 41623,
+        "pct_paid": 47.09
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 380,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 31645.0,
+        "paid": 11746,
+        "pct_paid": 37.12
+      }
+    ],
+    "2025-04": [
+      {
+        "segment": "Emerging",
+        "active": 10525.0,
+        "paid": 5489,
+        "pct_paid": 52.15
+      },
+      {
+        "segment": "MidMarket",
+        "active": 154105.0,
+        "paid": 64452,
+        "pct_paid": 41.82
+      },
+      {
+        "segment": "SMB",
+        "active": 90917.0,
+        "paid": 43233,
+        "pct_paid": 47.55
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 352,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 33637.0,
+        "paid": 12499,
+        "pct_paid": 37.16
+      }
+    ],
+    "2025-05": [
+      {
+        "segment": "Emerging",
+        "active": 10761.0,
+        "paid": 5565,
+        "pct_paid": 51.71
+      },
+      {
+        "segment": "MidMarket",
+        "active": 159687.0,
+        "paid": 66206,
+        "pct_paid": 41.46
+      },
+      {
+        "segment": "SMB",
+        "active": 93277.0,
+        "paid": 44340,
+        "pct_paid": 47.54
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 266,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 34333.0,
+        "paid": 11968,
+        "pct_paid": 34.86
+      }
+    ],
+    "2025-06": [
+      {
+        "segment": "Emerging",
+        "active": 10758.0,
+        "paid": 5626,
+        "pct_paid": 52.3
+      },
+      {
+        "segment": "MidMarket",
+        "active": 165894.0,
+        "paid": 69326,
+        "pct_paid": 41.79
+      },
+      {
+        "segment": "SMB",
+        "active": 94413.0,
+        "paid": 45174,
+        "pct_paid": 47.85
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 426,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 36825.0,
+        "paid": 12347,
+        "pct_paid": 33.53
+      }
+    ],
+    "2025-07": [
+      {
+        "segment": "Emerging",
+        "active": 10866.0,
+        "paid": 5611,
+        "pct_paid": 51.64
+      },
+      {
+        "segment": "MidMarket",
+        "active": 170573.0,
+        "paid": 71788,
+        "pct_paid": 42.09
+      },
+      {
+        "segment": "SMB",
+        "active": 96589.0,
+        "paid": 46568,
+        "pct_paid": 48.21
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 348,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 37817.0,
+        "paid": 13602,
+        "pct_paid": 35.97
+      }
+    ],
+    "2025-08": [
+      {
+        "segment": "Emerging",
+        "active": 11088.0,
+        "paid": 5758,
+        "pct_paid": 51.93
+      },
+      {
+        "segment": "MidMarket",
+        "active": 174983.0,
+        "paid": 74367,
+        "pct_paid": 42.5
+      },
+      {
+        "segment": "SMB",
+        "active": 98111.0,
+        "paid": 47845,
+        "pct_paid": 48.77
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 146,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 38853.0,
+        "paid": 13494,
+        "pct_paid": 34.73
+      }
+    ],
+    "2025-09": [
+      {
+        "segment": "Emerging",
+        "active": 11373.0,
+        "paid": 5842,
+        "pct_paid": 51.37
+      },
+      {
+        "segment": "MidMarket",
+        "active": 177617.0,
+        "paid": 77061,
+        "pct_paid": 43.39
+      },
+      {
+        "segment": "SMB",
+        "active": 99873.0,
+        "paid": 49197,
+        "pct_paid": 49.26
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 144,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 39253.0,
+        "paid": 14103,
+        "pct_paid": 35.93
+      }
+    ],
+    "2025-10": [
+      {
+        "segment": "Emerging",
+        "active": 11305.0,
+        "paid": 5931,
+        "pct_paid": 52.46
+      },
+      {
+        "segment": "MidMarket",
+        "active": 183872.0,
+        "paid": 80204,
+        "pct_paid": 43.62
+      },
+      {
+        "segment": "SMB",
+        "active": 102338.0,
+        "paid": 50142,
+        "pct_paid": 49.0
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 121,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 40578.0,
+        "paid": 15119,
+        "pct_paid": 37.26
+      }
+    ],
+    "2025-11": [
+      {
+        "segment": "Emerging",
+        "active": 11298.0,
+        "paid": 5933,
+        "pct_paid": 52.51
+      },
+      {
+        "segment": "MidMarket",
+        "active": 189834.0,
+        "paid": 83227,
+        "pct_paid": 43.84
+      },
+      {
+        "segment": "SMB",
+        "active": 103741.0,
+        "paid": 51151,
+        "pct_paid": 49.31
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 195,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 39146.0,
+        "paid": 15434,
+        "pct_paid": 39.43
+      }
+    ],
+    "2025-12": [
+      {
+        "segment": "Emerging",
+        "active": 11319.0,
+        "paid": 5919,
+        "pct_paid": 52.29
+      },
+      {
+        "segment": "MidMarket",
+        "active": 194126.0,
+        "paid": 85123,
+        "pct_paid": 43.85
+      },
+      {
+        "segment": "SMB",
+        "active": 105975.0,
+        "paid": 51809,
+        "pct_paid": 48.89
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 227,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 39856.0,
+        "paid": 15826,
+        "pct_paid": 39.71
+      }
+    ],
+    "2026-01": [
+      {
+        "segment": "Emerging",
+        "active": 11172.0,
+        "paid": 5924,
+        "pct_paid": 53.03
+      },
+      {
+        "segment": "MidMarket",
+        "active": 197709.0,
+        "paid": 88158,
+        "pct_paid": 44.59
+      },
+      {
+        "segment": "SMB",
+        "active": 107993.0,
+        "paid": 53429,
+        "pct_paid": 49.47
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 225,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 40351.0,
+        "paid": 17416,
+        "pct_paid": 43.16
+      }
+    ],
+    "2026-02": [
+      {
+        "segment": "Emerging",
+        "active": 11197.0,
+        "paid": 6086,
+        "pct_paid": 54.35
+      },
+      {
+        "segment": "MidMarket",
+        "active": 201672.0,
+        "paid": 92672,
+        "pct_paid": 45.95
+      },
+      {
+        "segment": "SMB",
+        "active": 109443.0,
+        "paid": 55975,
+        "pct_paid": 51.15
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 234,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 41461.0,
+        "paid": 17761,
+        "pct_paid": 42.84
+      }
+    ],
+    "2026-03": [
+      {
+        "segment": "Emerging",
+        "active": 11240.0,
+        "paid": 6060,
+        "pct_paid": 53.91
+      },
+      {
+        "segment": "MidMarket",
+        "active": 205420.0,
+        "paid": 93190,
+        "pct_paid": 45.37
+      },
+      {
+        "segment": "SMB",
+        "active": 110971.0,
+        "paid": 56175,
+        "pct_paid": 50.62
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 189,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 44490.0,
+        "paid": 19062,
+        "pct_paid": 42.85
+      }
+    ],
+    "2026-04": [
+      {
+        "segment": "Emerging",
+        "active": 11209.0,
+        "paid": 6251,
+        "pct_paid": 55.77
+      },
+      {
+        "segment": "MidMarket",
+        "active": 209443.0,
+        "paid": 97539,
+        "pct_paid": 46.57
+      },
+      {
+        "segment": "SMB",
+        "active": 113396.0,
+        "paid": 58192,
+        "pct_paid": 51.32
+      },
+      {
+        "segment": "Unknown",
+        "active": 0.0,
+        "paid": 207,
+        "pct_paid": null
+      },
+      {
+        "segment": "UpMarket",
+        "active": 44005.0,
+        "paid": 19498,
+        "pct_paid": 44.31
+      }
+    ]
+  },
+  "attach_rate_by_payments_month": {
+    "2025-09": {
+      "Mature": {
+        "new_active": 13793,
+        "with_portal": 8196,
+        "attach_rate": 59.4214
+      },
+      "Onboarding": {
+        "new_active": 12717,
+        "with_portal": 3441,
+        "attach_rate": 27.0583
+      }
+    },
+    "2025-10": {
+      "Mature": {
+        "new_active": 13478,
+        "with_portal": 7702,
+        "attach_rate": 57.145
+      },
+      "Onboarding": {
+        "new_active": 12120,
+        "with_portal": 4769,
+        "attach_rate": 39.3482
+      }
+    },
+    "2025-11": {
+      "Mature": {
+        "new_active": 13762,
+        "with_portal": 8228,
+        "attach_rate": 59.7878
+      },
+      "Onboarding": {
+        "new_active": 12419,
+        "with_portal": 3121,
+        "attach_rate": 25.1308
+      }
+    },
+    "2025-12": {
+      "Mature": {
+        "new_active": 12755,
+        "with_portal": 7597,
+        "attach_rate": 59.561
+      },
+      "Onboarding": {
+        "new_active": 14120,
+        "with_portal": 4236,
+        "attach_rate": 30.0
+      }
+    },
+    "2026-01": {
+      "Mature": {
+        "new_active": 13257,
+        "with_portal": 8045,
+        "attach_rate": 60.6849
+      },
+      "Onboarding": {
+        "new_active": 10376,
+        "with_portal": 3650,
+        "attach_rate": 35.1773
+      }
+    },
+    "2026-02": {
+      "Mature": {
+        "new_active": 15361,
+        "with_portal": 9460,
+        "attach_rate": 61.5845
+      },
+      "Onboarding": {
+        "new_active": 11427,
+        "with_portal": 4512,
+        "attach_rate": 39.4854
+      }
+    },
+    "2026-03": {
+      "Mature": {
+        "new_active": 15966,
+        "with_portal": 9510,
+        "attach_rate": 59.5641
+      },
+      "Onboarding": {
+        "new_active": 12226,
+        "with_portal": 3434,
+        "attach_rate": 28.0877
+      }
+    },
+    "2026-04": {
+      "Mature": {
+        "new_active": 17439,
+        "with_portal": 9593,
+        "attach_rate": 55.0089
+      },
+      "Onboarding": {
+        "new_active": 10821,
+        "with_portal": 2547,
+        "attach_rate": 23.5376
+      }
+    }
+  },
+  "ftp_by_account_age": {
+    "2024-06": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1637,
+        "card_tenants": 642,
+        "pct_card": 39.22,
+        "pct_card_amount": 24.77
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2374,
+        "card_tenants": 785,
+        "pct_card": 33.07,
+        "pct_card_amount": 20.03
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3066,
+        "card_tenants": 1275,
+        "pct_card": 41.589999999999996,
+        "pct_card_amount": 26.669999999999998
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2305,
+        "card_tenants": 846,
+        "pct_card": 36.7,
+        "pct_card_amount": 22.040000000000003
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 41,
+        "card_tenants": 22,
+        "pct_card": 53.66,
+        "pct_card_amount": 32.800000000000004
+      }
+    ],
+    "2024-07": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1539,
+        "card_tenants": 556,
+        "pct_card": 36.13,
+        "pct_card_amount": 23.189999999999998
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 3161,
+        "card_tenants": 985,
+        "pct_card": 31.16,
+        "pct_card_amount": 17.29
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3454,
+        "card_tenants": 1357,
+        "pct_card": 39.290000000000006,
+        "pct_card_amount": 26.090000000000003
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2928,
+        "card_tenants": 985,
+        "pct_card": 33.64,
+        "pct_card_amount": 20.57
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 64,
+        "card_tenants": 23,
+        "pct_card": 35.94,
+        "pct_card_amount": 29.86
+      }
+    ],
+    "2024-08": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 2218,
+        "card_tenants": 968,
+        "pct_card": 43.64,
+        "pct_card_amount": 30.159999999999997
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2624,
+        "card_tenants": 1061,
+        "pct_card": 40.43,
+        "pct_card_amount": 26.71
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3803,
+        "card_tenants": 1909,
+        "pct_card": 50.2,
+        "pct_card_amount": 33.69
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2744,
+        "card_tenants": 1304,
+        "pct_card": 47.52,
+        "pct_card_amount": 34.37
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 73,
+        "card_tenants": 40,
+        "pct_card": 54.790000000000006,
+        "pct_card_amount": 43.36
+      }
+    ],
+    "2024-09": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1830,
+        "card_tenants": 880,
+        "pct_card": 48.089999999999996,
+        "pct_card_amount": 32.5
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2430,
+        "card_tenants": 1068,
+        "pct_card": 43.95,
+        "pct_card_amount": 28.139999999999997
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3522,
+        "card_tenants": 1772,
+        "pct_card": 50.31,
+        "pct_card_amount": 33.900000000000006
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 3145,
+        "card_tenants": 1425,
+        "pct_card": 45.31,
+        "pct_card_amount": 30.8
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 92,
+        "card_tenants": 43,
+        "pct_card": 46.739999999999995,
+        "pct_card_amount": 23.119999999999997
+      }
+    ],
+    "2024-10": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1862,
+        "card_tenants": 893,
+        "pct_card": 47.96,
+        "pct_card_amount": 32.66
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2382,
+        "card_tenants": 992,
+        "pct_card": 41.65,
+        "pct_card_amount": 27.339999999999996
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3290,
+        "card_tenants": 1698,
+        "pct_card": 51.61,
+        "pct_card_amount": 34.42
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2365,
+        "card_tenants": 996,
+        "pct_card": 42.11,
+        "pct_card_amount": 27.33
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 263,
+        "card_tenants": 104,
+        "pct_card": 39.54,
+        "pct_card_amount": 31.069999999999997
+      }
+    ],
+    "2024-11": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1675,
+        "card_tenants": 815,
+        "pct_card": 48.66,
+        "pct_card_amount": 32.550000000000004
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 1985,
+        "card_tenants": 910,
+        "pct_card": 45.839999999999996,
+        "pct_card_amount": 30.03
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3518,
+        "card_tenants": 1904,
+        "pct_card": 54.120000000000005,
+        "pct_card_amount": 36.33
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2562,
+        "card_tenants": 1013,
+        "pct_card": 39.54,
+        "pct_card_amount": 26.69
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 117,
+        "card_tenants": 60,
+        "pct_card": 51.28,
+        "pct_card_amount": 38.24
+      }
+    ],
+    "2024-12": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1416,
+        "card_tenants": 701,
+        "pct_card": 49.51,
+        "pct_card_amount": 32.25
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 1829,
+        "card_tenants": 823,
+        "pct_card": 45.0,
+        "pct_card_amount": 31.819999999999997
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 3304,
+        "card_tenants": 1662,
+        "pct_card": 50.3,
+        "pct_card_amount": 34.27
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2189,
+        "card_tenants": 747,
+        "pct_card": 34.13,
+        "pct_card_amount": 21.9
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 58,
+        "card_tenants": 30,
+        "pct_card": 51.72,
+        "pct_card_amount": 40.2
+      }
+    ],
+    "2025-01": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1713,
+        "card_tenants": 843,
+        "pct_card": 49.21,
+        "pct_card_amount": 31.759999999999998
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 3418,
+        "card_tenants": 1475,
+        "pct_card": 43.15,
+        "pct_card_amount": 29.599999999999998
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 4139,
+        "card_tenants": 2077,
+        "pct_card": 50.18,
+        "pct_card_amount": 35.4
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 3119,
+        "card_tenants": 1233,
+        "pct_card": 39.53,
+        "pct_card_amount": 27.05
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 48,
+        "card_tenants": 30,
+        "pct_card": 62.5,
+        "pct_card_amount": 46.52
+      }
+    ],
+    "2025-02": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1826,
+        "card_tenants": 984,
+        "pct_card": 53.89000000000001,
+        "pct_card_amount": 37.74
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2607,
+        "card_tenants": 1152,
+        "pct_card": 44.190000000000005,
+        "pct_card_amount": 29.609999999999996
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 4270,
+        "card_tenants": 2121,
+        "pct_card": 49.669999999999995,
+        "pct_card_amount": 33.82
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2505,
+        "card_tenants": 1164,
+        "pct_card": 46.47,
+        "pct_card_amount": 31.45
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 65,
+        "card_tenants": 40,
+        "pct_card": 61.53999999999999,
+        "pct_card_amount": 50.78
+      }
+    ],
+    "2025-03": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1927,
+        "card_tenants": 1122,
+        "pct_card": 58.230000000000004,
+        "pct_card_amount": 37.92
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2249,
+        "card_tenants": 1129,
+        "pct_card": 50.2,
+        "pct_card_amount": 34.599999999999994
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 4535,
+        "card_tenants": 2503,
+        "pct_card": 55.19,
+        "pct_card_amount": 41.49
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2935,
+        "card_tenants": 1476,
+        "pct_card": 50.29,
+        "pct_card_amount": 37.76
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 74,
+        "card_tenants": 42,
+        "pct_card": 56.76,
+        "pct_card_amount": 43.769999999999996
+      }
+    ],
+    "2025-04": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 2037,
+        "card_tenants": 1205,
+        "pct_card": 59.160000000000004,
+        "pct_card_amount": 38.33
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2741,
+        "card_tenants": 1230,
+        "pct_card": 44.87,
+        "pct_card_amount": 30.31
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 5097,
+        "card_tenants": 2635,
+        "pct_card": 51.7,
+        "pct_card_amount": 35.06
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2762,
+        "card_tenants": 1151,
+        "pct_card": 41.67,
+        "pct_card_amount": 28.76
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 81,
+        "card_tenants": 50,
+        "pct_card": 61.73,
+        "pct_card_amount": 45.1
+      }
+    ],
+    "2025-05": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 2031,
+        "card_tenants": 1004,
+        "pct_card": 49.43,
+        "pct_card_amount": 34.47
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2342,
+        "card_tenants": 1045,
+        "pct_card": 44.62,
+        "pct_card_amount": 30.099999999999998
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 5208,
+        "card_tenants": 2756,
+        "pct_card": 52.92,
+        "pct_card_amount": 36.49
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2169,
+        "card_tenants": 952,
+        "pct_card": 43.89,
+        "pct_card_amount": 27.97
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 30,
+        "card_tenants": 18,
+        "pct_card": 60.0,
+        "pct_card_amount": 50.06
+      }
+    ],
+    "2025-06": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1814,
+        "card_tenants": 833,
+        "pct_card": 45.92,
+        "pct_card_amount": 31.009999999999998
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2697,
+        "card_tenants": 1134,
+        "pct_card": 42.05,
+        "pct_card_amount": 28.95
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 5988,
+        "card_tenants": 2875,
+        "pct_card": 48.010000000000005,
+        "pct_card_amount": 33.39
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2609,
+        "card_tenants": 1025,
+        "pct_card": 39.290000000000006,
+        "pct_card_amount": 26.16
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 39,
+        "card_tenants": 22,
+        "pct_card": 56.410000000000004,
+        "pct_card_amount": 45.56
+      }
+    ],
+    "2025-07": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 2022,
+        "card_tenants": 1022,
+        "pct_card": 50.54,
+        "pct_card_amount": 32.4
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2405,
+        "card_tenants": 969,
+        "pct_card": 40.29,
+        "pct_card_amount": 26.06
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 6523,
+        "card_tenants": 3068,
+        "pct_card": 47.03,
+        "pct_card_amount": 31.39
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2786,
+        "card_tenants": 1231,
+        "pct_card": 44.190000000000005,
+        "pct_card_amount": 29.439999999999998
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 39,
+        "card_tenants": 17,
+        "pct_card": 43.59,
+        "pct_card_amount": 37.05
+      }
+    ],
+    "2025-08": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 2024,
+        "card_tenants": 1004,
+        "pct_card": 49.6,
+        "pct_card_amount": 33.989999999999995
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2678,
+        "card_tenants": 1063,
+        "pct_card": 39.69,
+        "pct_card_amount": 25.69
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 7045,
+        "card_tenants": 3357,
+        "pct_card": 47.65,
+        "pct_card_amount": 31.130000000000003
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2108,
+        "card_tenants": 889,
+        "pct_card": 42.17,
+        "pct_card_amount": 27.810000000000002
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 42,
+        "card_tenants": 27,
+        "pct_card": 64.29,
+        "pct_card_amount": 53.21
+      }
+    ],
+    "2025-09": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1834,
+        "card_tenants": 904,
+        "pct_card": 49.29,
+        "pct_card_amount": 34.83
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2602,
+        "card_tenants": 1125,
+        "pct_card": 43.24,
+        "pct_card_amount": 27.11
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 6675,
+        "card_tenants": 3141,
+        "pct_card": 47.06,
+        "pct_card_amount": 32.25
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2267,
+        "card_tenants": 900,
+        "pct_card": 39.7,
+        "pct_card_amount": 28.99
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 28,
+        "card_tenants": 17,
+        "pct_card": 60.709999999999994,
+        "pct_card_amount": 58.60999999999999
+      }
+    ],
+    "2025-10": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1752,
+        "card_tenants": 812,
+        "pct_card": 46.35,
+        "pct_card_amount": 32.24
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2629,
+        "card_tenants": 1186,
+        "pct_card": 45.11,
+        "pct_card_amount": 30.599999999999998
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 6209,
+        "card_tenants": 2971,
+        "pct_card": 47.85,
+        "pct_card_amount": 31.77
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 1951,
+        "card_tenants": 730,
+        "pct_card": 37.419999999999995,
+        "pct_card_amount": 23.580000000000002
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 345,
+        "card_tenants": 267,
+        "pct_card": 77.39,
+        "pct_card_amount": 71.56
+      }
+    ],
+    "2025-11": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1719,
+        "card_tenants": 884,
+        "pct_card": 51.43,
+        "pct_card_amount": 34.27
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2366,
+        "card_tenants": 1194,
+        "pct_card": 50.46000000000001,
+        "pct_card_amount": 33.76
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 6064,
+        "card_tenants": 3079,
+        "pct_card": 50.78,
+        "pct_card_amount": 34.38
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2237,
+        "card_tenants": 921,
+        "pct_card": 41.17,
+        "pct_card_amount": 27.68
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 916,
+        "card_tenants": 666,
+        "pct_card": 72.71,
+        "pct_card_amount": 70.08
+      }
+    ],
+    "2025-12": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1760,
+        "card_tenants": 882,
+        "pct_card": 50.11,
+        "pct_card_amount": 35.17
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 1709,
+        "card_tenants": 766,
+        "pct_card": 44.82,
+        "pct_card_amount": 28.17
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 5602,
+        "card_tenants": 2762,
+        "pct_card": 49.3,
+        "pct_card_amount": 32.65
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 1711,
+        "card_tenants": 668,
+        "pct_card": 39.04,
+        "pct_card_amount": 26.82
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 159,
+        "card_tenants": 150,
+        "pct_card": 94.34,
+        "pct_card_amount": 89.75
+      }
+    ],
+    "2026-01": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1889,
+        "card_tenants": 919,
+        "pct_card": 48.65,
+        "pct_card_amount": 32.22
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 3104,
+        "card_tenants": 1265,
+        "pct_card": 40.75,
+        "pct_card_amount": 28.199999999999996
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 6441,
+        "card_tenants": 3182,
+        "pct_card": 49.4,
+        "pct_card_amount": 34.39
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 3222,
+        "card_tenants": 1274,
+        "pct_card": 39.54,
+        "pct_card_amount": 26.540000000000003
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 13,
+        "card_tenants": 10,
+        "pct_card": 76.92,
+        "pct_card_amount": 77.97
+      }
+    ],
+    "2026-02": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1854,
+        "card_tenants": 913,
+        "pct_card": 49.24,
+        "pct_card_amount": 33.53
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 2838,
+        "card_tenants": 1083,
+        "pct_card": 38.16,
+        "pct_card_amount": 26.47
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 7087,
+        "card_tenants": 3350,
+        "pct_card": 47.27,
+        "pct_card_amount": 32.21
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2720,
+        "card_tenants": 1268,
+        "pct_card": 46.62,
+        "pct_card_amount": 29.94
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 21,
+        "card_tenants": 13,
+        "pct_card": 61.9,
+        "pct_card_amount": 48.63
+      }
+    ],
+    "2026-03": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1545,
+        "card_tenants": 749,
+        "pct_card": 48.480000000000004,
+        "pct_card_amount": 34.510000000000005
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 3073,
+        "card_tenants": 978,
+        "pct_card": 31.830000000000002,
+        "pct_card_amount": 19.12
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 7147,
+        "card_tenants": 3416,
+        "pct_card": 47.8,
+        "pct_card_amount": 33.300000000000004
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2249,
+        "card_tenants": 1070,
+        "pct_card": 47.58,
+        "pct_card_amount": 30.97
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 19,
+        "card_tenants": 14,
+        "pct_card": 73.68,
+        "pct_card_amount": 69.46
+      }
+    ],
+    "2026-04": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 1941,
+        "card_tenants": 908,
+        "pct_card": 46.78,
+        "pct_card_amount": 32.59
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 3326,
+        "card_tenants": 1268,
+        "pct_card": 38.12,
+        "pct_card_amount": 24.4
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 7927,
+        "card_tenants": 3666,
+        "pct_card": 46.25,
+        "pct_card_amount": 31.81
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 2026,
+        "card_tenants": 730,
+        "pct_card": 36.03,
+        "pct_card_amount": 22.36
+      },
+      {
+        "bucket": "Unknown",
+        "tenants": 34,
+        "card_tenants": 25,
+        "pct_card": 73.53,
+        "pct_card_amount": 70.28
+      }
+    ],
+    "2026-05": [
+      {
+        "bucket": "Developed (7\u201312)",
+        "tenants": 305,
+        "card_tenants": 118,
+        "pct_card": 38.690000000000005,
+        "pct_card_amount": 26.1
+      },
+      {
+        "bucket": "Growth (3\u20136)",
+        "tenants": 496,
+        "card_tenants": 200,
+        "pct_card": 40.32,
+        "pct_card_amount": 25.679999999999996
+      },
+      {
+        "bucket": "Mature (13+)",
+        "tenants": 1358,
+        "card_tenants": 557,
+        "pct_card": 41.02,
+        "pct_card_amount": 28.060000000000002
+      },
+      {
+        "bucket": "Onboarding (0\u20132)",
+        "tenants": 280,
+        "card_tenants": 76,
+        "pct_card": 27.139999999999997,
+        "pct_card_amount": 15.58
+      }
+    ]
+  },
+  "ftp_account_type_by_month": {
+    "2025-01": {
+      "Account first-time paid this month": {
+        "tenants": 2874,
+        "dbtenants": 369
+      },
+      "Existing account (paid before)": {
+        "tenants": 9563,
+        "dbtenants": 2608
+      }
+    },
+    "2025-02": {
+      "Account first-time paid this month": {
+        "tenants": 1745,
+        "dbtenants": 359
+      },
+      "Existing account (paid before)": {
+        "tenants": 9528,
+        "dbtenants": 2836
+      }
+    },
+    "2025-03": {
+      "Account first-time paid this month": {
+        "tenants": 1789,
+        "dbtenants": 290
+      },
+      "Existing account (paid before)": {
+        "tenants": 9931,
+        "dbtenants": 2977
+      }
+    },
+    "2025-04": {
+      "Account first-time paid this month": {
+        "tenants": 1601,
+        "dbtenants": 308
+      },
+      "Existing account (paid before)": {
+        "tenants": 11117,
+        "dbtenants": 3117
+      }
+    },
+    "2025-05": {
+      "Account first-time paid this month": {
+        "tenants": 1444,
+        "dbtenants": 274
+      },
+      "Existing account (paid before)": {
+        "tenants": 10336,
+        "dbtenants": 3203
+      }
+    },
+    "2025-06": {
+      "Account first-time paid this month": {
+        "tenants": 2059,
+        "dbtenants": 308
+      },
+      "Existing account (paid before)": {
+        "tenants": 11088,
+        "dbtenants": 3313
+      }
+    },
+    "2025-07": {
+      "Account first-time paid this month": {
+        "tenants": 1821,
+        "dbtenants": 278
+      },
+      "Existing account (paid before)": {
+        "tenants": 11954,
+        "dbtenants": 3363
+      }
+    },
+    "2025-08": {
+      "Account first-time paid this month": {
+        "tenants": 1640,
+        "dbtenants": 297
+      },
+      "Existing account (paid before)": {
+        "tenants": 12257,
+        "dbtenants": 3446
+      }
+    },
+    "2025-09": {
+      "Account first-time paid this month": {
+        "tenants": 1665,
+        "dbtenants": 259
+      },
+      "Existing account (paid before)": {
+        "tenants": 11741,
+        "dbtenants": 3478
+      }
+    },
+    "2025-10": {
+      "Account first-time paid this month": {
+        "tenants": 2143,
+        "dbtenants": 282
+      },
+      "Existing account (paid before)": {
+        "tenants": 10743,
+        "dbtenants": 3424
+      }
+    },
+    "2025-11": {
+      "Account first-time paid this month": {
+        "tenants": 1777,
+        "dbtenants": 254
+      },
+      "Existing account (paid before)": {
+        "tenants": 11525,
+        "dbtenants": 3432
+      }
+    },
+    "2025-12": {
+      "Account first-time paid this month": {
+        "tenants": 1280,
+        "dbtenants": 234
+      },
+      "Existing account (paid before)": {
+        "tenants": 9661,
+        "dbtenants": 3341
+      }
+    },
+    "2026-01": {
+      "Account first-time paid this month": {
+        "tenants": 3263,
+        "dbtenants": 345
+      },
+      "Existing account (paid before)": {
+        "tenants": 11406,
+        "dbtenants": 3388
+      }
+    },
+    "2026-02": {
+      "Account first-time paid this month": {
+        "tenants": 2039,
+        "dbtenants": 321
+      },
+      "Existing account (paid before)": {
+        "tenants": 12481,
+        "dbtenants": 3774
+      }
+    },
+    "2026-03": {
+      "Account first-time paid this month": {
+        "tenants": 1389,
+        "dbtenants": 260
+      },
+      "Existing account (paid before)": {
+        "tenants": 12644,
+        "dbtenants": 3641
+      }
+    },
+    "2026-04": {
+      "Account first-time paid this month": {
+        "tenants": 1578,
+        "dbtenants": 271
+      },
+      "Existing account (paid before)": {
+        "tenants": 13676,
+        "dbtenants": 3853
+      }
+    },
+    "2026-05": {
+      "Account first-time paid this month": {
+        "tenants": 158,
+        "dbtenants": 75
+      },
+      "Existing account (paid before)": {
+        "tenants": 2281,
+        "dbtenants": 1359
+      }
+    }
+  },
+  "method_stickiness": [
+    {
+      "first_method": "charge",
+      "m_offset": 0,
+      "active_tenants": 142004,
+      "stuck": 139604,
+      "switchers": 2400,
+      "retention_pct": 100.0
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 1,
+      "active_tenants": 94988,
+      "stuck": 77548,
+      "switchers": 17440,
+      "retention_pct": 72.01
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 2,
+      "active_tenants": 85786,
+      "stuck": 65514,
+      "switchers": 20272,
+      "retention_pct": 71.08
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 3,
+      "active_tenants": 76740,
+      "stuck": 56192,
+      "switchers": 20548,
+      "retention_pct": 70.06
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 4,
+      "active_tenants": 67875,
+      "stuck": 48334,
+      "switchers": 19541,
+      "retention_pct": 68.61
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 5,
+      "active_tenants": 61201,
+      "stuck": 42563,
+      "switchers": 18638,
+      "retention_pct": 67.76
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 6,
+      "active_tenants": 54681,
+      "stuck": 37360,
+      "switchers": 17321,
+      "retention_pct": 67.47
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 7,
+      "active_tenants": 48430,
+      "stuck": 32498,
+      "switchers": 15932,
+      "retention_pct": 66.35
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 8,
+      "active_tenants": 43020,
+      "stuck": 28422,
+      "switchers": 14598,
+      "retention_pct": 65.82
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 9,
+      "active_tenants": 37966,
+      "stuck": 24852,
+      "switchers": 13114,
+      "retention_pct": 65.47
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 10,
+      "active_tenants": 33383,
+      "stuck": 21673,
+      "switchers": 11710,
+      "retention_pct": 65.32
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 11,
+      "active_tenants": 28959,
+      "stuck": 18721,
+      "switchers": 10238,
+      "retention_pct": 64.96
+    },
+    {
+      "first_method": "charge",
+      "m_offset": 12,
+      "active_tenants": 24922,
+      "stuck": 16106,
+      "switchers": 8816,
+      "retention_pct": 65.22
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 0,
+      "active_tenants": 180031,
+      "stuck": 179609,
+      "switchers": 422,
+      "retention_pct": 100.0
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 1,
+      "active_tenants": 140407,
+      "stuck": 136882,
+      "switchers": 3525,
+      "retention_pct": 83.17
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 2,
+      "active_tenants": 133248,
+      "stuck": 129307,
+      "switchers": 3941,
+      "retention_pct": 84.83
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 3,
+      "active_tenants": 123135,
+      "stuck": 119200,
+      "switchers": 3935,
+      "retention_pct": 84.93
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 4,
+      "active_tenants": 112185,
+      "stuck": 108367,
+      "switchers": 3818,
+      "retention_pct": 84.35
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 5,
+      "active_tenants": 103624,
+      "stuck": 99941,
+      "switchers": 3683,
+      "retention_pct": 83.98
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 6,
+      "active_tenants": 94610,
+      "stuck": 91016,
+      "switchers": 3594,
+      "retention_pct": 83.38
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 7,
+      "active_tenants": 85650,
+      "stuck": 82314,
+      "switchers": 3336,
+      "retention_pct": 82.7
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 8,
+      "active_tenants": 77538,
+      "stuck": 74440,
+      "switchers": 3098,
+      "retention_pct": 82.29
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 9,
+      "active_tenants": 69706,
+      "stuck": 66770,
+      "switchers": 2936,
+      "retention_pct": 82.11
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 10,
+      "active_tenants": 61870,
+      "stuck": 59187,
+      "switchers": 2683,
+      "retention_pct": 81.24
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 11,
+      "active_tenants": 54505,
+      "stuck": 52040,
+      "switchers": 2465,
+      "retention_pct": 81.08
+    },
+    {
+      "first_method": "payment",
+      "m_offset": 12,
+      "active_tenants": 48143,
+      "stuck": 45845,
+      "switchers": 2298,
+      "retention_pct": 81.48
+    }
+  ],
+  "account_cohort_paid_pct": [
+    {
+      "cohort_month": "2025-09",
+      "new_accounts": 437,
+      "M0_pct": 3.8122999999999996,
+      "M1_pct": 18.721,
+      "M2_pct": 32.364,
+      "M3_pct": 37.4573,
+      "M4_pct": 43.782199999999996,
+      "M5_pct": 47.166999999999994,
+      "M6_pct": 50.6427
+    },
+    {
+      "cohort_month": "2025-10",
+      "new_accounts": 415,
+      "M0_pct": 5.2392,
+      "M1_pct": 13.5022,
+      "M2_pct": 24.326,
+      "M3_pct": 36.8205,
+      "M4_pct": 42.184,
+      "M5_pct": 46.9539,
+      "M6_pct": 45.6584
+    },
+    {
+      "cohort_month": "2025-11",
+      "new_accounts": 374,
+      "M0_pct": 2.084,
+      "M1_pct": 12.4262,
+      "M2_pct": 31.2977,
+      "M3_pct": 37.2186,
+      "M4_pct": 49.603,
+      "M5_pct": 49.4548
+    },
+    {
+      "cohort_month": "2025-12",
+      "new_accounts": 412,
+      "M0_pct": 3.6496,
+      "M1_pct": 13.764000000000001,
+      "M2_pct": 26.787300000000002,
+      "M3_pct": 33.5291,
+      "M4_pct": 38.421699999999994
+    },
+    {
+      "cohort_month": "2026-01",
+      "new_accounts": 393,
+      "M0_pct": 5.8026,
+      "M1_pct": 17.948700000000002,
+      "M2_pct": 33.6146,
+      "M3_pct": 43.272800000000004
+    },
+    {
+      "cohort_month": "2026-02",
+      "new_accounts": 363,
+      "M0_pct": 3.6178000000000003,
+      "M1_pct": 13.329099999999999,
+      "M2_pct": 25.6069
+    },
+    {
+      "cohort_month": "2026-03",
+      "new_accounts": 314,
+      "M0_pct": 4.175800000000001,
+      "M1_pct": 15.0636
+    },
+    {
+      "cohort_month": "2026-04",
+      "new_accounts": 223,
+      "M0_pct": 2.5631
+    }
+  ],
+  "paid_accounts": [
+    {
+      "PAYMENTS_MONTH": "2024-12-01",
+      "PAID_DBTENANTS": 6382,
+      "FIRST_TIME_PAID_DBTENANTS": 289,
+      "RETURNING_PAID_DBTENANTS": 6093,
+      "FIRST_TIME_SHARE": "0.045284",
+      "RETURNING_SHARE": "0.954716"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-01-01",
+      "PAID_DBTENANTS": 6645,
+      "FIRST_TIME_PAID_DBTENANTS": 372,
+      "RETURNING_PAID_DBTENANTS": 6273,
+      "FIRST_TIME_SHARE": "0.055982",
+      "RETURNING_SHARE": "0.944018"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-02-01",
+      "PAID_DBTENANTS": 6906,
+      "FIRST_TIME_PAID_DBTENANTS": 360,
+      "RETURNING_PAID_DBTENANTS": 6546,
+      "FIRST_TIME_SHARE": "0.052129",
+      "RETURNING_SHARE": "0.947871"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-03-01",
+      "PAID_DBTENANTS": 7072,
+      "FIRST_TIME_PAID_DBTENANTS": 290,
+      "RETURNING_PAID_DBTENANTS": 6782,
+      "FIRST_TIME_SHARE": "0.041007",
+      "RETURNING_SHARE": "0.958993"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-04-01",
+      "PAID_DBTENANTS": 7300,
+      "FIRST_TIME_PAID_DBTENANTS": 310,
+      "RETURNING_PAID_DBTENANTS": 6990,
+      "FIRST_TIME_SHARE": "0.042466",
+      "RETURNING_SHARE": "0.957534"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-05-01",
+      "PAID_DBTENANTS": 7448,
+      "FIRST_TIME_PAID_DBTENANTS": 272,
+      "RETURNING_PAID_DBTENANTS": 7176,
+      "FIRST_TIME_SHARE": "0.036520",
+      "RETURNING_SHARE": "0.963480"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-06-01",
+      "PAID_DBTENANTS": 7645,
+      "FIRST_TIME_PAID_DBTENANTS": 308,
+      "RETURNING_PAID_DBTENANTS": 7337,
+      "FIRST_TIME_SHARE": "0.040288",
+      "RETURNING_SHARE": "0.959712"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-07-01",
+      "PAID_DBTENANTS": 7817,
+      "FIRST_TIME_PAID_DBTENANTS": 278,
+      "RETURNING_PAID_DBTENANTS": 7539,
+      "FIRST_TIME_SHARE": "0.035564",
+      "RETURNING_SHARE": "0.964436"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-08-01",
+      "PAID_DBTENANTS": 8001,
+      "FIRST_TIME_PAID_DBTENANTS": 297,
+      "RETURNING_PAID_DBTENANTS": 7704,
+      "FIRST_TIME_SHARE": "0.037120",
+      "RETURNING_SHARE": "0.962880"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-09-01",
+      "PAID_DBTENANTS": 8157,
+      "FIRST_TIME_PAID_DBTENANTS": 260,
+      "RETURNING_PAID_DBTENANTS": 7897,
+      "FIRST_TIME_SHARE": "0.031874",
+      "RETURNING_SHARE": "0.968126"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-10-01",
+      "PAID_DBTENANTS": 8335,
+      "FIRST_TIME_PAID_DBTENANTS": 282,
+      "RETURNING_PAID_DBTENANTS": 8053,
+      "FIRST_TIME_SHARE": "0.033833",
+      "RETURNING_SHARE": "0.966167"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-11-01",
+      "PAID_DBTENANTS": 8506,
+      "FIRST_TIME_PAID_DBTENANTS": 255,
+      "RETURNING_PAID_DBTENANTS": 8251,
+      "FIRST_TIME_SHARE": "0.029979",
+      "RETURNING_SHARE": "0.970021"
+    },
+    {
+      "PAYMENTS_MONTH": "2025-12-01",
+      "PAID_DBTENANTS": 8623,
+      "FIRST_TIME_PAID_DBTENANTS": 232,
+      "RETURNING_PAID_DBTENANTS": 8391,
+      "FIRST_TIME_SHARE": "0.026905",
+      "RETURNING_SHARE": "0.973095"
+    },
+    {
+      "PAYMENTS_MONTH": "2026-01-01",
+      "PAID_DBTENANTS": 8833,
+      "FIRST_TIME_PAID_DBTENANTS": 345,
+      "RETURNING_PAID_DBTENANTS": 8488,
+      "FIRST_TIME_SHARE": "0.039058",
+      "RETURNING_SHARE": "0.960942"
+    },
+    {
+      "PAYMENTS_MONTH": "2026-02-01",
+      "PAID_DBTENANTS": 9016,
+      "FIRST_TIME_PAID_DBTENANTS": 320,
+      "RETURNING_PAID_DBTENANTS": 8696,
+      "FIRST_TIME_SHARE": "0.035492",
+      "RETURNING_SHARE": "0.964508"
+    },
+    {
+      "PAYMENTS_MONTH": "2026-03-01",
+      "PAID_DBTENANTS": 9093,
+      "FIRST_TIME_PAID_DBTENANTS": 260,
+      "RETURNING_PAID_DBTENANTS": 8833,
+      "FIRST_TIME_SHARE": "0.028593",
+      "RETURNING_SHARE": "0.971407"
+    }
+  ],
+  "ftp_segment": [
+    {
+      "MONTH": "2025-01-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1713,
+      "DBTENANTS": 607
+    },
+    {
+      "MONTH": "2025-01-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 3418,
+      "DBTENANTS": 580
+    },
+    {
+      "MONTH": "2025-01-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 4139,
+      "DBTENANTS": 1406
+    },
+    {
+      "MONTH": "2025-01-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 3119,
+      "DBTENANTS": 376
+    },
+    {
+      "MONTH": "2025-01-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 48,
+      "DBTENANTS": 8
+    },
+    {
+      "MONTH": "2025-02-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1826,
+      "DBTENANTS": 591
+    },
+    {
+      "MONTH": "2025-02-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2607,
+      "DBTENANTS": 609
+    },
+    {
+      "MONTH": "2025-02-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 4270,
+      "DBTENANTS": 1585
+    },
+    {
+      "MONTH": "2025-02-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2505,
+      "DBTENANTS": 403
+    },
+    {
+      "MONTH": "2025-02-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 65,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-03-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1927,
+      "DBTENANTS": 619
+    },
+    {
+      "MONTH": "2025-03-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2249,
+      "DBTENANTS": 606
+    },
+    {
+      "MONTH": "2025-03-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 4535,
+      "DBTENANTS": 1664
+    },
+    {
+      "MONTH": "2025-03-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2935,
+      "DBTENANTS": 371
+    },
+    {
+      "MONTH": "2025-03-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 74,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-04-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 2037,
+      "DBTENANTS": 655
+    },
+    {
+      "MONTH": "2025-04-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2741,
+      "DBTENANTS": 654
+    },
+    {
+      "MONTH": "2025-04-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 5098,
+      "DBTENANTS": 1793
+    },
+    {
+      "MONTH": "2025-04-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2762,
+      "DBTENANTS": 316
+    },
+    {
+      "MONTH": "2025-04-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 81,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-05-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 2031,
+      "DBTENANTS": 646
+    },
+    {
+      "MONTH": "2025-05-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2342,
+      "DBTENANTS": 616
+    },
+    {
+      "MONTH": "2025-05-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 5208,
+      "DBTENANTS": 1909
+    },
+    {
+      "MONTH": "2025-05-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2169,
+      "DBTENANTS": 301
+    },
+    {
+      "MONTH": "2025-05-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 30,
+      "DBTENANTS": 5
+    },
+    {
+      "MONTH": "2025-06-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1814,
+      "DBTENANTS": 635
+    },
+    {
+      "MONTH": "2025-06-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2697,
+      "DBTENANTS": 613
+    },
+    {
+      "MONTH": "2025-06-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 5988,
+      "DBTENANTS": 2039
+    },
+    {
+      "MONTH": "2025-06-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2610,
+      "DBTENANTS": 328
+    },
+    {
+      "MONTH": "2025-06-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 39,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-07-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 2022,
+      "DBTENANTS": 648
+    },
+    {
+      "MONTH": "2025-07-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2405,
+      "DBTENANTS": 599
+    },
+    {
+      "MONTH": "2025-07-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 6523,
+      "DBTENANTS": 2087
+    },
+    {
+      "MONTH": "2025-07-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2786,
+      "DBTENANTS": 300
+    },
+    {
+      "MONTH": "2025-07-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 39,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-08-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 2024,
+      "DBTENANTS": 669
+    },
+    {
+      "MONTH": "2025-08-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2678,
+      "DBTENANTS": 583
+    },
+    {
+      "MONTH": "2025-08-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 7045,
+      "DBTENANTS": 2192
+    },
+    {
+      "MONTH": "2025-08-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2108,
+      "DBTENANTS": 292
+    },
+    {
+      "MONTH": "2025-08-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 42,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-09-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1834,
+      "DBTENANTS": 676
+    },
+    {
+      "MONTH": "2025-09-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2602,
+      "DBTENANTS": 555
+    },
+    {
+      "MONTH": "2025-09-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 6675,
+      "DBTENANTS": 2232
+    },
+    {
+      "MONTH": "2025-09-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2267,
+      "DBTENANTS": 268
+    },
+    {
+      "MONTH": "2025-09-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 28,
+      "DBTENANTS": 6
+    },
+    {
+      "MONTH": "2025-10-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1752,
+      "DBTENANTS": 663
+    },
+    {
+      "MONTH": "2025-10-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2629,
+      "DBTENANTS": 534
+    },
+    {
+      "MONTH": "2025-10-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 6209,
+      "DBTENANTS": 2227
+    },
+    {
+      "MONTH": "2025-10-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 1951,
+      "DBTENANTS": 275
+    },
+    {
+      "MONTH": "2025-10-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 345,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2025-11-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1719,
+      "DBTENANTS": 624
+    },
+    {
+      "MONTH": "2025-11-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2366,
+      "DBTENANTS": 541
+    },
+    {
+      "MONTH": "2025-11-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 6063,
+      "DBTENANTS": 2251
+    },
+    {
+      "MONTH": "2025-11-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2237,
+      "DBTENANTS": 264
+    },
+    {
+      "MONTH": "2025-11-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 916,
+      "DBTENANTS": 5
+    },
+    {
+      "MONTH": "2025-12-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1760,
+      "DBTENANTS": 675
+    },
+    {
+      "MONTH": "2025-12-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 1709,
+      "DBTENANTS": 460
+    },
+    {
+      "MONTH": "2025-12-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 5602,
+      "DBTENANTS": 2189
+    },
+    {
+      "MONTH": "2025-12-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 1711,
+      "DBTENANTS": 247
+    },
+    {
+      "MONTH": "2025-12-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 159,
+      "DBTENANTS": 4
+    },
+    {
+      "MONTH": "2026-01-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1889,
+      "DBTENANTS": 612
+    },
+    {
+      "MONTH": "2026-01-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 3104,
+      "DBTENANTS": 523
+    },
+    {
+      "MONTH": "2026-01-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 6441,
+      "DBTENANTS": 2283
+    },
+    {
+      "MONTH": "2026-01-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 3222,
+      "DBTENANTS": 312
+    },
+    {
+      "MONTH": "2026-01-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 13,
+      "DBTENANTS": 3
+    },
+    {
+      "MONTH": "2026-02-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1854,
+      "DBTENANTS": 636
+    },
+    {
+      "MONTH": "2026-02-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 2838,
+      "DBTENANTS": 552
+    },
+    {
+      "MONTH": "2026-02-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 7087,
+      "DBTENANTS": 2573
+    },
+    {
+      "MONTH": "2026-02-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2720,
+      "DBTENANTS": 329
+    },
+    {
+      "MONTH": "2026-02-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 21,
+      "DBTENANTS": 5
+    },
+    {
+      "MONTH": "2026-03-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1545,
+      "DBTENANTS": 599
+    },
+    {
+      "MONTH": "2026-03-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 3073,
+      "DBTENANTS": 508
+    },
+    {
+      "MONTH": "2026-03-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 7147,
+      "DBTENANTS": 2502
+    },
+    {
+      "MONTH": "2026-03-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2249,
+      "DBTENANTS": 288
+    },
+    {
+      "MONTH": "2026-03-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 19,
+      "DBTENANTS": 4
+    },
+    {
+      "MONTH": "2026-04-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 1941,
+      "DBTENANTS": 624
+    },
+    {
+      "MONTH": "2026-04-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 3326,
+      "DBTENANTS": 525
+    },
+    {
+      "MONTH": "2026-04-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 7927,
+      "DBTENANTS": 2674
+    },
+    {
+      "MONTH": "2026-04-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 2026,
+      "DBTENANTS": 294
+    },
+    {
+      "MONTH": "2026-04-01",
+      "ACCOUNT_AGE_BUCKET": "Unknown",
+      "TENANTS": 34,
+      "DBTENANTS": 7
+    },
+    {
+      "MONTH": "2026-05-01",
+      "ACCOUNT_AGE_BUCKET": "Developed (7\u201312)",
+      "TENANTS": 305,
+      "DBTENANTS": 201
+    },
+    {
+      "MONTH": "2026-05-01",
+      "ACCOUNT_AGE_BUCKET": "Growth (3\u20136)",
+      "TENANTS": 496,
+      "DBTENANTS": 222
+    },
+    {
+      "MONTH": "2026-05-01",
+      "ACCOUNT_AGE_BUCKET": "Mature (13+)",
+      "TENANTS": 1358,
+      "DBTENANTS": 905
+    },
+    {
+      "MONTH": "2026-05-01",
+      "ACCOUNT_AGE_BUCKET": "Onboarding (0\u20132)",
+      "TENANTS": 280,
+      "DBTENANTS": 106
+    }
+  ]
+}
