@@ -16,4 +16,5 @@ ENV COMMENTS_FILE=/data/comments.json
 EXPOSE 8080
 ENV PORT=8080
 
-CMD ["python", "comments_server.py", "8080"]
+# Use shell form so $PORT (set by Render / Fly / etc.) is expanded at runtime; falls back to 8080 locally
+CMD python comments_server.py ${PORT:-8080}
