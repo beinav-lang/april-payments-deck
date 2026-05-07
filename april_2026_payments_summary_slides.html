@@ -1773,8 +1773,10 @@
 
 <script>
 (function() {
+  // Segments via stripe_subscription_price_quantity_c:
+  //   ≤10 = Emerging, 11–50 = SMB, 51–300 = Mid-Market, >300 = Upper-Market
   const cardByRentApr = [
-    { tier: 'Emerging',     share: 14.4, vol: 13.1 },
+    { tier: 'Emerging',     share: 14.3, vol: 13.1 },
     { tier: 'SMB',          share: 14.8, vol: 113.3 },
     { tier: 'Mid-Market',   share: 18.6, vol: 155.8 },
     { tier: 'Upper-Market', share: 22.4, vol: 25.0 }
@@ -1782,8 +1784,8 @@
 
   const months = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
   const trendData = {
-    'Emerging':     [13.4, 14.7, 13.8, 13.8, 15.3, 14.7, 13.0, 14.4],
-    'SMB':          [14.4, 15.9, 15.4, 15.5, 16.6, 16.2, 14.1, 14.8],
+    'Emerging':     [13.2, 14.6, 13.6, 13.7, 15.2, 14.5, 12.9, 14.3],
+    'SMB':          [14.4, 15.8, 15.4, 15.5, 16.6, 16.2, 14.1, 14.8],
     'Mid-Market':   [18.0, 19.7, 19.0, 19.5, 20.1, 19.8, 17.4, 18.6],
     'Upper-Market': [20.3, 22.6, 21.9, 23.1, 24.3, 23.3, 20.7, 22.4]
   };
