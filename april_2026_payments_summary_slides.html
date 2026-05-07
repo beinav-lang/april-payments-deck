@@ -5020,11 +5020,11 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   body.slide-mode .pva2-bigstat .ctx { font-size: 12px; }
 
   /* Right-side TOC panel — replaces the floating bottom pill */
-  body.slide-mode { padding-right: 280px; padding-bottom: 0; }
+  body.slide-mode { padding-left: 280px; padding-bottom: 0; }
 
   .slide-toc {
     position: fixed;
-    top: 0; right: 0; bottom: 0;
+    top: 0; left: 0; bottom: 0;
     width: 280px;
     background: var(--ink);
     color: #fff;
@@ -5033,9 +5033,9 @@ new Chart(document.getElementById('chart-churned-accounts'), {
     flex-direction: column;
     padding: 22px 16px 14px;
     font-family: 'Poppins', system-ui, sans-serif;
-    box-shadow: -4px 0 20px rgba(22,32,80,0.35);
+    box-shadow: 4px 0 20px rgba(22,32,80,0.35);
     overflow: hidden;
-    border-left: 3px solid var(--accent);
+    border-right: 3px solid var(--accent);
   }
   /* Subtle DoorLoop squiggle decoration in TOC background */
   .slide-toc::before {
@@ -5044,7 +5044,7 @@ new Chart(document.getElementById('chart-churned-accounts'), {
     inset: 0;
     background: url('assets/dl_cover_squiggle.png') no-repeat;
     background-size: 280% auto;
-    background-position: -60% 30%;
+    background-position: 160% 30%;
     opacity: 0.06;
     pointer-events: none;
     z-index: 0;
