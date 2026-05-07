@@ -1746,30 +1746,37 @@
       </div>
     </div>
 
-    <h2 class="section-title">Card adoption is flat in 3 of 4 segments — only Upper-Market is rising.</h2>
+    <h2 class="section-title">Card adoption fell ~1 pp YoY in Emerging / SMB / Mid — only Upper-Market rose.</h2>
     <p class="lede">
-      Card adoption (% of paying tenants choosing card) ranges <strong>22% Emerging → 36% Upper-Market</strong> in April. Three of four segments are within ±0.2 pp of Sep '25 — flat. <strong>Upper-Market is the only segment where adoption is rising (+3.8 pp Sep → Apr)</strong>. Blended adoption itself is also flat at <strong>~28%</strong> (28.2 → 28.5 Sep → Apr).
+      Apr '25 → Apr '26 (13-month YoY): <strong>Emerging −0.8 pp · SMB −1.0 pp · Mid-Market −1.4 pp · Upper-Market +2.9 pp</strong>. Blended adoption: <strong>29.1% → 28.5%</strong> (−0.7 pp). Decline is real and broadly distributed; Upper-Market is the lone gainer.
     </p>
     <div class="pullquote" style="margin: 14px 0 0; background: rgba(49,133,252,0.06); border-left: 4px solid var(--blue); padding: 14px 18px">
-      <strong style="color: var(--blue)">Why does the deck say "card decline" then?</strong> &nbsp; The "36% → 29% over 13 months" headline (slide 02 / 08) is the <strong>FT-tenant volume share</strong> — a different metric. FT tenants pay lower rent, so each FT card transaction adds fewer dollars; as FT mix and FT-card-rate slip, the FT-volume-share line drops even though tenant-level adoption stays put. <strong>Adoption tells you behavior; volume share tells you revenue mix.</strong>
+      <strong style="color: var(--blue)">How this connects to the slide 02 / 08 "36% → 29%" headline.</strong> &nbsp;
+      That headline is the <strong>FT-tenant volume share</strong> — a separate cut. The actual adoption decline shows up in three layers with very different magnitudes:
+      <span style="display: block; margin-top: 6px; font-size: 12.5px">
+        ① <strong>FT-cohort adoption: −5.8 pp YoY</strong> (49% → 43%) · biggest mover &nbsp;·&nbsp;
+        ② <strong>Em / SMB / Mid segment adoption: −1 to −1.4 pp YoY</strong> · modest broad slip &nbsp;·&nbsp;
+        ③ <strong>Returning-cohort adoption: flat</strong> (~27% all year)
+      </span>
+      Returning is ~92% of the tenant pool, so blended adoption only drops −0.7 pp. The FT-cohort drop is the dominant headline-mover; segment-level slippage adds modestly on top.
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1.05fr; gap: 18px; margin-top: 22px">
+    <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 18px; margin-top: 22px">
       <div class="chart-shell">
-        <div class="ch-title">Adoption vs volume share by segment · April '26</div>
-        <div class="ch-sub">Adoption is always higher than volume share — card-paying tenants pay lower rent, so each card transaction is smaller</div>
+        <div class="ch-title">YoY adoption change by segment</div>
+        <div class="ch-sub">Apr '25 vs Apr '26 · % of paying tenants paying by card</div>
         <div class="chart-wrap" style="height: 280px"><canvas id="chart-card-by-rent"></canvas></div>
       </div>
       <div class="chart-shell">
-        <div class="ch-title">Card adoption trend by segment</div>
-        <div class="ch-sub">8 months · Sep '25 → Apr '26 · % of paying tenants paying by card</div>
+        <div class="ch-title">Card adoption trend by segment · 13 months</div>
+        <div class="ch-sub">Apr '25 → Apr '26 · % of paying tenants paying by card</div>
         <div class="chart-wrap" style="height: 280px"><canvas id="chart-card-by-rent-trend"></canvas></div>
       </div>
     </div>
 
     <div class="pullquote" style="margin-top: 22px">
       <div class="pq-label">⚡ Implication</div>
-      <p>Tenant card behavior is essentially stable. The headline "card decline" is rent-mix economics (FT tenants paying lower rent → less $ per card transaction), not tenants choosing card less. Reduced-fee policy is right for protecting FT-card revenue but won't structurally lift adoption in SMB / Mid-Market — those are tied to rent levels and tenant type. The one real behavior shift is Upper-Market (+3.8 pp adoption); worth probing what's driving it.</p>
+      <p>Adoption decline IS broad-based — just modest at the segment level (~1 pp / year). The dominant driver remains FT-cohort adoption dropping ~6 pp YoY. Reduced-fee policy is correctly aimed at FT (the biggest leak); on top of that, SMB / Mid blended adoption is also slipping. <strong>Upper-Market is the one segment gaining (+2.9 pp)</strong> — worth probing what's working there to see if it transfers down-market.</p>
     </div>
   </div>
 </section>
@@ -1777,23 +1784,24 @@
 <script>
 (function() {
   // Segments via stripe_subscription_price_quantity_c (≤10/11–50/51–300/>300).
-  // Card adoption = COUNT(DISTINCT card-paying customer_id) / COUNT(DISTINCT paying customer_id).
-  // Card volume share = SUM(charge $) / SUM(charge + payment $).
+  // Card adoption = COUNT(DISTINCT card-paying customer_id) / COUNT(DISTINCT paying customer_id)
+  // per month per segment. type='charge'=card, type='payment'=ACH; cash payments excluded.
 
-  // April: adoption % vs volume share %, side-by-side per segment
-  const adoptVsVol = [
-    { seg: 'Emerging',     adoption: 21.8, volShare: 14.4 },
-    { seg: 'SMB',          adoption: 24.7, volShare: 15.0 },
-    { seg: 'Mid-Market',   adoption: 29.9, volShare: 18.9 },
-    { seg: 'Upper-Market', adoption: 35.9, volShare: 23.3 }
+  // Apr '25 vs Apr '26 adoption (YoY paired bars)
+  const adoptYoY = [
+    { seg: 'Emerging',     apr25: 22.6, apr26: 21.8 },
+    { seg: 'SMB',          apr25: 25.6, apr26: 24.6 },
+    { seg: 'Mid-Market',   apr25: 31.3, apr26: 29.9 },
+    { seg: 'Upper-Market', apr25: 33.0, apr26: 35.9 }
   ];
 
-  const months = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
+  // 13-month adoption trend by segment
+  const months = ["Apr '25","May '25","Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
   const adoptionTrend = {
-    'Emerging':     [21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
-    'SMB':          [24.8, 25.9, 25.5, 25.7, 26.5, 26.0, 24.4, 24.7],
-    'Mid-Market':   [30.1, 31.3, 30.6, 31.0, 31.2, 31.0, 29.2, 29.9],
-    'Upper-Market': [32.1, 35.8, 34.8, 36.1, 37.8, 37.0, 35.3, 35.9]
+    'Emerging':     [22.6, 23.8, 22.0, 23.0, 23.9, 21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
+    'SMB':          [25.6, 26.7, 25.4, 26.2, 27.2, 24.8, 25.9, 25.5, 25.7, 26.5, 26.0, 24.4, 24.6],
+    'Mid-Market':   [31.3, 32.3, 30.6, 31.5, 32.7, 30.1, 31.3, 30.6, 31.0, 31.2, 31.0, 29.2, 29.9],
+    'Upper-Market': [33.0, 33.5, 32.1, 33.9, 34.5, 32.1, 35.8, 34.8, 36.1, 37.8, 37.0, 35.3, 35.9]
   };
   const tierColors = {
     'Emerging':     '#94a3b8',
@@ -1805,28 +1813,17 @@
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
 
-    // LEFT: side-by-side bars — adoption vs volume share, per segment
+    // LEFT: paired bars — Apr '25 vs Apr '26 adoption per segment
     const ctxBar = document.getElementById('chart-card-by-rent');
     if (ctxBar) {
       new Chart(ctxBar, {
         type: 'bar',
         data: {
-          labels: adoptVsVol.map(d => d.seg),
+          labels: adoptYoY.map(d => d.seg),
           datasets: [
             {
-              label: 'Adoption (% of tenants)',
-              data: adoptVsVol.map(d => d.adoption),
-              backgroundColor: '#3185FC',
-              borderRadius: 5,
-              datalabels: {
-                display: true, anchor: 'end', align: 'top', offset: 4,
-                color: '#162050', font: { weight: 800, size: 11.5, family: 'Poppins' },
-                formatter: v => v.toFixed(1) + '%'
-              }
-            },
-            {
-              label: 'Volume share (% of $)',
-              data: adoptVsVol.map(d => d.volShare),
+              label: "Apr '25",
+              data: adoptYoY.map(d => d.apr25),
               backgroundColor: '#cbd5e1',
               borderRadius: 5,
               datalabels: {
@@ -1834,28 +1831,47 @@
                 color: '#475569', font: { weight: 700, size: 11, family: 'Poppins' },
                 formatter: v => v.toFixed(1) + '%'
               }
+            },
+            {
+              label: "Apr '26",
+              data: adoptYoY.map(d => d.apr26),
+              backgroundColor: '#3185FC',
+              borderRadius: 5,
+              datalabels: {
+                display: true, anchor: 'end', align: 'top', offset: 4,
+                color: '#162050', font: { weight: 800, size: 11.5, family: 'Poppins' },
+                formatter: (v, ctx) => {
+                  const d = adoptYoY[ctx.dataIndex];
+                  const delta = d.apr26 - d.apr25;
+                  const sign = delta >= 0 ? '+' : '';
+                  return v.toFixed(1) + '%\n' + sign + delta.toFixed(1) + ' pp';
+                }
+              }
             }
           ]
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 28, right: 12, bottom: 6, left: 4 } },
+          layout: { padding: { top: 36, right: 12, bottom: 6, left: 4 } },
           plugins: {
             legend: {
               display: true, position: 'top', align: 'center',
               labels: { boxWidth: 14, boxHeight: 10, font: { size: 11, weight: 700 }, color: '#162050' }
             },
             tooltip: {
-              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' }
+              callbacks: {
+                label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%',
+                afterBody: items => {
+                  const d = adoptYoY[items[0].dataIndex];
+                  const delta = d.apr26 - d.apr25;
+                  return ['YoY: ' + (delta >= 0 ? '+' : '') + delta.toFixed(1) + ' pp'];
+                }
+              }
             }
           },
           scales: {
-            x: {
-              grid: { display: false },
-              ticks: { font: { size: 11, weight: 700 }, color: '#162050' }
-            },
-            y: {
-              beginAtZero: true, max: 42,
+            x: { grid: { display: false }, ticks: { font: { size: 11, weight: 700 }, color: '#162050' } },
+            y: { beginAtZero: true, max: 42,
               grid: { color: 'rgba(0,0,0,0.06)' },
               ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
             }
@@ -1864,7 +1880,7 @@
       });
     }
 
-    // RIGHT: line chart — adoption trend, all 8 data points labeled per segment
+    // RIGHT: 13-month adoption trend by segment, all data points labeled
     const ctxLine = document.getElementById('chart-card-by-rent-trend');
     if (ctxLine) {
       new Chart(ctxLine, {
@@ -1878,24 +1894,24 @@
             backgroundColor: 'transparent',
             borderWidth: 2.5,
             tension: 0.3,
-            pointRadius: 3.5,
+            pointRadius: 3,
             pointBackgroundColor: tierColors[tier],
             pointBorderColor: '#fff',
             pointBorderWidth: 1.5,
             datalabels: {
-              display: true,
+              display: ctx => ctx.dataIndex % 2 === 0 || ctx.dataIndex === ctx.dataset.data.length - 1,
               align: (tier === 'Upper-Market' || tier === 'Mid-Market') ? 'top' : 'bottom',
               anchor: (tier === 'Upper-Market' || tier === 'Mid-Market') ? 'end' : 'start',
               offset: 4,
               color: tierColors[tier],
-              font: { weight: 700, size: 9.5, family: 'Poppins' },
-              formatter: v => v.toFixed(1)
+              font: { weight: 700, size: 9, family: 'Poppins' },
+              formatter: v => v.toFixed(0)
             }
           }))
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 18, right: 24, bottom: 18, left: 4 } },
+          layout: { padding: { top: 18, right: 14, bottom: 18, left: 4 } },
           plugins: {
             legend: {
               display: true, position: 'right', align: 'center',
@@ -1906,12 +1922,8 @@
             }
           },
           scales: {
-            x: {
-              grid: { display: false },
-              ticks: { font: { size: 10, weight: 600 }, color: '#64748b', maxRotation: 0 }
-            },
-            y: {
-              beginAtZero: false, min: 18, max: 42,
+            x: { grid: { display: false }, ticks: { font: { size: 9.5, weight: 600 }, color: '#64748b', maxRotation: 0, autoSkip: false } },
+            y: { beginAtZero: false, min: 18, max: 42,
               grid: { color: 'rgba(0,0,0,0.06)' },
               ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
             }
