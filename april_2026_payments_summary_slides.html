@@ -1822,8 +1822,8 @@
     </div>
 
     <div class="chart-shell" style="margin-top: 18px">
-      <div class="ch-title">Card adoption trend · Apr '25 → Apr '26</div>
-      <div class="ch-sub">% of paying tenants paying by card · 13 months</div>
+      <div class="ch-title">Card adoption trend · First-time vs Returning vs Overall</div>
+      <div class="ch-sub">Apr '25 → Apr '26 · % of paying tenants paying by card · FT cohort is the line that's actually moving</div>
       <div class="chart-wrap" style="height: 320px"><canvas id="chart-card-by-rent-trend"></canvas></div>
     </div>
 
@@ -1840,7 +1840,7 @@
         <div class="cseg-why-card">
           <div class="cseg-why-num">②</div>
           <div>
-            <strong>Average rent crept up</strong> within Em / SMB / Mid (+$8 to +$52); card adoption is rent-sensitive (38% at &lt;$1K → 6% at $3K+). Smaller effect, but compounds.
+            <strong>Within Em / SMB / Mid, paying tenants got slightly higher-rent on average</strong> (+$8 to +$52). High-rent tenants almost always pay by ACH (card adoption ~6% at $3K+ rent vs ~38% at &lt;$1K), so as the rent mix drifted up, blended adoption drifted down.
           </div>
         </div>
         <div class="cseg-why-card up">
@@ -1868,19 +1868,17 @@
     { seg: 'Upper-Market', apr25: 33.0, apr26: 35.9 }
   ];
 
-  // 13-month adoption trend by segment
+  // 13-month adoption trend · First-time / Returning / Overall (blended)
   const months = ["Apr '25","May '25","Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
   const adoptionTrend = {
-    'Emerging':     [22.6, 23.8, 22.0, 23.0, 23.9, 21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
-    'SMB':          [25.6, 26.7, 25.4, 26.2, 27.2, 24.8, 25.9, 25.5, 25.7, 26.5, 26.0, 24.4, 24.6],
-    'Mid-Market':   [31.3, 32.3, 30.6, 31.5, 32.7, 30.1, 31.3, 30.6, 31.0, 31.2, 31.0, 29.2, 29.9],
-    'Upper-Market': [33.0, 33.5, 32.1, 33.9, 34.5, 32.1, 35.8, 34.8, 36.1, 37.8, 37.0, 35.3, 35.9]
+    'First-time': [49.1, 50.1, 43.9, 45.5, 49.3, 42.6, 49.5, 49.3, 48.1, 46.4, 47.6, 41.7, 43.3],
+    'Overall':    [29.1, 30.1, 28.6, 29.6, 30.7, 28.2, 29.6, 29.0, 29.3, 29.9, 29.6, 27.9, 28.5],
+    'Returning':  [27.0, 28.0, 26.9, 27.8, 28.7, 26.7, 27.6, 27.2, 27.8, 28.3, 28.0, 26.6, 27.1]
   };
   const tierColors = {
-    'Emerging':     '#94a3b8',
-    'SMB':          '#94b8e8',
-    'Mid-Market':   '#3185FC',
-    'Upper-Market': '#162050'
+    'First-time': '#ff4998',  // pink — the line that's actually moving
+    'Overall':    '#3185FC',  // brand blue — blended
+    'Returning':  '#94a3b8'   // grey — flat baseline
   };
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -1972,34 +1970,31 @@
             pointBorderColor: '#fff',
             pointBorderWidth: 1.5,
             datalabels: {
-              display: ctx => ctx.dataIndex % 2 === 0 || ctx.dataIndex === ctx.dataset.data.length - 1,
-              align: (tier === 'Upper-Market' || tier === 'Mid-Market') ? 'top' : 'bottom',
-              anchor: (tier === 'Upper-Market' || tier === 'Mid-Market') ? 'end' : 'start',
-              offset: 4,
+              display: true,
+              align: (tier === 'First-time') ? 'top' : 'bottom',
+              anchor: (tier === 'First-time') ? 'end' : 'start',
+              offset: 5,
               color: tierColors[tier],
-              font: { weight: 700, size: 9, family: 'Poppins' },
-              formatter: v => v.toFixed(0)
+              font: { weight: 700, size: 10, family: 'Poppins' },
+              formatter: v => v.toFixed(1)
             }
           }))
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 18, right: 14, bottom: 18, left: 4 } },
+          layout: { padding: { top: 22, right: 14, bottom: 22, left: 4 } },
           plugins: {
             legend: {
-              display: true, position: 'right', align: 'center',
-              labels: { boxWidth: 12, boxHeight: 2, font: { size: 11, weight: 700 }, color: '#162050' }
+              display: true, position: 'top', align: 'end',
+              labels: { boxWidth: 14, boxHeight: 2, font: { size: 12, weight: 700 }, color: '#162050' }
             },
             tooltip: {
-              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '% adoption' }
+              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' }
             }
           },
           scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 9.5, weight: 600 }, color: '#64748b', maxRotation: 0, autoSkip: false } },
-            y: { beginAtZero: false, min: 18, max: 42,
-              grid: { color: 'rgba(0,0,0,0.06)' },
-              ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
-            }
+            x: { grid: { display: false }, ticks: { font: { size: 10, weight: 600 }, color: '#64748b', maxRotation: 0, autoSkip: false } },
+            y: { display: false, beginAtZero: false, min: 22, max: 56 }
           }
         }
       });
