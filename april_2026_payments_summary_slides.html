@@ -540,6 +540,29 @@
   }
   .cseg-why-card strong { font-weight: 700; color: var(--text); }
 
+  /* Cohort filter pill (Overall / First-time / Returning) */
+  .cseg-filter {
+    display: inline-flex;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .cseg-filter button {
+    background: transparent;
+    border: none; cursor: pointer;
+    padding: 6px 14px;
+    font-family: inherit; font-size: 11.5px; font-weight: 700;
+    color: var(--muted);
+    border-radius: 999px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .cseg-filter button:hover { color: var(--text); }
+  .cseg-filter button.active {
+    background: var(--text); color: #fff;
+  }
+
   /* JOURNEY STRIP (tenant funnel marker) */
   .journey {
     display: flex;
@@ -1822,8 +1845,17 @@
     </div>
 
     <div class="chart-shell" style="margin-top: 18px">
-      <div class="ch-title">Card adoption trend · First-time vs Returning vs Overall</div>
-      <div class="ch-sub">Apr '25 → Apr '26 · % of paying tenants paying by card · FT cohort is the line that's actually moving</div>
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 6px">
+        <div>
+          <div class="ch-title">Card adoption by segment · 13 months</div>
+          <div class="ch-sub">Apr '25 → Apr '26 · % of paying tenants paying by card</div>
+        </div>
+        <div class="cseg-filter" id="cseg-filter">
+          <button data-cseg="Overall" class="active">Overall</button>
+          <button data-cseg="First-time">First-time</button>
+          <button data-cseg="Returning">Returning</button>
+        </div>
+      </div>
       <div class="chart-wrap" style="height: 320px"><canvas id="chart-card-by-rent-trend"></canvas></div>
     </div>
 
@@ -1868,18 +1900,36 @@
     { seg: 'Upper-Market', apr25: 33.0, apr26: 35.9 }
   ];
 
-  // 13-month adoption trend · First-time / Returning / Overall (blended)
+  // Card adoption · 13 months · 4 segments × 3 cohort filters (Overall / First-time / Returning)
   const months = ["Apr '25","May '25","Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
-  const adoptionTrend = {
-    'First-time': [49.1, 50.1, 43.9, 45.5, 49.3, 42.6, 49.5, 49.3, 48.1, 46.4, 47.6, 41.7, 43.3],
-    'Overall':    [29.1, 30.1, 28.6, 29.6, 30.7, 28.2, 29.6, 29.0, 29.3, 29.9, 29.6, 27.9, 28.5],
-    'Returning':  [27.0, 28.0, 26.9, 27.8, 28.7, 26.7, 27.6, 27.2, 27.8, 28.3, 28.0, 26.6, 27.1]
+  const adoptionByCohort = {
+    'Overall': {
+      'Emerging':     [22.6, 23.8, 22.0, 23.0, 23.9, 21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
+      'SMB':          [25.6, 26.7, 25.4, 26.2, 27.2, 24.8, 25.9, 25.5, 25.7, 26.5, 26.0, 24.4, 24.7],
+      'Mid-Market':   [31.3, 32.3, 30.5, 31.5, 32.7, 30.1, 31.3, 30.6, 31.0, 31.2, 31.0, 29.2, 29.9],
+      'Upper-Market': [33.0, 33.5, 32.1, 33.9, 34.5, 32.1, 35.8, 34.8, 36.1, 37.8, 37.0, 35.3, 35.9]
+    },
+    'First-time': {
+      'Emerging':     [42.3, 42.8, 35.1, 41.1, 41.8, 35.6, 40.6, 40.0, 38.9, 41.3, 40.0, 37.6, 38.9],
+      'SMB':          [44.3, 47.3, 40.3, 41.8, 45.3, 39.4, 44.4, 46.1, 43.8, 43.6, 43.1, 39.8, 38.7],
+      'Mid-Market':   [51.6, 52.3, 46.5, 46.8, 51.7, 45.0, 49.8, 50.0, 49.5, 47.3, 48.2, 43.3, 44.8],
+      'Upper-Market': [54.3, 51.0, 45.0, 51.3, 52.9, 43.3, 63.9, 57.5, 57.7, 51.7, 60.3, 41.1, 51.2]
+    },
+    'Returning': {
+      'Emerging':     [20.8, 21.8, 20.7, 21.1, 21.9, 20.4, 20.4, 19.9, 20.1, 21.1, 20.5, 19.5, 20.3],
+      'SMB':          [23.7, 24.6, 23.8, 24.5, 25.2, 23.3, 24.2, 23.8, 24.2, 24.7, 24.4, 23.0, 23.4],
+      'Mid-Market':   [29.0, 30.0, 28.8, 29.7, 30.7, 28.6, 29.5, 28.9, 29.5, 29.6, 29.6, 28.0, 28.5],
+      'Upper-Market': [30.8, 32.0, 30.6, 31.4, 32.2, 31.0, 31.9, 32.2, 34.4, 36.0, 34.4, 34.5, 34.5]
+    }
   };
   const tierColors = {
-    'First-time': '#ff4998',  // pink — the line that's actually moving
-    'Overall':    '#3185FC',  // brand blue — blended
-    'Returning':  '#94a3b8'   // grey — flat baseline
+    'Emerging':     '#94a3b8',
+    'SMB':          '#94b8e8',
+    'Mid-Market':   '#3185FC',
+    'Upper-Market': '#162050'
   };
+  let csegCohort = 'Overall';
+  let csegChart = null;
 
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
@@ -1951,52 +2001,75 @@
       });
     }
 
-    // RIGHT: 13-month adoption trend by segment, all data points labeled
+    // 13-month adoption trend chart — re-renders when cohort filter changes
     const ctxLine = document.getElementById('chart-card-by-rent-trend');
-    if (ctxLine) {
-      new Chart(ctxLine, {
+    function renderCsegChart() {
+      if (!ctxLine) return;
+      if (csegChart) csegChart.destroy();
+      const series = adoptionByCohort[csegCohort];
+      // Y-axis range: tighter for Returning + Overall, wider for First-time (which goes higher)
+      const yMin = csegCohort === 'First-time' ? 30 : 18;
+      const yMax = csegCohort === 'First-time' ? 70 : 42;
+      const segOrder = ['Emerging','SMB','Mid-Market','Upper-Market'];
+
+      csegChart = new Chart(ctxLine, {
         type: 'line',
         data: {
           labels: months,
-          datasets: Object.keys(adoptionTrend).map(tier => ({
-            label: tier,
-            data: adoptionTrend[tier],
-            borderColor: tierColors[tier],
+          datasets: segOrder.map(seg => ({
+            label: seg,
+            data: series[seg],
+            borderColor: tierColors[seg],
             backgroundColor: 'transparent',
             borderWidth: 2.5,
             tension: 0.3,
             pointRadius: 3,
-            pointBackgroundColor: tierColors[tier],
+            pointBackgroundColor: tierColors[seg],
             pointBorderColor: '#fff',
             pointBorderWidth: 1.5,
             datalabels: {
               display: true,
-              align: (tier === 'First-time') ? 'top' : 'bottom',
-              anchor: (tier === 'First-time') ? 'end' : 'start',
+              align: (seg === 'Upper-Market' || seg === 'Mid-Market') ? 'top' : 'bottom',
+              anchor: (seg === 'Upper-Market' || seg === 'Mid-Market') ? 'end' : 'start',
               offset: 5,
-              color: tierColors[tier],
-              font: { weight: 700, size: 10, family: 'Poppins' },
+              color: tierColors[seg],
+              font: { weight: 700, size: 9.5, family: 'Poppins' },
               formatter: v => v.toFixed(1)
             }
           }))
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 22, right: 14, bottom: 22, left: 4 } },
+          layout: { padding: { top: 24, right: 14, bottom: 22, left: 4 } },
           plugins: {
             legend: {
               display: true, position: 'top', align: 'end',
               labels: { boxWidth: 14, boxHeight: 2, font: { size: 12, weight: 700 }, color: '#162050' }
             },
             tooltip: {
-              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' }
+              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '% (' + csegCohort + ')' }
             }
           },
           scales: {
             x: { grid: { display: false }, ticks: { font: { size: 10, weight: 600 }, color: '#64748b', maxRotation: 0, autoSkip: false } },
-            y: { display: false, beginAtZero: false, min: 22, max: 56 }
+            y: { display: false, beginAtZero: false, min: yMin, max: yMax }
           }
         }
+      });
+    }
+    renderCsegChart();
+
+    // Filter button wiring
+    const filterEl = document.getElementById('cseg-filter');
+    if (filterEl) {
+      filterEl.addEventListener('click', e => {
+        const btn = e.target.closest('button[data-cseg]');
+        if (!btn) return;
+        if (btn.dataset.cseg === csegCohort) return;
+        csegCohort = btn.dataset.cseg;
+        filterEl.querySelectorAll('button').forEach(b =>
+          b.classList.toggle('active', b.dataset.cseg === csegCohort));
+        renderCsegChart();
       });
     }
   });
