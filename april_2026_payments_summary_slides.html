@@ -1748,7 +1748,7 @@
 
     <h2 class="section-title">Card share scales with PM segment — and is stable within each.</h2>
     <p class="lede">
-      Upper-Market PMs run <strong>22% card share</strong> — 1.5× the SMB rate (15%). All four DoorLoop segments are flat over 8 months (within ±2pp). The "card decline" headline is mostly a <strong>volume-mix shift</strong>, not a behavior change inside any segment.
+      Upper-Market PMs run <strong>23% card share</strong> — 1.6× the SMB rate (15%). All four DoorLoop segments are flat over 8 months (within ±2.5pp). The "card decline" headline is mostly a <strong>volume-mix shift</strong>, not a behavior change inside any segment.
     </p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px">
@@ -1773,21 +1773,21 @@
 
 <script>
 (function() {
-  // Segments via stripe_subscription_price_quantity_c:
-  //   ≤10 = Emerging, 11–50 = SMB, 51–300 = Mid-Market, >300 = Upper-Market
+  // Segments via stripe_subscription_price_quantity_c (≤10/11–50/51–300/>300).
+  // Card share = type='charge' / (type='charge' + type='payment').
   const cardByRentApr = [
-    { tier: 'Emerging',     share: 14.3, vol: 13.1 },
-    { tier: 'SMB',          share: 14.8, vol: 113.3 },
-    { tier: 'Mid-Market',   share: 18.6, vol: 155.8 },
-    { tier: 'Upper-Market', share: 22.4, vol: 25.0 }
+    { tier: 'Emerging',     share: 14.4, vol: 13.0 },
+    { tier: 'SMB',          share: 15.0, vol: 112.3 },
+    { tier: 'Mid-Market',   share: 18.9, vol: 153.3 },
+    { tier: 'Upper-Market', share: 23.3, vol: 24.0 }
   ];
 
   const months = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
   const trendData = {
-    'Emerging':     [13.2, 14.6, 13.6, 13.7, 15.2, 14.5, 12.9, 14.3],
-    'SMB':          [14.4, 15.8, 15.4, 15.5, 16.6, 16.2, 14.1, 14.8],
-    'Mid-Market':   [18.0, 19.7, 19.0, 19.5, 20.1, 19.8, 17.4, 18.6],
-    'Upper-Market': [20.3, 22.6, 21.9, 23.1, 24.3, 23.3, 20.7, 22.4]
+    'Emerging':     [13.3, 14.7, 13.7, 13.8, 15.3, 14.6, 13.0, 14.4],
+    'SMB':          [14.5, 16.0, 15.5, 15.7, 16.7, 16.4, 14.2, 15.0],
+    'Mid-Market':   [18.2, 20.0, 19.3, 19.8, 20.5, 20.1, 17.7, 18.9],
+    'Upper-Market': [20.6, 23.3, 22.7, 24.0, 25.3, 24.3, 21.4, 23.3]
   };
   const tierColors = {
     'Emerging':     '#94a3b8',
