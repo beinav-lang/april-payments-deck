@@ -1804,12 +1804,12 @@
     </div>
 
     <div style="margin-top: 16px; padding: 12px 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong style="color: var(--pink)">Migration distortions in the FT line</strong> · Two single-account events visibly move the curve:
-      <span style="display: block; margin-top: 4px">
-        <strong>Nov '25 spike (49.7%)</strong> — Dels Corporation (AR · 3,199 affordable-housing units) onboarded a slug of low-rent, high-card tenants.
-        &nbsp;·&nbsp;
-        <strong>Mar '26 dip (43.7%)</strong> — Costello Management (PA · 924 student-housing units) cut over their portfolio with <strong>738 ACH-only first-time tenants</strong> ($1.10M ACH volume), dragging FT card share down ~1.5 pp that cycle. April absorbed the tail (239 more tenants, ~0.4 pp drag).
-      </span>
+      <strong style="color: var(--pink)">Migration distortions in the FT line</strong> · Single-account events that visibly move the curve:
+      <ul style="margin: 6px 0 0; padding-left: 22px">
+        <li style="margin-bottom: 4px"><strong>Nov '25 surge (49.7%)</strong> — <em>Dels Corporation</em> (AR · 3,199 affordable-housing units) onboarded <strong>897 first-time tenants</strong> at 73% card adoption — low-rent, high-card.</li>
+        <li style="margin-bottom: 4px"><strong>Jan '26 dip (44.8%)</strong> — <em>Fitz Osborn Real Estate</em> (MO · 573 units) cut over <strong>284 first-time tenants</strong> at 26.8% card (vs cohort ~46%) → ~0.4 pp drag.</li>
+        <li><strong>Mar '26 dip (43.7%)</strong> — <em>Costello Management</em> (PA · 924 student-housing units) cut over their portfolio with <strong>738 ACH-only first-time tenants</strong> ($1.10M ACH volume) → ~1.5 pp drag. April absorbed the tail (239 more, ~0.4 pp drag).</li>
+      </ul>
     </div>
 
   </div>
@@ -2145,12 +2145,13 @@
     </div>
 
     <div style="margin-top: 12px; padding: 12px 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong style="color: var(--pink)">Migration distortions in the FT line</strong> · Two single-account events sit inside the recent FT-card decline:
-      <span style="display: block; margin-top: 4px">
-        <strong>Costello Management LLC</strong> (PA student housing · 924 units · ACH-only) — <strong>738 first-time tenants in March '26 cycle</strong> + 239 in April, all ACH. Dragged March FT card share <strong>−1.45 pp</strong> (29.87% actual vs ~31.32% ex-Costello) and April <strong>−0.38 pp</strong> (29.19% actual vs ~29.57% ex-Costello).
-        &nbsp;·&nbsp;
-        <strong>Christian Relief Services of Virginia</strong> (slide 13/14) is a smaller card-share contributor in April but the dominant invite-side event — see migration cut-over slide.
-      </span>
+      <strong style="color: var(--pink)">Migration distortions inside the FT-card decline</strong> · Single-account events visible in the trend:
+      <ul style="margin: 6px 0 0; padding-left: 22px">
+        <li style="margin-bottom: 4px"><strong>Nov '25 surge</strong> · <em>Dels Corporation</em> (AR · 3,199 affordable-housing units) onboarded <strong>897 first-time tenants at 73% card adoption</strong> — temporarily lifted FT card share before the migration faded.</li>
+        <li style="margin-bottom: 4px"><strong>Jan '26 drag</strong> · <em>Fitz Osborn Real Estate</em> (MO · 573 units) brought <strong>284 first-time tenants at 26.8% card adoption</strong> (vs cohort ~46%) → ~0.4 pp drag on Jan FT line.</li>
+        <li style="margin-bottom: 4px"><strong>Mar '26 drag</strong> · <em>Costello Management</em> (PA student housing · 924 units · ACH-only) — <strong>738 first-time tenants, all ACH</strong> ($1.10M volume) → <strong>−1.45 pp</strong> on March FT card share (29.87% actual vs ~31.32% ex-Costello). April absorbed 239 stragglers → another <strong>−0.38 pp</strong> drag.</li>
+        <li><strong>Apr '26</strong> · <em>Christian Relief Services of Virginia</em> (slide 14 case study) — primarily invite-side event but ~270 FT tenants at 40.7% card add a small Apr drag.</li>
+      </ul>
     </div>
 
     <p style="margin-top: 14px; font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5">
@@ -4192,7 +4193,7 @@ new Chart(document.getElementById('chart-card-adoption'), {
           }),
           formatter: (v, ctx) => {
             if (ctx.dataIndex === ctx.dataset.data.length-1) return v.toFixed(1) + '%' + ' · 16-mo low';
-            if (ctx.dataIndex === novIdx) return v.toFixed(1) + '%  ·  Dels Corp';
+            if (ctx.dataIndex === novIdx) return v.toFixed(1) + '%  ·  Dels surge';
             if (ctx.dataIndex === marCstlIdx) return v.toFixed(1) + '%  ·  Costello drag';
             return v.toFixed(1) + '%';
           }
