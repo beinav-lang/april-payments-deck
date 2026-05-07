@@ -1775,7 +1775,123 @@
   </div>
 </section>
 
-<!-- SECTION 04 · NSF — removed from slides version -->
+<!-- ============================================================ -->
+<!-- SECTION 08 · NSF                                              -->
+<!-- ============================================================ -->
+<style>
+  .nsf-stat-strip {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    margin: 18px 0 22px;
+  }
+  .nsf-stat {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .nsf-stat .nsf-lbl {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .nsf-stat .nsf-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px; font-weight: 800; color: #0e7490;
+    line-height: 1.1; margin-top: 4px;
+  }
+  .nsf-stat .nsf-sub {
+    font-size: 10.5px; color: var(--muted); margin-top: 4px; line-height: 1.45;
+  }
+  .nsf-stat .nsf-sub .pos { color: var(--green); font-weight: 700; }
+  .nsf-charts {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+    margin-bottom: 18px;
+  }
+  .nsf-chart-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .nsf-chart-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .nsf-insight {
+    background: rgba(14,116,144,0.06);
+    border-left: 4px solid #0e7490;
+    border-radius: 8px; padding: 14px 18px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+  }
+  .nsf-insight-block .nsf-insight-lbl {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.8px;
+    color: #0e7490; margin-bottom: 4px;
+  }
+  .nsf-insight-block .nsf-insight-text {
+    font-size: 12.5px; color: var(--text); line-height: 1.55;
+  }
+  .nsf-insight-block .nsf-insight-text strong { font-weight: 700; }
+</style>
+
+<section class="paper" data-slide-title="NSF">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">08</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">NSF</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">NSF rebounded with ACH — no credit-quality shift.</h2>
+    <p class="lede">April 3.20% NSF — inside the 12-month band (3.09–3.99%). March's dip was mechanical (calendar carryover), not a structural improvement.</p>
+
+    <div class="nsf-stat-strip">
+      <div class="nsf-stat">
+        <div class="nsf-lbl">NSF ARR</div>
+        <div class="nsf-num">$1.84M</div>
+        <div class="nsf-sub"><span class="pos">▲ +11.8% MoM</span> · <span class="pos">▲ +77.3% YoY</span></div>
+      </div>
+      <div class="nsf-stat">
+        <div class="nsf-lbl">ACH Transactions</div>
+        <div class="nsf-num">158,671</div>
+        <div class="nsf-sub"><span class="pos">▲ +9,124 MoM</span> · <span class="pos">▲ +45.3% YoY</span></div>
+      </div>
+      <div class="nsf-stat">
+        <div class="nsf-lbl">NSF Transactions</div>
+        <div class="nsf-num">5,072</div>
+        <div class="nsf-sub"><span class="pos">▲ +458 MoM</span> · <span class="pos">▲ +56.5% YoY</span></div>
+      </div>
+      <div class="nsf-stat">
+        <div class="nsf-lbl">% NSF</div>
+        <div class="nsf-num">3.20%</div>
+        <div class="nsf-sub"><span class="pos">▲ +0.11 pp MoM</span> · <span class="pos">▲ +0.23 pp YoY</span></div>
+      </div>
+      <div class="nsf-stat">
+        <div class="nsf-lbl">Revenue / Txn</div>
+        <div class="nsf-num">$30.2</div>
+        <div class="nsf-sub"><span class="pos">▲ +1.7% MoM</span> · <span class="pos">▲ +13.3% YoY</span> (vs $26.0 Mar '25)</div>
+      </div>
+    </div>
+
+    <div class="nsf-charts">
+      <div class="nsf-chart-card">
+        <div class="nsf-chart-title">NSF ARR — 14 months</div>
+        <div class="chart-wrap" style="height: 260px"><canvas id="chart-nsf-arr"></canvas></div>
+      </div>
+      <div class="nsf-chart-card">
+        <div class="nsf-chart-title">NSF transactions and % of ACH — 14 months</div>
+        <div class="chart-wrap" style="height: 260px"><canvas id="chart-nsf-txns"></canvas></div>
+      </div>
+    </div>
+
+    <div class="nsf-insight">
+      <div class="nsf-insight-block">
+        <div class="nsf-insight-lbl">💡 Insight</div>
+        <div class="nsf-insight-text">NSF ARR <strong>$1.84M ATH</strong> (+77% YoY) tracks ACH growth (+45% YoY). No credit-quality regression — the % NSF rate is stable inside its 12-month band.</div>
+      </div>
+      <div class="nsf-insight-block">
+        <div class="nsf-insight-lbl">⚡ Watch</div>
+        <div class="nsf-insight-text">No action. May NSF &gt; 3.6% or sustained $30.2+ rev/txn would be the first signal of a real shift.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- ============================================================ -->
@@ -1786,7 +1902,7 @@
   <div class="wrap">
     <div style="margin-bottom: 22px">
       <div class="chapter" style="margin-bottom: 14px">
-        <div class="chapter-num">08</div>
+        <div class="chapter-num">09</div>
         <div class="chapter-meta">
           <div class="chapter-name">Churned Accounts</div>
         </div>
@@ -1879,7 +1995,7 @@
 <section data-slide-title="PM Adoption · Research Approach">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">09</div>
+      <div class="chapter-num">10</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Research Approach</div>
       </div>
@@ -1942,7 +2058,7 @@
 <section class="paper">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">10</div>
+      <div class="chapter-num">11</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Data Findings</div>
       </div>
@@ -2195,7 +2311,7 @@
 <section data-slide-title="Funnel Methodology">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">11</div>
+      <div class="chapter-num">12</div>
       <div class="chapter-meta">
         <div class="chapter-name">Funnel Methodology</div>
       </div>
@@ -2406,7 +2522,7 @@
 <section class="paper" data-slide-title="Lease Funnel">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">12</div>
+      <div class="chapter-num">13</div>
       <div class="chapter-meta">
         <div class="chapter-name">Lease Funnel</div>
       </div>
@@ -3086,7 +3202,7 @@
 <section data-slide-title="Late invites overview">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">13</div>
+      <div class="chapter-num">14</div>
       <div class="chapter-meta">
         <div class="chapter-name">Late invites overview · where the Mature drop comes from</div>
       </div>
@@ -3191,7 +3307,7 @@
 <section>
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">14</div>
+      <div class="chapter-num">15</div>
       <div class="chapter-meta">
         <div class="chapter-name">Action Items</div>
       </div>
@@ -5279,9 +5395,9 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   // A group can contain `slides: [from, to]` and/or `children: [...nested groups]`.
   // Slides outside any group render as ungrouped items at the bottom.
   const tocGroups = [
-    { name: 'Business Overview', from: 1, to: 6 },
-    { name: 'PM Side', from: 7, to: 9 },
-    { name: 'Lease Funnel', from: 10, to: 12 },
+    { name: 'Business Overview', from: 1, to: 7 },
+    { name: 'PM Side', from: 8, to: 10 },
+    { name: 'Lease Funnel', from: 11, to: 13 },
   ];
 
   function escapeHtml(s) {
