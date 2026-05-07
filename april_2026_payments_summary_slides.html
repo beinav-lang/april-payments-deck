@@ -1800,19 +1800,6 @@
     font-size: 10.5px; color: var(--muted); margin-top: 4px; line-height: 1.45;
   }
   .nsf-stat .nsf-sub .pos { color: var(--green); font-weight: 700; }
-  .nsf-charts {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
-    margin-bottom: 18px;
-  }
-  .nsf-chart-card {
-    background: #fff; border: 1px solid var(--border);
-    border-radius: 12px; padding: 16px 18px;
-  }
-  .nsf-chart-title {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
-    text-transform: uppercase; color: var(--muted);
-    margin-bottom: 8px;
-  }
   .nsf-insight {
     background: rgba(14,116,144,0.06);
     border-left: 4px solid #0e7490;
@@ -1869,13 +1856,15 @@
       </div>
     </div>
 
-    <div class="nsf-charts">
-      <div class="nsf-chart-card">
-        <div class="nsf-chart-title">NSF ARR — 14 months</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px">
+      <div class="chart-shell">
+        <div class="ch-title">NSF ARR</div>
+        <div class="ch-sub">14-month trend · Mar '25 → Apr '26</div>
         <div class="chart-wrap" style="height: 260px"><canvas id="chart-nsf-arr"></canvas></div>
       </div>
-      <div class="nsf-chart-card">
-        <div class="nsf-chart-title">NSF transactions and % of ACH — 14 months</div>
+      <div class="chart-shell">
+        <div class="ch-title">NSF transactions &amp; % of ACH</div>
+        <div class="ch-sub">14-month trend · Mar '25 → Apr '26</div>
         <div class="chart-wrap" style="height: 260px"><canvas id="chart-nsf-txns"></canvas></div>
       </div>
     </div>
@@ -5563,19 +5552,17 @@ new Chart(document.getElementById('chart-churned-accounts'), {
 <!-- ============================================================ -->
 <style>
   .cmt-fab {
-    position: fixed; right: 24px; bottom: 24px;
+    position: fixed; right: 24px; top: 24px;
     background: #162050; color: #fff;
     border: none; border-radius: 999px;
-    padding: 12px 18px;
+    padding: 10px 16px;
     font-family: inherit; font-size: 13px; font-weight: 700;
     cursor: pointer; z-index: 10000;
     box-shadow: 0 4px 16px rgba(22,32,80,0.25);
     display: flex; align-items: center; gap: 8px;
     transition: transform 0.15s, box-shadow 0.15s;
   }
-  /* In slide mode, the TOC panel claims the right 280px — push the FAB left of it. */
-  body.slide-mode .cmt-fab { right: 304px; }
-  .cmt-fab:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(22,32,80,0.35); }
+  .cmt-fab:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(22,32,80,0.35); }
   .cmt-fab .cmt-badge {
     background: #dffe02; color: #162050;
     border-radius: 999px; padding: 1px 8px;
