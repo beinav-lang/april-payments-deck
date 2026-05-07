@@ -1818,69 +1818,79 @@
       </div>
     </div>
 
-    <h2 class="section-title">Card adoption by segment.</h2>
+    <h2 class="section-title">March rent spike pulled card adoption down — across every segment.</h2>
+    <p class="lede">
+      In <strong>March 2026, paying-tenant median rent jumped $35–$45 in all four segments</strong>. Card adoption fell <strong>−1.2 to −1.8 pp</strong> the same month. April rent partially normalized; adoption partially recovered. Direction-perfect inverse correlation: card adoption is structurally rent-sensitive (~38% at &lt;$1K rent → ~6% at $3K+), so when the paying-tenant mix shifts toward higher-rent tenants, blended adoption mechanically drops.
+    </p>
 
-    <!-- 4 segment stat tiles -->
-    <div class="cseg-tiles">
-      <div class="cseg-tile">
-        <div class="cseg-name">Emerging</div>
-        <div class="cseg-rate">21.8%</div>
-        <div class="cseg-delta down">−0.8 pp YoY</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px">
+      <div class="chart-shell">
+        <div class="ch-title">Median rent of paying tenants · by segment</div>
+        <div class="ch-sub">Apr '25 → Apr '26 · <strong style="color:var(--pink)">March spike</strong> highlighted</div>
+        <div class="chart-wrap" style="height: 300px"><canvas id="chart-rent-trend"></canvas></div>
       </div>
-      <div class="cseg-tile">
-        <div class="cseg-name">SMB</div>
-        <div class="cseg-rate">24.7%</div>
-        <div class="cseg-delta down">−1.0 pp YoY</div>
+      <div class="chart-shell">
+        <div class="ch-title">Card adoption · by segment</div>
+        <div class="ch-sub">Apr '25 → Apr '26 · <strong style="color:var(--pink)">March dip</strong> highlighted · % of paying tenants paying by card</div>
+        <div class="chart-wrap" style="height: 300px"><canvas id="chart-card-by-rent-trend"></canvas></div>
       </div>
-      <div class="cseg-tile">
-        <div class="cseg-name">Mid-Market</div>
-        <div class="cseg-rate">29.9%</div>
-        <div class="cseg-delta down">−1.4 pp YoY</div>
-      </div>
-      <div class="cseg-tile up">
-        <div class="cseg-name">Upper-Market</div>
-        <div class="cseg-rate">35.9%</div>
-        <div class="cseg-delta up">+2.9 pp YoY</div>
-      </div>
-    </div>
-
-    <div class="chart-shell" style="margin-top: 18px">
-      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 6px">
-        <div>
-          <div class="ch-title">Card adoption by segment · 13 months</div>
-          <div class="ch-sub">Apr '25 → Apr '26 · % of paying tenants paying by card</div>
-        </div>
-        <div class="cseg-filter" id="cseg-filter">
-          <button data-cseg="Overall" class="active">Overall</button>
-          <button data-cseg="First-time">First-time</button>
-          <button data-cseg="Returning">Returning</button>
-        </div>
-      </div>
-      <div class="chart-wrap" style="height: 320px"><canvas id="chart-card-by-rent-trend"></canvas></div>
     </div>
 
     <div class="cseg-why">
-      <div class="cseg-why-label">Why card adoption fell</div>
-      <div class="cseg-why-cards">
-        <div class="cseg-why-card">
-          <div class="cseg-why-num">①</div>
-          <div>
-            <strong>FT-cohort adoption dropped ~6 pp YoY</strong> (49% → 43%) — the dominant driver in Em / SMB / Mid.
-            Returning-tenant adoption is flat (~27%).
-          </div>
-        </div>
-        <div class="cseg-why-card">
-          <div class="cseg-why-num">②</div>
-          <div>
-            <strong>Within Em / SMB / Mid, paying tenants got slightly higher-rent on average</strong> (+$8 to +$52). High-rent tenants almost always pay by ACH (card adoption ~6% at $3K+ rent vs ~38% at &lt;$1K), so as the rent mix drifted up, blended adoption drifted down.
-          </div>
-        </div>
-        <div class="cseg-why-card up">
-          <div class="cseg-why-num">↑</div>
-          <div>
-            <strong>Upper-Market bucks the trend</strong> — returning-tenant adoption there rose <strong>+3.7 pp</strong>. Worth probing.
-          </div>
-        </div>
+      <div class="cseg-why-label">March rent spike → adoption dip · per-segment numbers</div>
+      <table style="width:100%; border-collapse: collapse; font-size: 12.5px; font-family: 'Poppins', sans-serif">
+        <thead>
+          <tr style="text-align: left; color: var(--muted); font-size: 10.5px; letter-spacing: 0.6px; text-transform: uppercase; border-bottom: 1px solid var(--divider)">
+            <th style="padding: 6px 8px; font-weight: 800">segment</th>
+            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Feb median rent</th>
+            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Mar median rent</th>
+            <th style="padding: 6px 8px; text-align: right; font-weight: 800; color: var(--pink)">Δ rent</th>
+            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Feb adoption</th>
+            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Mar adoption</th>
+            <th style="padding: 6px 8px; text-align: right; font-weight: 800; color: var(--pink)">Δ adoption</th>
+          </tr>
+        </thead>
+        <tbody style="color: var(--text)">
+          <tr style="border-bottom: 1px solid var(--divider)">
+            <td style="padding: 8px; font-weight: 700">Emerging</td>
+            <td style="padding: 8px; text-align: right">$1,800</td>
+            <td style="padding: 8px; text-align: right">$1,845</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">+$45</td>
+            <td style="padding: 8px; text-align: right">22.1%</td>
+            <td style="padding: 8px; text-align: right">20.9%</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">−1.2 pp</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--divider)">
+            <td style="padding: 8px; font-weight: 700">SMB</td>
+            <td style="padding: 8px; text-align: right">$1,555</td>
+            <td style="padding: 8px; text-align: right">$1,600</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">+$45</td>
+            <td style="padding: 8px; text-align: right">26.0%</td>
+            <td style="padding: 8px; text-align: right">24.4%</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">−1.6 pp</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--divider)">
+            <td style="padding: 8px; font-weight: 700">Mid-Market</td>
+            <td style="padding: 8px; text-align: right">$1,265</td>
+            <td style="padding: 8px; text-align: right">$1,300</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">+$35</td>
+            <td style="padding: 8px; text-align: right">31.0%</td>
+            <td style="padding: 8px; text-align: right">29.2%</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">−1.8 pp</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; font-weight: 700">Upper-Market</td>
+            <td style="padding: 8px; text-align: right">$950</td>
+            <td style="padding: 8px; text-align: right">$995</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">+$45</td>
+            <td style="padding: 8px; text-align: right">37.3%</td>
+            <td style="padding: 8px; text-align: right">35.5%</td>
+            <td style="padding: 8px; text-align: right; color: var(--pink); font-weight: 800">−1.8 pp</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 12px; font-size: 12px; color: var(--muted); line-height: 1.55">
+        Mar '26 was a record-high lease-activation month — new entrants likely skewed higher-rent than the existing pool, pulling the median up and adoption down. Adoption is mostly compositional, not behavioral.
       </div>
     </div>
   </div>
@@ -1900,27 +1910,19 @@
     { seg: 'Upper-Market', apr25: 33.0, apr26: 35.9 }
   ];
 
-  // Card adoption · 13 months · 4 segments × 3 cohort filters (Overall / First-time / Returning)
+  // 13-month series · median rent of paying tenants AND card adoption, per segment.
   const months = ["Apr '25","May '25","Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
-  const adoptionByCohort = {
-    'Overall': {
-      'Emerging':     [22.6, 23.8, 22.0, 23.0, 23.9, 21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
-      'SMB':          [25.6, 26.7, 25.4, 26.2, 27.2, 24.8, 25.9, 25.5, 25.7, 26.5, 26.0, 24.4, 24.7],
-      'Mid-Market':   [31.3, 32.3, 30.5, 31.5, 32.7, 30.1, 31.3, 30.6, 31.0, 31.2, 31.0, 29.2, 29.9],
-      'Upper-Market': [33.0, 33.5, 32.1, 33.9, 34.5, 32.1, 35.8, 34.8, 36.1, 37.8, 37.0, 35.3, 35.9]
-    },
-    'First-time': {
-      'Emerging':     [42.3, 42.8, 35.1, 41.1, 41.8, 35.6, 40.6, 40.0, 38.9, 41.3, 40.0, 37.6, 38.9],
-      'SMB':          [44.3, 47.3, 40.3, 41.8, 45.3, 39.4, 44.4, 46.1, 43.8, 43.6, 43.1, 39.8, 38.7],
-      'Mid-Market':   [51.6, 52.3, 46.5, 46.8, 51.7, 45.0, 49.8, 50.0, 49.5, 47.3, 48.2, 43.3, 44.8],
-      'Upper-Market': [54.3, 51.0, 45.0, 51.3, 52.9, 43.3, 63.9, 57.5, 57.7, 51.7, 60.3, 41.1, 51.2]
-    },
-    'Returning': {
-      'Emerging':     [20.8, 21.8, 20.7, 21.1, 21.9, 20.4, 20.4, 19.9, 20.1, 21.1, 20.5, 19.5, 20.3],
-      'SMB':          [23.7, 24.6, 23.8, 24.5, 25.2, 23.3, 24.2, 23.8, 24.2, 24.7, 24.4, 23.0, 23.4],
-      'Mid-Market':   [29.0, 30.0, 28.8, 29.7, 30.7, 28.6, 29.5, 28.9, 29.5, 29.6, 29.6, 28.0, 28.5],
-      'Upper-Market': [30.8, 32.0, 30.6, 31.4, 32.2, 31.0, 31.9, 32.2, 34.4, 36.0, 34.4, 34.5, 34.5]
-    }
+  const medianRent = {
+    'Emerging':     [1800, 1775, 1800, 1790, 1775, 1800, 1800, 1800, 1800, 1800, 1800, 1845, 1800],
+    'SMB':          [1550, 1525, 1550, 1550, 1550, 1600, 1555, 1597, 1575, 1550, 1555, 1600, 1600],
+    'Mid-Market':   [1225, 1225, 1250, 1249, 1228, 1275, 1250, 1265, 1250, 1250, 1265, 1300, 1275],
+    'Upper-Market': [1020, 1024, 1065, 1015, 1050, 1045, 1000, 1000,  975,  950,  950,  995,  975]
+  };
+  const adoption = {
+    'Emerging':     [21.8, 23.3, 21.7, 22.9, 23.8, 21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
+    'SMB':          [25.0, 26.3, 25.1, 26.1, 27.2, 24.8, 25.9, 25.5, 25.7, 26.4, 26.0, 24.4, 24.6],
+    'Mid-Market':   [30.5, 31.6, 30.1, 31.3, 32.7, 30.0, 31.3, 30.6, 31.0, 31.1, 31.0, 29.2, 29.9],
+    'Upper-Market': [32.8, 33.4, 32.3, 34.5, 34.5, 32.2, 36.0, 35.2, 36.3, 38.0, 37.3, 35.5, 36.0]
   };
   const tierColors = {
     'Emerging':     '#94a3b8',
@@ -1928,8 +1930,6 @@
     'Mid-Market':   '#3185FC',
     'Upper-Market': '#162050'
   };
-  let csegCohort = 'Overall';
-  let csegChart = null;
 
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
@@ -2001,40 +2001,38 @@
       });
     }
 
-    // 13-month adoption trend chart — re-renders when cohort filter changes
-    const ctxLine = document.getElementById('chart-card-by-rent-trend');
-    function renderCsegChart() {
-      if (!ctxLine) return;
-      if (csegChart) csegChart.destroy();
-      const series = adoptionByCohort[csegCohort];
-      // Y-axis range: tighter for Returning + Overall, wider for First-time (which goes higher)
-      const yMin = csegCohort === 'First-time' ? 30 : 18;
-      const yMax = csegCohort === 'First-time' ? 70 : 42;
-      const segOrder = ['Emerging','SMB','Mid-Market','Upper-Market'];
+    const segOrder = ['Emerging','SMB','Mid-Market','Upper-Market'];
+    const marIdx = months.indexOf("Mar '26");
 
-      csegChart = new Chart(ctxLine, {
+    // Build a chart factory used by both panels
+    function makeLineChart(canvasId, dataMap, opts) {
+      const el = document.getElementById(canvasId);
+      if (!el) return;
+      new Chart(el, {
         type: 'line',
         data: {
           labels: months,
           datasets: segOrder.map(seg => ({
             label: seg,
-            data: series[seg],
+            data: dataMap[seg],
             borderColor: tierColors[seg],
             backgroundColor: 'transparent',
             borderWidth: 2.5,
             tension: 0.3,
-            pointRadius: 3,
-            pointBackgroundColor: tierColors[seg],
+            // Highlight Mar '26 with bigger pink-ringed point on every line
+            pointRadius: ctx => ctx.dataIndex === marIdx ? 6 : 3,
+            pointBackgroundColor: ctx => ctx.dataIndex === marIdx ? '#ff4998' : tierColors[seg],
             pointBorderColor: '#fff',
-            pointBorderWidth: 1.5,
+            pointBorderWidth: ctx => ctx.dataIndex === marIdx ? 2 : 1.5,
             datalabels: {
-              display: true,
+              // Label endpoints (Apr '25 + Apr '26) and Mar '26 spike for every line
+              display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === ctx.dataset.data.length - 1 || ctx.dataIndex === marIdx,
               align: (seg === 'Upper-Market' || seg === 'Mid-Market') ? 'top' : 'bottom',
               anchor: (seg === 'Upper-Market' || seg === 'Mid-Market') ? 'end' : 'start',
-              offset: 5,
-              color: tierColors[seg],
-              font: { weight: 700, size: 9.5, family: 'Poppins' },
-              formatter: v => v.toFixed(1)
+              offset: 6,
+              color: ctx => ctx.dataIndex === marIdx ? '#ff4998' : tierColors[seg],
+              font: ctx => ({ weight: ctx.dataIndex === marIdx ? 800 : 700, size: ctx.dataIndex === marIdx ? 10.5 : 9.5, family: 'Poppins' }),
+              formatter: v => opts.fmt(v)
             }
           }))
         },
@@ -2047,31 +2045,37 @@
               labels: { boxWidth: 14, boxHeight: 2, font: { size: 12, weight: 700 }, color: '#162050' }
             },
             tooltip: {
-              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '% (' + csegCohort + ')' }
+              callbacks: { label: c => c.dataset.label + ': ' + opts.fmtTooltip(c.parsed.y) }
             }
           },
           scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 10, weight: 600 }, color: '#64748b', maxRotation: 0, autoSkip: false } },
-            y: { display: false, beginAtZero: false, min: yMin, max: yMax }
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: ctx => ({ size: 10, weight: ctx.index === marIdx ? 800 : 600, family: 'Poppins' }),
+                color: ctx => ctx.index === marIdx ? '#ff4998' : '#64748b',
+                maxRotation: 0, autoSkip: false
+              }
+            },
+            y: { display: false, beginAtZero: false, min: opts.yMin, max: opts.yMax }
           }
         }
       });
     }
-    renderCsegChart();
 
-    // Filter button wiring
-    const filterEl = document.getElementById('cseg-filter');
-    if (filterEl) {
-      filterEl.addEventListener('click', e => {
-        const btn = e.target.closest('button[data-cseg]');
-        if (!btn) return;
-        if (btn.dataset.cseg === csegCohort) return;
-        csegCohort = btn.dataset.cseg;
-        filterEl.querySelectorAll('button').forEach(b =>
-          b.classList.toggle('active', b.dataset.cseg === csegCohort));
-        renderCsegChart();
-      });
-    }
+    // LEFT: median rent ($) — yMin/yMax tuned to fit ~$950 to $1850
+    makeLineChart('chart-rent-trend', medianRent, {
+      yMin: 850, yMax: 1900,
+      fmt: v => '$' + Math.round(v),
+      fmtTooltip: v => '$' + Math.round(v) + ' median rent'
+    });
+
+    // RIGHT: card adoption (%) — yMin/yMax tuned to fit ~21 to 38
+    makeLineChart('chart-card-by-rent-trend', adoption, {
+      yMin: 18, yMax: 42,
+      fmt: v => v.toFixed(1),
+      fmtTooltip: v => v.toFixed(1) + '% adoption'
+    });
   });
 })();
 </script>
