@@ -1746,27 +1746,27 @@
       </div>
     </div>
 
-    <h2 class="section-title">Card share is structurally tied to rent — not behavior.</h2>
+    <h2 class="section-title">Card share scales with PM segment — and is stable within each.</h2>
     <p class="lede">
-      Card share drops <strong>6.6×</strong> from sub-$1K rent (38%) to $3K+ rent (6%). Within each tier, share has been flat for 8 months — the headline card-share decline is mostly a <strong>mix story</strong> (high-rent volume growing faster than low-rent), not a real card-aversion shift.
+      Upper-Market PMs run <strong>22% card share</strong> — 1.5× the SMB rate (15%). All four DoorLoop segments are flat over 8 months (within ±2pp). The "card decline" headline is mostly a <strong>volume-mix shift</strong>, not a behavior change inside any segment.
     </p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px">
       <div class="chart-shell">
-        <div class="ch-title">Card share by rent tier · April 2026</div>
-        <div class="ch-sub">Card volume / total volume per tier</div>
+        <div class="ch-title">Card share by segment · April 2026</div>
+        <div class="ch-sub">Card volume / total volume per DoorLoop segment</div>
         <div class="chart-wrap" style="height: 280px"><canvas id="chart-card-by-rent"></canvas></div>
       </div>
       <div class="chart-shell">
-        <div class="ch-title">Card share trend by rent tier</div>
-        <div class="ch-sub">8 months · Sep '25 → Apr '26 · within-tier stability</div>
+        <div class="ch-title">Card share trend by segment</div>
+        <div class="ch-sub">8 months · Sep '25 → Apr '26 · within-segment stability</div>
         <div class="chart-wrap" style="height: 280px"><canvas id="chart-card-by-rent-trend"></canvas></div>
       </div>
     </div>
 
     <div class="pullquote" style="margin-top: 22px">
       <div class="pq-label">⚡ Implication</div>
-      <p>The reduced-fee policy is well-targeted — it focuses on lower-rent / first-time tenants where card adoption is already 38%+ and the relative ACH gap is tighter. Pushing card on $3K+ rent is structurally low-yield (5–6% ceiling regardless of fee policy).</p>
+      <p>Card adoption isn't dropping inside any segment — what moves the headline is the relative growth of segment volumes. Mid-Market is now <strong>~51% of total payment volume</strong>; SMB <strong>~37%</strong>. Reduced-fee policy levers should be sized by segment: SMB / Emerging are the largest pool with the most room to lift card adoption, but the absolute revenue ceiling is in Upper-Market where adoption is already higher.</p>
     </div>
   </div>
 </section>
@@ -1774,27 +1774,24 @@
 <script>
 (function() {
   const cardByRentApr = [
-    { tier: '<$1K',      share: 38.3, vol: 39.6 },
-    { tier: '$1.0-1.5K', share: 27.7, vol: 51.0 },
-    { tier: '$1.5-2K',   share: 18.4, vol: 52.4 },
-    { tier: '$2-3K',     share: 12.5, vol: 69.0 },
-    { tier: '$3K+',      share:  5.8, vol: 93.5 }
+    { tier: 'Emerging',     share: 14.4, vol: 13.1 },
+    { tier: 'SMB',          share: 14.8, vol: 113.3 },
+    { tier: 'Mid-Market',   share: 18.6, vol: 155.8 },
+    { tier: 'Upper-Market', share: 22.4, vol: 25.0 }
   ];
 
   const months = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
   const trendData = {
-    '<$1K':      [34.6, 38.0, 36.8, 38.6, 39.4, 39.5, 36.7, 38.3],
-    '$1.0-1.5K': [25.3, 27.9, 27.4, 28.4, 29.5, 29.2, 25.9, 27.7],
-    '$1.5-2K':   [16.9, 18.3, 17.8, 18.7, 19.9, 19.5, 17.0, 18.4],
-    '$2-3K':     [11.3, 12.7, 12.2, 12.6, 13.4, 13.0, 11.5, 12.5],
-    '$3K+':      [ 5.4,  5.7,  6.0,  5.6,  6.2,  6.0,  5.6,  5.8]
+    'Emerging':     [13.4, 14.7, 13.8, 13.8, 15.3, 14.7, 13.0, 14.4],
+    'SMB':          [14.4, 15.9, 15.4, 15.5, 16.6, 16.2, 14.1, 14.8],
+    'Mid-Market':   [18.0, 19.7, 19.0, 19.5, 20.1, 19.8, 17.4, 18.6],
+    'Upper-Market': [20.3, 22.6, 21.9, 23.1, 24.3, 23.3, 20.7, 22.4]
   };
   const tierColors = {
-    '<$1K':      '#3185FC',
-    '$1.0-1.5K': '#5a9bf7',
-    '$1.5-2K':   '#94b8e8',
-    '$2-3K':     '#c4d3e3',
-    '$3K+':      '#94a3b8'
+    'Emerging':     '#94a3b8',
+    'SMB':          '#94b8e8',
+    'Mid-Market':   '#3185FC',
+    'Upper-Market': '#162050'
   };
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -1834,7 +1831,7 @@
           scales: {
             x: { grid: { display: false }, ticks: { font: { size: 11, weight: 700 }, color: '#162050' } },
             y: {
-              beginAtZero: true, max: 45,
+              beginAtZero: true, max: 28,
               grid: { color: 'rgba(0,0,0,0.06)' },
               ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
             }
