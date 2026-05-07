@@ -1734,11 +1734,174 @@
   </div>
 </section>
 
+<!-- ============================================================ -->
+<!-- SECTION 07 · CARD SHARE BY SEGMENT                            -->
+<!-- ============================================================ -->
+<section class="paper" data-slide-title="Card Share by Segment">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">07</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">Card Share by Segment</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Card share is structurally tied to rent — not behavior.</h2>
+    <p class="lede">
+      Card share drops <strong>6.6×</strong> from sub-$1K rent (38%) to $3K+ rent (6%). Within each tier, share has been flat for 8 months — the headline card-share decline is mostly a <strong>mix story</strong> (high-rent volume growing faster than low-rent), not a real card-aversion shift.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px">
+      <div class="chart-shell">
+        <div class="ch-title">Card share by rent tier · April 2026</div>
+        <div class="ch-sub">Card volume / total volume per tier</div>
+        <div class="chart-wrap" style="height: 280px"><canvas id="chart-card-by-rent"></canvas></div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">Card share trend by rent tier</div>
+        <div class="ch-sub">8 months · Sep '25 → Apr '26 · within-tier stability</div>
+        <div class="chart-wrap" style="height: 280px"><canvas id="chart-card-by-rent-trend"></canvas></div>
+      </div>
+    </div>
+
+    <div class="pullquote" style="margin-top: 22px">
+      <div class="pq-label">⚡ Implication</div>
+      <p>The reduced-fee policy is well-targeted — it focuses on lower-rent / first-time tenants where card adoption is already 38%+ and the relative ACH gap is tighter. Pushing card on $3K+ rent is structurally low-yield (5–6% ceiling regardless of fee policy).</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const cardByRentApr = [
+    { tier: '<$1K',      share: 38.3, vol: 39.6 },
+    { tier: '$1.0-1.5K', share: 27.7, vol: 51.0 },
+    { tier: '$1.5-2K',   share: 18.4, vol: 52.4 },
+    { tier: '$2-3K',     share: 12.5, vol: 69.0 },
+    { tier: '$3K+',      share:  5.8, vol: 93.5 }
+  ];
+
+  const months = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
+  const trendData = {
+    '<$1K':      [34.6, 38.0, 36.8, 38.6, 39.4, 39.5, 36.7, 38.3],
+    '$1.0-1.5K': [25.3, 27.9, 27.4, 28.4, 29.5, 29.2, 25.9, 27.7],
+    '$1.5-2K':   [16.9, 18.3, 17.8, 18.7, 19.9, 19.5, 17.0, 18.4],
+    '$2-3K':     [11.3, 12.7, 12.2, 12.6, 13.4, 13.0, 11.5, 12.5],
+    '$3K+':      [ 5.4,  5.7,  6.0,  5.6,  6.2,  6.0,  5.6,  5.8]
+  };
+  const tierColors = {
+    '<$1K':      '#3185FC',
+    '$1.0-1.5K': '#5a9bf7',
+    '$1.5-2K':   '#94b8e8',
+    '$2-3K':     '#c4d3e3',
+    '$3K+':      '#94a3b8'
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+
+    // Bar chart: card share by rent tier (April)
+    const ctxBar = document.getElementById('chart-card-by-rent');
+    if (ctxBar) {
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: cardByRentApr.map(d => d.tier),
+          datasets: [{
+            data: cardByRentApr.map(d => d.share),
+            backgroundColor: cardByRentApr.map(d => tierColors[d.tier]),
+            borderRadius: 6,
+            barThickness: 50,
+            datalabels: {
+              display: true, anchor: 'end', align: 'top', offset: 4,
+              color: '#162050', font: { weight: 800, size: 14 },
+              formatter: v => v.toFixed(1) + '%'
+            }
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          layout: { padding: { top: 28, right: 12, bottom: 6, left: 4 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                afterLabel: ctx => 'Volume: $' + cardByRentApr[ctx.dataIndex].vol.toFixed(1) + 'M',
+                label: ctx => 'Card share: ' + ctx.parsed.y.toFixed(1) + '%'
+              }
+            }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { size: 11, weight: 700 }, color: '#162050' } },
+            y: {
+              beginAtZero: true, max: 45,
+              grid: { color: 'rgba(0,0,0,0.06)' },
+              ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
+            }
+          }
+        }
+      });
+    }
+
+    // Line chart: trend by tier
+    const ctxLine = document.getElementById('chart-card-by-rent-trend');
+    if (ctxLine) {
+      new Chart(ctxLine, {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: Object.keys(trendData).map(tier => ({
+            label: tier,
+            data: trendData[tier],
+            borderColor: tierColors[tier],
+            backgroundColor: 'transparent',
+            borderWidth: 2.5,
+            tension: 0.3,
+            pointRadius: 3,
+            pointBackgroundColor: tierColors[tier],
+            pointBorderColor: '#fff',
+            pointBorderWidth: 1.5,
+            datalabels: { display: false }
+          }))
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          layout: { padding: { top: 14, right: 24, bottom: 6, left: 4 } },
+          plugins: {
+            legend: {
+              display: true, position: 'right', align: 'center',
+              labels: { boxWidth: 12, boxHeight: 2, font: { size: 11, weight: 700 }, color: '#162050' }
+            },
+            tooltip: {
+              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 10, weight: 600 }, color: '#64748b', maxRotation: 0 }
+            },
+            y: {
+              beginAtZero: false, min: 0, max: 45,
+              grid: { color: 'rgba(0,0,0,0.06)' },
+              ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
+            }
+          }
+        }
+      });
+    }
+  });
+})();
+</script>
+
+
+
+
 <!-- ===== Why card dropped — dual-driver explanation ===== -->
 <section class="paper" data-slide-title="Why card dropped">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">07</div>
+      <div class="chapter-num">08</div>
       <div class="chapter-meta">
         <div class="chapter-name">Why card dropped</div>
       </div>
@@ -1819,7 +1982,7 @@
 <section class="paper" data-slide-title="NSF">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">08</div>
+      <div class="chapter-num">09</div>
       <div class="chapter-meta">
         <div class="chapter-name">NSF</div>
       </div>
@@ -1869,14 +2032,10 @@
       </div>
     </div>
 
-    <div class="nsf-insight">
+    <div class="nsf-insight" style="grid-template-columns: 1fr">
       <div class="nsf-insight-block">
         <div class="nsf-insight-lbl">💡 Insight</div>
-        <div class="nsf-insight-text">NSF ARR <strong>$1.84M ATH</strong> (+77% YoY) tracks ACH growth (+45% YoY). No credit-quality regression — the % NSF rate is stable inside its 12-month band.</div>
-      </div>
-      <div class="nsf-insight-block">
-        <div class="nsf-insight-lbl">⚡ Watch</div>
-        <div class="nsf-insight-text">No action. May NSF &gt; 3.6% or sustained $30.2+ rev/txn would be the first signal of a real shift.</div>
+        <div class="nsf-insight-text">NSF ARR <strong>$1.84M ATH</strong> (+77% YoY) tracks ACH growth (+45% YoY). The % NSF rate is stable inside its 12-month band.</div>
       </div>
     </div>
   </div>
@@ -1891,7 +2050,7 @@
   <div class="wrap">
     <div style="margin-bottom: 22px">
       <div class="chapter" style="margin-bottom: 14px">
-        <div class="chapter-num">09</div>
+        <div class="chapter-num">10</div>
         <div class="chapter-meta">
           <div class="chapter-name">Churned Accounts</div>
         </div>
@@ -1984,7 +2143,7 @@
 <section data-slide-title="PM Adoption · Research Approach">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">10</div>
+      <div class="chapter-num">11</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Research Approach</div>
       </div>
@@ -2047,7 +2206,7 @@
 <section class="paper">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">11</div>
+      <div class="chapter-num">12</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Data Findings</div>
       </div>
@@ -2300,7 +2459,7 @@
 <section data-slide-title="Funnel Methodology">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">12</div>
+      <div class="chapter-num">13</div>
       <div class="chapter-meta">
         <div class="chapter-name">Funnel Methodology</div>
       </div>
@@ -2511,7 +2670,7 @@
 <section class="paper" data-slide-title="Lease Funnel">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">13</div>
+      <div class="chapter-num">14</div>
       <div class="chapter-meta">
         <div class="chapter-name">Lease Funnel</div>
       </div>
@@ -3191,7 +3350,7 @@
 <section data-slide-title="Late invites overview">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">14</div>
+      <div class="chapter-num">15</div>
       <div class="chapter-meta">
         <div class="chapter-name">Late invites overview · where the Mature drop comes from</div>
       </div>
@@ -3296,7 +3455,7 @@
 <section>
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">15</div>
+      <div class="chapter-num">16</div>
       <div class="chapter-meta">
         <div class="chapter-name">Action Items</div>
       </div>
@@ -5384,9 +5543,9 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   // A group can contain `slides: [from, to]` and/or `children: [...nested groups]`.
   // Slides outside any group render as ungrouped items at the bottom.
   const tocGroups = [
-    { name: 'Business Overview', from: 1, to: 7 },
-    { name: 'PM Side', from: 8, to: 10 },
-    { name: 'Lease Funnel', from: 11, to: 13 },
+    { name: 'Business Overview', from: 1, to: 8 },
+    { name: 'PM Side', from: 9, to: 11 },
+    { name: 'Lease Funnel', from: 12, to: 14 },
   ];
 
   function escapeHtml(s) {
