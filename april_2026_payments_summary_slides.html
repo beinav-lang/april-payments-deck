@@ -1803,6 +1803,15 @@
       <div class="chart-wrap h380"><canvas id="chart-card-cause"></canvas></div>
     </div>
 
+    <div style="margin-top: 16px; padding: 12px 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
+      <strong style="color: var(--pink)">Migration distortions in the FT line</strong> · Two single-account events visibly move the curve:
+      <span style="display: block; margin-top: 4px">
+        <strong>Nov '25 spike (49.7%)</strong> — Dels Corporation (AR · 3,199 affordable-housing units) onboarded a slug of low-rent, high-card tenants.
+        &nbsp;·&nbsp;
+        <strong>Mar '26 dip (43.7%)</strong> — Costello Management (PA · 924 student-housing units) cut over their portfolio with <strong>738 ACH-only first-time tenants</strong> ($1.10M ACH volume), dragging FT card share down ~1.5 pp that cycle. April absorbed the tail (239 more tenants, ~0.4 pp drag).
+      </span>
+    </div>
+
   </div>
 </section>
 
@@ -2133,6 +2142,15 @@
     <div style="margin-top: 16px; padding: 12px 16px; background: rgba(49,133,252,0.06); border-left: 4px solid var(--blue); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
       <strong style="color: var(--blue)">Where this lives by segment →</strong>
       The FT-card-decline shown here is concentrated in <strong>SMB</strong> (FT new-lease adoption −5.5 pp Sep → Apr · ~22% mix-driven, ~78% behavior) and <strong>Mid-Market</strong> (−4.4 pp · 100% behavior — rent-tier mix is flat). Upper-Market FT adoption actually <em>rose</em> (+1.3 pp), partially offsetting at the blended level. See <strong>slide 07</strong> for the per-segment cut.
+    </div>
+
+    <div style="margin-top: 12px; padding: 12px 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
+      <strong style="color: var(--pink)">Migration distortions in the FT line</strong> · Two single-account events sit inside the recent FT-card decline:
+      <span style="display: block; margin-top: 4px">
+        <strong>Costello Management LLC</strong> (PA student housing · 924 units · ACH-only) — <strong>738 first-time tenants in March '26 cycle</strong> + 239 in April, all ACH. Dragged March FT card share <strong>−1.45 pp</strong> (29.87% actual vs ~31.32% ex-Costello) and April <strong>−0.38 pp</strong> (29.19% actual vs ~29.57% ex-Costello).
+        &nbsp;·&nbsp;
+        <strong>Christian Relief Services of Virginia</strong> (slide 13/14) is a smaller card-share contributor in April but the dominant invite-side event — see migration cut-over slide.
+      </span>
     </div>
 
     <p style="margin-top: 14px; font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5">
@@ -4142,8 +4160,11 @@ new Chart(document.getElementById('chart-waterfall'), {
 });
 
 // 5. Card adoption — FT vs Returning · 16-month tenant share
-// Highlight: Nov '25 FT spike to 49.7% (Dels Corp onboarding bump)
+// Highlights:
+//   Nov '25 FT spike to 49.7% (Dels Corp onboarding bump — high-card affordable housing)
+//   Mar '26 FT dip to 43.7% (Costello Mgmt cut-over — 738 ACH-only student-housing tenants)
 const novIdx = cardAdoption.findIndex(d => d.month === 'Nov 25');
+const marCstlIdx = cardAdoption.findIndex(d => d.month === 'Mar 26');
 new Chart(document.getElementById('chart-card-adoption'), {
   type: 'line',
   data: {
@@ -4155,23 +4176,24 @@ new Chart(document.getElementById('chart-card-adoption'), {
         borderColor: '#60a5fa',
         backgroundColor: 'rgba(96,165,250,0.07)',
         borderWidth: 3, tension: 0.35, fill: false,
-        pointRadius: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? 8 : (i === novIdx ? 9 : 5)),
-        pointBackgroundColor: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? C.warn : (i === novIdx ? '#1d4ed8' : '#60a5fa')),
-        pointBorderColor: cardAdoption.map((_,i)=> i === novIdx ? '#dffe02' : '#fff'),
-        pointBorderWidth: cardAdoption.map((_,i)=> i === novIdx ? 3 : 2),
+        pointRadius: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? 8 : (i === novIdx || i === marCstlIdx ? 9 : 5)),
+        pointBackgroundColor: cardAdoption.map((_,i)=> i === cardAdoption.length-1 ? C.warn : (i === novIdx ? '#1d4ed8' : (i === marCstlIdx ? '#ff4998' : '#60a5fa'))),
+        pointBorderColor: cardAdoption.map((_,i)=> i === novIdx ? '#dffe02' : (i === marCstlIdx ? '#dffe02' : '#fff')),
+        pointBorderWidth: cardAdoption.map((_,i)=> (i === novIdx || i === marCstlIdx) ? 3 : 2),
         datalabels: {
           display: true,
-          color: ctx => ctx.dataIndex === ctx.dataset.data.length-1 ? C.warn : (ctx.dataIndex === novIdx ? '#1d4ed8' : '#1d4ed8'),
+          color: ctx => ctx.dataIndex === ctx.dataset.data.length-1 ? C.warn : (ctx.dataIndex === marCstlIdx ? '#ff4998' : '#1d4ed8'),
           anchor: 'end',
-          align: ctx => ctx.dataIndex === novIdx ? 'top' : 'top',
-          offset: ctx => ctx.dataIndex === novIdx ? 10 : 6,
+          align: ctx => ctx.dataIndex === marCstlIdx ? 'bottom' : 'top',
+          offset: ctx => (ctx.dataIndex === novIdx || ctx.dataIndex === marCstlIdx) ? 10 : 6,
           font: ctx => ({
-            weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : (ctx.dataIndex === novIdx ? 800 : 600),
-            size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : (ctx.dataIndex === novIdx ? 13 : 10)
+            weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : ((ctx.dataIndex === novIdx || ctx.dataIndex === marCstlIdx) ? 800 : 600),
+            size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : ((ctx.dataIndex === novIdx || ctx.dataIndex === marCstlIdx) ? 13 : 10)
           }),
           formatter: (v, ctx) => {
             if (ctx.dataIndex === ctx.dataset.data.length-1) return v.toFixed(1) + '%' + ' · 16-mo low';
             if (ctx.dataIndex === novIdx) return v.toFixed(1) + '%  ·  Dels Corp';
+            if (ctx.dataIndex === marCstlIdx) return v.toFixed(1) + '%  ·  Costello drag';
             return v.toFixed(1) + '%';
           }
         }
