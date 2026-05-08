@@ -1805,11 +1805,11 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px">
       <div class="chart-shell">
         <div class="ch-title">Card adoption — % of paying tenants paying via card</div>
-        <div class="chart-wrap h380"><canvas id="chart-card-adoption"></canvas></div>
+        <div class="chart-wrap" style="height: 300px"><canvas id="chart-card-adoption"></canvas></div>
       </div>
       <div class="chart-shell">
         <div class="ch-title">Card Volume Share ($)</div>
-        <div class="chart-wrap h380"><canvas id="chart-card-cause"></canvas></div>
+        <div class="chart-wrap" style="height: 300px"><canvas id="chart-card-cause"></canvas></div>
       </div>
     </div>
 
@@ -4237,14 +4237,14 @@ new Chart(document.getElementById('chart-card-adoption'), {
     ]
   },
   options: baseOpts({
-    layout: { padding: { top: 18, right: 110, bottom: 12, left: 8 } },
+    layout: { padding: { top: 14, right: 78, bottom: 8, left: 6 } },
     plugins: {
       legend: { display: true, position: 'top', align: 'start',
-        labels: { boxWidth: 10, boxHeight: 2, font: { size: 10, weight: 600 }, padding: 10, color: C.muted } }
+        labels: { boxWidth: 10, boxHeight: 2, font: { size: 10, weight: 600 }, padding: 8, color: C.muted } }
     },
     scales: {
       x: { grid: { display: false }, ticks: monthAxisTicks(cardAdoption) },
-      y: { display: false, suggestedMin: 20, suggestedMax: 56, grace: '8%' }
+      y: { display: false, suggestedMin: 22, suggestedMax: 55, grace: '4%' }
     }
   })
 });
@@ -4303,10 +4303,10 @@ new Chart(document.getElementById('chart-card-cause'), {
     ]
   },
   options: baseOpts({
-    layout: { padding: { top: 12, right: 110, bottom: 8, left: 8 } },
+    layout: { padding: { top: 14, right: 78, bottom: 8, left: 6 } },
     plugins: {
       legend: { display: true, position: 'top', align: 'start',
-        labels: { boxWidth: 10, boxHeight: 2, font: { size: 10, weight: 600 }, padding: 10, color: C.muted } },
+        labels: { boxWidth: 10, boxHeight: 2, font: { size: 10, weight: 600 }, padding: 8, color: C.muted } },
       tooltip: {
         callbacks: {
           afterBody: (items) => {
@@ -4321,7 +4321,7 @@ new Chart(document.getElementById('chart-card-cause'), {
     scales: {
       x: { grid: { display: false },
            ticks: { ...monthAxisTicks(cardByPop), callback: (v, i) => fmtMonthShort(cardByPop[i].month) } },
-      y: { display: false, suggestedMin: 14, suggestedMax: 40, grace: '8%' }
+      y: { display: false, suggestedMin: 14, suggestedMax: 38, grace: '4%' }
     }
   })
 });
