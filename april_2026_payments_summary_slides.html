@@ -4207,9 +4207,9 @@ new Chart(document.getElementById('chart-card-adoption'), {
             size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : ((ctx.dataIndex === novIdx || ctx.dataIndex === marCstlIdx) ? 13 : 10)
           }),
           formatter: (v, ctx) => {
-            if (ctx.dataIndex === ctx.dataset.data.length-1) return v.toFixed(1) + '%' + ' · 16-mo low';
-            if (ctx.dataIndex === novIdx) return v.toFixed(1) + '%  ·  Dels surge';
-            if (ctx.dataIndex === marCstlIdx) return v.toFixed(1) + '%  ·  Costello drag';
+            if (ctx.dataIndex === ctx.dataset.data.length-1) return [v.toFixed(1) + '%', '16-mo low'];
+            if (ctx.dataIndex === novIdx) return [v.toFixed(1) + '%', 'Dels surge'];
+            if (ctx.dataIndex === marCstlIdx) return [v.toFixed(1) + '%', 'Costello drag'];
             return v.toFixed(1) + '%';
           }
         }
@@ -4231,13 +4231,13 @@ new Chart(document.getElementById('chart-card-adoption'), {
             weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
             size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
           }),
-          formatter: (v, ctx) => v.toFixed(1) + '%' + (ctx.dataIndex === ctx.dataset.data.length-1 ? ' · 12-mo low' : '')
+          formatter: (v, ctx) => ctx.dataIndex === ctx.dataset.data.length-1 ? [v.toFixed(1) + '%', '12-mo low'] : v.toFixed(1) + '%'
         }
       }
     ]
   },
   options: baseOpts({
-    layout: { padding: { top: 14, right: 78, bottom: 8, left: 6 } },
+    layout: { padding: { top: 14, right: 50, bottom: 8, left: 6 } },
     plugins: {
       legend: { display: true, position: 'top', align: 'start',
         labels: { boxWidth: 10, boxHeight: 2, font: { size: 10, weight: 600 }, padding: 8, color: C.muted } }
@@ -4277,7 +4277,7 @@ new Chart(document.getElementById('chart-card-cause'), {
             weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
             size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
           }),
-          formatter: (v, ctx) => v.toFixed(1) + '%' + (ctx.dataIndex === ctx.dataset.data.length-1 ? ' · 16-mo low' : '')
+          formatter: (v, ctx) => ctx.dataIndex === ctx.dataset.data.length-1 ? [v.toFixed(1) + '%', '16-mo low'] : v.toFixed(1) + '%'
         }
       },
       {
@@ -4297,13 +4297,13 @@ new Chart(document.getElementById('chart-card-cause'), {
             weight: ctx.dataIndex === ctx.dataset.data.length-1 ? 800 : 600,
             size: ctx.dataIndex === ctx.dataset.data.length-1 ? 13 : 10
           }),
-          formatter: (v, ctx) => v.toFixed(1) + '%' + (ctx.dataIndex === ctx.dataset.data.length-1 ? ' · 13-mo low' : '')
+          formatter: (v, ctx) => ctx.dataIndex === ctx.dataset.data.length-1 ? [v.toFixed(1) + '%', '13-mo low'] : v.toFixed(1) + '%'
         }
       }
     ]
   },
   options: baseOpts({
-    layout: { padding: { top: 14, right: 78, bottom: 8, left: 6 } },
+    layout: { padding: { top: 14, right: 50, bottom: 8, left: 6 } },
     plugins: {
       legend: { display: true, position: 'top', align: 'start',
         labels: { boxWidth: 10, boxHeight: 2, font: { size: 10, weight: 600 }, padding: 8, color: C.muted } },
