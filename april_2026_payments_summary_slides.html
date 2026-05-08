@@ -1850,9 +1850,9 @@
       </div>
     </div>
 
-    <h2 class="section-title">Two structural drivers · plus migration noise and an unexplained residual.</h2>
+    <h2 class="section-title"><em>The inflow is shifting out of the card sweet-spot · and a tail of PMs is going ACH-only.</em></h2>
     <p class="lede" style="margin-top: 6px">
-      The <strong>~9 pp drop in first-time card share</strong> (Mar '25 → Apr '26) breaks into a <strong style="color: var(--pink)">rent-mix shift</strong> (the inflow is shifting out of the card sweet spot) and a <strong style="color: #3185FC">growing tail of ACH-only PMs</strong> (PMs whose tenants almost never pay by card). Migration spikes add noise; a within-bucket drift on ≥$1,200 leases remains unexplained.
+      The <strong>~9 pp drop in first-time card share</strong> (Mar '25 → Apr '26) is a <strong style="color: var(--pink)">rent-mix shift</strong> on top of a <strong style="color: #3185FC">growing tail of ACH-only PMs</strong> — PMs whose tenants almost never pay by card. Migration spikes add cycle noise; a <strong style="color: #b45309">within-bucket drift on ≥$1,200 leases</strong> is real but not yet explained — that's our next investigation.
     </p>
 
     <!-- 4-piece decomposition strip -->
@@ -1874,8 +1874,8 @@
       </div>
       <div style="padding: 12px 14px; background: rgba(245,158,11,0.10); border-left: 4px solid #f59e0b; border-radius: 6px">
         <div style="font-size: 22px; font-weight: 800; color: #b45309; line-height: 1">~35%</div>
-        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Unexplained residual</div>
-        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Within-bucket drift on ≥$1,200</div>
+        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Open question →</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Within-bucket drift on ≥$1,200 (next)</div>
       </div>
     </div>
 
@@ -1896,16 +1896,15 @@
         <div class="ch-title">"ACH-only" PMs per month <span style="font-weight: 500; color: var(--muted); font-size: 11px">(≤5% card · ≥20 FT)</span></div>
         <div class="chart-wrap" style="height: 280px"><canvas id="chart-achonly-trend"></canvas></div>
         <div style="margin-top: 4px; text-align: center; font-size: 10.5px; color: var(--muted)">
-          Mar '26 spike = Costello cut-over (778 FT, 0% card). Ex-Costello: <strong style="color: var(--text)">8 PMs / 210 FT in Apr</strong> vs 3 / 79 in Sep.
+          Mar '26 spike is Costello (see slide 06). Underlying tail: <strong style="color: var(--text)">3 → 8 PMs ex-Costello</strong>.
         </div>
       </div>
     </div>
 
-    <!-- Action card -->
-    <div style="margin-top: 14px; padding: 11px 14px; background: rgba(223,254,2,0.20); border-left: 4px solid #162050; border-radius: 6px; font-size: 12px; line-height: 1.5; color: var(--text)">
-      <strong style="color: #162050">Where to look next:</strong>
-      <span style="color: var(--pink); font-weight: 700">ACH-only PM tail</span> — pull payment-method config + Plaid placement for the 8–9 PMs (Off Campus Philly, Costello, Brooklane, Mann &amp; Myers, Urban Scene, House Buyers Ontario, Patos, Homeward, Legacy Apex). &nbsp;·&nbsp;
-      <span style="color: #b45309; font-weight: 700">Within-bucket drift on ≥$1,200</span> — investigate why high-rent tenants are increasingly choosing ACH (Plaid prominence? Default payment-method UX? Demographic drift?).
+    <!-- Action card · prioritized -->
+    <div style="margin-top: 14px; padding: 11px 14px; background: rgba(223,254,2,0.20); border-left: 4px solid #162050; border-radius: 6px; font-size: 12px; line-height: 1.55; color: var(--text)">
+      <div><strong style="color: #162050; background: #dffe02; padding: 1px 7px; border-radius: 3px; margin-right: 6px">P1 · this week</strong> <span style="color: var(--pink); font-weight: 700">ACH-only PM tail</span> — pull payment-method config + Plaid placement for the 8–9 PMs: Off Campus Philly, Costello, Brooklane, Mann &amp; Myers, Urban Scene, House Buyers Ontario, Patos, Homeward, Legacy Apex.</div>
+      <div style="margin-top: 5px"><strong style="color: var(--muted); background: rgba(148,163,184,0.25); padding: 1px 7px; border-radius: 3px; margin-right: 6px">P2 · analysis</strong> <span style="color: #b45309; font-weight: 700">Within-bucket drift on ≥$1,200</span> — investigate why high-rent tenants are increasingly choosing ACH (Plaid prominence? default payment-method UX? demographic drift?).</div>
     </div>
 
     <p style="margin-top: 10px; font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.5">
