@@ -2090,19 +2090,7 @@
       </div>
     </div>
 
-    <!-- Ruled-out + Migration noise row -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px">
-      <div style="padding: 12px 16px; background: rgba(148,163,184,0.10); border-left: 4px solid #94a3b8; border-radius: 4px; font-size: 12px; line-height: 1.55; color: var(--text)">
-        <div style="font-weight: 800; color: #475569; font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px">Ruled out · autopay growth</div>
-        FT autopay grew <strong>+0.8 pp Jan → Apr</strong> (8.5% → 9.3%); autopay is ~80% ACH. Math: 0.8 pp × 27 pp gap = <strong>~0.2 pp drag</strong>. Real but tiny — not the driver of within-bucket softening.
-      </div>
-      <div style="padding: 12px 16px; background: rgba(148,163,184,0.10); border-left: 4px solid #94a3b8; border-radius: 4px; font-size: 12px; line-height: 1.55; color: var(--text)">
-        <div style="font-weight: 800; color: #475569; font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px">Ruled out · per-segment behavior collapse</div>
-        Adoption inside each PM segment is roughly flat with noise. The cross-segment decline is mostly <strong>mix + ACH-only PM tail</strong> — not tenants in any one segment changing behavior en masse.
-      </div>
-    </div>
-
-    <p style="margin-top: 12px; font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5">
+    <p style="margin-top: 16px; font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5">
       Methodology: PM-level definition uses <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">db_tenant</code> (account/landlord) joined to <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">salesforce_quickstart.account</code> for names. Card classification: <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='charge'</code> = card vs <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='payment'</code> = ACH on first-pay month.
     </p>
 
