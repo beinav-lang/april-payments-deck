@@ -1793,11 +1793,11 @@
       </p>
     </div>
 
-    <!-- Two-reason summary card -->
+    <!-- Decomposition summary card -->
     <div style="margin-top: 14px; padding: 14px 18px; background: linear-gradient(135deg, rgba(255,73,152,0.08) 0%, rgba(49,133,252,0.08) 100%); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
-      <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text); flex-shrink: 0">Two real reasons</div>
+      <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text); flex-shrink: 0">Why it's falling</div>
       <div style="flex: 1; min-width: 280px; font-size: 13px; line-height: 1.55; color: var(--text)">
-        <strong style="color: var(--pink)">Rent-mix shift (~40%)</strong> &nbsp;+&nbsp; <strong style="color: #3185FC">growing tail of ACH-only PMs (~50%)</strong> &nbsp;·&nbsp; <span style="color: var(--muted)">migration-spike noise (~10%)</span>
+        <strong style="color: var(--pink)">~40% rent-mix shift</strong> &nbsp;·&nbsp; <strong style="color: #3185FC">~15% ACH-only PM tail</strong> &nbsp;·&nbsp; <span style="color: var(--muted)">~10% migration noise</span> &nbsp;·&nbsp; <strong style="color: #b45309">~35% unexplained</strong> <span style="color: var(--muted); font-size: 11.5px">(within-bucket drift on ≥$1,200) — see slide 07</span>
       </div>
     </div>
 
@@ -1841,42 +1841,77 @@
 <!-- ============================================================ -->
 <!-- SECTION 07 · CARD SHARE BY SEGMENT                            -->
 <!-- ============================================================ -->
-<section class="paper" data-slide-title="Card Performance · The Where">
+<section class="paper" data-slide-title="Card Performance · The Why">
   <div class="wrap">
     <div class="chapter">
       <div class="chapter-num">07</div>
       <div class="chapter-meta">
-        <div class="chapter-name">Card Performance · The Where</div>
+        <div class="chapter-name">Card Performance · The Why</div>
       </div>
     </div>
 
-    <h2 class="section-title">Reason 1 · <em>Rent mix is shifting up — sweet spot is shrinking.</em></h2>
+    <h2 class="section-title">Two structural drivers · plus migration noise and an unexplained residual.</h2>
     <p class="lede" style="margin-top: 6px">
-      Among first-time paying leases, the <strong>&lt;$1,200 card sweet spot</strong> (~58% adoption) shrank from <strong>45.5% → 40.8%</strong> Sep → Apr while the <strong>≥$1,200 ACH-leaning</strong> bucket grew from <strong>54.5% → 59.2%</strong>. Mechanical, structural — moves FT card share down without any tenant changing behavior.
+      The <strong>~9 pp drop in first-time card share</strong> (Mar '25 → Apr '26) breaks into a <strong style="color: var(--pink)">rent-mix shift</strong> (the inflow is shifting out of the card sweet spot) and a <strong style="color: #3185FC">growing tail of ACH-only PMs</strong> (PMs whose tenants almost never pay by card). Migration spikes add noise; a within-bucket drift on ≥$1,200 leases remains unexplained.
     </p>
 
-    <!-- Two-reason recap card — slide 07 highlights the ~40% rent-mix piece -->
-    <div style="margin-top: 12px; padding: 14px 18px; background: linear-gradient(135deg, rgba(255,73,152,0.10) 0%, rgba(49,133,252,0.06) 100%); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
-      <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text); flex-shrink: 0">Two real reasons</div>
-      <div style="flex: 1; min-width: 280px; font-size: 13px; line-height: 1.55; color: var(--text)">
-        <strong style="color: var(--pink); background: rgba(255,73,152,0.18); padding: 2px 8px; border-radius: 4px; box-shadow: inset 0 -2px 0 var(--pink)">Rent-mix shift (~40%) ← this slide</strong>
-        <span style="color: var(--muted)">&nbsp;+&nbsp; growing tail of ACH-only PMs (~50%) &nbsp;·&nbsp; migration-spike noise (~10%)</span>
+    <!-- 4-piece decomposition strip -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px">
+      <div style="padding: 12px 14px; background: rgba(255,73,152,0.10); border-left: 4px solid #ff4998; border-radius: 6px">
+        <div style="font-size: 22px; font-weight: 800; color: #ff4998; line-height: 1">~40%</div>
+        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Rent-mix shift</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Sweet-spot share 45.5% → 40.8%</div>
+      </div>
+      <div style="padding: 12px 14px; background: rgba(49,133,252,0.10); border-left: 4px solid #3185FC; border-radius: 6px">
+        <div style="font-size: 22px; font-weight: 800; color: #3185FC; line-height: 1">~15%</div>
+        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">ACH-only PM tail</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">3 → 9 PMs Sep → Apr</div>
+      </div>
+      <div style="padding: 12px 14px; background: rgba(148,163,184,0.10); border-left: 4px solid #94a3b8; border-radius: 6px">
+        <div style="font-size: 22px; font-weight: 800; color: #475569; line-height: 1">~10%</div>
+        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Migration noise</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Dels masked / Costello dragged</div>
+      </div>
+      <div style="padding: 12px 14px; background: rgba(245,158,11,0.10); border-left: 4px solid #f59e0b; border-radius: 6px">
+        <div style="font-size: 22px; font-weight: 800; color: #b45309; line-height: 1">~35%</div>
+        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Unexplained residual</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Within-bucket drift on ≥$1,200</div>
       </div>
     </div>
 
-    <!-- Single overall rent-mix distribution chart -->
-    <div class="chart-shell" style="margin-top: 16px">
-      <div class="ch-title">Rent distribution of first-time paying leases</div>
-      <div class="chart-wrap" style="height: 380px"><canvas id="chart-rent-mix"></canvas></div>
+    <!-- Two-column charts: rent-mix + ACH-only PMs -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px">
+      <div class="chart-shell">
+        <div class="ch-title">Rent distribution · first-time paying leases</div>
+        <div class="chart-wrap" style="height: 280px"><canvas id="chart-rent-mix"></canvas></div>
+        <div style="margin-top: 4px; text-align: center; font-size: 10.5px; color: var(--muted)">
+          <span style="display:inline-block;width:9px;height:9px;background:#ff4998;border-radius:2px;vertical-align:middle;margin-right:4px"></span>
+          <strong style="color: var(--text)">&lt;$1,200 · sweet spot</strong>
+          &nbsp;
+          <span style="display:inline-block;width:9px;height:9px;background:#3185FC;border-radius:2px;vertical-align:middle;margin-right:4px"></span>
+          <strong style="color: var(--text)">≥$1,200 · ACH-leaning</strong>
+        </div>
+      </div>
+      <div class="chart-shell">
+        <div class="ch-title">"ACH-only" PMs per month <span style="font-weight: 500; color: var(--muted); font-size: 11px">(≤5% card · ≥20 FT)</span></div>
+        <div class="chart-wrap" style="height: 280px"><canvas id="chart-achonly-trend"></canvas></div>
+        <div style="margin-top: 4px; text-align: center; font-size: 10.5px; color: var(--muted)">
+          Mar '26 spike = Costello cut-over (778 FT, 0% card). Ex-Costello: <strong style="color: var(--text)">8 PMs / 210 FT in Apr</strong> vs 3 / 79 in Sep.
+        </div>
+      </div>
     </div>
 
-    <div style="text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px">
-      <span style="display:inline-block;width:10px;height:10px;background:#ff4998;border-radius:2px;vertical-align:middle;margin-right:5px"></span>
-      <strong style="color: var(--text)">`<$1,200` · card sweet spot</strong>
-      &nbsp;&nbsp;
-      <span style="display:inline-block;width:10px;height:10px;background:#3185FC;border-radius:2px;vertical-align:middle;margin-right:5px"></span>
-      <strong style="color: var(--text)">`≥$1,200` · ACH-leaning</strong>
+    <!-- Action card -->
+    <div style="margin-top: 14px; padding: 11px 14px; background: rgba(223,254,2,0.20); border-left: 4px solid #162050; border-radius: 6px; font-size: 12px; line-height: 1.5; color: var(--text)">
+      <strong style="color: #162050">Where to look next:</strong>
+      <span style="color: var(--pink); font-weight: 700">ACH-only PM tail</span> — pull payment-method config + Plaid placement for the 8–9 PMs (Off Campus Philly, Costello, Brooklane, Mann &amp; Myers, Urban Scene, House Buyers Ontario, Patos, Homeward, Legacy Apex). &nbsp;·&nbsp;
+      <span style="color: #b45309; font-weight: 700">Within-bucket drift on ≥$1,200</span> — investigate why high-rent tenants are increasingly choosing ACH (Plaid prominence? Default payment-method UX? Demographic drift?).
     </div>
+
+    <p style="margin-top: 10px; font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.5">
+      Methodology: ~40 / ~15 / ~10 / ~35 are directional estimates. A clean Kitagawa shift-share would tighten them. Card classification: <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='charge'</code> = card vs <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='payment'</code> = ACH on first-pay month. PM-level definition uses <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">db_tenant</code> joined to <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">salesforce_quickstart.account</code> for names.
+    </p>
+
   </div>
 </section>
 
@@ -1974,84 +2009,9 @@
 
 
 
-<!-- ===== Reason 2 · ACH-only PM tail ===== -->
-<section class="paper" data-slide-title="Card Performance · The Why">
-  <div class="wrap">
-    <div class="chapter">
-      <div class="chapter-num">08</div>
-      <div class="chapter-meta">
-        <div class="chapter-name">Card Performance · The Why</div>
-      </div>
-    </div>
-
-    <div style="margin-top: 24px">
-      <h2 class="section-title">Reason 2 · <em>A growing tail of ACH-only PMs is dragging the within-bucket line.</em></h2>
-      <p class="lede" style="margin-top: 6px">
-        Beyond the rent-mix shift, ~50% of the FT card-share decline traces to a small but growing cohort of PMs whose first-time tenants almost never pay by card. Count <strong>tripled Sep '25 → Apr '26 (3 → 9)</strong>. Likely an ACH-first / Plaid-first config or default at the PM level — <strong>actionable lever, not tenant choice.</strong>
-      </p>
-    </div>
-
-    <!-- Two-reason recap card — slide 08 highlights the ~50% ACH-only piece -->
-    <div style="margin-top: 12px; padding: 14px 18px; background: linear-gradient(135deg, rgba(255,73,152,0.06) 0%, rgba(49,133,252,0.10) 100%); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
-      <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text); flex-shrink: 0">Two real reasons</div>
-      <div style="flex: 1; min-width: 280px; font-size: 13px; line-height: 1.55; color: var(--text)">
-        <span style="color: var(--muted)">Rent-mix shift (~40%) &nbsp;+&nbsp;</span>
-        <strong style="color: #3185FC; background: rgba(49,133,252,0.18); padding: 2px 8px; border-radius: 4px; box-shadow: inset 0 -2px 0 #3185FC">growing tail of ACH-only PMs (~50%) ← this slide</strong>
-        <span style="color: var(--muted)">&nbsp;·&nbsp; migration-spike noise (~10%)</span>
-      </div>
-    </div>
-
-    <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; margin-top: 14px">
-      <!-- LEFT: bar+line — # of ACH-only PMs and FT volume per month -->
-      <div class="chart-shell">
-        <div class="ch-title">"ACH-only" PMs per month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">(≤5% card · ≥20 FT tenants)</span></div>
-        <div class="chart-wrap h360"><canvas id="chart-achonly-trend"></canvas></div>
-        <div style="margin-top: 8px; font-size: 11px; color: var(--muted); line-height: 1.5">
-          <strong>Mar '26 spike</strong> = Costello cut-over (778 FT, 0% card). Even excluding Costello, Apr has <strong>8 ACH-only PMs</strong> at ~210 FT tenants — still 2.7× the Sep baseline (3 PMs / 79 FT).
-        </div>
-      </div>
-
-      <!-- RIGHT: repeat offenders -->
-      <div class="chart-shell" style="display: flex; flex-direction: column">
-        <div class="ch-title">Repeat offenders · structurally ACH-only</div>
-        <ul style="margin: 10px 0 0; padding-left: 0; list-style: none; flex: 1">
-          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline">
-            <span><strong>Off Campus Philly</strong> <span style="color: var(--muted); font-size: 11px">· every month Sep → Apr</span></span>
-            <span style="font-weight: 800; color: var(--pink); font-size: 12.5px">0% card</span>
-          </li>
-          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline">
-            <span><strong>Costello Management</strong> <span style="color: var(--muted); font-size: 11px">· Feb / Mar / Apr cut-over</span></span>
-            <span style="font-weight: 800; color: var(--pink); font-size: 12.5px">0% card · 893 FT</span>
-          </li>
-          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline">
-            <span><strong>Brooklane Apartments</strong> <span style="color: var(--muted); font-size: 11px">· Feb / Mar / Apr</span></span>
-            <span style="font-weight: 800; color: var(--pink); font-size: 12.5px">0% card</span>
-          </li>
-          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline">
-            <span><strong>Mann &amp; Myers Realty</strong> <span style="color: var(--muted); font-size: 11px">· Jan + Apr</span></span>
-            <span style="font-weight: 800; color: var(--pink); font-size: 12.5px">0% card</span>
-          </li>
-          <li style="padding: 8px 0; display: flex; justify-content: space-between; align-items: baseline">
-            <span><strong>+ 5 more in Apr '26</strong> <span style="color: var(--muted); font-size: 11px">· Urban Scene, House Buyers Ontario, Patos, Homeward, Legacy Apex</span></span>
-            <span style="font-weight: 800; color: var(--pink); font-size: 12.5px">≤4% card</span>
-          </li>
-        </ul>
-        <div style="margin-top: 8px; padding: 10px 12px; background: rgba(223,254,2,0.18); border-left: 3px solid #162050; border-radius: 4px; font-size: 11.5px; line-height: 1.5; color: var(--text)">
-          <strong>Action:</strong> pull payment-method config + Plaid placement for these 8–9 PMs. If it's a setup/default, fix the default; if it's tenant choice driven by UX prominence, redesign the funnel.
-        </div>
-      </div>
-    </div>
-
-    <p style="margin-top: 16px; font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5">
-      Methodology: PM-level definition uses <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">db_tenant</code> (account/landlord) joined to <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">salesforce_quickstart.account</code> for names. Card classification: <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='charge'</code> = card vs <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='payment'</code> = ACH on first-pay month.
-    </p>
-
-  </div>
-</section>
-
 <script>
 (function() {
-  // Slide 08 · ACH-only PM count + FT volume per month
+  // Slide 07 · ACH-only PM count + FT volume per month (right-side chart)
   // Definition: PMs with ≤5% card share AND ≥20 FT tenants in that payment-cycle month.
   const months    = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
   const pmCount   = [3, 2, 2, 4, 4, 5, 7, 9];
@@ -2190,7 +2150,7 @@
 <section class="paper" data-slide-title="NSF">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">09</div>
+      <div class="chapter-num">08</div>
       <div class="chapter-meta">
         <div class="chapter-name">NSF</div>
       </div>
@@ -2258,7 +2218,7 @@
   <div class="wrap">
     <div style="margin-bottom: 22px">
       <div class="chapter" style="margin-bottom: 14px">
-        <div class="chapter-num">10</div>
+        <div class="chapter-num">09</div>
         <div class="chapter-meta">
           <div class="chapter-name">Churned Accounts</div>
         </div>
@@ -2351,7 +2311,7 @@
 <section data-slide-title="PM Adoption · Research Approach">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">11</div>
+      <div class="chapter-num">10</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Research Approach</div>
       </div>
@@ -2414,7 +2374,7 @@
 <section class="paper">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">12</div>
+      <div class="chapter-num">11</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Data Findings</div>
       </div>
@@ -2667,7 +2627,7 @@
 <section data-slide-title="Funnel Methodology">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">13</div>
+      <div class="chapter-num">12</div>
       <div class="chapter-meta">
         <div class="chapter-name">Funnel Methodology</div>
       </div>
@@ -2878,7 +2838,7 @@
 <section class="paper" data-slide-title="Lease Funnel">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">14</div>
+      <div class="chapter-num">13</div>
       <div class="chapter-meta">
         <div class="chapter-name">Lease Funnel</div>
       </div>
@@ -3558,7 +3518,7 @@
 <section data-slide-title="Late invites overview">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">15</div>
+      <div class="chapter-num">14</div>
       <div class="chapter-meta">
         <div class="chapter-name">Late invites overview · where the Mature drop comes from</div>
       </div>
@@ -3663,7 +3623,7 @@
 <section>
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">16</div>
+      <div class="chapter-num">15</div>
       <div class="chapter-meta">
         <div class="chapter-name">Action Items</div>
       </div>
