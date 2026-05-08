@@ -1830,75 +1830,60 @@
       </div>
     </div>
 
-    <h2 class="section-title">SMB is where the new-lease rent mix is structurally shifting up.</h2>
-    <p class="lede">
-      Slide 08's rent-mix story (`<$1,200` sweet spot shrinking, `≥$1,200` growing), now sliced per segment. The shift is concentrated: <strong>SMB lost 4.7 pp of `<$1,200` share Sep → Apr</strong>; Mid-Market and Emerging are flat; Upper-Market moved more but is Dels-distorted (account noise, not behavior). SMB is the cleanest case to investigate.
-    </p>
-    <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4">
-      Slide 06 = the WHAT &nbsp;·&nbsp; Slide 07 = the WHERE (this view) &nbsp;·&nbsp; Slide 08 = the WHY
-    </div>
+    <h2 class="section-title">SMB and Upper-Market are shifting up · Emerging and Mid-Market are stable.</h2>
 
     <!-- 4 segment shift tiles -->
-    <div class="cseg-tiles" style="margin-top: 18px">
+    <div class="cseg-tiles" style="margin-top: 14px">
       <div class="cseg-tile">
         <div class="cseg-name">Emerging</div>
-        <div class="cseg-rate">23.4%</div>
-        <div class="cseg-delta" style="color: var(--muted)">+0.9 pp · flat</div>
+        <div class="cseg-rate">23%</div>
+        <div class="cseg-delta" style="color: var(--muted)">flat</div>
       </div>
       <div class="cseg-tile" style="border-left-color: var(--pink)">
-        <div class="cseg-name">SMB · cleanest case</div>
-        <div class="cseg-rate" style="color: var(--pink)">36.5%</div>
-        <div class="cseg-delta down">−4.7 pp Sep → Apr</div>
+        <div class="cseg-name">SMB</div>
+        <div class="cseg-rate" style="color: var(--pink)">37%</div>
+        <div class="cseg-delta down">−5 pp Sep → Apr</div>
       </div>
       <div class="cseg-tile">
         <div class="cseg-name">Mid-Market</div>
-        <div class="cseg-rate">48.3%</div>
-        <div class="cseg-delta" style="color: var(--muted)">−0.9 pp · flat</div>
+        <div class="cseg-rate">48%</div>
+        <div class="cseg-delta" style="color: var(--muted)">flat</div>
       </div>
-      <div class="cseg-tile">
+      <div class="cseg-tile" style="border-left-color: var(--pink)">
         <div class="cseg-name">Upper-Market</div>
-        <div class="cseg-rate">59.9%</div>
-        <div class="cseg-delta down">−6.0 pp · Dels-distorted</div>
+        <div class="cseg-rate" style="color: var(--pink)">60%</div>
+        <div class="cseg-delta down">−6 pp Sep → Apr</div>
       </div>
     </div>
     <div style="font-size: 10.5px; color: var(--muted); margin-top: 6px; text-align: right">
-      Each tile shows current <strong style="color:var(--text)">`<$1,200` share</strong> of new active leases (Apr '26) + Sep → Apr shift
+      Each tile shows <strong style="color:var(--text)">`<$1,200` share</strong> of new active leases (Apr '26 · Sep → Apr shift)
     </div>
 
     <!-- 4 stacked mini-charts: rent-bucket mix per segment over time -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px">
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px">
       <div class="chart-shell">
         <div class="ch-title" style="font-size: 14px">Emerging</div>
-        <div class="ch-sub" style="font-size: 10.5px">new-lease rent mix · 8 months</div>
-        <div class="chart-wrap" style="height: 240px"><canvas id="chart-segmix-em"></canvas></div>
+        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-em"></canvas></div>
       </div>
-      <div class="chart-shell" style="border: 1px solid var(--pink)">
-        <div class="ch-title" style="font-size: 14px">SMB <span style="font-size:10px;color:var(--pink);font-weight:800;letter-spacing:1px">★ MOVING</span></div>
-        <div class="ch-sub" style="font-size: 10.5px">new-lease rent mix · 8 months</div>
-        <div class="chart-wrap" style="height: 240px"><canvas id="chart-segmix-smb"></canvas></div>
+      <div class="chart-shell" style="border: 1.5px solid var(--pink)">
+        <div class="ch-title" style="font-size: 14px; color: var(--pink)">SMB</div>
+        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-smb"></canvas></div>
       </div>
       <div class="chart-shell">
         <div class="ch-title" style="font-size: 14px">Mid-Market</div>
-        <div class="ch-sub" style="font-size: 10.5px">new-lease rent mix · 8 months</div>
-        <div class="chart-wrap" style="height: 240px"><canvas id="chart-segmix-mid"></canvas></div>
+        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-mid"></canvas></div>
       </div>
-      <div class="chart-shell">
-        <div class="ch-title" style="font-size: 14px">Upper-Market</div>
-        <div class="ch-sub" style="font-size: 10.5px">distorted by Dels migrations</div>
-        <div class="chart-wrap" style="height: 240px"><canvas id="chart-segmix-upr"></canvas></div>
+      <div class="chart-shell" style="border: 1.5px solid var(--pink)">
+        <div class="ch-title" style="font-size: 14px; color: var(--pink)">Upper-Market</div>
+        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-upr"></canvas></div>
       </div>
     </div>
     <div style="text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px">
       <span style="display:inline-block;width:10px;height:10px;background:#ff4998;border-radius:2px;vertical-align:middle;margin-right:5px"></span>
-      <strong style="color: var(--text)">`<$1,200` rent · card sweet spot</strong>
+      <strong style="color: var(--text)">`<$1,200` · card sweet spot</strong>
       &nbsp;&nbsp;
       <span style="display:inline-block;width:10px;height:10px;background:#3185FC;border-radius:2px;vertical-align:middle;margin-right:5px"></span>
-      <strong style="color: var(--text)">`≥$1,200` rent · ACH-leaning</strong>
-    </div>
-
-    <div style="margin-top: 18px; padding: 14px 18px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 6px; font-size: 12.5px; line-height: 1.55; color: var(--text)">
-      <strong style="color: var(--pink)">Investigation pointer →</strong>
-      The slide-08 mechanism plays out unevenly. Mid-Market is the largest pool (~54% of new leases) but its rent mix is stable, so the card-share decline there is mostly within-bucket behavior. <strong>SMB</strong> shows a real <strong>compositional shift</strong> (`<$1,200` share dropping 4.7 pp) AND it has weight (~30% of new leases). When investigating where new-tenant card adoption is changing, <strong>start with SMB</strong>; treat Upper-Market signals as account-noise unless ex-Dels.
+      <strong style="color: var(--text)">`≥$1,200` · ACH-leaning</strong>
     </div>
   </div>
 </section>
