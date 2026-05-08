@@ -1805,24 +1805,35 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px">
       <div class="chart-shell">
         <div class="ch-title">Card adoption — % of paying tenants paying via card</div>
-        <div class="chart-wrap" style="height: 300px"><canvas id="chart-card-adoption"></canvas></div>
+        <div class="chart-wrap" style="height: 400px"><canvas id="chart-card-adoption"></canvas></div>
       </div>
       <div class="chart-shell">
         <div class="ch-title">Card Volume Share ($)</div>
-        <div class="chart-wrap" style="height: 300px"><canvas id="chart-card-cause"></canvas></div>
+        <div class="chart-wrap" style="height: 400px"><canvas id="chart-card-cause"></canvas></div>
       </div>
     </div>
 
-    <div style="margin-top: 16px; padding: 12px 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong style="color: var(--pink)">Migration noise (~10% of the move) · Asymmetric — masking, then exaggerating</strong>
-      <ul style="margin: 6px 0 0; padding-left: 22px">
-        <li style="margin-bottom: 4px"><strong>Nov '25 surge (49.7%)</strong> — <em>Dels Corporation</em> brought ~1,230 first-time tenants at <strong>72–79% card</strong> (vs ~46% baseline). <strong>Masked</strong> the underlying decline — without Dels the slide started earlier.</li>
-        <li style="margin-bottom: 4px"><strong>Jan '26 dip (44.8%)</strong> — <em>Fitz Osborn Real Estate</em> · 283 FT at <strong>26.5% card</strong> → ~0.4 pp drag.</li>
-        <li style="margin-bottom: 4px"><strong>Mar '26 dip (43.7%)</strong> — <em>Costello Management</em> · 778 FT at <strong>0% card</strong> ($1.10M pure ACH) → ~1.5 pp drag. April absorbed the tail (115 more).</li>
-        <li><strong>Apr '26 (43.2%)</strong> — <em>Christian Relief Services</em> · 53 FT at 34% card → ~0.1 pp drag.</li>
-      </ul>
-      <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); font-style: italic">Net of all four, the trend is still down — these are spikes, not the cause.</div>
-    </div>
+    <details style="margin-top: 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; padding: 10px 16px">
+      <summary style="cursor: pointer; font-size: 12.5px; line-height: 1.55; color: var(--pink); font-weight: 700; list-style: none; display: flex; align-items: center; gap: 8px">
+        <span style="display: inline-block; width: 14px; text-align: center; transition: transform 0.2s; color: var(--pink)" class="cs-caret">▶</span>
+        Migration noise (~10% of the move) · Asymmetric — masking, then exaggerating
+        <span style="margin-left: auto; font-size: 10.5px; font-weight: 600; color: var(--muted); font-style: italic">click to expand</span>
+      </summary>
+      <div style="margin-top: 10px; font-size: 12.5px; color: var(--text); line-height: 1.55">
+        <ul style="margin: 0; padding-left: 22px">
+          <li style="margin-bottom: 4px"><strong>Nov '25 surge (49.7%)</strong> — <em>Dels Corporation</em> brought ~1,230 first-time tenants at <strong>72–79% card</strong> (vs ~46% baseline). <strong>Masked</strong> the underlying decline — without Dels the slide started earlier.</li>
+          <li style="margin-bottom: 4px"><strong>Jan '26 dip (44.8%)</strong> — <em>Fitz Osborn Real Estate</em> · 283 FT at <strong>26.5% card</strong> → ~0.4 pp drag.</li>
+          <li style="margin-bottom: 4px"><strong>Mar '26 dip (43.7%)</strong> — <em>Costello Management</em> · 778 FT at <strong>0% card</strong> ($1.10M pure ACH) → ~1.5 pp drag. April absorbed the tail (115 more).</li>
+          <li><strong>Apr '26 (43.2%)</strong> — <em>Christian Relief Services</em> · 53 FT at 34% card → ~0.1 pp drag.</li>
+        </ul>
+        <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); font-style: italic">Net of all four, the trend is still down — these are spikes, not the cause.</div>
+      </div>
+    </details>
+    <style>
+      details > summary::-webkit-details-marker { display: none; }
+      details[open] > summary .cs-caret { transform: rotate(90deg); }
+      details[open] > summary > span:last-child { display: none; }
+    </style>
 
   </div>
 </section>
