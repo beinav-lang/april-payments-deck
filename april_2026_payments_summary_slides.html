@@ -1789,11 +1789,14 @@
       <h2 class="section-title">Adoption is the cause · <em>share is the symptom</em>.</h2>
       <p class="lede">
         Card share fell to a 12-month low (17.75%) even though <strong>absolute card volume hit a record</strong> ($54.66M).
-        The drift is being driven by <strong>each new cohort entering with less card</strong> — a pattern visible for several months: first-time-tenant card adoption has fallen <strong>~9pp since Mar '25</strong> (38.32% → 29.19%).
+        Returning tenants are stable; <strong>first-time tenants are the line that's moving</strong> — FT card share dropped <strong>~9 pp since Mar '25</strong> (38.32% → 29.19%), each new cohort entering with less card than the last.
       </p>
+      <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4">
+        Slide 06 = the WHAT (this view) &nbsp;·&nbsp; Slide 07 = the WHERE (which PM segments) &nbsp;·&nbsp; Slide 08 = the WHY (rent-mix + behavior mechanism)
+      </div>
     </div>
 
-    <div class="chart-shell" style="margin-top: 8px">
+    <div class="chart-shell" style="margin-top: 14px">
       <div class="ch-title">Card adoption — % of paying tenants paying via card</div>
       <div class="chart-wrap h380"><canvas id="chart-card-adoption"></canvas></div>
     </div>
@@ -1827,84 +1830,46 @@
       </div>
     </div>
 
-    <h2 class="section-title">April rent eased back from March's spike — adoption partially recovered.</h2>
+    <h2 class="section-title">FT card adoption fell across all four segments — Mid-Market biggest drop.</h2>
     <p class="lede">
-      Median rent of paying tenants <strong>dropped $20–$45 in 3 of 4 segments Mar → Apr</strong> (after spiking $35–$45 in March). Card adoption ticked up <strong>+0.2 to +0.9 pp</strong> the same month. Direction-perfect inverse correlation: card adoption is structurally rent-sensitive (~38% at &lt;$1K rent → ~6% at $3K+), so the rent mix mechanically drives blended adoption.
+      Slide 06's FT-cohort decline, sliced by PM segment. <strong>Apr '25 → Apr '26: every segment is down</strong>. Mid-Market lost the most (−6.8 pp), then SMB (−5.6 pp), Emerging (−3.4 pp), Upper-Market (−3.1 pp). The pattern is consistent across operator size — this is not a niche issue, it's a base-rate shift in how new tenants pay.
     </p>
-    <div style="margin-top: 12px; padding: 12px 16px; background: rgba(49,133,252,0.06); border-left: 4px solid var(--blue); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong style="color: var(--blue)">Connection to slide 08 →</strong>
-      This is the segment view of slide 08's FT-card-decline narrative. New-lease FT adoption is dropping in <strong>SMB</strong> (−5.5 pp Sep → Apr) and <strong>Mid-Market</strong> (−4.4 pp), holding rent constant — i.e. real behavior shift, not mix. Mar → Apr's mild recovery here doesn't reverse the longer 13-month decline; it unwinds the March rent spike only.
+    <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4">
+      Slide 06 = the WHAT &nbsp;·&nbsp; Slide 07 = the WHERE (this view) &nbsp;·&nbsp; Slide 08 = the WHY
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px">
-      <div class="chart-shell">
-        <div class="ch-title">Median rent of paying tenants · by segment</div>
-        <div class="ch-sub">Apr '25 → Apr '26 · <strong style="color:var(--pink)">March spike</strong> + April (current) highlighted</div>
-        <div class="chart-wrap" style="height: 300px"><canvas id="chart-rent-trend"></canvas></div>
+    <!-- 4 segment YoY tiles -->
+    <div class="cseg-tiles" style="margin-top: 18px">
+      <div class="cseg-tile">
+        <div class="cseg-name">Emerging</div>
+        <div class="cseg-rate">38.9%</div>
+        <div class="cseg-delta down">−3.4 pp YoY</div>
       </div>
-      <div class="chart-shell">
-        <div class="ch-title">Card adoption · by segment</div>
-        <div class="ch-sub">Apr '25 → Apr '26 · <strong style="color:var(--pink)">March dip</strong> + April (current) highlighted · % of paying tenants paying by card</div>
-        <div class="chart-wrap" style="height: 300px"><canvas id="chart-card-by-rent-trend"></canvas></div>
+      <div class="cseg-tile">
+        <div class="cseg-name">SMB</div>
+        <div class="cseg-rate">38.7%</div>
+        <div class="cseg-delta down">−5.6 pp YoY</div>
+      </div>
+      <div class="cseg-tile" style="border-left-color: var(--pink)">
+        <div class="cseg-name">Mid-Market</div>
+        <div class="cseg-rate" style="color: var(--pink)">44.8%</div>
+        <div class="cseg-delta down">−6.8 pp YoY · biggest</div>
+      </div>
+      <div class="cseg-tile">
+        <div class="cseg-name">Upper-Market</div>
+        <div class="cseg-rate">51.2%</div>
+        <div class="cseg-delta down">−3.1 pp YoY</div>
       </div>
     </div>
 
-    <div class="cseg-why">
-      <div class="cseg-why-label">March → April · rent normalized, adoption recovered</div>
-      <table style="width:100%; border-collapse: collapse; font-size: 12.5px; font-family: 'Poppins', sans-serif">
-        <thead>
-          <tr style="text-align: left; color: var(--muted); font-size: 10.5px; letter-spacing: 0.6px; text-transform: uppercase; border-bottom: 1px solid var(--divider)">
-            <th style="padding: 6px 8px; font-weight: 800">segment</th>
-            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Mar median rent</th>
-            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Apr median rent</th>
-            <th style="padding: 6px 8px; text-align: right; font-weight: 800; color: var(--blue)">Δ rent</th>
-            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Mar adoption</th>
-            <th style="padding: 6px 8px; text-align: right; font-weight: 800">Apr adoption</th>
-            <th style="padding: 6px 8px; text-align: right; font-weight: 800; color: var(--blue)">Δ adoption</th>
-          </tr>
-        </thead>
-        <tbody style="color: var(--text)">
-          <tr style="border-bottom: 1px solid var(--divider)">
-            <td style="padding: 8px; font-weight: 700">Emerging</td>
-            <td style="padding: 8px; text-align: right">$1,845</td>
-            <td style="padding: 8px; text-align: right">$1,800</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">−$45</td>
-            <td style="padding: 8px; text-align: right">20.9%</td>
-            <td style="padding: 8px; text-align: right">21.8%</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">+0.9 pp</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--divider)">
-            <td style="padding: 8px; font-weight: 700">SMB</td>
-            <td style="padding: 8px; text-align: right">$1,600</td>
-            <td style="padding: 8px; text-align: right">$1,600</td>
-            <td style="padding: 8px; text-align: right; color: var(--muted); font-weight: 700">flat</td>
-            <td style="padding: 8px; text-align: right">24.4%</td>
-            <td style="padding: 8px; text-align: right">24.6%</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">+0.2 pp</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--divider)">
-            <td style="padding: 8px; font-weight: 700">Mid-Market</td>
-            <td style="padding: 8px; text-align: right">$1,300</td>
-            <td style="padding: 8px; text-align: right">$1,275</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">−$25</td>
-            <td style="padding: 8px; text-align: right">29.2%</td>
-            <td style="padding: 8px; text-align: right">29.9%</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">+0.7 pp</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; font-weight: 700">Upper-Market</td>
-            <td style="padding: 8px; text-align: right">$995</td>
-            <td style="padding: 8px; text-align: right">$975</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">−$20</td>
-            <td style="padding: 8px; text-align: right">35.5%</td>
-            <td style="padding: 8px; text-align: right">36.0%</td>
-            <td style="padding: 8px; text-align: right; color: var(--blue); font-weight: 800">+0.5 pp</td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="margin-top: 12px; font-size: 12px; color: var(--muted); line-height: 1.55">
-        Mar '26 was a record-high lease-activation month — new entrants likely skewed higher-rent than the existing pool, pulling the median up and adoption down. April activations normalized; rent and adoption both partially reverted. April adoption is still slightly below Feb's pre-spike level (3 of 4 segments), so the mix hasn't fully unwound.
-      </div>
+    <div class="chart-shell" style="margin-top: 18px">
+      <div class="ch-title">First-time tenant card adoption · 13-month trend by PM segment</div>
+      <div class="ch-sub">Apr '25 → Apr '26 · % of FT paying tenants paying by card · April highlighted</div>
+      <div class="chart-wrap" style="height: 320px"><canvas id="chart-card-by-rent-trend"></canvas></div>
+    </div>
+
+    <div style="margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.55">
+      Upper-Market is the noisiest line — its month-to-month moves are largely account-arrival noise (Dels Corp ramp-up Oct/Nov '25, Costello cut-over Mar/Apr '26 dragged it down briefly, Christian Relief in Apr — see slide 06 footnote). The cleanest behavioral signals are <strong>Mid-Market and SMB</strong>, where account concentration is low.
     </div>
   </div>
 </section>
@@ -1915,155 +1880,71 @@
   // Card adoption = COUNT(DISTINCT card-paying customer_id) / COUNT(DISTINCT paying customer_id)
   // per month per segment. type='charge'=card, type='payment'=ACH; cash payments excluded.
 
-  // Apr '25 vs Apr '26 adoption (YoY paired bars)
-  const adoptYoY = [
-    { seg: 'Emerging',     apr25: 22.6, apr26: 21.8 },
-    { seg: 'SMB',          apr25: 25.6, apr26: 24.6 },
-    { seg: 'Mid-Market',   apr25: 31.3, apr26: 29.9 },
-    { seg: 'Upper-Market', apr25: 33.0, apr26: 35.9 }
-  ];
-
-  // 13-month series · median rent of paying tenants AND card adoption, per segment.
+  // 13-month series · FIRST-TIME tenant card adoption per segment (matches slide 06's FT focus)
   const months = ["Apr '25","May '25","Jun '25","Jul '25","Aug '25","Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
-  const medianRent = {
-    'Emerging':     [1800, 1775, 1800, 1790, 1775, 1800, 1800, 1800, 1800, 1800, 1800, 1845, 1800],
-    'SMB':          [1550, 1525, 1550, 1550, 1550, 1600, 1555, 1597, 1575, 1550, 1555, 1600, 1600],
-    'Mid-Market':   [1225, 1225, 1250, 1249, 1228, 1275, 1250, 1265, 1250, 1250, 1265, 1300, 1275],
-    'Upper-Market': [1020, 1024, 1065, 1015, 1050, 1045, 1000, 1000,  975,  950,  950,  995,  975]
-  };
-  const adoption = {
-    'Emerging':     [21.8, 23.3, 21.7, 22.9, 23.8, 21.7, 22.0, 21.3, 21.4, 22.8, 22.1, 20.9, 21.8],
-    'SMB':          [25.0, 26.3, 25.1, 26.1, 27.2, 24.8, 25.9, 25.5, 25.7, 26.4, 26.0, 24.4, 24.6],
-    'Mid-Market':   [30.5, 31.6, 30.1, 31.3, 32.7, 30.0, 31.3, 30.6, 31.0, 31.1, 31.0, 29.2, 29.9],
-    'Upper-Market': [32.8, 33.4, 32.3, 34.5, 34.5, 32.2, 36.0, 35.2, 36.3, 38.0, 37.3, 35.5, 36.0]
+  const ftAdoptionBySeg = {
+    'Emerging':     [42.3, 42.8, 35.1, 41.1, 41.8, 35.6, 40.6, 40.0, 38.9, 41.3, 40.0, 37.6, 38.9],
+    'SMB':          [44.3, 47.3, 40.3, 41.8, 45.3, 39.4, 44.4, 46.1, 43.8, 43.6, 43.1, 39.8, 38.7],
+    'Mid-Market':   [51.6, 52.3, 46.5, 46.8, 51.7, 45.0, 49.8, 50.0, 49.5, 47.3, 48.2, 43.3, 44.8],
+    'Upper-Market': [54.3, 51.0, 45.0, 51.3, 52.9, 43.3, 63.9, 57.5, 57.7, 51.7, 60.3, 41.1, 51.2]
   };
   const tierColors = {
     'Emerging':     '#94a3b8',
     'SMB':          '#94b8e8',
-    'Mid-Market':   '#3185FC',
+    'Mid-Market':   '#ff4998',  // pink — biggest drop
     'Upper-Market': '#162050'
   };
 
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
 
-    // LEFT: paired bars — Apr '25 vs Apr '26 adoption per segment
-    const ctxBar = document.getElementById('chart-card-by-rent');
-    if (ctxBar) {
-      new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-          labels: adoptYoY.map(d => d.seg),
-          datasets: [
-            {
-              label: "Apr '25",
-              data: adoptYoY.map(d => d.apr25),
-              backgroundColor: '#cbd5e1',
-              borderRadius: 5,
-              datalabels: {
-                display: true, anchor: 'end', align: 'top', offset: 4,
-                color: '#475569', font: { weight: 700, size: 11, family: 'Poppins' },
-                formatter: v => v.toFixed(1) + '%'
-              }
-            },
-            {
-              label: "Apr '26",
-              data: adoptYoY.map(d => d.apr26),
-              backgroundColor: '#3185FC',
-              borderRadius: 5,
-              datalabels: {
-                display: true, anchor: 'end', align: 'top', offset: 4,
-                color: '#162050', font: { weight: 800, size: 11.5, family: 'Poppins' },
-                formatter: (v, ctx) => {
-                  const d = adoptYoY[ctx.dataIndex];
-                  const delta = d.apr26 - d.apr25;
-                  const sign = delta >= 0 ? '+' : '';
-                  return v.toFixed(1) + '%\n' + sign + delta.toFixed(1) + ' pp';
-                }
-              }
-            }
-          ]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 36, right: 12, bottom: 6, left: 4 } },
-          plugins: {
-            legend: {
-              display: true, position: 'top', align: 'center',
-              labels: { boxWidth: 14, boxHeight: 10, font: { size: 11, weight: 700 }, color: '#162050' }
-            },
-            tooltip: {
-              callbacks: {
-                label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%',
-                afterBody: items => {
-                  const d = adoptYoY[items[0].dataIndex];
-                  const delta = d.apr26 - d.apr25;
-                  return ['YoY: ' + (delta >= 0 ? '+' : '') + delta.toFixed(1) + ' pp'];
-                }
-              }
-            }
-          },
-          scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 11, weight: 700 }, color: '#162050' } },
-            y: { beginAtZero: true, max: 42,
-              grid: { color: 'rgba(0,0,0,0.06)' },
-              ticks: { font: { size: 10 }, callback: v => v + '%', color: '#64748b' }
-            }
-          }
-        }
-      });
-    }
-
     const segOrder = ['Emerging','SMB','Mid-Market','Upper-Market'];
-    const marIdx = months.indexOf("Mar '26");
     const aprIdx = months.indexOf("Apr '26");
+    const aprStartIdx = months.indexOf("Apr '25");
 
-    // Build a chart factory used by both panels
-    function makeLineChart(canvasId, dataMap, opts) {
-      const el = document.getElementById(canvasId);
-      if (!el) return;
-      new Chart(el, {
+    const ctxLine = document.getElementById('chart-card-by-rent-trend');
+    if (ctxLine) {
+      new Chart(ctxLine, {
         type: 'line',
         data: {
           labels: months,
           datasets: segOrder.map(seg => ({
             label: seg,
-            data: dataMap[seg],
+            data: ftAdoptionBySeg[seg],
             borderColor: tierColors[seg],
             backgroundColor: 'transparent',
-            borderWidth: 2.5,
+            borderWidth: seg === 'Mid-Market' ? 3 : 2.5,
             tension: 0.3,
-            // Highlight April (active month) larger; Mar in muted pink as the spike
-            pointRadius: ctx => ctx.dataIndex === aprIdx ? 7 : (ctx.dataIndex === marIdx ? 5 : 3),
-            pointBackgroundColor: ctx => ctx.dataIndex === aprIdx ? tierColors[seg] : (ctx.dataIndex === marIdx ? '#ff4998' : tierColors[seg]),
+            pointRadius: ctx => (ctx.dataIndex === aprIdx || ctx.dataIndex === aprStartIdx) ? 6 : 3,
+            pointBackgroundColor: tierColors[seg],
             pointBorderColor: '#fff',
-            pointBorderWidth: ctx => ctx.dataIndex === aprIdx ? 2.5 : (ctx.dataIndex === marIdx ? 2 : 1.5),
+            pointBorderWidth: ctx => (ctx.dataIndex === aprIdx || ctx.dataIndex === aprStartIdx) ? 2 : 1.5,
             datalabels: {
-              // Label first point + Mar spike + Apr (active month)
-              display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === marIdx || ctx.dataIndex === aprIdx,
+              // Label endpoints (Apr '25 + Apr '26) and every other point in between to read the full trend
+              display: ctx => ctx.dataIndex === aprStartIdx || ctx.dataIndex === aprIdx || ctx.dataIndex % 3 === 0,
               align: (seg === 'Upper-Market' || seg === 'Mid-Market') ? 'top' : 'bottom',
               anchor: (seg === 'Upper-Market' || seg === 'Mid-Market') ? 'end' : 'start',
-              offset: 6,
-              color: ctx => ctx.dataIndex === aprIdx ? tierColors[seg] : (ctx.dataIndex === marIdx ? '#ff4998' : tierColors[seg]),
+              offset: 5,
+              color: tierColors[seg],
               font: ctx => ({
-                weight: (ctx.dataIndex === aprIdx || ctx.dataIndex === marIdx) ? 800 : 700,
-                size: ctx.dataIndex === aprIdx ? 11 : (ctx.dataIndex === marIdx ? 10 : 9.5),
+                weight: (ctx.dataIndex === aprIdx || ctx.dataIndex === aprStartIdx) ? 800 : 600,
+                size: (ctx.dataIndex === aprIdx || ctx.dataIndex === aprStartIdx) ? 11 : 9,
                 family: 'Poppins'
               }),
-              formatter: v => opts.fmt(v)
+              formatter: v => v.toFixed(1)
             }
           }))
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 24, right: 14, bottom: 22, left: 4 } },
+          layout: { padding: { top: 22, right: 14, bottom: 22, left: 4 } },
           plugins: {
             legend: {
               display: true, position: 'top', align: 'end',
               labels: { boxWidth: 14, boxHeight: 2, font: { size: 12, weight: 700 }, color: '#162050' }
             },
             tooltip: {
-              callbacks: { label: c => c.dataset.label + ': ' + opts.fmtTooltip(c.parsed.y) }
+              callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '% FT card adoption' }
             }
           },
           scales: {
@@ -2072,32 +1953,18 @@
               ticks: {
                 font: ctx => ({
                   size: 10,
-                  weight: (ctx.index === aprIdx || ctx.index === marIdx) ? 800 : 600,
+                  weight: (ctx.index === aprIdx || ctx.index === aprStartIdx) ? 800 : 600,
                   family: 'Poppins'
                 }),
-                color: ctx => ctx.index === aprIdx ? '#162050' : (ctx.index === marIdx ? '#ff4998' : '#64748b'),
+                color: ctx => (ctx.index === aprIdx || ctx.index === aprStartIdx) ? '#162050' : '#64748b',
                 maxRotation: 0, autoSkip: false
               }
             },
-            y: { display: false, beginAtZero: false, min: opts.yMin, max: opts.yMax }
+            y: { display: false, beginAtZero: false, min: 30, max: 70 }
           }
         }
       });
     }
-
-    // LEFT: median rent ($) — yMin/yMax tuned to fit ~$950 to $1850
-    makeLineChart('chart-rent-trend', medianRent, {
-      yMin: 850, yMax: 1900,
-      fmt: v => '$' + Math.round(v),
-      fmtTooltip: v => '$' + Math.round(v) + ' median rent'
-    });
-
-    // RIGHT: card adoption (%) — yMin/yMax tuned to fit ~21 to 38
-    makeLineChart('chart-card-by-rent-trend', adoption, {
-      yMin: 18, yMax: 42,
-      fmt: v => v.toFixed(1),
-      fmtTooltip: v => v.toFixed(1) + '% adoption'
-    });
   });
 })();
 </script>
@@ -2116,10 +1983,13 @@
     </div>
 
     <div style="margin-top: 24px">
-      <h2 class="section-title">Two drivers, equal weight · <em>Higher rent leases are growing faster, and their tenants opt for ACH more often.</em></h2>
+      <h2 class="section-title">The mechanism · <em>rent mix is shifting up · within each rent bucket, behavior is also softening.</em></h2>
       <p class="lede">
-        Among new leases activated Sep '25 onward, first-time card adoption fell from <strong>45.8% (Sep–Oct cycles)</strong> to <strong>42.8% (Mar–Apr cycles)</strong> — a <strong>−3.0pp</strong> drop, driven roughly equally by mix and behavior.
+        Slide 06 showed FT card adoption is the line moving. Slide 07 showed it's broad across segments. <strong>This slide explains the mechanism</strong>: among new leases activated since Sep '25, FT card adoption fell from <strong>45.8% (Sep–Oct cycles)</strong> to <strong>42.8% (Mar–Apr cycles)</strong> — a <strong>−3.0 pp</strong> drop split roughly equally between rent-mix shift and within-bucket behavior change.
       </p>
+      <div style="margin-top: 8px; font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4">
+        Slide 06 = the WHAT &nbsp;·&nbsp; Slide 07 = the WHERE &nbsp;·&nbsp; Slide 08 = the WHY (this view)
+      </div>
     </div>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px">
@@ -2139,23 +2009,8 @@
       </div>
     </div>
 
-    <div style="margin-top: 16px; padding: 12px 16px; background: rgba(49,133,252,0.06); border-left: 4px solid var(--blue); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong style="color: var(--blue)">Where this lives by segment →</strong>
-      The FT-card-decline shown here is concentrated in <strong>SMB</strong> (FT new-lease adoption −5.5 pp Sep → Apr · ~22% mix-driven, ~78% behavior) and <strong>Mid-Market</strong> (−4.4 pp · 100% behavior — rent-tier mix is flat). Upper-Market FT adoption actually <em>rose</em> (+1.3 pp), partially offsetting at the blended level. See <strong>slide 07</strong> for the per-segment cut.
-    </div>
-
-    <div style="margin-top: 12px; padding: 12px 16px; background: rgba(255,73,152,0.06); border-left: 4px solid var(--pink); border-radius: 4px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong style="color: var(--pink)">Migration distortions inside the FT-card decline</strong> · Each event below is a PM that brought a portfolio onto DoorLoop payments in one wave; their first-time tenants land in the cycle at whatever payment-method default the PM uses, distorting that month's FT-card line:
-      <ul style="margin: 6px 0 0; padding-left: 22px">
-        <li style="margin-bottom: 4px"><strong>Nov '25 surge</strong> · <em>Dels Corporation</em> (AR · 3,199 affordable-housing units) onboarded <strong>897 first-time tenants at 73% card adoption</strong> — temporarily lifted FT card share before the migration faded.</li>
-        <li style="margin-bottom: 4px"><strong>Jan '26 drag</strong> · <em>Fitz Osborn Real Estate</em> (MO · 573 units) onboarded <strong>284 first-time tenants at 26.8% card adoption</strong> (vs cohort ~46%) → ~0.4 pp drag on Jan FT line.</li>
-        <li style="margin-bottom: 4px"><strong>Mar '26 drag</strong> · <em>Costello Management</em> (PA student housing · 924 units · ACH-only) — <strong>738 first-time tenants, all ACH</strong> ($1.10M volume) → <strong>−1.45 pp</strong> on March FT card share (29.87% actual vs ~31.32% ex-Costello). April absorbed 239 stragglers → another <strong>−0.38 pp</strong> drag.</li>
-        <li><strong>Apr '26</strong> · <em>Christian Relief Services of Virginia</em> (slide 14 case study) — primarily invite-side event but ~270 FT tenants at 40.7% card add a small Apr drag.</li>
-      </ul>
-    </div>
-
     <p style="margin-top: 14px; font-size: 11px; color: var(--muted); font-style: italic; line-height: 1.5">
-      Note: this view cannot be extended to pre-Sep '25 — the <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">leases_daily_snapshot</code> table started mid-Aug '25, so we have no reliable record of leases first becoming active before Sep 1.
+      Methodology: this view cannot be extended to pre-Sep '25 — the <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">leases_daily_snapshot</code> table started mid-Aug '25. Migration-event distortions (Dels, Fitz Osborn, Costello, Christian Relief) are listed with their pp-impact on slide 06's footnote.
     </p>
 
   </div>
