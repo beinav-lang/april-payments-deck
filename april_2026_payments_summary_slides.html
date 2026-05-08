@@ -1850,9 +1850,9 @@
       </div>
     </div>
 
-    <h2 class="section-title">Reason 1 · <em>Rent mix is shifting up in SMB and Upper-Market.</em></h2>
+    <h2 class="section-title">Reason 1 · <em>Rent mix is shifting up — sweet spot is shrinking.</em></h2>
     <p class="lede" style="margin-top: 6px">
-      Each new active lease in SMB and Upper-Market is increasingly above the <strong>$1,200 ACH-leaning bucket</strong> instead of the <strong>card sweet spot</strong> (≤$1,200, ~58% adoption vs ~33%). Mechanical, structural — moves FT card share down ~1 pp per affected segment without any tenant changing behavior. <strong>~40% of the decline.</strong>
+      Among first-time paying leases, the <strong>&lt;$1,200 card sweet spot</strong> (~58% adoption) shrank from <strong>45.5% → 40.8%</strong> Sep → Apr while the <strong>≥$1,200 ACH-leaning</strong> bucket grew from <strong>54.5% → 59.2%</strong>. Mechanical, structural — moves FT card share down without any tenant changing behavior.
     </p>
 
     <!-- Two-reason recap card — slide 07 highlights the ~40% rent-mix piece -->
@@ -1864,52 +1864,12 @@
       </div>
     </div>
 
-    <!-- 4 segment shift tiles -->
-    <div class="cseg-tiles" style="margin-top: 14px">
-      <div class="cseg-tile">
-        <div class="cseg-name">Emerging</div>
-        <div class="cseg-rate">23%</div>
-        <div class="cseg-delta" style="color: var(--muted)">flat</div>
-      </div>
-      <div class="cseg-tile" style="border-left-color: var(--pink)">
-        <div class="cseg-name">SMB</div>
-        <div class="cseg-rate" style="color: var(--pink)">37%</div>
-        <div class="cseg-delta down">−5 pp Sep → Apr</div>
-      </div>
-      <div class="cseg-tile">
-        <div class="cseg-name">Mid-Market</div>
-        <div class="cseg-rate">48%</div>
-        <div class="cseg-delta" style="color: var(--muted)">flat</div>
-      </div>
-      <div class="cseg-tile" style="border-left-color: var(--pink)">
-        <div class="cseg-name">Upper-Market</div>
-        <div class="cseg-rate" style="color: var(--pink)">60%</div>
-        <div class="cseg-delta down">−6 pp Sep → Apr</div>
-      </div>
-    </div>
-    <div style="font-size: 10.5px; color: var(--muted); margin-top: 6px; text-align: right">
-      Each tile shows <strong style="color:var(--text)">`<$1,200` share</strong> of new active leases (Apr '26 · Sep → Apr shift)
+    <!-- Single overall rent-mix distribution chart -->
+    <div class="chart-shell" style="margin-top: 16px">
+      <div class="ch-title">Rent distribution of first-time paying leases</div>
+      <div class="chart-wrap" style="height: 380px"><canvas id="chart-rent-mix"></canvas></div>
     </div>
 
-    <!-- 4 stacked mini-charts: rent-bucket mix per segment over time -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px">
-      <div class="chart-shell">
-        <div class="ch-title" style="font-size: 14px">Emerging</div>
-        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-em"></canvas></div>
-      </div>
-      <div class="chart-shell" style="border: 1.5px solid var(--pink)">
-        <div class="ch-title" style="font-size: 14px; color: var(--pink)">SMB</div>
-        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-smb"></canvas></div>
-      </div>
-      <div class="chart-shell">
-        <div class="ch-title" style="font-size: 14px">Mid-Market</div>
-        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-mid"></canvas></div>
-      </div>
-      <div class="chart-shell" style="border: 1.5px solid var(--pink)">
-        <div class="ch-title" style="font-size: 14px; color: var(--pink)">Upper-Market</div>
-        <div class="chart-wrap" style="height: 220px"><canvas id="chart-segmix-upr"></canvas></div>
-      </div>
-    </div>
     <div style="text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px">
       <span style="display:inline-block;width:10px;height:10px;background:#ff4998;border-radius:2px;vertical-align:middle;margin-right:5px"></span>
       <strong style="color: var(--text)">`<$1,200` · card sweet spot</strong>
@@ -1922,99 +1882,91 @@
 
 <script>
 (function() {
-  // Segments via stripe_subscription_price_quantity_c (≤10/11–50/51–300/>300).
-  // Card adoption = COUNT(DISTINCT card-paying customer_id) / COUNT(DISTINCT paying customer_id)
-  // per month per segment. type='charge'=card, type='payment'=ACH; cash payments excluded.
-
-  // Slide 07 · Rent-bucket mix shift PER SEGMENT (matching slide 08's <$1,200 / ≥$1,200 split).
-  // Each value = % of new active leases in that segment whose rent is < $1,200 (vs ≥$1,200 = 100 - that).
-  const months = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
-  const ltShareBySeg = {
-    'Emerging':     [22.5, 24.9, 26.5, 21.2, 22.7, 23.2, 23.2, 23.4],
-    'SMB':          [41.2, 38.5, 33.2, 36.6, 37.7, 36.7, 34.0, 36.5],
-    'Mid-Market':   [49.2, 50.8, 54.2, 46.6, 48.3, 48.2, 45.3, 48.3],
-    'Upper-Market': [65.9, 82.9, 67.6, 65.3, 56.0, 59.2, 58.2, 59.9]
-  };
+  // Slide 07 · Rent mix shift — % distribution of first-time paying leases by rent bucket × month.
+  // 2-tier cut: <$1,200 (sweet spot, shrinking) | ≥$1,200 (growing).
+  const rentMix = [
+    { cycle: "Sep '25", lt1200: 45.5, gte1200: 54.5, n: 11291 },
+    { cycle: "Oct '25", lt1200: 50.0, gte1200: 50.0, n: 13132 },
+    { cycle: "Nov '25", lt1200: 46.3, gte1200: 53.7, n: 10741 },
+    { cycle: "Dec '25", lt1200: 47.1, gte1200: 52.9, n: 12316 },
+    { cycle: "Jan '26", lt1200: 41.7, gte1200: 58.3, n: 12840 },
+    { cycle: "Feb '26", lt1200: 45.1, gte1200: 54.9, n: 11524 },
+    { cycle: "Mar '26", lt1200: 42.0, gte1200: 58.0, n: 11894 },
+    { cycle: "Apr '26", lt1200: 40.8, gte1200: 59.2, n:  7501 }
+  ];
   const PINK = '#ff4998', BLUE = '#3185FC';
+  const aprIdx = rentMix.length - 1;
 
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
+    const el = document.getElementById('chart-rent-mix');
+    if (!el) return;
 
-    function renderSegMix(canvasId, seg) {
-      const el = document.getElementById(canvasId);
-      if (!el) return;
-      const lt = ltShareBySeg[seg];
-      const gt = lt.map(v => 100 - v);
-      const aprIdx = months.length - 1;
-      new Chart(el, {
-        type: 'bar',
-        data: {
-          labels: months,
-          datasets: [
-            {
-              label: '<$1,200',
-              data: lt,
-              backgroundColor: PINK,
-              borderColor: '#fff',
-              borderWidth: 1,
-              stack: 'mix',
-              datalabels: {
-                display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === aprIdx,
-                color: '#fff', font: { weight: 800, size: 10.5, family: 'Poppins' },
-                anchor: 'center', align: 'center',
-                formatter: v => v.toFixed(0) + '%'
-              }
-            },
-            {
-              label: '≥$1,200',
-              data: gt,
-              backgroundColor: BLUE,
-              borderColor: '#fff',
-              borderWidth: 1,
-              stack: 'mix',
-              datalabels: {
-                display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === aprIdx,
-                color: '#fff', font: { weight: 800, size: 10.5, family: 'Poppins' },
-                anchor: 'center', align: 'center',
-                formatter: v => v.toFixed(0) + '%'
-              }
-            }
-          ]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 4, right: 4, bottom: 4, left: 4 } },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%'
-              }
+    new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: rentMix.map(d => d.cycle),
+        datasets: [
+          {
+            label: '<$1,200 · card sweet spot',
+            data: rentMix.map(d => d.lt1200),
+            backgroundColor: PINK,
+            borderColor: '#fff',
+            borderWidth: 1,
+            stack: 'mix',
+            datalabels: {
+              display: true,
+              color: '#fff', font: { weight: 800, size: 13, family: 'Poppins' },
+              anchor: 'center', align: 'center',
+              formatter: v => v.toFixed(1) + '%'
             }
           },
-          scales: {
-            x: {
-              stacked: true, grid: { display: false },
-              ticks: {
-                font: ctx => ({
-                  size: 9,
-                  weight: ctx.index === aprIdx ? 800 : 600,
-                  family: 'Poppins'
-                }),
-                color: ctx => ctx.index === aprIdx ? '#162050' : '#64748b',
-                maxRotation: 45, minRotation: 45, autoSkip: false
-              }
-            },
-            y: { stacked: true, display: false, min: 0, max: 100 }
+          {
+            label: '≥$1,200 · ACH-leaning',
+            data: rentMix.map(d => d.gte1200),
+            backgroundColor: BLUE,
+            borderColor: '#fff',
+            borderWidth: 1,
+            stack: 'mix',
+            datalabels: {
+              display: true,
+              color: '#fff', font: { weight: 800, size: 13, family: 'Poppins' },
+              anchor: 'center', align: 'center',
+              formatter: v => v.toFixed(1) + '%'
+            }
           }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 36, right: 16, bottom: 6, left: 8 } },
+        plugins: {
+          legend: {
+            display: true, position: 'top', align: 'center',
+            labels: { boxWidth: 14, boxHeight: 10, font: { size: 12, weight: 700 }, color: '#162050', padding: 14, usePointStyle: true, pointStyle: 'rect' }
+          },
+          tooltip: {
+            callbacks: {
+              label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%',
+              afterBody: items => {
+                const d = rentMix[items[0].dataIndex];
+                return ['Total paid leases: ' + d.n.toLocaleString()];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true, grid: { display: false },
+            ticks: {
+              font: ctx => ({ size: 11, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
+              color: ctx => ctx.index === aprIdx ? '#162050' : '#64748b'
+            }
+          },
+          y: { stacked: true, display: false, min: 0, max: 100 }
         }
-      });
-    }
-
-    renderSegMix('chart-segmix-em', 'Emerging');
-    renderSegMix('chart-segmix-smb', 'SMB');
-    renderSegMix('chart-segmix-mid', 'Mid-Market');
-    renderSegMix('chart-segmix-upr', 'Upper-Market');
+      }
+    });
   });
 })();
 </script>
