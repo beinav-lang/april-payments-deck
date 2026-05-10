@@ -3481,7 +3481,7 @@
         </summary>
         <div class="elig-band" style="margin-top: 8px; max-width: 720px">
           <div class="elig-body">
-            Cohort = leases first-active in the selected month, on a <strong>PM with active Merchant Account</strong> and a <strong>rent frequency of Monthly or shorter</strong>. <strong>Mature</strong> = lease activated ≥90 days after the PM's first invoice; <strong>Onboarding</strong> = activated within 90 days. <strong>Exclusion filter:</strong> drop leases where ≥1 tenant was registered globally &gt;45 days before activation AND exists on ≥1 other lease (~4–5% excluded).
+            Cohort = leases first-active in the selected month, on a <strong>PM with active Merchant Account</strong> and a <strong>rent frequency of Monthly or shorter</strong>. <strong>Mature</strong> = lease activated ≥90 days after the PM's first invoice; <strong>Onboarding</strong> = activated within 90 days. The waterfall below shows the <strong>"All" view</strong> (no re-tenant exclusion); the April summary card flags a separate Ex-re-tenants view that strips ~9% of leases where ≥1 tenant had previously registered on another lease.
           </div>
         </div>
       </details>
@@ -3517,12 +3517,17 @@
             </div>
           </div>
           <table class="april-summary-table">
-            <tr><th>Mature</th><td>70.3% <span class="arr">→</span> <strong>86.4%</strong></td><td class="april-summary-delta up">+16.1 pp</td></tr>
-            <tr><th>Mature · Ex-CRSV</th><td>70.3% <span class="arr">→</span> <strong>85.5%</strong></td><td class="april-summary-delta up">+15.2 pp</td></tr>
-            <tr><th>Onboarding</th><td>60.9% <span class="arr">→</span> <strong>77.2%</strong></td><td class="april-summary-delta up">+16.3 pp</td></tr>
+            <tr><th>Mature · All</th><td>70.3% <span class="arr">→</span> <strong>86.4%</strong></td><td class="april-summary-delta up">+16.1 pp</td></tr>
+            <tr><th>Mature · Ex-re-tenants</th><td>75.3% <span class="arr">→</span> <strong>93.2%</strong></td><td class="april-summary-delta up">+17.9 pp</td></tr>
+            <tr><th>Mature · Ex-re-tenants &amp; Ex-CRSV</th><td>81.0% <span class="arr">→</span> <strong>92.7%</strong></td><td class="april-summary-delta up">+11.8 pp</td></tr>
+            <tr><th>Onboarding · All</th><td>60.9% <span class="arr">→</span> <strong>77.2%</strong></td><td class="april-summary-delta up">+16.3 pp</td></tr>
           </table>
           <div class="april-summary-text">
-            Both cohorts hit 8-month highs. <em>Christian Relief Services of Virginia</em> bulk-imported <strong>~946 lease records into April</strong> (current + historical leases, all stamped with same-day activation dates) and ran a bulk tenant-invite — but CRSV only explains <strong>~0.9 pp</strong> of the 16 pp Mature jump. Stripping CRSV, the Ex-CRSV Mar→Apr lift is still <strong>+15.2 pp</strong> — the spike is overwhelmingly broad-based. Onboarding's lift is also broad-based — no single migration source. Downstream stages (activation, FPC, retention) actually <em>improve</em> Ex-CRSV: activation 77.4% → 79.1%, FPC 68.8% → 69.2%, P1 retention 40.5% → 42.0%.
+            <strong>The April invite-rate jump is real and broad-based, not migration noise.</strong> Stripping re-tenants (leases whose tenant had a portal account from a prior lease — ~9% of cohort) tightens Mar→Apr to <strong>+17.9 pp</strong>. Stripping <em>both</em> re-tenants AND <em>Christian Relief Services of Virginia</em>'s 945-lease cut-over still leaves <strong>+11.8 pp</strong>.
+            <br><br>
+            <strong>What's driving it:</strong> the timing distribution shows same-day &amp; 1–7d invites actually <em>fell</em> in April; the increase comes entirely from <strong>"pre-active" invites</strong> (sent before the lease's snapshot ACTIVE date). Pre-active count: Mar 108 → <strong>Apr 3,740</strong>. Likely a workflow shift where invites fire at lease <em>creation</em> and activation flag lags. CRSV explains ~25% of the pre-active bump; the remaining 75% is broad-based across PMs.
+            <br><br>
+            <strong>Downstream stages partial-window:</strong> activation 77.4%, FPC 68.8%, P1 retention 40.5% — these are floors and will rise as +45d look-forwards close in June–July.
           </div>
         </div>
       </div>
