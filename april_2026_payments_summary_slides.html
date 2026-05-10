@@ -1852,30 +1852,25 @@
 
     <h2 class="section-title"><em>The inflow is shifting out of the card sweet-spot · and a tail of PMs is going ACH-only.</em></h2>
     <p class="lede" style="margin-top: 6px">
-      The <strong>~9 pp drop in first-time card share</strong> (Mar '25 → Apr '26) is a <strong style="color: var(--pink)">rent-mix shift</strong> on top of a <strong style="color: #3185FC">growing tail of ACH-only PMs</strong> — PMs whose tenants almost never pay by card. Migration spikes add cycle noise; a <strong style="color: #b45309">within-bucket drift on ≥$1,200 leases</strong> is real but not yet explained — that's our next investigation.
+      The <strong>~9 pp drop in first-time card share</strong> (Mar '25 → Apr '26) is a <strong style="color: var(--pink)">rent-mix shift</strong> on top of a <strong style="color: #3185FC">growing tail of ACH-only PMs</strong> — PMs whose tenants almost never pay by card.
     </p>
 
-    <!-- 4-piece decomposition strip -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px">
+    <!-- 3-piece decomposition strip -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px">
       <div style="padding: 12px 14px; background: rgba(255,73,152,0.10); border-left: 4px solid #ff4998; border-radius: 6px">
         <div style="font-size: 22px; font-weight: 800; color: #ff4998; line-height: 1">~40%</div>
         <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Rent-mix shift</div>
         <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Sweet-spot share 45.5% → 40.8%</div>
       </div>
       <div style="padding: 12px 14px; background: rgba(49,133,252,0.10); border-left: 4px solid #3185FC; border-radius: 6px">
-        <div style="font-size: 22px; font-weight: 800; color: #3185FC; line-height: 1">~15%</div>
+        <div style="font-size: 22px; font-weight: 800; color: #3185FC; line-height: 1">~25%</div>
         <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">ACH-only PM tail</div>
-        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">3 → 9 PMs Sep → Apr</div>
-      </div>
-      <div style="padding: 12px 14px; background: rgba(148,163,184,0.10); border-left: 4px solid #94a3b8; border-radius: 6px">
-        <div style="font-size: 22px; font-weight: 800; color: #475569; line-height: 1">~10%</div>
-        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Migration noise</div>
-        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Dels masked / Costello dragged</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">3 → 9 PMs Sep → Apr (incl. Costello)</div>
       </div>
       <div style="padding: 12px 14px; background: rgba(245,158,11,0.10); border-left: 4px solid #f59e0b; border-radius: 6px">
         <div style="font-size: 22px; font-weight: 800; color: #b45309; line-height: 1">~35%</div>
-        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Open question →</div>
-        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">Within-bucket drift on ≥$1,200 (next)</div>
+        <div style="font-size: 11.5px; font-weight: 700; color: #162050; margin-top: 6px">Within-bucket drift</div>
+        <div style="font-size: 10.5px; color: #64748b; margin-top: 2px">High-rent (≥$1,200) tenants choosing ACH more</div>
       </div>
     </div>
 
@@ -1900,16 +1895,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Action card · prioritized -->
-    <div style="margin-top: 14px; padding: 11px 14px; background: rgba(223,254,2,0.20); border-left: 4px solid #162050; border-radius: 6px; font-size: 12px; line-height: 1.55; color: var(--text)">
-      <div><strong style="color: #162050; background: #dffe02; padding: 1px 7px; border-radius: 3px; margin-right: 6px">P1 · this week</strong> <span style="color: var(--pink); font-weight: 700">ACH-only PM tail</span> — pull payment-method config + Plaid placement for the 8–9 PMs: Off Campus Philly, Costello, Brooklane, Mann &amp; Myers, Urban Scene, House Buyers Ontario, Patos, Homeward, Legacy Apex.</div>
-      <div style="margin-top: 5px"><strong style="color: var(--muted); background: rgba(148,163,184,0.25); padding: 1px 7px; border-radius: 3px; margin-right: 6px">P2 · analysis</strong> <span style="color: #b45309; font-weight: 700">Within-bucket drift on ≥$1,200</span> — investigate why high-rent tenants are increasingly choosing ACH (Plaid prominence? default payment-method UX? demographic drift?).</div>
-    </div>
-
-    <p style="margin-top: 10px; font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.5">
-      Methodology: ~40 / ~15 / ~10 / ~35 are directional estimates. A clean Kitagawa shift-share would tighten them. Card classification: <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='charge'</code> = card vs <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">type='payment'</code> = ACH on first-pay month. PM-level definition uses <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">db_tenant</code> joined to <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">salesforce_quickstart.account</code> for names.
-    </p>
 
   </div>
 </section>
@@ -3471,7 +3456,7 @@
       <div>
         <h2 class="section-title" style="margin: 0">Where leases drop off — invite, activation, payment, retention.</h2>
         <div style="font-size: 11px; color: var(--muted); margin-top: 4px; font-style: italic">
-          Refreshed May 10, 2026 from <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">kpi_dashboard_v2.sql</code>.
+          Refreshed May 10, 2026 from <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">kpi_dashboard_v2.sql</code> · <strong style="color: var(--text); font-style: normal">Ex-re-tenants</strong> (re-tenant leases stripped from all months &amp; stages).
         </div>
       </div>
       <details class="methodology-collapse" style="margin: 0">
@@ -3481,7 +3466,7 @@
         </summary>
         <div class="elig-band" style="margin-top: 8px; max-width: 720px">
           <div class="elig-body">
-            Cohort = leases first-active in the selected month, on a <strong>PM with active Merchant Account</strong> and a <strong>rent frequency of Monthly or shorter</strong>. <strong>Mature</strong> = lease activated ≥90 days after the PM's first invoice; <strong>Onboarding</strong> = activated within 90 days. The waterfall below shows the <strong>"All" view</strong> (no re-tenant exclusion); the April summary card flags a separate Ex-re-tenants view that strips ~9% of leases where ≥1 tenant had previously registered on another lease.
+            Cohort = leases first-active in the selected month, on a <strong>PM with active Merchant Account</strong> and a <strong>rent frequency of Monthly or shorter</strong>. <strong>Mature</strong> = lease activated ≥90 days after the PM's first invoice; <strong>Onboarding</strong> = activated within 90 days. <strong>Re-tenant exclusion (applied to all months &amp; all stages):</strong> drop a lease if any of its tenants has <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">invitationAcceptedAt</code> before the lease activation AND appears on ≥1 other lease (~9% of Mature each month). All numbers below use this Ex-re-tenants cohort.
           </div>
         </div>
       </details>
@@ -3906,23 +3891,24 @@ const breakdown = [
   {month:'2026-04', existing:157023, first_time:15116, reactivated:9548, churned:17653}
 ];
 
-// V2 metrics (kpi_dashboard_v2.json): FPC + Retention re-anchored to lease activation.
+// V2 metrics (kpi_dashboard_v2.sql + RE-TENANT EXCLUSION): FPC + Retention re-anchored to lease activation.
 // FPC = first payment within 45d of activation. Retention = 2nd payment within 45d after first payment (= P1 column in SQL).
-// activation = portal-activated leases ÷ invited leases (Mature, population proxy ≈ per-lease conditional since median invite delay = 0d).
-// KPI cohort = leases first-active >= Sep '25, MA flag = 1, rent freq monthly-or-shorter,
-// AFTER applying the exclusion filter (drop leases where any tenant registered globally
-// >45 days before activation AND that tenant exists on >=1 other lease).
+// activation = portal-activated leases ÷ invited leases.
+// KPI cohort = leases first-active >= Sep '25, MA flag = 1, rent freq monthly-or-shorter.
+// EXCLUSION (applied to ALL months and ALL stages):
+//   Drop a lease L if any tenant T on L appears on >=1 OTHER lease AND T's invitationAcceptedAt < L.first_active_date.
+//   ~9% of Mature cohort excluded each month (was claimed ~4-5%).
 // Each month also has an `All` cut = Mature + Onboarding combined (rates rebuilt from
 // summed counts, not naïvely averaged).
 const kpi = {
-  '2025-09':{Mature:{attach:66.35, activation:95.95, fpc:76.39, invite:69.15, retention:87.51, p1:87.51, p2:84.35, habit:79.68, total:9115, invited:6303, portal_active:6048, attached:6048, converted:4620, retained:4043},Onboarding:{attach:42.56, activation:89.75, fpc:63.42, invite:47.42, retention:88.99, p1:88.99, p2:84.44, habit:81.33, total:6191, invited:2936, portal_active:2635, attached:2635, converted:1671, retained:1487},All:{attach:56.73, activation:93.98, fpc:72.45, invite:60.36, retention:87.9, p1:87.9, p2:0.0, habit:0.0, total:15306, invited:9239, portal_active:8683, attached:8683, converted:6291, retained:5530}},
-  '2025-10':{Mature:{attach:64.23, activation:95.36, fpc:74.88, invite:67.35, retention:86.44, p1:86.44, p2:82.33, habit:77.86, total:12191, invited:8211, portal_active:7830, attached:7830, converted:5863, retained:5068},Onboarding:{attach:50.66, activation:91.96, fpc:72.39, invite:55.09, retention:89.63, p1:89.63, p2:83.96, habit:81.95, total:10725, invited:5908, portal_active:5433, attached:5433, converted:3933, retained:3525},All:{attach:57.88, activation:93.94, fpc:73.86, invite:61.61, retention:87.72, p1:87.72, p2:0.0, habit:0.0, total:22916, invited:14119, portal_active:13263, attached:13263, converted:9796, retained:8593}},
-  '2025-11':{Mature:{attach:66.72, activation:94.88, fpc:74.65, invite:70.31, retention:85.8, p1:85.8, p2:82.3, habit:77.91, total:12345, invited:8680, portal_active:8236, attached:8236, converted:6148, retained:5275},Onboarding:{attach:37.6, activation:92.75, fpc:57.89, invite:40.54, retention:89.09, p1:89.09, p2:83.82, habit:81.09, total:10106, invited:4097, portal_active:3800, attached:3800, converted:2200, retained:1960},All:{attach:53.61, activation:94.2, fpc:69.36, invite:56.91, retention:86.67, p1:86.67, p2:0.0, habit:0.0, total:22451, invited:12777, portal_active:12036, attached:12036, converted:8348, retained:7235}},
-  '2025-12':{Mature:{attach:67.58, activation:94.39, fpc:73.57, invite:71.59, retention:86.53, p1:86.53, p2:83.45, habit:78.76, total:11183, invited:8006, portal_active:7557, attached:7557, converted:5560, retained:4811},Onboarding:{attach:46.79, activation:95.01, fpc:66.33, invite:49.25, retention:90.76, p1:90.76, p2:87.74, habit:84.92, total:9724, invited:4789, portal_active:4550, attached:4550, converted:3018, retained:2739},All:{attach:57.91, activation:94.62, fpc:70.85, invite:61.2, retention:88.02, p1:88.02, p2:0.0, habit:0.0, total:20907, invited:12795, portal_active:12107, attached:12107, converted:8578, retained:7550}},
-  '2026-01':{Mature:{attach:67.92, activation:94.77, fpc:75.15, invite:71.67, retention:87.76, p1:87.76, p2:83.24, habit:79.56, total:12137, invited:8698, portal_active:8243, attached:8243, converted:6195, retained:5437},Onboarding:{attach:52.8, activation:88.71, fpc:69.8, invite:59.52, retention:87.89, p1:87.89, p2:83.23, habit:80.4, total:7752, invited:4614, portal_active:4093, attached:4093, converted:2857, retained:2511},All:{attach:62.02, activation:92.67, fpc:73.38, invite:66.93, retention:87.8, p1:87.8, p2:0.0, habit:0.0, total:19889, invited:13312, portal_active:12336, attached:12336, converted:9052, retained:7948}},
-  '2026-02':{Mature:{attach:70.03, activation:94.35, fpc:77.25, invite:74.23, retention:84.56, p1:84.56, p2:70.3, habit:66.55, total:13461, invited:9992, portal_active:9427, attached:9427, converted:7282, retained:6158},Onboarding:{attach:56.62, activation:91.47, fpc:69.83, invite:61.9, retention:89.69, p1:89.69, p2:74.63, habit:71.94, total:8734, invited:5406, portal_active:4945, attached:4945, converted:3453, retained:3097},All:{attach:64.75, activation:93.34, fpc:74.69, invite:69.38, retention:86.21, p1:86.21, p2:0.0, habit:0.0, total:22195, invited:15398, portal_active:14372, attached:14372, converted:10735, retained:9255}},
-  '2026-03':{Mature:{attach:65.04, activation:92.5, fpc:76.35, invite:70.32, retention:79.6, p1:79.6, p2:28.06, habit:25.74, total:14598, invited:10265, portal_active:9495, attached:9495, converted:7249, retained:5770},Onboarding:{attach:52.45, activation:86.18, fpc:67.0, invite:60.85, retention:76.26, p1:76.26, p2:15.12, habit:14.22, total:7564, invited:4603, portal_active:3967, attached:3967, converted:2658, retained:2027},All:{attach:60.74, activation:90.54, fpc:73.59, invite:67.09, retention:78.7, p1:78.7, p2:0.0, habit:0.0, total:22162, invited:14868, portal_active:13462, attached:13462, converted:9907, retained:7797}},
-  '2026-04':{Mature:{attach:66.84, activation:77.35, fpc:68.79, invite:86.41, retention:40.52, p1:40.52, p2:0.0, habit:0.0, total:15273, invited:13197, portal_active:10208, attached:10208, converted:7022, retained:2845},Onboarding:{attach:48.96, activation:63.46, fpc:63.95, invite:77.15, retention:24.89, p1:24.89, p2:0.0, habit:0.0, total:8534, invited:6584, portal_active:4178, attached:4178, converted:2672, retained:665},All:{attach:60.43, activation:72.73, fpc:67.38, invite:83.09, retention:36.21, p1:36.21, p2:0.0, habit:0.0, total:23807, invited:19781, portal_active:14386, attached:14386, converted:9694, retained:3510}}
+  '2025-09':{Mature:{attach:71.01, activation:95.85, fpc:76.58, invite:74.08, retention:87.67, p1:87.67, p2:84.55, habit:79.88, total:8334, invited:6174, portal_active:5918, attached:5918, converted:4532, retained:3973},Onboarding:{attach:42.36, activation:89.65, fpc:63.52, invite:47.25, retention:88.95, p1:88.95, p2:84.3, habit:81.22, total:6155, invited:2908, portal_active:2607, attached:2607, converted:1656, retained:1473},All:{attach:58.84, activation:93.87, fpc:72.59, invite:62.68, retention:88.01, p1:88.01, p2:0.0, habit:0.0, total:14489, invited:9082, portal_active:8525, attached:8525, converted:6188, retained:5446}},
+  '2025-10':{Mature:{attach:68.56, activation:95.3, fpc:75.12, invite:71.94, retention:86.58, p1:86.58, p2:82.61, habit:78.14, total:11157, invited:8026, portal_active:7649, attached:7649, converted:5746, retained:4975},Onboarding:{attach:50.44, activation:91.87, fpc:72.31, invite:54.9, retention:89.67, p1:89.67, p2:83.99, habit:81.98, total:10669, invited:5857, portal_active:5381, attached:5381, converted:3891, retained:3489},All:{attach:59.7, activation:93.86, fpc:73.96, invite:63.61, retention:87.83, p1:87.83, p2:0.0, habit:0.0, total:21826, invited:13883, portal_active:13030, attached:13030, converted:9637, retained:8464}},
+  '2025-11':{Mature:{attach:70.94, activation:94.73, fpc:74.94, invite:74.88, retention:85.88, p1:85.88, p2:82.62, habit:78.21, total:11334, invited:8487, portal_active:8040, attached:8040, converted:6025, retained:5174},Onboarding:{attach:37.32, activation:92.68, fpc:57.78, invite:40.27, retention:89.19, p1:89.19, p2:83.73, habit:81.05, total:10036, invited:4041, portal_active:3745, attached:3745, converted:2164, retained:1930},All:{attach:55.15, activation:94.07, fpc:69.49, invite:58.62, retention:86.75, p1:86.75, p2:0.0, habit:0.0, total:21370, invited:12528, portal_active:11785, attached:11785, converted:8189, retained:7104}},
+  '2025-12':{Mature:{attach:72.62, activation:94.25, fpc:73.73, invite:77.05, retention:86.62, p1:86.62, p2:83.62, habit:78.95, total:10158, invited:7827, portal_active:7377, attached:7377, converted:5439, retained:4711},Onboarding:{attach:46.64, activation:94.94, fpc:66.29, invite:49.13, retention:90.79, p1:90.79, p2:87.84, habit:85.03, total:9654, invited:4743, portal_active:4503, attached:4503, converted:2985, retained:2710},All:{attach:59.96, activation:94.51, fpc:70.91, invite:63.45, retention:88.09, p1:88.09, p2:0.0, habit:0.0, total:19812, invited:12570, portal_active:11880, attached:11880, converted:8424, retained:7421}},
+  '2026-01':{Mature:{attach:73.52, activation:94.48, fpc:75.33, invite:77.81, retention:87.82, p1:87.82, p2:83.8, habit:80.07, total:10765, invited:8376, portal_active:7914, attached:7914, converted:5962, retained:5236},Onboarding:{attach:52.32, activation:88.45, fpc:70.03, invite:59.15, retention:87.84, p1:87.84, p2:83.38, habit:80.53, total:7653, invited:4527, portal_active:4004, attached:4004, converted:2804, retained:2463},All:{attach:64.71, activation:92.37, fpc:73.55, invite:70.06, retention:87.83, p1:87.83, p2:0.0, habit:0.0, total:18418, invited:12903, portal_active:11918, attached:11918, converted:8766, retained:7699}},
+  '2026-02':{Mature:{attach:75.67, activation:94.26, fpc:77.6, invite:80.28, retention:84.62, p1:84.62, p2:70.4, habit:66.63, total:12168, invited:9768, portal_active:9207, attached:9207, converted:7145, retained:6046},Onboarding:{attach:56.27, activation:91.32, fpc:69.79, invite:61.62, retention:89.77, p1:89.77, p2:74.59, habit:71.93, total:8637, invited:5322, portal_active:4860, attached:4860, converted:3392, retained:3045},All:{attach:67.61, activation:93.22, fpc:74.91, invite:72.53, retention:86.28, p1:86.28, p2:0.0, habit:0.0, total:20805, invited:15090, portal_active:14067, attached:14067, converted:10537, retained:9091}},
+  '2026-03':{Mature:{attach:69.57, activation:92.39, fpc:76.68, invite:75.3, retention:79.61, p1:79.61, p2:28.09, habit:25.77, total:13342, invited:10047, portal_active:9282, attached:9282, converted:7117, retained:5666},Onboarding:{attach:52.14, activation:86.23, fpc:67.13, invite:60.47, retention:76.28, p1:76.28, p2:15.05, habit:14.13, total:7480, invited:4523, portal_active:3900, attached:3900, converted:2618, retained:1997},All:{attach:63.31, activation:90.47, fpc:73.85, invite:69.97, retention:78.72, p1:78.72, p2:0.0, habit:0.0, total:20822, invited:14570, portal_active:13182, attached:13182, converted:9735, retained:7663}},
+  '2026-04':{Mature:{attach:71.69, activation:76.9, fpc:69.1, invite:93.23, retention:40.39, p1:40.39, p2:0.0, habit:0.0, total:13804, invited:12869, portal_active:9896, attached:9896, converted:6838, retained:2762},Onboarding:{attach:48.51, activation:62.98, fpc:64.29, invite:77.01, retention:24.61, p1:24.61, p2:0.0, habit:0.0, total:8405, invited:6473, portal_active:4077, attached:4077, converted:2621, retained:645},All:{attach:62.92, activation:72.24, fpc:67.69, invite:87.09, retention:36.02, p1:36.02, p2:0.0, habit:0.0, total:22209, invited:19342, portal_active:13973, attached:13973, converted:9459, retained:3407}}
 };
 const kpiMonths = Object.keys(kpi);
 
