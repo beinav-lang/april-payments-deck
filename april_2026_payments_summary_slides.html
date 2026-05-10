@@ -1712,6 +1712,33 @@
         color: #cbd5e1;
         font-weight: 500;
       }
+
+      /* ===== Slide-mode: fill viewport vertically ===== */
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] > .wrap {
+        min-height: calc(100vh - 130px);
+        display: flex;
+        flex-direction: column;
+      }
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] .chart-shell {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] #cohort-heatmap {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] .heatmap {
+        flex: 1;
+        height: 100%;
+      }
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] .heatmap tbody td.cohort-name,
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] .heatmap tbody td.cohort-size,
+      body.slide-mode section[data-slide-title="Lease Activation Cohorts"] .heatmap tbody td.heat {
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
     </style>
 
     <div class="chapter" style="margin-bottom: 10px">
