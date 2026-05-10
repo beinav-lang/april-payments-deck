@@ -2586,51 +2586,40 @@
   </div>
 </section>
 
-<section>
+<section data-slide-title="Churned Accounts">
+  <style>
+    /* ===== Slide-mode: fill viewport vertically ===== */
+    body.slide-mode section[data-slide-title="Churned Accounts"] > .wrap {
+      min-height: calc(100vh - 130px);
+      display: flex;
+      flex-direction: column;
+    }
+    body.slide-mode section[data-slide-title="Churned Accounts"] .chart-shell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    body.slide-mode section[data-slide-title="Churned Accounts"] .chart-shell .chart-wrap {
+      flex: 1;
+      height: auto !important;
+      min-height: 0;
+    }
+  </style>
   <div class="wrap">
-    <div style="margin-bottom: 22px">
-      <div class="chapter" style="margin-bottom: 14px">
+    <div style="margin-bottom: 14px">
+      <div class="chapter" style="margin-bottom: 10px">
         <div class="chapter-num">11</div>
         <div class="chapter-meta">
           <div class="chapter-name">Churned Accounts</div>
         </div>
       </div>
-      <h2 class="section-title">Lost ARR pulled back from the March peak — <span class="accent">but account count held flat</span> at the 6-month plateau.</h2>
-
-      <div class="pullquote orange" style="margin-top: 14px">
-        <div class="pq-label">⚠ The story</div>
-        <p>
-          April churn is <strong>flat MoM on count (128) but down 25% on ARR</strong> — the difference is $/account ($1.96K Mar → $1.47K Apr). Volume hasn't improved; we just lost a less-expensive cohort this month. <strong>YoY +30%</strong> on both accounts and ARR is the harder signal — the elevated churn baseline is structural, not seasonal.
-        </p>
-      </div>
-
-      <div style="margin-top:10px; padding:10px 14px; background:#fff7ed; border-left:3px solid var(--orange); border-radius:6px; font-size:12px; color:var(--muted); line-height:1.6">
-        <strong style="color:var(--text)">Scope &amp; method:</strong> only accounts with payments ARR &gt; 0 before churning (paid-account churn, not total). <strong>Lost Payments ARR</strong> = max monthly payments ARR in the 6 months before churn, summed across accounts that churned in the month. Tracked on subscription cancellation date.
-      </div>
+      <h2 class="section-title" style="margin-bottom: 0">Lost ARR pulled back from the March peak — <span class="accent">but account count held flat</span> at the 6-month plateau.</h2>
     </div>
 
     <div class="chart-shell">
       <div class="ch-title">Churned accounts and lost ARR · 16 months</div>
       <div class="ch-sub">Bars: lost ARR ($K). Line: # accounts churned. Accounts that received payments only.</div>
       <div class="chart-wrap h340"><canvas id="chart-churned-accounts"></canvas></div>
-    </div>
-
-    <div class="tiles c3" style="margin-top: 22px">
-      <div class="tile bordered warn">
-        <div class="tile-label">April · accounts churned</div>
-        <div class="tile-num warn">128</div>
-        <div class="tile-sub">flat MoM · <strong>+30 YoY</strong> · 5th straight month at ~130</div>
-      </div>
-      <div class="tile">
-        <div class="tile-label">April · Lost Payments ARR</div>
-        <div class="tile-num orange">$188K</div>
-        <div class="tile-sub">−$63K MoM · <strong>+$44K YoY</strong> · ARR/account back to $1.47K</div>
-      </div>
-      <div class="tile bordered warn">
-        <div class="tile-label">March peak</div>
-        <div class="tile-num warn">$251K</div>
-        <div class="tile-sub">All-time high · driven by ARR/account ($1.96K), not count · still-elevated tail risk</div>
-      </div>
     </div>
 
   </div>
