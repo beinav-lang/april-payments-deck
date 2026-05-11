@@ -1555,13 +1555,13 @@
 <!-- ============================================================ -->
 <!-- SECTION 02 · THE CALENDAR UNWIND (ARR + paid leases)           -->
 <!-- ============================================================ -->
-<section data-slide-title="Paid Leases">
+<section data-slide-title="Active Leases Overview">
   <div class="wrap">
     <div style="margin-bottom: 18px">
       <div class="chapter" style="margin-bottom: 14px">
         <div class="chapter-num">04</div>
         <div class="chapter-meta">
-          <div class="chapter-name">Paid Leases</div>
+          <div class="chapter-name">Active Leases Overview</div>
         </div>
       </div>
       <h2 class="section-title">48.06% paid · record — <em>driven by eligibility, not conversion.</em></h2>
@@ -4439,9 +4439,14 @@ new Chart(document.getElementById('chart-pct-paid'), {
         order: 1,
         datalabels: {
           display: ctx => ctx.dataset.data[ctx.dataIndex] != null,
-          anchor: 'center', align: 'top', offset: 8,
+          anchor: 'center', align: 'bottom', offset: 8,
+          backgroundColor: '#fff',
+          borderColor: '#0e7490',
+          borderWidth: 1,
+          borderRadius: 4,
+          padding: { top: 2, bottom: 2, left: 4, right: 4 },
           color: '#0e7490',
-          font: { weight: 800, size: 11.5 },
+          font: { weight: 800, size: 11 },
           formatter: v => v == null ? '' : v.toFixed(1) + '%'
         }
       }
