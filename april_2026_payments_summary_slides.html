@@ -2040,8 +2040,7 @@
 
     <div style="margin-top: 28px">
       <h2 class="section-title">
-        <span style="color: #dc2626; display: block">Card volume share is at a 12-month low (17.75%).</span>
-        First-time tenants are the line that's moving.
+        <span style="color: #dc2626">Card volume share is at a 12-month low (17.75%)</span> · First-time tenants are the line that's moving.
       </h2>
     </div>
 
@@ -4532,18 +4531,29 @@ new Chart(document.getElementById('chart-waterfall'), {
   })
 });
 
-// 4b. Overall card-share trend (blended) — Apr '25 → Apr '26
-// Blended share = (ftCard + retCard) / (ftCard + ftAch + retCard + retAch)
-// Source: cardByPop array above
-const cardShareTrend = cardByPop
-  .filter(d => d.ftCard + d.ftAch + d.retCard + d.retAch > 0)
+// 4b. Overall card-share trend (blended) — Jan '25 → Apr '26 (16 months)
+// Blended share = card volume / (card + ach) volume
+// Jan-Apr '25 hardcoded from canonical Snowflake query (stripe_payments by payments_month).
+// May '25 onward computed from cardByPop $ values above.
+const _preMay25 = [
+  { month: '2025-01', pct: 17.63 },
+  { month: '2025-02', pct: 17.89 },
+  { month: '2025-03', pct: 18.62 },
+  { month: '2025-04', pct: 18.39 }
+];
+const cardShareTrend = _preMay25
+  .concat(cardByPop
+    .filter(d => d.month >= '2025-05' && (d.ftCard + d.ftAch + d.retCard + d.retAch > 0))
+    .map(d => {
+      const num = d.ftCard + d.retCard;
+      const denom = num + d.ftAch + d.retAch;
+      return { month: d.month, pct: +(100 * num / denom).toFixed(2) };
+    }))
   .map(d => {
-    const num = d.ftCard + d.retCard;
-    const denom = num + d.ftAch + d.retAch;
     const [y, mo] = d.month.split('-');
     return {
       label: new Date(+y, +mo - 1, 1).toLocaleString('en', { month: 'short' }) + " '" + y.slice(2),
-      pct: +(100 * num / denom).toFixed(2)
+      pct: d.pct
     };
   });
 const cstLast = cardShareTrend.length - 1;
@@ -4577,7 +4587,7 @@ new Chart(document.getElementById('chart-card-share-trend'), {
     plugins: { legend: { display: false } },
     scales: {
       x: { grid: { display: false }, ticks: { font: { size: 10, weight: 600 }, color: '#64748b' } },
-      y: { display: false, suggestedMin: 17, suggestedMax: 19.2 }
+      y: { display: false, suggestedMin: 17, suggestedMax: 19.5 }
     }
   })
 });
