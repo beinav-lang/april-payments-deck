@@ -5285,18 +5285,30 @@ function renderCohortHeatmap() {
     html += `<td class="cohort-name">${c.cohort}</td>`;
     html += `<td class="cohort-size">${c.size.toLocaleString()}</td>`;
 
+    // Highlight key cells called out in the insight card:
+    //   (Feb '26, M1) and (Feb '26, M2) — the +5.4pp M1→M2 jump
+    //   (Apr '26, M0)               — record M0 (25.2%)
+    const highlightCells = {
+      "Feb '26": { 1: true, 2: true },
+      "Apr '26": { 0: true }
+    };
+    const cellHl = (highlightCells[c.cohort] || {});
+    const hlStyle = (i) => cellHl[i]
+      ? ' outline: 3px solid #162050; outline-offset: -3px; box-shadow: inset 0 0 0 3px #162050; position: relative; z-index: 2;'
+      : '';
+
     for (let i = 0; i < 8; i++) {
       if (mode === 'pct') {
         const v = c.pct[i];
         if (v == null) { html += `<td class="heat empty">—</td>`; continue; }
         const t = normInCol(v, i);
-        html += `<td class="heat" style="background:${heatColorByT(t)}; color:${textColorForT(t)}">${v.toFixed(1)}%</td>`;
+        html += `<td class="heat" style="background:${heatColorByT(t)}; color:${textColorForT(t)};${hlStyle(i)}">${v.toFixed(1)}%</td>`;
       } else if (mode === 'count') {
         const v = c.counts[i];
         if (v == null) { html += `<td class="heat empty">—</td>`; continue; }
         const s = colScales[i];
         const t = (s && s.max) ? v / s.max : 0;
-        html += `<td class="heat" style="background:${heatColorByT(t)}; color:${textColorForT(t)}">${v.toLocaleString()}</td>`;
+        html += `<td class="heat" style="background:${heatColorByT(t)}; color:${textColorForT(t)};${hlStyle(i)}">${v.toLocaleString()}</td>`;
       } else {  // delta mode — uses pct values, computes diff vs previous cell
         if (i === 0) { html += `<td class="heat empty">—</td>`; continue; }
         const cur = c.pct[i], prev = c.pct[i-1];
@@ -5306,7 +5318,7 @@ function renderCohortHeatmap() {
         const norm = (s && s.maxAbs) ? delta / s.maxAbs : 0;
         const sign = delta > 0 ? '+' : (delta < 0 ? '−' : '');
         const fmt = sign + Math.abs(delta).toFixed(1) + 'pp';
-        html += `<td class="heat" style="background:${divergingColor(norm)}; color:${divergingTextColor(norm)}">${fmt}</td>`;
+        html += `<td class="heat" style="background:${divergingColor(norm)}; color:${divergingTextColor(norm)};${hlStyle(i)}">${fmt}</td>`;
       }
     }
     html += `</tr>`;
