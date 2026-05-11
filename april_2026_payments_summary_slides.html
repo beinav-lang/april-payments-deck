@@ -4370,11 +4370,14 @@ new Chart(document.getElementById('chart-pct-paid'), {
         data: pctPaidActive,
         borderColor: C.purple,
         backgroundColor: 'rgba(124,58,237,0.08)',
-        borderWidth: 2.5,
-        pointRadius: 5,
+        borderWidth: 4,
+        segment: {
+          borderWidth: ctx => (ctx.p0DataIndex >= 10 ? 6 : 4)
+        },
+        pointRadius: ctx => ctx.dataIndex >= 10 ? 8 : 5,
         pointBackgroundColor: C.purple,
         pointBorderColor: '#fff',
-        pointBorderWidth: 1.5,
+        pointBorderWidth: 2,
         tension: 0.3,
         yAxisID: 'yPct',
         order: 2,
@@ -4382,11 +4385,16 @@ new Chart(document.getElementById('chart-pct-paid'), {
           display: true, anchor: 'center', align: 'center',
           backgroundColor: '#fff',
           borderColor: C.purple,
-          borderWidth: 1,
+          borderWidth: ctx => (ctx.dataIndex >= 10 ? 2 : 1),
           borderRadius: 4,
-          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          padding: ctx => (ctx.dataIndex >= 10
+            ? { top: 4, bottom: 4, left: 7, right: 7 }
+            : { top: 2, bottom: 2, left: 5, right: 5 }),
           color: C.purple,
-          font: { weight: 700, size: 9.5 },
+          font: ctx => ({
+            weight: 800,
+            size: ctx.dataIndex >= 10 ? 14 : 11
+          }),
           formatter: v => v == null ? '' : v.toFixed(2) + '%'
         }
       },
