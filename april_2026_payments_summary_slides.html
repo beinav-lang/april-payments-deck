@@ -2043,21 +2043,20 @@
     </div>
 
     <h2 class="section-title">
-      <span style="color: #3185FC">Record FT volume (14,886 in Apr '26 · +21% YoY)</span> · but the engine is Onboarding accounts.
+      <span style="color: #3185FC">Record FT volume (15,254 in Apr '26 · +20% YoY)</span> · driven by Mature accounts, Onboarding volume is flat.
     </h2>
 
     <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">First-time paid leases per cycle <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mature vs Onboarding</span></div>
+      <div class="ch-title">First-time paying tenants per cycle <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mature vs Onboarding</span></div>
       <div class="chart-wrap" style="height: 420px"><canvas id="chart-ft-trend"></canvas></div>
     </div>
 
     <!-- Insight card -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
-      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 FT growth is an Onboarding story — Mature accounts contribute roughly the same volume they did a year ago.</div>
-      <strong>Mature FT</strong> (3+ mo on platform): 10,010 (Mar '25) → 10,480 (Apr '26) = <strong>+4.7%</strong>.
-      <strong>Onboarding FT</strong> (0–2 mo on platform): 19 (Mar '25) → <strong>4,830 (Apr '26) = +254×</strong> — newer PMs now contribute ~32% of all FT volume.
-      <br><br>
-      Two implications: <strong>(1)</strong> the platform is growing primarily by acquiring new PMs, not by Mature PMs adding more tenants; <strong>(2)</strong> FT card behavior on slide 09 is increasingly an <em>Onboarding-tenant</em> story — Mature FT volume is essentially a constant.
+      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 FT growth is a Mature story — Onboarding volume hasn't grown in 14 months.</div>
+      <strong>Mature FT</strong> (PM ≥90 days on platform at first-pay): 6,635 (Mar '25) → 10,410 (Apr '26) = <strong>+57%</strong>.
+      <strong>Onboarding FT</strong> (PM &lt;90 days at first-pay): 5,085 → 4,844 = <strong>−5%</strong> — essentially flat.
+      <strong>Onboarding share of FT dropped from 43% → 32%</strong>: the platform is acquiring fewer brand-new PMs (relative to base) and squeezing more first-payments out of its mature PM portfolio.
     </div>
 
     <!-- Secondary stat row -->
@@ -2074,8 +2073,8 @@
       </div>
       <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 6px">
         <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Onboarding share of FT</div>
-        <div style="font-size: 18px; font-weight: 800; color: #ff4998; margin-top: 6px">&lt;1% → 32%</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">Mar '25 → Apr '26 · ~14 months</div>
+        <div style="font-size: 18px; font-weight: 800; color: #ff4998; margin-top: 6px">43% → 32%</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">Mar '25 → Apr '26 · −11 pp shift to Mature</div>
       </div>
     </div>
 
@@ -2086,21 +2085,23 @@
 (function() {
   // Slide 08 · First-time paid leases trend (Mature + Onboarding stacked) + FT % line
   // Source: /tmp/ft_explore_1.sql (totals) + /tmp/ft_explore_3.sql (cohort split)
+  // Corrected cohort classification: PM age (vs PM's first invoice) at FT first-pay month.
+  // Source: /tmp/ft_cohort_v2.sql
   const ftData = [
-    { month: "Mar '25", mature: 10010, onboarding:   19, totalPaid: 118125, ftPct:  9.82 },
-    { month: "Apr '25", mature: 10995, onboarding:   26, totalPaid: 124046, ftPct:  9.93 },
-    { month: "May '25", mature: 10453, onboarding:   24, totalPaid: 126220, ftPct:  8.98 },
-    { month: "Jun '25", mature: 11761, onboarding:  678, totalPaid: 130629, ftPct:  9.58 },
-    { month: "Jul '25", mature: 10692, onboarding: 2698, totalPaid: 135438, ftPct:  9.67 },
-    { month: "Aug '25", mature: 10643, onboarding: 3305, totalPaid: 139022, ftPct:  9.53 },
-    { month: "Sep '25", mature:  9584, onboarding: 3843, totalPaid: 143712, ftPct:  8.89 },
-    { month: "Oct '25", mature:  8820, onboarding: 4079, totalPaid: 148429, ftPct:  8.36 },
-    { month: "Nov '25", mature:  8557, onboarding: 4806, totalPaid: 152673, ftPct:  8.50 },
-    { month: "Dec '25", mature:  7778, onboarding: 3173, totalPaid: 155446, ftPct:  6.88 },
-    { month: "Jan '26", mature:  8842, onboarding: 5861, totalPaid: 161525, ftPct:  8.84 },
-    { month: "Feb '26", mature:  9416, onboarding: 5093, totalPaid: 168990, ftPct:  8.38 },
-    { month: "Mar '26", mature:  9170, onboarding: 4891, totalPaid: 170804, ftPct:  8.02 },
-    { month: "Apr '26", mature: 10480, onboarding: 4830, totalPaid: 177799, ftPct:  8.37 }
+    { month: "Mar '25", mature:  6635, onboarding: 5085, totalPaid: 118125, ftPct:  9.82 },
+    { month: "Apr '25", mature:  7691, onboarding: 5027, totalPaid: 124046, ftPct:  9.93 },
+    { month: "May '25", mature:  7611, onboarding: 4169, totalPaid: 126220, ftPct:  8.98 },
+    { month: "Jun '25", mature:  8469, onboarding: 4678, totalPaid: 130629, ftPct:  9.58 },
+    { month: "Jul '25", mature:  9170, onboarding: 4605, totalPaid: 135438, ftPct:  9.67 },
+    { month: "Aug '25", mature:  9616, onboarding: 4281, totalPaid: 139022, ftPct:  9.53 },
+    { month: "Sep '25", mature:  9073, onboarding: 4333, totalPaid: 143712, ftPct:  8.89 },
+    { month: "Oct '25", mature:  8530, onboarding: 4356, totalPaid: 148429, ftPct:  8.36 },
+    { month: "Nov '25", mature:  8242, onboarding: 5060, totalPaid: 152673, ftPct:  8.50 },
+    { month: "Dec '25", mature:  7627, onboarding: 3314, totalPaid: 155446, ftPct:  6.88 },
+    { month: "Jan '26", mature:  8904, onboarding: 5765, totalPaid: 161525, ftPct:  8.84 },
+    { month: "Feb '26", mature:  9492, onboarding: 5028, totalPaid: 168990, ftPct:  8.38 },
+    { month: "Mar '26", mature:  9207, onboarding: 4826, totalPaid: 170804, ftPct:  8.02 },
+    { month: "Apr '26", mature: 10410, onboarding: 4844, totalPaid: 177799, ftPct:  8.37 }
   ];
   const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', AMBER = '#b45309';
 
@@ -2117,9 +2118,9 @@
         datasets: [
           {
             type: 'bar',
-            label: 'Mature FT',
-            data: ftData.map(d => d.mature),
-            backgroundColor: BLUE,
+            label: 'Onboarding FT',
+            data: ftData.map(d => d.onboarding),
+            backgroundColor: PINK,
             borderRadius: 0,
             stack: 'ft',
             yAxisID: 'yCount',
@@ -2132,16 +2133,15 @@
           },
           {
             type: 'bar',
-            label: 'Onboarding FT',
-            data: ftData.map(d => d.onboarding),
-            backgroundColor: PINK,
+            label: 'Mature FT',
+            data: ftData.map(d => d.mature),
+            backgroundColor: BLUE,
             borderRadius: 0,
             stack: 'ft',
             yAxisID: 'yCount',
             order: 3,
             datalabels: {
-              display: ctx => ctx.dataset.data[ctx.dataIndex] >= 300,
-              anchor: 'center', align: 'center',
+              display: true, anchor: 'center', align: 'center',
               color: '#fff', font: { weight: 800, size: 11 },
               formatter: v => (v / 1000).toFixed(1) + 'K'
             }
