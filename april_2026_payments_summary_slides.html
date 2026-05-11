@@ -1605,11 +1605,11 @@
 
     <div class="chart-shell" style="margin-top: 14px">
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px">
-        <div class="ch-title" style="margin: 0">New active leases · per activation cohort · <span style="font-weight:500; color:var(--muted); font-size:11.5px">Onboarding (0–3 mo on platform)</span></div>
+        <div class="ch-title" style="margin: 0">New active leases · per activation cohort · <span style="font-weight:500; color:var(--muted); font-size:11.5px">Onboarding (0–2 mo on platform)</span></div>
         <div class="cohort-toggle" id="elig-view-toggle" style="margin: 0">
           <button data-elig-view="All" onclick="setEligView('All')">All</button>
           <button data-elig-view="Mature" onclick="setEligView('Mature')">Mature (3+ mo)</button>
-          <button class="active" data-elig-view="Onboarding" onclick="setEligView('Onboarding')">Onboarding (0–3 mo)</button>
+          <button class="active" data-elig-view="Onboarding" onclick="setEligView('Onboarding')">Onboarding (0–2 mo)</button>
         </div>
       </div>
       <div class="chart-wrap" style="height: 380px"><canvas id="chart-new-eligibility"></canvas></div>
@@ -1618,7 +1618,7 @@
     <!-- Verified-insight card -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
       <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #162050; margin-bottom: 8px">💡 Insight · Onboarding accounts driving the lift</div>
-      Of the +9 pp lift in cohort-level eligibility (Sep '25 → Apr '26), <strong>Onboarding accounts (0–3 months on platform) drove ~85% of it</strong>: their share of new leases meeting the eligibility bar climbed <strong>+11.5 pp (18.7% → 30.2%)</strong>, while Mature accounts (3+ months) barely moved (<strong>+1.4 pp, 61.8% → 63.2%</strong>). Newer PMs are completing setup faster — attaching tenants on the lease, enabling Merchant Account at onboarding, and triggering portal invites at activation — so a much larger share of their newly-active leases is actually ready to transact within the cycle.
+      Of the +9 pp lift in cohort-level eligibility (Sep '25 → Apr '26), <strong>Onboarding accounts (0–2 months on platform) drove ~85% of it</strong>: their share of new leases meeting the eligibility bar climbed <strong>+11.5 pp (18.7% → 30.2%)</strong>, while Mature accounts (3+ months) barely moved (<strong>+1.4 pp, 61.8% → 63.2%</strong>). Newer PMs are completing setup faster — attaching tenants on the lease, enabling Merchant Account at onboarding, and triggering portal invites at activation — so a much larger share of their newly-active leases is actually ready to transact within the cycle.
     </div>
 
     <!-- Mature vs Onboarding split (small comparison strip) -->
@@ -1629,7 +1629,7 @@
         <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">+1.4 pp · steady, no real lift</div>
       </div>
       <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 6px">
-        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Onboarding (0–3 mo on platform)</div>
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Onboarding (0–2 mo on platform)</div>
         <div style="font-size: 18px; font-weight: 800; color: #ff4998; margin-top: 6px">18.7% → 30.2%</div>
         <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">+11.5 pp · <strong style="color: var(--text)">the lift driver</strong></div>
       </div>
@@ -1903,7 +1903,7 @@
       <div style="margin-top: 10px; padding:12px 18px; background:#fff; border:1px solid var(--border); border-left:4px solid var(--blue); border-radius:10px">
         <p style="font-size:13px; line-height:1.6; color:var(--muted); margin:0">
           <strong style="color:var(--text)">Mature accounts</strong> (3+ mo on platform) ramp fast — ~30% paid at M0, 47–51% by M2.
-          <strong style="color:var(--text)">Onboarding accounts</strong> (0–3 mo) start slow (~9% at M0) and converge into the 30s by M3.
+          <strong style="color:var(--text)">Onboarding accounts</strong> (0–2 mo) start slow (~9% at M0) and converge into the 30s by M3.
           Both plateau around <strong style="color:var(--text)">40–45%</strong> at M2–M3 — that's the activation ceiling.
         </p>
       </div>
@@ -1921,7 +1921,7 @@
           <div class="cohort-toggle" style="margin-left:0">
             <button class="active" data-view="All" onclick="setCohortView('All')">All</button>
             <button data-view="Mature" onclick="setCohortView('Mature')">Mature (3+ mo)</button>
-            <button data-view="Onboarding" onclick="setCohortView('Onboarding')">Onboarding (0–3 mo)</button>
+            <button data-view="Onboarding" onclick="setCohortView('Onboarding')">Onboarding (0–2 mo)</button>
           </div>
         </div>
         <div>
@@ -4037,7 +4037,7 @@ const cardByPop = [
 
 // Lease cohorts (lease_cohort.sql) — % paid leases AND # paid leases at M0..M7 per cohort
 // Cohort = leases that became active in the payments-month (Sep '25 → Apr '26)
-// Three account-type views: All | Mature (3+ mo) | Onboarding (0–3 mo)
+// Three account-type views: All | Mature (3+ mo) | Onboarding (0–2 mo)
 const cohortDataAll = {
   All: [
     { cohort: "Sep '25", size: 22118, pct: [21.0, 38.4, 41.2, 40.2, 39.1, 38.5, 36.2, 35.3], counts: [4655, 8484, 9111, 8890, 8658, 8520, 8012, 7803] },
@@ -5322,7 +5322,7 @@ function renderCohortHeatmap() {
   document.getElementById('cohort-heatmap').innerHTML = html;
 
   // Update title
-  const accLabel = { All: 'All accounts', Mature: 'Mature accounts (3+ months on platform)', Onboarding: 'Onboarding accounts (0–3 months on platform)' }[cohortView];
+  const accLabel = { All: 'All accounts', Mature: 'Mature accounts (3+ months on platform)', Onboarding: 'Onboarding accounts (0–2 months on platform)' }[cohortView];
   const valLabel = { pct: '% Paid', count: '# Paid', delta: 'Δ MoM (pp change vs prior month)' }[mode];
   const t = document.getElementById('cohort-title');
   if (t) t.textContent = `${valLabel} leases by cohort · M0 → M7 · ${accLabel}`;
