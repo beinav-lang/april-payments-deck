@@ -1721,16 +1721,31 @@
             borderColor: PINK,
             backgroundColor: 'transparent',
             borderWidth: 3,
-            pointRadius: 7,
+            segment: {
+              borderWidth: ctx => (ctx.p0DataIndex >= 4 ? 5 : 3)
+            },
+            pointRadius: ctx => (ctx.dataIndex >= 4 ? 10 : 7),
             pointBackgroundColor: '#fff',
             pointBorderColor: PINK,
-            pointBorderWidth: 2.5,
+            pointBorderWidth: ctx => (ctx.dataIndex >= 4 ? 3 : 2.5),
             tension: 0.3,
             yAxisID: 'yPct',
             order: 1,
             datalabels: {
-              display: true, anchor: 'center', align: 'top', offset: 10,
-              color: PINK, font: { weight: 800, size: 11.5 },
+              display: true, anchor: 'center', align: 'top',
+              offset: ctx => (ctx.dataIndex >= 4 ? 14 : 10),
+              backgroundColor: ctx => (ctx.dataIndex >= 4 ? '#fff' : 'transparent'),
+              borderColor: PINK,
+              borderWidth: ctx => (ctx.dataIndex >= 4 ? 2 : 0),
+              borderRadius: 4,
+              padding: ctx => (ctx.dataIndex >= 4
+                ? { top: 4, bottom: 4, left: 7, right: 7 }
+                : { top: 0, bottom: 0, left: 0, right: 0 }),
+              color: PINK,
+              font: ctx => ({
+                weight: 800,
+                size: ctx.dataIndex >= 4 ? 16 : 11.5
+              }),
               formatter: v => v.toFixed(1) + '%'
             }
           }
