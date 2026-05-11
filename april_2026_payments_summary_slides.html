@@ -1565,9 +1565,6 @@
         </div>
       </div>
       <h2 class="section-title">48.06% paid · record — <em>driven by eligibility, not conversion.</em></h2>
-      <p class="lede" style="margin-top:8px">
-        Headline payment penetration is at an all-time high, but the lift comes from a widening funnel mouth. Per the chart below, <strong>paid / eligible has been flat at 65–67% for nine months</strong> — once a lease qualifies to transact (active + tenant attached + MA enabled), conversion hasn't actually improved. The next slide drills into where the new eligibility is coming from.
-      </p>
     </div>
 
     <div class="chart-shell">
@@ -4390,7 +4387,7 @@ new Chart(document.getElementById('chart-pct-paid'), {
           padding: { top: 2, bottom: 2, left: 4, right: 4 },
           color: C.purple,
           font: { weight: 700, size: 9.5 },
-          formatter: v => v == null ? '' : v.toFixed(1) + '%'
+          formatter: v => v == null ? '' : v.toFixed(2) + '%'
         }
       },
       {
