@@ -5288,12 +5288,13 @@ function renderCohortHeatmap() {
     // Highlight key cells called out in the insight card.
     // Per-view: only highlight cells that are notable in the current toggle.
     //   All view:        Feb '26 M1+M2 (the +5.4pp jump) and Apr '26 M0 (record 25.2%)
-    //   Mature view:     Feb '26 M1+M2 (jump still visible, +3.6pp)
-    //                    Apr '26 M0 NOT highlighted (32.5% is not a Mature record — Feb '26 was 33.5%)
+    //   Mature view:     NONE - the insight is about Onboarding-driven movements,
+    //                    not Mature. Mature's Feb M1->M2 (+3.6pp) is similar to Dec '25 (+3.0pp),
+    //                    and Apr M0 (32.5%) is below Feb's 33.5%, so neither is notable.
     //   Onboarding view: Feb '26 M1+M2 (the Onboarding-driven jump, +7pp) and Apr '26 M0 (series-peak 12.0%)
     const highlightByView = {
       All: { "Feb '26": { 1: true, 2: true }, "Apr '26": { 0: true } },
-      Mature: { "Feb '26": { 1: true, 2: true } },
+      Mature: {},
       Onboarding: { "Feb '26": { 1: true, 2: true }, "Apr '26": { 0: true } }
     };
     const highlightCells = highlightByView[cohortView] || {};
