@@ -5285,13 +5285,18 @@ function renderCohortHeatmap() {
     html += `<td class="cohort-name">${c.cohort}</td>`;
     html += `<td class="cohort-size">${c.size.toLocaleString()}</td>`;
 
-    // Highlight key cells called out in the insight card:
-    //   (Feb '26, M1) and (Feb '26, M2) — the +5.4pp M1→M2 jump
-    //   (Apr '26, M0)               — record M0 (25.2%)
-    const highlightCells = {
-      "Feb '26": { 1: true, 2: true },
-      "Apr '26": { 0: true }
+    // Highlight key cells called out in the insight card.
+    // Per-view: only highlight cells that are notable in the current toggle.
+    //   All view:        Feb '26 M1+M2 (the +5.4pp jump) and Apr '26 M0 (record 25.2%)
+    //   Mature view:     Feb '26 M1+M2 (jump still visible, +3.6pp)
+    //                    Apr '26 M0 NOT highlighted (32.5% is not a Mature record — Feb '26 was 33.5%)
+    //   Onboarding view: Feb '26 M1+M2 (the Onboarding-driven jump, +7pp) and Apr '26 M0 (series-peak 12.0%)
+    const highlightByView = {
+      All: { "Feb '26": { 1: true, 2: true }, "Apr '26": { 0: true } },
+      Mature: { "Feb '26": { 1: true, 2: true } },
+      Onboarding: { "Feb '26": { 1: true, 2: true }, "Apr '26": { 0: true } }
     };
+    const highlightCells = highlightByView[cohortView] || {};
     const cellHl = (highlightCells[c.cohort] || {});
     const hlStyle = (i) => cellHl[i]
       ? ' outline: 3px solid #162050; outline-offset: -3px; box-shadow: inset 0 0 0 3px #162050; position: relative; z-index: 2;'
