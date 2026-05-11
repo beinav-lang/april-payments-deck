@@ -1582,8 +1582,8 @@
 
     <!-- Insight card -->
     <div style="margin-top:14px; padding:18px 22px; background:rgba(223,254,2,0.22); border-left:5px solid #162050; border-radius:8px; font-size:14px; color:var(--text); line-height:1.65">
-      <div style="font-size:11px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:#162050; margin-bottom:8px">💡 Insight</div>
-      Active leases climbed <strong>35% over the past 14 months</strong>, and headline payment penetration rose <strong>+4.4 pp to 48.1%</strong> — but that lift is almost entirely an <em>eligibility</em> story. The share of active leases meeting the bar to transact expanded <strong>+4.2 pp to 71.8%</strong>, while <strong>paid-of-eligible has been essentially flat at 65–67%</strong>. We're winning by widening the funnel's mouth, not by converting better once leases qualify.
+      <div style="font-size:15.5px; font-weight:800; color:#162050; margin-bottom:10px; line-height:1.4">💡 We're winning by widening the funnel's mouth — not by converting better once leases qualify.</div>
+      Active leases climbed <strong>35% over the past 14 months</strong>, and headline payment penetration rose <strong>+4.4 pp to 48.1%</strong> — but that lift is almost entirely an <em>eligibility</em> story. The share of active leases meeting the bar to transact expanded <strong>+4.2 pp to 71.8%</strong>, while <strong>paid-of-eligible has been essentially flat at 65–67%</strong>.
     </div>
 
   </div>
@@ -4359,8 +4359,8 @@ new Chart(document.getElementById('chart-pct-paid'), {
         yAxisID: 'yActive',
         order: 3,
         datalabels: {
-          display: true, anchor: 'end', align: 'top', offset: 10,
-          color: '#1e293b', font: { weight: 800, size: 13 },
+          display: true, anchor: 'end', align: 'top', offset: 28,
+          color: '#1e293b', font: { weight: 800, size: 14 },
           formatter: v => v.toFixed(0) + 'K'
         }
       },
@@ -4462,7 +4462,7 @@ new Chart(document.getElementById('chart-pct-paid'), {
     ]
   },
   options: baseOpts({
-    layout: { padding: { top: 18, right: 20, bottom: 10, left: 8 } },
+    layout: { padding: { top: 32, right: 20, bottom: 10, left: 8 } },
     plugins: {
       legend: {
         display: true, position: 'top', align: 'center',
