@@ -2047,8 +2047,8 @@
     </h2>
 
     <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">First-time paying tenants per cycle <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mature vs Onboarding</span></div>
-      <div class="chart-wrap" style="height: 420px"><canvas id="chart-ft-trend"></canvas></div>
+      <div class="ch-title">First-time paid leases by month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mature vs Onboarding · vs total paid leases</span></div>
+      <div class="chart-wrap" style="height: 480px"><canvas id="chart-ft-trend"></canvas></div>
     </div>
 
     <!-- Insight card -->
@@ -2057,25 +2057,6 @@
       <strong>Mature FT</strong> (PM ≥90 days on platform at first-pay): 6,635 (Mar '25) → 10,410 (Apr '26) = <strong>+57%</strong>.
       <strong>Onboarding FT</strong> (PM &lt;90 days at first-pay): 5,085 → 4,844 = <strong>−5%</strong> — essentially flat.
       <strong>Onboarding share of FT dropped from 43% → 32%</strong>: the platform is acquiring fewer brand-new PMs (relative to base) and squeezing more first-payments out of its mature PM portfolio.
-    </div>
-
-    <!-- Secondary stat row -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px">
-      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #3185FC; border-radius: 6px">
-        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">FT $ volume · Apr '26</div>
-        <div style="font-size: 18px; font-weight: 800; color: #162050; margin-top: 6px">$26.28M</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">all-time high · +28% YoY</div>
-      </div>
-      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #b45309; border-radius: 6px">
-        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">FT share of all paid leases</div>
-        <div style="font-size: 18px; font-weight: 800; color: #b45309; margin-top: 6px">9.93% → 8.37%</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">−1.5 pp · paid base growing faster than FT inflow</div>
-      </div>
-      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 6px">
-        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Onboarding share of FT</div>
-        <div style="font-size: 18px; font-weight: 800; color: #ff4998; margin-top: 6px">43% → 32%</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">Mar '25 → Apr '26 · −11 pp shift to Mature</div>
-      </div>
     </div>
 
   </div>
@@ -2148,22 +2129,27 @@
           },
           {
             type: 'line',
-            label: 'FT % of all paid',
-            data: ftData.map(d => d.ftPct),
-            borderColor: AMBER,
+            label: 'Total paid leases',
+            data: ftData.map(d => d.totalPaid),
+            borderColor: NAVY,
             backgroundColor: 'transparent',
-            borderWidth: 2.5,
+            borderWidth: 3,
             tension: 0.3,
-            pointRadius: 4,
+            pointRadius: 5,
             pointBackgroundColor: '#fff',
-            pointBorderColor: AMBER,
-            pointBorderWidth: 2,
-            yAxisID: 'yPct',
+            pointBorderColor: NAVY,
+            pointBorderWidth: 2.5,
+            yAxisID: 'yTotal',
             order: 1,
             datalabels: {
-              display: true, anchor: 'center', align: 'top', offset: 8,
-              color: AMBER, font: { weight: 700, size: 10 },
-              formatter: v => v.toFixed(1) + '%'
+              display: true, anchor: 'center', align: 'top', offset: 10,
+              backgroundColor: '#fff',
+              borderColor: NAVY,
+              borderWidth: 1,
+              borderRadius: 4,
+              padding: { top: 2, bottom: 2, left: 6, right: 6 },
+              color: NAVY, font: { weight: 800, size: 11 },
+              formatter: v => (v / 1000).toFixed(0) + 'K'
             }
           }
         ]
@@ -2202,8 +2188,8 @@
             stacked: true, position: 'left', beginAtZero: true, max: 18000,
             grid: { display: false }, ticks: { display: false }, title: { display: false }
           },
-          yPct: {
-            position: 'right', beginAtZero: false, min: 5, max: 12,
+          yTotal: {
+            position: 'right', beginAtZero: false, min: 110000, max: 200000,
             grid: { display: false }, ticks: { display: false }, title: { display: false }
           }
         }
