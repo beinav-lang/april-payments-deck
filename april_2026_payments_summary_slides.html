@@ -1937,9 +1937,10 @@
 
     <!-- April insight tying cohort to headline -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.6">
-      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 April's +1.13 pp came from two cohort movements visible in the heatmap.</div>
-      <div style="margin-bottom: 6px"><strong>1) Feb '26 cohort M1→M2 jumped +5.4 pp</strong> (42.6% → 48.0%), mainly Onboarding accounts.</div>
-      <div><strong>2) Apr '26 itself hit 25.2% paid at M0</strong> — highest M0 in the series, with Onboarding M0 at a series-peak 12.0%. Same-month activation+payment at a record clip.</div>
+      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 April's +1.13 pp came from three cohort movements visible in the heatmap.</div>
+      <div style="margin-bottom: 6px"><strong>1) Feb '26 cohort M1→M2 jumped to 48.0%</strong> (+5.4 pp from M1), mainly Onboarding accounts.</div>
+      <div style="margin-bottom: 6px"><strong>2) Jan '26 cohort hit 45.2% paid at M3</strong> — series-record M3 reading; Mature M3 also peaked at 49.8%.</div>
+      <div><strong>3) Apr '26 itself hit 25.2% paid at M0</strong> — highest M0 in the series, with Onboarding M0 at a series-peak 12.0%. Same-month activation+payment at a record clip.</div>
     </div>
 
   </div>
@@ -2361,11 +2362,17 @@
 
     </div>
 
-    <!-- Third card · within-bucket behavior (unexplained) -->
+    <!-- Third card · within-bucket behavior (unexplained) + supporting chart -->
     <div style="margin-top: 14px; padding: 12px 16px; background: rgba(245,158,11,0.10); border-left: 4px solid #f59e0b; border-radius: 6px">
       <div style="font-size: 13.5px; font-weight: 800; color: #b45309; letter-spacing: -0.1px">Within-bucket behavior <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· unexplained mechanism</span></div>
-      <div style="font-size: 12.5px; color: var(--text); line-height: 1.55; margin-top: 4px">
-        High-rent (≥$1,200) tenants are increasingly choosing ACH at first payment — card adoption inside that bucket has drifted lower over the window. <strong>~35% of the FT card-share drop</strong> traces to this within-bucket behavior shift; <em>not</em> driven by mix or PM tail. Next investigation: payment-method funnel UX, Plaid placement, default option logic.
+      <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; align-items: center; margin-top: 6px">
+        <div style="font-size: 12.5px; color: var(--text); line-height: 1.55">
+          High-rent (≥$1,200) tenants are increasingly choosing ACH at first payment — card adoption inside that bucket drifted from <strong>34.8% → 32.3%</strong> (−2.5 pp Sep '25 → Apr '26), while the &lt;$1,200 sweet spot stayed flat at ~58%. <strong>~35% of the FT card-share drop</strong> traces here, <em>not</em> to mix or PM tail. Next investigation: payment-method funnel UX, Plaid placement, default option logic.
+        </div>
+        <div style="background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px">
+          <div style="font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 2px">FT card adoption by rent bucket <span style="font-weight: 500; text-transform: none; letter-spacing: 0">· Sep '25 → Apr '26</span></div>
+          <div style="height: 130px"><canvas id="chart-within-bucket"></canvas></div>
+        </div>
       </div>
     </div>
 
@@ -2557,6 +2564,81 @@
             title: { display: true, text: 'FT tenants', color: '#9d214f', font: { size: 10, weight: 700 } },
             ticks: { font: { size: 10 }, color: '#9d214f' }
           }
+        }
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+(function() {
+  // Slide 09 · Within-bucket behavior — FT card adoption by rent bucket, Sep '25 → Apr '26.
+  // <$1,200 (sweet spot, flat ~58%) vs ≥$1,200 (drifting 34.8 → 32.3%).
+  // Source: rentBehavior numbers I had earlier (FT card adoption per cohort × rent bucket).
+  const wbMonths = ["Sep '25","Oct '25","Nov '25","Dec '25","Jan '26","Feb '26","Mar '26","Apr '26"];
+  const wbLt1200 = [56.9, 59.3, 55.2, 53.9, 57.3, 57.0, 58.4, 59.2];
+  const wbGte1200 = [34.8, 33.9, 34.2, 33.1, 31.4, 34.6, 31.0, 32.3];
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+    const el = document.getElementById('chart-within-bucket');
+    if (!el) return;
+
+    new Chart(el, {
+      type: 'line',
+      data: {
+        labels: wbMonths,
+        datasets: [
+          {
+            label: '<$1,200',
+            data: wbLt1200,
+            borderColor: '#ff4998',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            tension: 0.3,
+            pointRadius: 3,
+            pointBackgroundColor: '#ff4998',
+            datalabels: {
+              display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === ctx.dataset.data.length - 1,
+              anchor: 'center', align: 'top', offset: 6,
+              color: '#ff4998', font: { weight: 700, size: 9.5 },
+              formatter: v => v.toFixed(1) + '%'
+            }
+          },
+          {
+            label: '≥$1,200',
+            data: wbGte1200,
+            borderColor: '#b45309',
+            backgroundColor: 'transparent',
+            borderWidth: 2.5,
+            tension: 0.3,
+            pointRadius: 3,
+            pointBackgroundColor: '#b45309',
+            datalabels: {
+              display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === ctx.dataset.data.length - 1,
+              anchor: 'center', align: 'bottom', offset: 6,
+              color: '#b45309', font: { weight: 800, size: 10 },
+              formatter: v => v.toFixed(1) + '%'
+            }
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 14, right: 6, bottom: 14, left: 6 } },
+        plugins: {
+          legend: {
+            display: true, position: 'bottom', align: 'center',
+            labels: { boxWidth: 10, boxHeight: 2, font: { size: 9.5, weight: 700 }, color: '#162050', padding: 6, usePointStyle: false }
+          },
+          tooltip: {
+            callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y.toFixed(1) + '%' }
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 8.5 }, color: '#64748b', maxRotation: 0, autoSkip: false } },
+          y: { display: false, suggestedMin: 28, suggestedMax: 62 }
         }
       }
     });
@@ -5549,19 +5631,16 @@ function renderCohortHeatmap() {
     html += `<td class="cohort-size">${c.size.toLocaleString()}</td>`;
 
     // Highlight key cells called out in the insight card.
-    // Per-view: only highlight cells that are notable in the current toggle.
-    //   All view:        Feb '26 M1+M2 (the +5.4pp jump) and Apr '26 M0 (record 25.2%)
-    //   Mature view:     NONE - the insight is about Onboarding-driven movements,
-    //                    not Mature. Mature's Feb M1->M2 (+3.6pp) is similar to Dec '25 (+3.0pp),
-    //                    and Apr M0 (32.5%) is below Feb's 33.5%, so neither is notable.
-    //   Onboarding view: Feb '26 M1+M2 (the Onboarding-driven jump, +7pp) and Apr '26 M0 (series-peak 12.0%)
-    const highlightByView = {
-      All: { "Feb '26": { 1: true, 2: true }, "Apr '26": { 0: true } },
-      Mature: {},
-      Onboarding: { "Feb '26": { 1: true, 2: true }, "Apr '26": { 0: true } }
+    // Consistent across All / Mature / Onboarding views — the three key cells:
+    //   Feb '26 M2: endpoint of the +5.4pp M1->M2 conversion jump (48.0% All)
+    //   Jan '26 M3: record M3 reading (45.2% All) — late-month conversion strength
+    //   Apr '26 M0: record M0 reading (25.2% All) — same-month activation+payment
+    const highlightCellMap = {
+      "Feb '26": { 2: true },
+      "Jan '26": { 3: true },
+      "Apr '26": { 0: true }
     };
-    const highlightCells = highlightByView[cohortView] || {};
-    const cellHl = (highlightCells[c.cohort] || {});
+    const cellHl = (highlightCellMap[c.cohort] || {});
     const hlStyle = (i) => cellHl[i]
       ? ' outline: 3px solid #162050; outline-offset: -3px; box-shadow: inset 0 0 0 3px #162050; position: relative; z-index: 2;'
       : '';
