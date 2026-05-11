@@ -4396,26 +4396,35 @@ new Chart(document.getElementById('chart-pct-paid'), {
         data: pctEligActive,
         borderColor: '#2563eb',
         backgroundColor: 'transparent',
-        borderWidth: 2.5,
-        borderDash: [4, 3],
-        pointRadius: ctx => ctx.parsed.y == null ? 0 : 4,
+        borderWidth: 4,
+        // Step up to extra-thick from Jan '26 (idx 10) onward
+        segment: {
+          borderWidth: ctx => (ctx.p0DataIndex >= 10 ? 6 : 4)
+        },
+        borderDash: [],
+        pointRadius: ctx => ctx.parsed.y == null ? 0 : (ctx.dataIndex >= 10 ? 8 : 5),
         pointBackgroundColor: '#2563eb',
         pointBorderColor: '#fff',
-        pointBorderWidth: 1.5,
+        pointBorderWidth: 2,
         tension: 0.3,
         spanGaps: false,
         yAxisID: 'yPct',
-        order: 2,
+        order: 1,
         datalabels: {
           display: ctx => ctx.dataset.data[ctx.dataIndex] != null,
-          anchor: 'center', align: 'center',
+          anchor: 'center', align: 'top', offset: 8,
           backgroundColor: '#fff',
           borderColor: '#2563eb',
-          borderWidth: 1,
+          borderWidth: ctx => (ctx.dataIndex >= 10 ? 2 : 1),
           borderRadius: 4,
-          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          padding: ctx => (ctx.dataIndex >= 10
+            ? { top: 4, bottom: 4, left: 7, right: 7 }
+            : { top: 2, bottom: 2, left: 5, right: 5 }),
           color: '#2563eb',
-          font: { weight: 700, size: 9.5 },
+          font: ctx => ({
+            weight: 800,
+            size: ctx.dataIndex >= 10 ? 14 : 11
+          }),
           formatter: v => v == null ? '' : v.toFixed(1) + '%'
         }
       },
