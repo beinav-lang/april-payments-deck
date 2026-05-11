@@ -1564,7 +1564,7 @@
           <div class="chapter-name">Paid Leases</div>
         </div>
       </div>
-      <h2 class="section-title">48.06% paid · record — but it's <em>eligibility, not conversion.</em></h2>
+      <h2 class="section-title">48.06% paid · record — <em>driven by eligibility, not conversion.</em></h2>
       <p class="lede" style="margin-top:8px">
         Headline payment penetration is at an all-time high, but the lift comes from a widening funnel mouth. Per the chart below, <strong>paid / eligible has been flat at 65–67% for nine months</strong> — once a lease qualifies to transact (active + tenant attached + MA enabled), conversion hasn't actually improved. The next slide drills into where the new eligibility is coming from.
       </p>
@@ -4365,6 +4365,61 @@ new Chart(document.getElementById('chart-pct-paid'), {
           display: true, anchor: 'end', align: 'top', offset: 2,
           color: '#1e293b', font: { weight: 700, size: 9.5 },
           formatter: v => v.toFixed(0) + 'K'
+        }
+      },
+      {
+        type: 'line',
+        label: '% Paid / Active',
+        data: pctPaidActive,
+        borderColor: C.purple,
+        backgroundColor: 'rgba(124,58,237,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: C.purple,
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        yAxisID: 'yPct',
+        order: 2,
+        datalabels: {
+          display: true, anchor: 'center', align: 'center',
+          backgroundColor: '#fff',
+          borderColor: C.purple,
+          borderWidth: 1,
+          borderRadius: 4,
+          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          color: C.purple,
+          font: { weight: 700, size: 9.5 },
+          formatter: v => v == null ? '' : v.toFixed(1) + '%'
+        }
+      },
+      {
+        type: 'line',
+        label: '% Eligible / Active',
+        data: pctEligActive,
+        borderColor: '#2563eb',
+        backgroundColor: 'transparent',
+        borderWidth: 2.5,
+        borderDash: [4, 3],
+        pointRadius: ctx => ctx.parsed.y == null ? 0 : 4,
+        pointBackgroundColor: '#2563eb',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        spanGaps: false,
+        yAxisID: 'yPct',
+        order: 2,
+        datalabels: {
+          display: ctx => ctx.dataset.data[ctx.dataIndex] != null,
+          anchor: 'center', align: 'center',
+          backgroundColor: '#fff',
+          borderColor: '#2563eb',
+          borderWidth: 1,
+          borderRadius: 4,
+          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          color: '#2563eb',
+          font: { weight: 700, size: 9.5 },
+          formatter: v => v == null ? '' : v.toFixed(1) + '%'
         }
       },
       {
