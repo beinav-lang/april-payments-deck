@@ -2040,7 +2040,7 @@
 
     <div style="margin-top: 28px">
       <h2 class="section-title">
-        <span style="color: #dc2626">Card volume share is at a 12-month low (17.75%)</span> · First-time tenants are the line that's moving.
+        <span style="color: #dc2626">Card volume share at its lowest since Jan '25 (17.75%)</span> · First-time tenants are the line that's moving.
       </h2>
     </div>
 
@@ -2052,7 +2052,7 @@
 
     <!-- Headline summary card -->
     <div style="margin-top: 12px; padding: 14px 18px; background: linear-gradient(135deg, rgba(255,73,152,0.06) 0%, rgba(49,133,252,0.06) 100%); border: 1px solid var(--border); border-radius: 10px; font-size: 13.5px; line-height: 1.6; color: var(--text)">
-      Card share fell to a <strong>12-month low (17.75%)</strong> even though <strong style="color: var(--pink)">absolute card volume hit a record ($54.66M)</strong>. Returning tenants are stable; <strong style="color: #3185FC">FT card share dropped ~9 pp since Mar '25</strong> (38.3% → 29.2%) — each new cohort enters with less card than the last.
+      Card share fell to its <strong>lowest reading since Jan '25 (17.75%)</strong> even though <strong style="color: var(--pink)">absolute card volume hit a record ($54.66M)</strong>. Returning tenants are stable; <strong style="color: #3185FC">FT card share dropped ~9 pp since Mar '25</strong> (38.3% → 29.2%) — each new cohort enters with less card than the last.
     </div>
 
     <!-- Two charts side-by-side -->
@@ -4578,7 +4578,7 @@ new Chart(document.getElementById('chart-card-share-trend'), {
           weight: ctx.dataIndex === cstLast ? 800 : 700,
           size: ctx.dataIndex === cstLast ? 12.5 : 10
         }),
-        formatter: (v, ctx) => v.toFixed(2) + '%' + (ctx.dataIndex === cstLast ? ' · 12-mo low' : '')
+        formatter: (v, ctx) => v.toFixed(2) + '%' + (ctx.dataIndex === cstLast ? ' · lowest since Jan \'25' : '')
       }
     }]
   },
