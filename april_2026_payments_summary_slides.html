@@ -1617,8 +1617,8 @@
 
     <!-- Verified-insight card -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
-      <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #162050; margin-bottom: 8px">💡 Insight · Onboarding accounts driving the lift</div>
-      Of the +9 pp lift in cohort-level eligibility (Sep '25 → Apr '26), <strong>Onboarding accounts (0–2 months on platform) drove ~85% of it</strong>: their share of new leases meeting the eligibility bar climbed <strong>+11.5 pp (18.7% → 30.2%)</strong>, while Mature accounts (3+ months) barely moved (<strong>+1.4 pp, 61.8% → 63.2%</strong>). Newer PMs are completing setup faster — attaching tenants on the lease, enabling Merchant Account at onboarding, and triggering portal invites at activation — so a much larger share of their newly-active leases is actually ready to transact within the cycle.
+      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 Onboarding accounts drove ~85% of the eligibility lift — by sending more invites, not by better acceptance.</div>
+      Of the +9 pp cohort-level eligibility lift (Sep '25 → Apr '26), <strong>Onboarding accounts climbed +11.5 pp (18.7% → 30.2%)</strong> while Mature accounts moved just <strong>+1.4 pp (61.8% → 63.2%)</strong>. The mechanism is invite <em>volume</em>, not invite <em>quality</em>: Onboarding's invite-at-activation rate jumped <strong>+29.7 pp (47.4% → 77.1%)</strong> — more than double Mature's <strong>+16.6 pp</strong> lift. <strong>Acceptance once invited stayed flat for both cohorts</strong> (~94–96% Mature, ~86–92% Onboarding pre-Apr partial window).
     </div>
 
     <!-- Mature vs Onboarding split (small comparison strip) -->
@@ -1768,7 +1768,11 @@
           }
         },
         scales: {
-          x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11, weight: 700 }, color: '#162050' } },
+          x: {
+            stacked: true, grid: { display: false },
+            ticks: { font: { size: 11, weight: 700 }, color: '#162050' },
+            title: { display: true, text: 'lease activation month', color: '#64748b', font: { size: 11, weight: 700, style: 'italic' }, padding: { top: 8 } }
+          },
           yCount: {
             stacked: true, position: 'left', beginAtZero: true,
             max: viewMax[view],
