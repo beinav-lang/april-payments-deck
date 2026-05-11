@@ -6160,7 +6160,19 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   .slide-toc > * { position: relative; z-index: 1; }
   .slide-toc-head {
     padding: 0 6px;
+    margin-bottom: 16px;
+  }
+  .slide-toc-brand {
+    display: block;
     margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .slide-toc-brand img {
+    height: 20px;
+    width: auto;
+    display: block;
+    opacity: 0.95;
   }
   .slide-toc-counter {
     font-size: 10px;
@@ -6328,6 +6340,10 @@ new Chart(document.getElementById('chart-churned-accounts'), {
 
 <aside class="slide-toc" id="slide-toc" role="navigation" aria-label="Slide navigation">
   <div class="slide-toc-head">
+    <div class="slide-toc-brand">
+      <img src="https://cdn.prod.website-files.com/5f073e32d304276cc8b4ff30/69d3ea8e32f87c703096f6cd_doorloop-white-logo-transparent.svg"
+           alt="DoorLoop" />
+    </div>
     <div class="slide-toc-counter" id="slide-counter">— / —</div>
     <div class="slide-toc-label">Contents</div>
   </div>
