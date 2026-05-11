@@ -2042,8 +2042,14 @@
       <h2 class="section-title">First-time tenants are the line that's moving.</h2>
     </div>
 
+    <!-- Overall card-share trend (12 months) -->
+    <div class="chart-shell" style="margin-top: 12px">
+      <div class="ch-title">Overall card volume share <span style="font-weight: 500; color: var(--muted); font-size: 11px">· Apr '25 → Apr '26</span></div>
+      <div class="chart-wrap" style="height: 200px"><canvas id="chart-card-share-trend"></canvas></div>
+    </div>
+
     <!-- Headline summary card -->
-    <div style="margin-top: 14px; padding: 14px 18px; background: linear-gradient(135deg, rgba(255,73,152,0.06) 0%, rgba(49,133,252,0.06) 100%); border: 1px solid var(--border); border-radius: 10px; font-size: 13.5px; line-height: 1.6; color: var(--text)">
+    <div style="margin-top: 12px; padding: 14px 18px; background: linear-gradient(135deg, rgba(255,73,152,0.06) 0%, rgba(49,133,252,0.06) 100%); border: 1px solid var(--border); border-radius: 10px; font-size: 13.5px; line-height: 1.6; color: var(--text)">
       Card share fell to a <strong>12-month low (17.75%)</strong> even though <strong style="color: var(--pink)">absolute card volume hit a record ($54.66M)</strong>. Returning tenants are stable; <strong style="color: #3185FC">FT card share dropped ~9 pp since Mar '25</strong> (38.3% → 29.2%) — each new cohort enters with less card than the last.
     </div>
 
@@ -4519,6 +4525,56 @@ new Chart(document.getElementById('chart-waterfall'), {
     scales: {
       x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } },
       y: { stacked: true, ticks: { callback: v => v + '%' }, suggestedMin: 46, suggestedMax: 49, display: false }
+    }
+  })
+});
+
+// 4b. Overall card-share trend (blended) — Apr '25 → Apr '26
+// Blended share = (ftCard + retCard) / (ftCard + ftAch + retCard + retAch)
+// Source: cardByPop array above
+const cardShareTrend = cardByPop
+  .filter(d => d.ftCard + d.ftAch + d.retCard + d.retAch > 0)
+  .map(d => {
+    const num = d.ftCard + d.retCard;
+    const denom = num + d.ftAch + d.retAch;
+    const [y, mo] = d.month.split('-');
+    return {
+      label: new Date(+y, +mo - 1, 1).toLocaleString('en', { month: 'short' }) + " '" + y.slice(2),
+      pct: +(100 * num / denom).toFixed(2)
+    };
+  });
+const cstLast = cardShareTrend.length - 1;
+new Chart(document.getElementById('chart-card-share-trend'), {
+  type: 'line',
+  data: {
+    labels: cardShareTrend.map(d => d.label),
+    datasets: [{
+      label: 'Overall card share',
+      data: cardShareTrend.map(d => d.pct),
+      borderColor: '#162050',
+      backgroundColor: 'rgba(22,32,80,0.06)',
+      borderWidth: 2.5, tension: 0.3, fill: true,
+      pointRadius: cardShareTrend.map((_,i) => i === cstLast ? 7 : 4),
+      pointBackgroundColor: cardShareTrend.map((_,i) => i === cstLast ? '#dc2626' : '#162050'),
+      pointBorderColor: '#fff', pointBorderWidth: 1.5,
+      datalabels: {
+        display: true,
+        color: ctx => ctx.dataIndex === cstLast ? '#dc2626' : '#475569',
+        anchor: 'end', align: 'top', offset: 6,
+        font: ctx => ({
+          weight: ctx.dataIndex === cstLast ? 800 : 700,
+          size: ctx.dataIndex === cstLast ? 12.5 : 10
+        }),
+        formatter: (v, ctx) => v.toFixed(2) + '%' + (ctx.dataIndex === cstLast ? ' · 12-mo low' : '')
+      }
+    }]
+  },
+  options: baseOpts({
+    layout: { padding: { top: 18, right: 90, bottom: 8, left: 8 } },
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10, weight: 600 }, color: '#64748b' } },
+      y: { display: false, suggestedMin: 17, suggestedMax: 19.2 }
     }
   })
 });
