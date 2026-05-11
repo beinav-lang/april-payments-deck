@@ -1571,9 +1571,22 @@
     </div>
 
     <div class="chart-shell">
-      <div class="ch-title">% Paid Leases</div>
-      <div class="ch-sub">Monotonic up except March dip; April closes the gap and crosses 48%.</div>
-      <div class="chart-wrap" style="height:200px"><canvas id="chart-pct-paid"></canvas></div>
+      <div class="ch-title">% Paid Leases · active · eligible</div>
+      <div class="ch-sub">Bar: active leases. Lines: %paid/active (purple), %eligible/active (blue), %paid/eligible (teal).</div>
+      <div class="chart-wrap" style="height:360px"><canvas id="chart-pct-paid"></canvas></div>
+    </div>
+
+    <!-- Definitions card -->
+    <div style="margin-top:12px; padding:11px 14px; background:#f7f9fd; border:1px solid var(--divider); border-radius:8px; font-size:11.5px; color:var(--text); line-height:1.6">
+      <strong style="color:var(--text)">Definitions →</strong>
+      <span style="color:#475569"><strong>Active</strong> = lease with status='ACTIVE' on the last day of the cycle (24th).</span> &nbsp;·&nbsp;
+      <span style="color:#2563eb"><strong>Eligible</strong> = active <em>and</em> ≥1 active tenant attached <em>and</em> PM has Merchant Account enabled.</span> &nbsp;·&nbsp;
+      <span style="color:#7c3aed"><strong>Paid</strong> = ≥1 successful payment in the cycle.</span>
+    </div>
+
+    <!-- Insight card -->
+    <div style="margin-top:10px; padding:12px 14px; background:rgba(223,254,2,0.18); border-left:4px solid #162050; border-radius:6px; font-size:12.5px; color:var(--text); line-height:1.55">
+      <strong style="color:#162050">💡 Insight</strong> &nbsp;Active leases climbed 35% over the past 14 months, and headline payment penetration rose <strong>+4.4 pp to 48.1%</strong> — but that lift is almost entirely an <em>eligibility</em> story. The share of active leases meeting the bar to transact (right cohort, tenants attached, MA enabled) expanded <strong>+4.2 pp to 71.8%</strong>, while <strong>paid-of-eligible has been essentially flat at 65–67%</strong>. We're winning by widening the funnel's mouth, not by converting better once leases qualify.
     </div>
 
     <div style="margin-top:14px; padding:10px 14px; background:#f7f9fd; border:1px solid var(--divider); border-radius:8px; font-size:11.5px; color:var(--muted); line-height:1.6">
@@ -4087,33 +4100,165 @@ new Chart(document.getElementById('chart-breakdown'), {
   })
 });
 
-// 3. % Paid trend (starts from Mar '25)
+// 3. % Paid trend · active leases bar + 3 ratio lines
+// Source: /tmp/paid_eligible_v2.sql (canonical methodology):
+//   active = SUM(app_active_leases_c) at end-of-cycle (24th)
+//   eligible = leases_daily_snapshot status=ACTIVE + active_tenant_flag=1 + merchant_account_flag=1
+//   paid = COUNT(DISTINCT lease_id) WHERE payments_month = cycle
+// Eligible data is only populated Aug '25 onward (table started mid-2025).
 const trendFromMar25 = trend.slice(2);
+const eligByMonth = {
+  '2025-08': { eligible: 218267, pctElig: 67.57, pctPaidElig: 64.88 },
+  '2025-09': { eligible: 223905, pctElig: 68.24, pctPaidElig: 65.36 },
+  '2025-10': { eligible: 231018, pctElig: 68.33, pctPaidElig: 65.59 },
+  '2025-11': { eligible: 236191, pctElig: 68.66, pctPaidElig: 66.02 },
+  '2025-12': { eligible: 242430, pctElig: 69.01, pctPaidElig: 65.55 },
+  '2026-01': { eligible: 251155, pctElig: 70.31, pctPaidElig: 65.76 },
+  '2026-02': { eligible: 258792, pctElig: 71.14, pctPaidElig: 66.74 },
+  '2026-03': { eligible: 265069, pctElig: 71.23, pctPaidElig: 65.90 },
+  '2026-04': { eligible: 271434, pctElig: 71.80, pctPaidElig: 66.94 }
+};
+const activeBarData = trendFromMar25.map(t => t.active / 1000); // K
+const pctPaidActive = trendFromMar25.map(t => t.pct);
+const pctEligActive = trendFromMar25.map(t => eligByMonth[t.month]?.pctElig ?? null);
+const pctPaidElig   = trendFromMar25.map(t => eligByMonth[t.month]?.pctPaidElig ?? null);
+
 new Chart(document.getElementById('chart-pct-paid'), {
-  type: 'line',
+  type: 'bar',
   data: {
     labels: monthLabels(trendFromMar25),
-    datasets: [{
-      label: '% Paid Leases', data: trendFromMar25.map(t => t.pct), borderColor: C.purple,
-      backgroundColor: 'rgba(124,58,237,0.06)', borderWidth: 2.5, fill: true,
-      pointRadius: 5, pointBackgroundColor: C.purple, pointBorderColor: '#fff', pointBorderWidth: 1.5, tension: 0.3,
-      datalabels: {
-        display: true, anchor: 'end', align: 'top', offset: 6,
-        color: ctx => ctx.dataIndex === ctx.dataset.data.length - 1 ? '#dc2626' : '#475569',
-        font: ctx => ({
-          weight: ctx.dataIndex === ctx.dataset.data.length - 1 ? 800 : 600,
-          size: ctx.dataIndex === ctx.dataset.data.length - 1 ? 13 : 10
-        }),
-        formatter: v => v.toFixed(2) + '%'
+    datasets: [
+      {
+        type: 'bar',
+        label: 'Total active leases (K)',
+        data: activeBarData,
+        backgroundColor: 'rgba(148,163,184,0.45)',
+        borderColor: 'rgba(100,116,139,0.6)',
+        borderWidth: 1,
+        borderRadius: 3,
+        yAxisID: 'yActive',
+        order: 3,
+        datalabels: {
+          display: true, anchor: 'center', align: 'center',
+          color: '#1e293b', font: { weight: 700, size: 9.5 },
+          formatter: v => v.toFixed(0) + 'K'
+        }
+      },
+      {
+        type: 'line',
+        label: '% Paid / Active',
+        data: pctPaidActive,
+        borderColor: C.purple,
+        backgroundColor: 'rgba(124,58,237,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: C.purple,
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        yAxisID: 'yPct',
+        order: 1,
+        datalabels: {
+          display: true, anchor: 'center', align: 'center',
+          backgroundColor: '#fff',
+          borderColor: C.purple,
+          borderWidth: 1,
+          borderRadius: 4,
+          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          color: C.purple,
+          font: { weight: 700, size: 9.5 },
+          formatter: v => v == null ? '' : v.toFixed(1) + '%'
+        }
+      },
+      {
+        type: 'line',
+        label: '% Eligible / Active',
+        data: pctEligActive,
+        borderColor: '#2563eb',
+        backgroundColor: 'transparent',
+        borderWidth: 2.5,
+        borderDash: [4, 3],
+        pointRadius: ctx => ctx.parsed.y == null ? 0 : 4,
+        pointBackgroundColor: '#2563eb',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        spanGaps: false,
+        yAxisID: 'yPct',
+        order: 2,
+        datalabels: {
+          display: ctx => ctx.dataset.data[ctx.dataIndex] != null,
+          anchor: 'center', align: 'center',
+          backgroundColor: '#fff',
+          borderColor: '#2563eb',
+          borderWidth: 1,
+          borderRadius: 4,
+          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          color: '#2563eb',
+          font: { weight: 700, size: 9.5 },
+          formatter: v => v == null ? '' : v.toFixed(1) + '%'
+        }
+      },
+      {
+        type: 'line',
+        label: '% Paid / Eligible',
+        data: pctPaidElig,
+        borderColor: '#0e7490',
+        backgroundColor: 'transparent',
+        borderWidth: 2.5,
+        pointRadius: ctx => ctx.parsed.y == null ? 0 : 4,
+        pointBackgroundColor: '#0e7490',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        spanGaps: false,
+        yAxisID: 'yPct',
+        order: 2,
+        datalabels: {
+          display: ctx => ctx.dataset.data[ctx.dataIndex] != null,
+          anchor: 'center', align: 'center',
+          backgroundColor: '#fff',
+          borderColor: '#0e7490',
+          borderWidth: 1,
+          borderRadius: 4,
+          padding: { top: 2, bottom: 2, left: 4, right: 4 },
+          color: '#0e7490',
+          font: { weight: 700, size: 9.5 },
+          formatter: v => v == null ? '' : v.toFixed(1) + '%'
+        }
       }
-    }]
+    ]
   },
   options: baseOpts({
-    layout: { padding: { top: 18, right: 32, bottom: 16, left: 8 } },
+    layout: { padding: { top: 18, right: 20, bottom: 10, left: 8 } },
+    plugins: {
+      legend: {
+        display: true, position: 'top', align: 'center',
+        labels: { boxWidth: 12, boxHeight: 10, font: { size: 11, weight: 700 }, padding: 12, color: '#162050', usePointStyle: true, pointStyle: 'rect' }
+      }
+    },
     scales: {
-      x: { grid: { color: C.grid, drawBorder: false },
-           ticks: { ...monthAxisTicks(trendFromMar25), callback: (v, i) => fmtMonthShort(trendFromMar25[i].month) } },
-      y: { display: false, suggestedMin: 42, suggestedMax: 50 }
+      x: {
+        grid: { color: C.grid, drawBorder: false },
+        ticks: { ...monthAxisTicks(trendFromMar25), callback: (v, i) => fmtMonthShort(trendFromMar25[i].month) }
+      },
+      yActive: {
+        position: 'left',
+        beginAtZero: true,
+        max: 600,
+        grid: { display: false },
+        ticks: { color: '#64748b', font: { size: 9.5 }, callback: v => v + 'K' },
+        title: { display: true, text: 'Active leases', color: '#64748b', font: { size: 10, weight: 700 } }
+      },
+      yPct: {
+        position: 'right',
+        beginAtZero: false,
+        min: 30,
+        max: 80,
+        grid: { display: false },
+        ticks: { color: '#64748b', font: { size: 9.5 }, callback: v => v + '%' },
+        title: { display: true, text: 'Percent', color: '#64748b', font: { size: 10, weight: 700 } }
+      }
     }
   })
 });
