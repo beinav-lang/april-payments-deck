@@ -1571,7 +1571,7 @@
     </div>
 
     <div class="chart-shell">
-      <div class="ch-title">% Paid Leases · active · eligible</div>
+      <div class="ch-title">Total active leases</div>
       <div class="chart-wrap" style="height:360px"><canvas id="chart-pct-paid"></canvas></div>
     </div>
 
@@ -4244,10 +4244,10 @@ new Chart(document.getElementById('chart-pct-paid'), {
       yActive: {
         position: 'left',
         beginAtZero: true,
-        max: 600,
+        max: 450,
         grid: { display: false },
-        ticks: { color: '#64748b', font: { size: 9.5 }, callback: v => v + 'K' },
-        title: { display: true, text: 'Active leases', color: '#64748b', font: { size: 10, weight: 700 } }
+        ticks: { display: false },
+        title: { display: false }
       },
       yPct: {
         position: 'right',
@@ -4255,8 +4255,8 @@ new Chart(document.getElementById('chart-pct-paid'), {
         min: 30,
         max: 80,
         grid: { display: false },
-        ticks: { color: '#64748b', font: { size: 9.5 }, callback: v => v + '%' },
-        title: { display: true, text: 'Percent', color: '#64748b', font: { size: 10, weight: 700 } }
+        ticks: { display: false },
+        title: { display: false }
       }
     }
   })
