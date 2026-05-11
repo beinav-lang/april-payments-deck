@@ -2043,20 +2043,20 @@
     </div>
 
     <h2 class="section-title">
-      <span style="color: #3185FC">Record FT volume (15,254 in Apr '26 · +20% YoY)</span> · driven by Mature accounts, Onboarding volume is flat.
+      <span style="color: #3185FC">Record FT volume (15,254 in Apr '26 · +20% YoY)</span> · driven by Mature accounts, Onboarding &amp; Post-onboarding volume is flat.
     </h2>
 
     <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">First-time paid leases by month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mature vs Onboarding · vs total paid leases</span></div>
+      <div class="ch-title">First-time paid leases by month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· by PM age cohort · vs Returning paid leases (ex-FT)</span></div>
       <div class="chart-wrap" style="height: 480px"><canvas id="chart-ft-trend"></canvas></div>
     </div>
 
     <!-- Insight card -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
-      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 FT growth is a Mature story — Onboarding volume hasn't grown in 14 months.</div>
-      <strong>Mature FT</strong> (PM ≥90 days on platform at first-pay): 6,635 (Mar '25) → 10,410 (Apr '26) = <strong>+57%</strong>.
-      <strong>Onboarding FT</strong> (PM &lt;90 days at first-pay): 5,085 → 4,844 = <strong>−5%</strong> — essentially flat.
-      <strong>Onboarding share of FT dropped from 43% → 32%</strong>: the platform is acquiring fewer brand-new PMs (relative to base) and squeezing more first-payments out of its mature PM portfolio.
+      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 FT growth is a Mature story — Onboarding &amp; Post-onboarding volume have been flat for 14 months.</div>
+      <strong>Mature FT</strong> (PM 3+ mo on platform at first-pay): 6,635 (Mar '25) → 10,410 (Apr '26) = <strong>+57%</strong>.
+      <strong>Onboarding FT</strong> (0–2 mo): 4,355 → 4,319 = <strong>flat</strong>. <strong>Post-onboarding FT</strong> (2–3 mo): 730 → 525 = <strong>−28%</strong>.
+      Mature's share of FT climbed from <strong>57% → 68%</strong>: the platform is squeezing more first-payments out of its existing mature PM portfolio rather than from brand-new PMs.
     </div>
 
   </div>
@@ -2066,25 +2066,28 @@
 (function() {
   // Slide 08 · First-time paid leases trend (Mature + Onboarding stacked) + FT % line
   // Source: /tmp/ft_explore_1.sql (totals) + /tmp/ft_explore_3.sql (cohort split)
-  // Corrected cohort classification: PM age (vs PM's first invoice) at FT first-pay month.
-  // Source: /tmp/ft_cohort_v2.sql
+  // 3-cohort classification: PM age (vs PM's first invoice) at FT first-pay month.
+  //   Onboarding     = <60 days  (0-2 mo)
+  //   Post-onboarding = 60-89 days (2-3 mo)
+  //   Mature         = >=90 days (3+ mo)
+  // Source: /tmp/ft_3cohorts.sql
   const ftData = [
-    { month: "Mar '25", mature:  6635, onboarding: 5085, totalPaid: 118125, ftPct:  9.82 },
-    { month: "Apr '25", mature:  7691, onboarding: 5027, totalPaid: 124046, ftPct:  9.93 },
-    { month: "May '25", mature:  7611, onboarding: 4169, totalPaid: 126220, ftPct:  8.98 },
-    { month: "Jun '25", mature:  8469, onboarding: 4678, totalPaid: 130629, ftPct:  9.58 },
-    { month: "Jul '25", mature:  9170, onboarding: 4605, totalPaid: 135438, ftPct:  9.67 },
-    { month: "Aug '25", mature:  9616, onboarding: 4281, totalPaid: 139022, ftPct:  9.53 },
-    { month: "Sep '25", mature:  9073, onboarding: 4333, totalPaid: 143712, ftPct:  8.89 },
-    { month: "Oct '25", mature:  8530, onboarding: 4356, totalPaid: 148429, ftPct:  8.36 },
-    { month: "Nov '25", mature:  8242, onboarding: 5060, totalPaid: 152673, ftPct:  8.50 },
-    { month: "Dec '25", mature:  7627, onboarding: 3314, totalPaid: 155446, ftPct:  6.88 },
-    { month: "Jan '26", mature:  8904, onboarding: 5765, totalPaid: 161525, ftPct:  8.84 },
-    { month: "Feb '26", mature:  9492, onboarding: 5028, totalPaid: 168990, ftPct:  8.38 },
-    { month: "Mar '26", mature:  9207, onboarding: 4826, totalPaid: 170804, ftPct:  8.02 },
-    { month: "Apr '26", mature: 10410, onboarding: 4844, totalPaid: 177799, ftPct:  8.37 }
+    { month: "Mar '25", onboarding: 4355, post: 730, mature:  6635, totalPaid: 118125 },
+    { month: "Apr '25", onboarding: 4603, post: 424, mature:  7691, totalPaid: 124046 },
+    { month: "May '25", onboarding: 3505, post: 664, mature:  7611, totalPaid: 126220 },
+    { month: "Jun '25", onboarding: 4069, post: 609, mature:  8469, totalPaid: 130629 },
+    { month: "Jul '25", onboarding: 4193, post: 412, mature:  9170, totalPaid: 135438 },
+    { month: "Aug '25", onboarding: 3796, post: 485, mature:  9616, totalPaid: 139022 },
+    { month: "Sep '25", onboarding: 3753, post: 580, mature:  9073, totalPaid: 143712 },
+    { month: "Oct '25", onboarding: 3905, post: 451, mature:  8530, totalPaid: 148429 },
+    { month: "Nov '25", onboarding: 4619, post: 441, mature:  8242, totalPaid: 152673 },
+    { month: "Dec '25", onboarding: 2741, post: 573, mature:  7627, totalPaid: 155446 },
+    { month: "Jan '26", onboarding: 5214, post: 551, mature:  8904, totalPaid: 161525 },
+    { month: "Feb '26", onboarding: 4571, post: 457, mature:  9492, totalPaid: 168990 },
+    { month: "Mar '26", onboarding: 4278, post: 548, mature:  9207, totalPaid: 170804 },
+    { month: "Apr '26", onboarding: 4319, post: 525, mature: 10410, totalPaid: 177799 }
   ];
-  const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', AMBER = '#b45309';
+  const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', PURPLE = '#c084fc';
 
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
@@ -2099,7 +2102,7 @@
         datasets: [
           {
             type: 'bar',
-            label: 'Onboarding FT',
+            label: 'Onboarding FT (0–2 mo)',
             data: ftData.map(d => d.onboarding),
             backgroundColor: PINK,
             borderRadius: 0,
@@ -2114,7 +2117,23 @@
           },
           {
             type: 'bar',
-            label: 'Mature FT',
+            label: 'Post-onboarding FT (2–3 mo)',
+            data: ftData.map(d => d.post),
+            backgroundColor: PURPLE,
+            borderRadius: 0,
+            stack: 'ft',
+            yAxisID: 'yCount',
+            order: 3,
+            datalabels: {
+              display: ctx => ctx.dataset.data[ctx.dataIndex] >= 400,
+              anchor: 'center', align: 'center',
+              color: '#fff', font: { weight: 800, size: 10 },
+              formatter: v => (v / 1000).toFixed(1) + 'K'
+            }
+          },
+          {
+            type: 'bar',
+            label: 'Mature FT (3+ mo)',
             data: ftData.map(d => d.mature),
             backgroundColor: BLUE,
             borderRadius: 0,
@@ -2129,8 +2148,8 @@
           },
           {
             type: 'line',
-            label: 'Total paid leases',
-            data: ftData.map(d => d.totalPaid),
+            label: 'Returning paid leases (ex-FT)',
+            data: ftData.map(d => d.totalPaid - d.onboarding - d.post - d.mature),
             borderColor: NAVY,
             backgroundColor: 'transparent',
             borderWidth: 3,
@@ -2166,10 +2185,10 @@
             callbacks: {
               afterBody: items => {
                 const d = ftData[items[0].dataIndex];
-                const total = d.mature + d.onboarding;
+                const totalFt = d.onboarding + d.post + d.mature;
                 return [
-                  `Total FT (cohort): ${total.toLocaleString()}`,
-                  `Onboarding share: ${(100*d.onboarding/total).toFixed(1)}%`,
+                  `Total FT: ${totalFt.toLocaleString()}`,
+                  `Returning (ex-FT): ${(d.totalPaid - totalFt).toLocaleString()}`,
                   `All paid leases: ${d.totalPaid.toLocaleString()}`
                 ];
               }
@@ -2189,7 +2208,7 @@
             grid: { display: false }, ticks: { display: false }, title: { display: false }
           },
           yTotal: {
-            position: 'right', beginAtZero: false, min: 110000, max: 200000,
+            position: 'right', beginAtZero: false, min: 95000, max: 180000,
             grid: { display: false }, ticks: { display: false }, title: { display: false }
           }
         }
