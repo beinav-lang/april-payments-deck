@@ -4359,8 +4359,8 @@ new Chart(document.getElementById('chart-pct-paid'), {
         yAxisID: 'yActive',
         order: 3,
         datalabels: {
-          display: true, anchor: 'end', align: 'top', offset: 2,
-          color: '#1e293b', font: { weight: 700, size: 9.5 },
+          display: true, anchor: 'end', align: 'top', offset: 10,
+          color: '#1e293b', font: { weight: 800, size: 13 },
           formatter: v => v.toFixed(0) + 'K'
         }
       },
@@ -4385,16 +4385,11 @@ new Chart(document.getElementById('chart-pct-paid'), {
           display: true, anchor: 'center', align: 'center',
           backgroundColor: '#fff',
           borderColor: C.purple,
-          borderWidth: ctx => (ctx.dataIndex >= 10 ? 2 : 1),
+          borderWidth: 2,
           borderRadius: 4,
-          padding: ctx => (ctx.dataIndex >= 10
-            ? { top: 4, bottom: 4, left: 7, right: 7 }
-            : { top: 2, bottom: 2, left: 5, right: 5 }),
+          padding: { top: 4, bottom: 4, left: 7, right: 7 },
           color: C.purple,
-          font: ctx => ({
-            weight: 800,
-            size: ctx.dataIndex >= 10 ? 14 : 11
-          }),
+          font: { weight: 800, size: 14 },
           formatter: v => v == null ? '' : v.toFixed(2) + '%'
         }
       },
