@@ -2029,10 +2029,193 @@
 <!-- ============================================================ -->
 <!-- SECTION 03 · STRUCTURAL DRIFT — CARD                          -->
 <!-- ============================================================ -->
-<section class="paper" data-slide-title="Card Performance · The What">
+<!-- ============================================================ -->
+<!-- SECTION 07b · FIRST-TIME PAID LEASES                          -->
+<!-- ============================================================ -->
+<section data-slide-title="First-Time Paid Leases">
   <div class="wrap">
     <div class="chapter">
       <div class="chapter-num">08</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">First-Time Paid Leases</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">
+      <span style="color: #3185FC">Record FT volume (14,886 in Apr '26 · +21% YoY)</span> · but the engine is Onboarding accounts.
+    </h2>
+
+    <div class="chart-shell" style="margin-top: 14px">
+      <div class="ch-title">First-time paid leases per cycle <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mature vs Onboarding</span></div>
+      <div class="chart-wrap" style="height: 420px"><canvas id="chart-ft-trend"></canvas></div>
+    </div>
+
+    <!-- Insight card -->
+    <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
+      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 FT growth is an Onboarding story — Mature accounts contribute roughly the same volume they did a year ago.</div>
+      <strong>Mature FT</strong> (3+ mo on platform): 10,010 (Mar '25) → 10,480 (Apr '26) = <strong>+4.7%</strong>.
+      <strong>Onboarding FT</strong> (0–2 mo on platform): 19 (Mar '25) → <strong>4,830 (Apr '26) = +254×</strong> — newer PMs now contribute ~32% of all FT volume.
+      <br><br>
+      Two implications: <strong>(1)</strong> the platform is growing primarily by acquiring new PMs, not by Mature PMs adding more tenants; <strong>(2)</strong> FT card behavior on slide 09 is increasingly an <em>Onboarding-tenant</em> story — Mature FT volume is essentially a constant.
+    </div>
+
+    <!-- Secondary stat row -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px">
+      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #3185FC; border-radius: 6px">
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">FT $ volume · Apr '26</div>
+        <div style="font-size: 18px; font-weight: 800; color: #162050; margin-top: 6px">$26.28M</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">all-time high · +28% YoY</div>
+      </div>
+      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #b45309; border-radius: 6px">
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">FT share of all paid leases</div>
+        <div style="font-size: 18px; font-weight: 800; color: #b45309; margin-top: 6px">9.93% → 8.37%</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">−1.5 pp · paid base growing faster than FT inflow</div>
+      </div>
+      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 6px">
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Onboarding share of FT</div>
+        <div style="font-size: 18px; font-weight: 800; color: #ff4998; margin-top: 6px">&lt;1% → 32%</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">Mar '25 → Apr '26 · ~14 months</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  // Slide 08 · First-time paid leases trend (Mature + Onboarding stacked) + FT % line
+  // Source: /tmp/ft_explore_1.sql (totals) + /tmp/ft_explore_3.sql (cohort split)
+  const ftData = [
+    { month: "Mar '25", mature: 10010, onboarding:   19, totalPaid: 118125, ftPct:  9.82 },
+    { month: "Apr '25", mature: 10995, onboarding:   26, totalPaid: 124046, ftPct:  9.93 },
+    { month: "May '25", mature: 10453, onboarding:   24, totalPaid: 126220, ftPct:  8.98 },
+    { month: "Jun '25", mature: 11761, onboarding:  678, totalPaid: 130629, ftPct:  9.58 },
+    { month: "Jul '25", mature: 10692, onboarding: 2698, totalPaid: 135438, ftPct:  9.67 },
+    { month: "Aug '25", mature: 10643, onboarding: 3305, totalPaid: 139022, ftPct:  9.53 },
+    { month: "Sep '25", mature:  9584, onboarding: 3843, totalPaid: 143712, ftPct:  8.89 },
+    { month: "Oct '25", mature:  8820, onboarding: 4079, totalPaid: 148429, ftPct:  8.36 },
+    { month: "Nov '25", mature:  8557, onboarding: 4806, totalPaid: 152673, ftPct:  8.50 },
+    { month: "Dec '25", mature:  7778, onboarding: 3173, totalPaid: 155446, ftPct:  6.88 },
+    { month: "Jan '26", mature:  8842, onboarding: 5861, totalPaid: 161525, ftPct:  8.84 },
+    { month: "Feb '26", mature:  9416, onboarding: 5093, totalPaid: 168990, ftPct:  8.38 },
+    { month: "Mar '26", mature:  9170, onboarding: 4891, totalPaid: 170804, ftPct:  8.02 },
+    { month: "Apr '26", mature: 10480, onboarding: 4830, totalPaid: 177799, ftPct:  8.37 }
+  ];
+  const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', AMBER = '#b45309';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+    const el = document.getElementById('chart-ft-trend');
+    if (!el) return;
+
+    const aprIdx = ftData.length - 1;
+    new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: ftData.map(d => d.month),
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Mature FT',
+            data: ftData.map(d => d.mature),
+            backgroundColor: BLUE,
+            borderRadius: 0,
+            stack: 'ft',
+            yAxisID: 'yCount',
+            order: 3,
+            datalabels: {
+              display: true, anchor: 'center', align: 'center',
+              color: '#fff', font: { weight: 800, size: 11 },
+              formatter: v => (v / 1000).toFixed(1) + 'K'
+            }
+          },
+          {
+            type: 'bar',
+            label: 'Onboarding FT',
+            data: ftData.map(d => d.onboarding),
+            backgroundColor: PINK,
+            borderRadius: 0,
+            stack: 'ft',
+            yAxisID: 'yCount',
+            order: 3,
+            datalabels: {
+              display: ctx => ctx.dataset.data[ctx.dataIndex] >= 300,
+              anchor: 'center', align: 'center',
+              color: '#fff', font: { weight: 800, size: 11 },
+              formatter: v => (v / 1000).toFixed(1) + 'K'
+            }
+          },
+          {
+            type: 'line',
+            label: 'FT % of all paid',
+            data: ftData.map(d => d.ftPct),
+            borderColor: AMBER,
+            backgroundColor: 'transparent',
+            borderWidth: 2.5,
+            tension: 0.3,
+            pointRadius: 4,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: AMBER,
+            pointBorderWidth: 2,
+            yAxisID: 'yPct',
+            order: 1,
+            datalabels: {
+              display: true, anchor: 'center', align: 'top', offset: 8,
+              color: AMBER, font: { weight: 700, size: 10 },
+              formatter: v => v.toFixed(1) + '%'
+            }
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 28, right: 18, bottom: 6, left: 8 } },
+        plugins: {
+          legend: {
+            display: true, position: 'bottom', align: 'center',
+            labels: { boxWidth: 14, boxHeight: 10, font: { size: 12, weight: 700 }, color: NAVY, padding: 14, usePointStyle: true }
+          },
+          tooltip: {
+            callbacks: {
+              afterBody: items => {
+                const d = ftData[items[0].dataIndex];
+                const total = d.mature + d.onboarding;
+                return [
+                  `Total FT (cohort): ${total.toLocaleString()}`,
+                  `Onboarding share: ${(100*d.onboarding/total).toFixed(1)}%`,
+                  `All paid leases: ${d.totalPaid.toLocaleString()}`
+                ];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true, grid: { display: false },
+            ticks: {
+              font: ctx => ({ size: 11, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
+              color: ctx => ctx.index === aprIdx ? '#162050' : '#64748b'
+            }
+          },
+          yCount: {
+            stacked: true, position: 'left', beginAtZero: true, max: 18000,
+            grid: { display: false }, ticks: { display: false }, title: { display: false }
+          },
+          yPct: {
+            position: 'right', beginAtZero: false, min: 5, max: 12,
+            grid: { display: false }, ticks: { display: false }, title: { display: false }
+          }
+        }
+      }
+    });
+  });
+})();
+</script>
+
+<section class="paper" data-slide-title="Card Performance · The What">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">09</div>
       <div class="chapter-meta">
         <div class="chapter-name">Card Performance · The What</div>
       </div>
@@ -2098,7 +2281,7 @@
 <section class="paper" data-slide-title="Card Performance · The Why">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">09</div>
+      <div class="chapter-num">10</div>
       <div class="chapter-meta">
         <div class="chapter-name">Card Performance · The Why</div>
       </div>
@@ -2425,7 +2608,7 @@
 <section class="paper" data-slide-title="NSF">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">10</div>
+      <div class="chapter-num">11</div>
       <div class="chapter-meta">
         <div class="chapter-name">NSF</div>
       </div>
@@ -2521,7 +2704,7 @@
 <section data-slide-title="PM Adoption · Research Approach">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">11</div>
+      <div class="chapter-num">12</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Research Approach</div>
       </div>
@@ -2584,7 +2767,7 @@
 <section class="paper">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">12</div>
+      <div class="chapter-num">13</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Data Findings</div>
       </div>
@@ -2853,7 +3036,7 @@
   <div class="wrap">
     <div style="margin-bottom: 14px">
       <div class="chapter" style="margin-bottom: 10px">
-        <div class="chapter-num">13</div>
+        <div class="chapter-num">14</div>
         <div class="chapter-meta">
           <div class="chapter-name">Churned Accounts</div>
         </div>
@@ -3540,7 +3723,7 @@
 <section data-slide-title="Funnel Methodology">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">14</div>
+      <div class="chapter-num">15</div>
       <div class="chapter-meta">
         <div class="chapter-name">Funnel Methodology</div>
       </div>
@@ -3725,7 +3908,7 @@
 <section class="paper" data-slide-title="Lease Funnel">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">15</div>
+      <div class="chapter-num">16</div>
       <div class="chapter-meta">
         <div class="chapter-name">Lease Funnel</div>
       </div>
@@ -3802,7 +3985,7 @@
 <section data-slide-title="Late invites overview">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">16</div>
+      <div class="chapter-num">17</div>
       <div class="chapter-meta">
         <div class="chapter-name">Late invites overview · where the Mature drop comes from</div>
       </div>
@@ -3916,7 +4099,7 @@
 <section>
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">17</div>
+      <div class="chapter-num">18</div>
       <div class="chapter-meta">
         <div class="chapter-name">Action Items</div>
       </div>
@@ -6099,10 +6282,10 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   // A group can contain `slides: [from, to]` and/or `children: [...nested groups]`.
   // Slides outside any group render as ungrouped items at the bottom.
   const tocGroups = [
-    { name: 'Business Overview', from: 1, to: 9 },   // displayed 02–10 (Exec Summary → NSF; incl. 05 Eligibility, 07 Paid Leases Breakdown)
-    { name: 'PM Side', from: 10, to: 12 },           // displayed 11–13 (PM Research, PM Findings, Churned)
-    { name: 'Lease Funnel', from: 13, to: 15 },      // displayed 14–16 (Funnel Methodology, Lease Funnel, Late invites)
-    // Slide 17 (Action Items) → ungrouped at the bottom
+    { name: 'Business Overview', from: 1, to: 10 },  // displayed 02–11 (Exec Summary → NSF; incl. 05 Eligibility, 07 Paid Leases Breakdown, 08 First-Time Paid Leases)
+    { name: 'PM Side', from: 11, to: 13 },           // displayed 12–14 (PM Research, PM Findings, Churned)
+    { name: 'Lease Funnel', from: 14, to: 16 },      // displayed 15–17 (Funnel Methodology, Lease Funnel, Late invites)
+    // Slide 18 (Action Items) → ungrouped at the bottom
   ];
 
   function escapeHtml(s) {
