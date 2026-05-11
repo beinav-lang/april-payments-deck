@@ -1675,7 +1675,14 @@
     <h2 class="section-title">Eligibility lift is real — Onboarding accounts are driving it.</h2>
 
     <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">New active leases · per activation cohort</div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px">
+        <div class="ch-title" style="margin: 0">New active leases · per activation cohort</div>
+        <div class="cohort-toggle" id="elig-view-toggle" style="margin: 0">
+          <button class="active" data-elig-view="All" onclick="setEligView('All')">All</button>
+          <button data-elig-view="Mature" onclick="setEligView('Mature')">Mature (3+ mo)</button>
+          <button data-elig-view="Onboarding" onclick="setEligView('Onboarding')">Onboarding (0–3 mo)</button>
+        </div>
+      </div>
       <div class="chart-wrap" style="height: 380px"><canvas id="chart-new-eligibility"></canvas></div>
     </div>
 
@@ -1699,47 +1706,71 @@
       </div>
     </div>
 
-    <p style="margin-top: 10px; font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.5">
-      Cohort = leases first-active in the activation month (cycle 25th→24th). Eligible = lease's end-of-cycle snapshot has <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">status='ACTIVE'</code> + <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">active_tenant_flag=1</code> + <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">merchant_account_flag=1</code>. Source: <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">/tmp/new_lease_eligibility.sql</code>.
-    </p>
-
   </div>
 </section>
 
 <script>
 (function() {
-  // New active leases per cohort + eligible split (combined Mature+Onboarding)
-  // Source: /tmp/new_lease_eligibility.sql, cohort_status combined.
-  const cohortData = [
-    { month: "Sep '25", total: 15306, eligible:  6792 },
-    { month: "Oct '25", total: 22916, eligible: 10368 },
-    { month: "Nov '25", total: 22451, eligible:  9444 },
-    { month: "Dec '25", total: 20907, eligible:  8740 },
-    { month: "Jan '26", total: 19889, eligible: 10136 },
-    { month: "Feb '26", total: 22195, eligible: 12205 },
-    { month: "Mar '26", total: 22162, eligible: 11460 },
-    { month: "Apr '26", total: 23807, eligible: 12234 },
-  ];
-  const PINK = '#ff4998', BLUE = '#3185FC', GRAY = '#cbd5e1';
+  // New active leases per cohort + eligible split, by view (All / Mature / Onboarding)
+  // Source: /tmp/new_lease_eligibility.sql
+  const eligByView = {
+    Mature: [
+      { month: "Sep '25", total:  9115, eligible: 5633 },
+      { month: "Oct '25", total: 12191, eligible: 7466 },
+      { month: "Nov '25", total: 12345, eligible: 7815 },
+      { month: "Dec '25", total: 11183, eligible: 7020 },
+      { month: "Jan '26", total: 12137, eligible: 8084 },
+      { month: "Feb '26", total: 13461, eligible: 9012 },
+      { month: "Mar '26", total: 14598, eligible: 9347 },
+      { month: "Apr '26", total: 15273, eligible: 9657 },
+    ],
+    Onboarding: [
+      { month: "Sep '25", total:  6191, eligible: 1159 },
+      { month: "Oct '25", total: 10725, eligible: 2902 },
+      { month: "Nov '25", total: 10106, eligible: 1629 },
+      { month: "Dec '25", total:  9724, eligible: 1720 },
+      { month: "Jan '26", total:  7752, eligible: 2052 },
+      { month: "Feb '26", total:  8734, eligible: 3193 },
+      { month: "Mar '26", total:  7564, eligible: 2113 },
+      { month: "Apr '26", total:  8534, eligible: 2577 },
+    ],
+    All: [
+      { month: "Sep '25", total: 15306, eligible:  6792 },
+      { month: "Oct '25", total: 22916, eligible: 10368 },
+      { month: "Nov '25", total: 22451, eligible:  9444 },
+      { month: "Dec '25", total: 20907, eligible:  8740 },
+      { month: "Jan '26", total: 19889, eligible: 10136 },
+      { month: "Feb '26", total: 22195, eligible: 12205 },
+      { month: "Mar '26", total: 22162, eligible: 11460 },
+      { month: "Apr '26", total: 23807, eligible: 12234 },
+    ],
+  };
+  // Per-view bar max so the bars scale visibly (Mature & Onboarding have smaller totals than All)
+  const viewMax = { Mature: 18, Onboarding: 14, All: 28 };
 
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof Chart === 'undefined') return;
+  const PINK = '#ff4998', BLUE = '#3185FC';
+  let eligChart = null;
+  let currentView = 'All';
+
+  function buildChart(view) {
+    const data = eligByView[view];
+    const eligData    = data.map(d => d.eligible / 1000);
+    const notEligData = data.map(d => (d.total - d.eligible) / 1000);
+    const pctElig     = data.map(d => 100 * d.eligible / d.total);
+    const totalKs     = data.map(d => d.total / 1000);
+
+    if (eligChart) { eligChart.destroy(); }
     const el = document.getElementById('chart-new-eligibility');
     if (!el) return;
 
-    const eligData    = cohortData.map(d => d.eligible / 1000);
-    const notEligData = cohortData.map(d => (d.total - d.eligible) / 1000);
-    const pctElig     = cohortData.map(d => 100 * d.eligible / d.total);
-    const totalKs     = cohortData.map(d => d.total / 1000);
-
-    new Chart(el, {
+    eligChart = new Chart(el, {
       type: 'bar',
       data: {
-        labels: cohortData.map(d => d.month),
+        labels: data.map(d => d.month),
         datasets: [
           {
             type: 'bar',
-            label: 'Eligible at cycle-end (K)',
+            label: 'Eligible leases (K)',
             data: eligData,
             backgroundColor: BLUE,
             borderRadius: 0,
@@ -1762,7 +1793,6 @@
             yAxisID: 'yCount',
             order: 3,
             datalabels: {
-              // Show total-cohort label on top of the stack
               display: ctx => ctx.dataIndex >= 0,
               anchor: 'end', align: 'top', offset: 4,
               color: '#475569', font: { weight: 700, size: 10.5 },
@@ -1802,38 +1832,39 @@
           tooltip: {
             callbacks: {
               afterBody: items => {
-                const d = cohortData[items[0].dataIndex];
+                const d = data[items[0].dataIndex];
                 return [`Total new active: ${d.total.toLocaleString()}`, `Eligible: ${d.eligible.toLocaleString()} (${(100*d.eligible/d.total).toFixed(1)}%)`];
               }
             }
           }
         },
         scales: {
-          x: {
-            stacked: true, grid: { display: false },
-            ticks: { font: { size: 11, weight: 700 }, color: '#162050' }
-          },
+          x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11, weight: 700 }, color: '#162050' } },
           yCount: {
-            stacked: true,
-            position: 'left',
-            beginAtZero: true,
-            max: 28,
-            grid: { display: false },
-            ticks: { display: false },
-            title: { display: false }
+            stacked: true, position: 'left', beginAtZero: true,
+            max: viewMax[view],
+            grid: { display: false }, ticks: { display: false }, title: { display: false }
           },
           yPct: {
-            position: 'right',
-            beginAtZero: false,
-            min: 30,
-            max: 70,
-            grid: { display: false },
-            ticks: { display: false },
-            title: { display: false }
+            position: 'right', beginAtZero: false, min: 0, max: 80,
+            grid: { display: false }, ticks: { display: false }, title: { display: false }
           }
         }
       }
     });
+  }
+
+  window.setEligView = function(view) {
+    currentView = view;
+    document.querySelectorAll('#elig-view-toggle button').forEach(b => {
+      b.classList.toggle('active', b.dataset.eligView === view);
+    });
+    buildChart(view);
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+    buildChart(currentView);
   });
 })();
 </script>
