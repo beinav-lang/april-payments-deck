@@ -1572,7 +1572,6 @@
 
     <div class="chart-shell">
       <div class="ch-title">% Paid Leases · active · eligible</div>
-      <div class="ch-sub">Bar: active leases. Lines: %paid/active (purple), %eligible/active (blue), %paid/eligible (teal).</div>
       <div class="chart-wrap" style="height:360px"><canvas id="chart-pct-paid"></canvas></div>
     </div>
 
@@ -1589,18 +1588,18 @@
       <strong style="color:#162050">💡 Insight</strong> &nbsp;Active leases climbed 35% over the past 14 months, and headline payment penetration rose <strong>+4.4 pp to 48.1%</strong> — but that lift is almost entirely an <em>eligibility</em> story. The share of active leases meeting the bar to transact (right cohort, tenants attached, MA enabled) expanded <strong>+4.2 pp to 71.8%</strong>, while <strong>paid-of-eligible has been essentially flat at 65–67%</strong>. We're winning by widening the funnel's mouth, not by converting better once leases qualify.
     </div>
 
-    <div style="margin-top:14px; padding:10px 14px; background:#f7f9fd; border:1px solid var(--divider); border-radius:8px; font-size:11.5px; color:var(--muted); line-height:1.6">
+    <div class="chart-shell" data-chart-breakdown-shell style="margin-top: 14px">
+      <div class="ch-title">Paid Leases breakdown</div>
+      <div class="ch-sub">Existing + First-time + Reactivated stacked above zero; Churned plotted below.</div>
+      <div class="chart-wrap" style="height:460px"><canvas id="chart-breakdown"></canvas></div>
+    </div>
+
+    <div style="margin-top:12px; padding:10px 14px; background:#f7f9fd; border:1px solid var(--divider); border-radius:8px; font-size:11.5px; color:var(--muted); line-height:1.6">
       <strong style="color:var(--text)">Definitions →</strong>
       <span style="color:var(--green); font-weight:700">Reactivated</span> = paid this month + in some prior month, not previous ·
       <span style="color:var(--blue); font-weight:700">First-time</span> = paid for the first time ·
       <span style="color:var(--purple); font-weight:700">Existing</span> = paid this and previous month ·
       <span style="color:var(--warn); font-weight:700">Churned</span> = paid previous month, not this
-    </div>
-
-    <div class="chart-shell" data-chart-breakdown-shell style="margin-top: 14px">
-      <div class="ch-title">Paid Leases breakdown</div>
-      <div class="ch-sub">Existing + First-time + Reactivated stacked above zero; Churned plotted below.</div>
-      <div class="chart-wrap" style="height:460px"><canvas id="chart-breakdown"></canvas></div>
     </div>
 
     <div class="pullquote" style="margin-top: 20px">
@@ -4139,7 +4138,7 @@ new Chart(document.getElementById('chart-pct-paid'), {
         yAxisID: 'yActive',
         order: 3,
         datalabels: {
-          display: true, anchor: 'center', align: 'center',
+          display: true, anchor: 'end', align: 'top', offset: 2,
           color: '#1e293b', font: { weight: 700, size: 9.5 },
           formatter: v => v.toFixed(0) + 'K'
         }
@@ -5052,7 +5051,11 @@ function renderCohortHeatmap() {
   html += '</tr></thead><tbody>';
 
   data.forEach(c => {
-    html += `<tr>`;
+    // Visual divider: thick top border at Jan '26 to separate pre-Jan vs Jan-onward cohorts.
+    const isDivider = c.cohort === "Jan '26";
+    html += isDivider
+      ? `<tr style="border-top: 3px solid #162050"><td colspan="10" style="padding: 6px 0 4px; background: rgba(22,32,80,0.04); font-size: 10.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #162050; text-align: left; padding-left: 8px">— Jan '26 onward —</td></tr><tr>`
+      : `<tr>`;
     html += `<td class="cohort-name">${c.cohort}</td>`;
     html += `<td class="cohort-size">${c.size.toLocaleString()}</td>`;
 
