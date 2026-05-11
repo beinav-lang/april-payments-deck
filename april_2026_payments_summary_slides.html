@@ -1935,9 +1935,16 @@
       <div id="cohort-heatmap"></div>
     </div>
 
-    <!-- Small upper-funnel watch card -->
-    <div style="margin-top: 10px; padding: 8px 14px; background: rgba(245,158,11,0.10); border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 11.5px; color: var(--text); line-height: 1.5">
-      <strong style="color: #b45309">⚠ Upper-funnel thinning</strong> · <span style="color: var(--muted)">Onboarding cohort sizes have stepped down from Jan '26 — Oct–Dec '25 averaged <strong style="color: var(--text)">~10.2K</strong> new active leases / month, Jan–Apr '26 averaged <strong style="color: var(--text)">~8.1K (−20%)</strong>. Mature still growing; total cohort size flat. Worth watching: slimmer Onboarding inflow caps how many new FT-paying tenants can mature in.</span>
+    <!-- Two stacked context cards: upper-funnel watch + Jan conversion step-up -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px">
+      <!-- Watch · upper-funnel thinning -->
+      <div style="padding: 8px 14px; background: rgba(245,158,11,0.10); border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 11.5px; color: var(--text); line-height: 1.5">
+        <strong style="color: #b45309">⚠ Upper-funnel thinning</strong> · <span style="color: var(--muted)">Onboarding cohort sizes have stepped down from Jan '26 — Oct–Dec '25 averaged <strong style="color: var(--text)">~10.2K</strong> new active leases / month, Jan–Apr '26 averaged <strong style="color: var(--text)">~8.1K (−20%)</strong>. Mature still growing; total cohort size flat.</span>
+      </div>
+      <!-- Positive · cohort conversion step-up -->
+      <div style="padding: 8px 14px; background: rgba(49,133,252,0.10); border-left: 3px solid #3185FC; border-radius: 4px; font-size: 11.5px; color: var(--text); line-height: 1.5">
+        <strong style="color: #3185FC">↑ Cohort M0 stepped up from Jan '26</strong> · <span style="color: var(--muted)">Onboarding M0 nearly doubled — Sep–Dec '25 avg <strong style="color: var(--text)">6.6%</strong> → Jan–Apr '26 avg <strong style="color: var(--text)">11.0%</strong> (+4.4 pp). Mature M0 ticked up <strong style="color: var(--text)">30.6% → 32.0%</strong>. Smaller Onboarding cohorts but converting ~2× as fast at M0 — offsets the thinning above.</span>
+      </div>
     </div>
 
     <!-- April insight tying cohort to headline -->
@@ -2048,36 +2055,47 @@
     </div>
 
     <h2 class="section-title">
-      <span style="color: #3185FC">FT volume climbing since Jan '26 (15,254 in Apr · +20% YoY)</span> · driven by more PMs &amp; faster same-month activation.
+      <span style="color: #3185FC">FT volume climbing since Jan '26 (15,254 in Apr · +20% YoY)</span> · driven by <span style="color: #3185FC">more PMs paying</span> &amp; <span style="color: #ff4998">faster activation → pay</span>.
     </h2>
 
+    <!-- Hero: total FT per month -->
     <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">First-time paid leases by month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· by PM age cohort · vs Returning paid leases (ex-FT)</span></div>
-      <div class="chart-wrap" style="height: 480px"><canvas id="chart-ft-trend"></canvas></div>
+      <div class="ch-title">First-time paid leases by month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mar '25 → Apr '26</span></div>
+      <div class="chart-wrap" style="height: 280px"><canvas id="chart-ft-trend"></canvas></div>
     </div>
 
-    <!-- Insight card -->
-    <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
-      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 The Jan–Apr '26 lift is "broader and faster" — not "deeper" per PM.</div>
-      <div style="margin-bottom: 6px"><strong>1) PM width.</strong> Distinct PMs contributing any FT: 3,733 (Jan '26) → <strong>4,124 (Apr '26) = +10.5% in 4 months</strong>. Median FT per PM unchanged at 2.</div>
-      <div style="margin-bottom: 6px"><strong>2) Activation velocity.</strong> Same-month activation→pay rate: 32.6% (Jan) → <strong>37.7% (Apr) = +5.1 pp</strong>. Apr '26 M0 hit 25.2% paid — series record (slide 06).</div>
-      <div style="margin-top: 10px; color: var(--muted); font-size: 12.5px">
-        <strong>Not</strong> concentration (top-10 PM share stable 6–13%). <strong>Not</strong> each PM doing more (avg/median FT per PM essentially flat). <strong>Mature</strong> still carries the volume (+57% YoY), but the recent acceleration is platform-width + velocity, not Mature deepening.
+    <!-- 2 driver mini-cards with mini-charts side-by-side -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px">
+
+      <!-- Driver 1 · PM width -->
+      <div style="padding: 14px 16px 12px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #3185FC; border-radius: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px">
+          <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Driver 1 · PM width</div>
+          <div style="font-size: 11px; font-weight: 700; color: #3185FC">+10.5%</div>
+        </div>
+        <div style="font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 2px">Distinct PMs contributing any FT</div>
+        <div style="font-size: 22px; font-weight: 800; color: #162050; line-height: 1.1; margin-bottom: 2px">3,733 → 4,124</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-bottom: 8px">Jan '26 → Apr '26 · platform wider, not deeper per-PM (median FT/PM flat at 2)</div>
+        <div style="height: 120px"><canvas id="chart-ft-driver-pms"></canvas></div>
       </div>
+
+      <!-- Driver 2 · Activation velocity -->
+      <div style="padding: 14px 16px 12px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px">
+          <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Driver 2 · Activation velocity</div>
+          <div style="font-size: 11px; font-weight: 700; color: #ff4998">+5.1 pp</div>
+        </div>
+        <div style="font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 2px">Same-month activation → first-pay rate</div>
+        <div style="font-size: 22px; font-weight: 800; color: #162050; line-height: 1.1; margin-bottom: 2px">32.6% → 37.7%</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-bottom: 8px">Jan '26 → Apr '26 · tenants paying sooner after lease activation (Apr M0 a series record — slide 06)</div>
+        <div style="height: 120px"><canvas id="chart-ft-driver-velocity"></canvas></div>
+      </div>
+
     </div>
 
-    <!-- 2-tile driver row -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px">
-      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #3185FC; border-radius: 6px">
-        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">1 · PM width (distinct PMs with any FT)</div>
-        <div style="font-size: 18px; font-weight: 800; color: #162050; margin-top: 6px">3,733 → 4,124</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">Jan → Apr '26 · <strong style="color: #3185FC">+10.5%</strong> · platform wider, not deeper per-PM</div>
-      </div>
-      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 6px">
-        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">2 · Activation velocity (same-month pay rate)</div>
-        <div style="font-size: 18px; font-weight: 800; color: #162050; margin-top: 6px">32.6% → 37.7%</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">Jan → Apr '26 · <strong style="color: #ff4998">+5.1 pp</strong> · tenants paying sooner after lease activation</div>
-      </div>
+    <!-- Compact mechanism note -->
+    <div style="margin-top: 12px; padding: 10px 16px; background: rgba(223,254,2,0.18); border-left: 4px solid #162050; border-radius: 6px; font-size: 12.5px; color: var(--text); line-height: 1.55">
+      <strong>Mechanism · width + speed, not depth.</strong> &nbsp;<span style="color: var(--muted)">Not concentration (top-10 PM share stable 6–13%). Not each PM doing more (avg / median FT per PM essentially flat). The platform is touching more PMs and pulling activations into the same payment cycle they happened in.</span>
     </div>
 
   </div>
@@ -2085,156 +2103,222 @@
 
 <script>
 (function() {
-  // Slide 08 · First-time paid leases trend (Mature + Onboarding stacked) + FT % line
-  // Source: /tmp/ft_explore_1.sql (totals) + /tmp/ft_explore_3.sql (cohort split)
-  // 3-cohort classification: PM age (vs PM's first invoice) at FT first-pay month.
-  //   Onboarding     = <60 days  (0-2 mo)
-  //   Post-onboarding = 60-89 days (2-3 mo)
-  //   Mature         = >=90 days (3+ mo)
-  // Source: /tmp/ft_3cohorts.sql
-  const ftData = [
-    { month: "Mar '25", onboarding: 4355, post: 730, mature:  6635, totalPaid: 118125 },
-    { month: "Apr '25", onboarding: 4603, post: 424, mature:  7691, totalPaid: 124046 },
-    { month: "May '25", onboarding: 3505, post: 664, mature:  7611, totalPaid: 126220 },
-    { month: "Jun '25", onboarding: 4069, post: 609, mature:  8469, totalPaid: 130629 },
-    { month: "Jul '25", onboarding: 4193, post: 412, mature:  9170, totalPaid: 135438 },
-    { month: "Aug '25", onboarding: 3796, post: 485, mature:  9616, totalPaid: 139022 },
-    { month: "Sep '25", onboarding: 3753, post: 580, mature:  9073, totalPaid: 143712 },
-    { month: "Oct '25", onboarding: 3905, post: 451, mature:  8530, totalPaid: 148429 },
-    { month: "Nov '25", onboarding: 4619, post: 441, mature:  8242, totalPaid: 152673 },
-    { month: "Dec '25", onboarding: 2741, post: 573, mature:  7627, totalPaid: 155446 },
-    { month: "Jan '26", onboarding: 5214, post: 551, mature:  8904, totalPaid: 161525 },
-    { month: "Feb '26", onboarding: 4571, post: 457, mature:  9492, totalPaid: 168990 },
-    { month: "Mar '26", onboarding: 4278, post: 548, mature:  9207, totalPaid: 170804 },
-    { month: "Apr '26", onboarding: 4319, post: 525, mature: 10410, totalPaid: 177799 }
+  // Slide 08 · FT-volume hero + 2 driver mini-charts (PM width + activation velocity)
+  // Sources: /tmp/ftd.csv (PM width + totals), /tmp/ftdb.csv (same-month pay rate)
+  const ftVolume = [
+    { m: "Mar '25", ft: 11720 },
+    { m: "Apr '25", ft: 12718 },
+    { m: "May '25", ft: 11780 },
+    { m: "Jun '25", ft: 13147 },
+    { m: "Jul '25", ft: 13775 },
+    { m: "Aug '25", ft: 13897 },
+    { m: "Sep '25", ft: 13406 },
+    { m: "Oct '25", ft: 12886 },
+    { m: "Nov '25", ft: 13302 },
+    { m: "Dec '25", ft: 10941 },
+    { m: "Jan '26", ft: 14669 },
+    { m: "Feb '26", ft: 14520 },
+    { m: "Mar '26", ft: 14033 },
+    { m: "Apr '26", ft: 15254 }
   ];
-  const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', PURPLE = '#c084fc';
+  const pmWidth = [
+    { m: "Mar '25", v: 3267 },
+    { m: "Apr '25", v: 3425 },
+    { m: "May '25", v: 3477 },
+    { m: "Jun '25", v: 3621 },
+    { m: "Jul '25", v: 3641 },
+    { m: "Aug '25", v: 3743 },
+    { m: "Sep '25", v: 3737 },
+    { m: "Oct '25", v: 3706 },
+    { m: "Nov '25", v: 3686 },
+    { m: "Dec '25", v: 3575 },
+    { m: "Jan '26", v: 3733 },
+    { m: "Feb '26", v: 4095 },
+    { m: "Mar '26", v: 3901 },
+    { m: "Apr '26", v: 4124 }
+  ];
+  // Velocity series starts Sep '25 (Aug '25 was 97.2% — snapshot data started mid-Aug, artifact)
+  const velocity = [
+    { m: "Sep '25", v: 33.5 },
+    { m: "Oct '25", v: 34.6 },
+    { m: "Nov '25", v: 32.2 },
+    { m: "Dec '25", v: 32.4 },
+    { m: "Jan '26", v: 32.6 },
+    { m: "Feb '26", v: 36.0 },
+    { m: "Mar '26", v: 33.9 },
+    { m: "Apr '26", v: 37.7 }
+  ];
+  const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', MUTED = '#94a3b8';
 
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
-    const el = document.getElementById('chart-ft-trend');
-    if (!el) return;
 
-    const aprIdx = ftData.length - 1;
-    new Chart(el, {
-      type: 'bar',
-      data: {
-        labels: ftData.map(d => d.month),
-        datasets: [
-          {
-            type: 'bar',
-            label: 'Onboarding FT (0–2 mo)',
-            data: ftData.map(d => d.onboarding),
-            backgroundColor: PINK,
-            borderRadius: 0,
-            stack: 'ft',
-            yAxisID: 'yCount',
-            order: 3,
+    // ---- Hero · FT volume by month ----
+    const heroEl = document.getElementById('chart-ft-trend');
+    if (heroEl) {
+      const aprIdx = ftVolume.length - 1;
+      const janIdx = ftVolume.findIndex(d => d.m === "Jan '26");
+      new Chart(heroEl, {
+        type: 'bar',
+        data: {
+          labels: ftVolume.map(d => d.m),
+          datasets: [{
+            label: 'First-time paid leases',
+            data: ftVolume.map(d => d.ft),
+            backgroundColor: ftVolume.map((_, i) => i >= janIdx ? NAVY : 'rgba(22,32,80,0.35)'),
+            borderRadius: 4,
             datalabels: {
-              display: true, anchor: 'center', align: 'center',
-              color: '#fff', font: { weight: 800, size: 11 },
+              display: true,
+              anchor: 'end', align: 'top', offset: 4,
+              color: ctx => ctx.dataIndex >= janIdx ? NAVY : MUTED,
+              font: ctx => ({ weight: ctx.dataIndex >= janIdx ? 800 : 600, size: 11, family: 'Poppins' }),
               formatter: v => (v / 1000).toFixed(1) + 'K'
             }
-          },
-          {
-            type: 'bar',
-            label: 'Post-onboarding FT (2–3 mo)',
-            data: ftData.map(d => d.post),
-            backgroundColor: PURPLE,
-            borderRadius: 0,
-            stack: 'ft',
-            yAxisID: 'yCount',
-            order: 3,
-            datalabels: {
-              display: ctx => ctx.dataset.data[ctx.dataIndex] >= 400,
-              anchor: 'center', align: 'center',
-              color: '#fff', font: { weight: 800, size: 10 },
-              formatter: v => (v / 1000).toFixed(1) + 'K'
-            }
-          },
-          {
-            type: 'bar',
-            label: 'Mature FT (3+ mo)',
-            data: ftData.map(d => d.mature),
-            backgroundColor: BLUE,
-            borderRadius: 0,
-            stack: 'ft',
-            yAxisID: 'yCount',
-            order: 3,
-            datalabels: {
-              display: true, anchor: 'center', align: 'center',
-              color: '#fff', font: { weight: 800, size: 11 },
-              formatter: v => (v / 1000).toFixed(1) + 'K'
-            }
-          },
-          {
-            type: 'line',
-            label: 'Returning paid leases (ex-FT)',
-            data: ftData.map(d => d.totalPaid - d.onboarding - d.post - d.mature),
-            borderColor: NAVY,
-            backgroundColor: 'transparent',
-            borderWidth: 3,
-            tension: 0.3,
-            pointRadius: 5,
-            pointBackgroundColor: '#fff',
-            pointBorderColor: NAVY,
-            pointBorderWidth: 2.5,
-            yAxisID: 'yTotal',
-            order: 1,
-            datalabels: {
-              display: true, anchor: 'center', align: 'top', offset: 10,
-              backgroundColor: '#fff',
-              borderColor: NAVY,
-              borderWidth: 1,
-              borderRadius: 4,
-              padding: { top: 2, bottom: 2, left: 6, right: 6 },
-              color: NAVY, font: { weight: 800, size: 11 },
-              formatter: v => (v / 1000).toFixed(0) + 'K'
-            }
-          }
-        ]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        layout: { padding: { top: 28, right: 18, bottom: 6, left: 8 } },
-        plugins: {
-          legend: {
-            display: true, position: 'bottom', align: 'center',
-            labels: { boxWidth: 14, boxHeight: 10, font: { size: 12, weight: 700 }, color: NAVY, padding: 14, usePointStyle: true }
-          },
-          tooltip: {
-            callbacks: {
-              afterBody: items => {
-                const d = ftData[items[0].dataIndex];
-                const totalFt = d.onboarding + d.post + d.mature;
-                return [
-                  `Total FT: ${totalFt.toLocaleString()}`,
-                  `Returning (ex-FT): ${(d.totalPaid - totalFt).toLocaleString()}`,
-                  `All paid leases: ${d.totalPaid.toLocaleString()}`
-                ];
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          layout: { padding: { top: 28, right: 16, bottom: 4, left: 8 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => 'FT: ' + ctx.parsed.y.toLocaleString()
               }
             }
-          }
-        },
-        scales: {
-          x: {
-            stacked: true, grid: { display: false },
-            ticks: {
-              font: ctx => ({ size: 11, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
-              color: ctx => ctx.index === aprIdx ? '#162050' : '#64748b'
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: ctx => ({ size: 11, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
+                color: ctx => ctx.index === aprIdx ? NAVY : '#64748b'
+              }
+            },
+            y: {
+              beginAtZero: true, max: 18000,
+              grid: { display: false }, ticks: { display: false }, title: { display: false }
             }
-          },
-          yCount: {
-            stacked: true, position: 'left', beginAtZero: true, max: 18000,
-            grid: { display: false }, ticks: { display: false }, title: { display: false }
-          },
-          yTotal: {
-            position: 'right', beginAtZero: false, min: 95000, max: 180000,
-            grid: { display: false }, ticks: { display: false }, title: { display: false }
           }
         }
-      }
-    });
+      });
+    }
+
+    // ---- Driver 1 · PM width mini-chart ----
+    const pmsEl = document.getElementById('chart-ft-driver-pms');
+    if (pmsEl) {
+      const aprIdx = pmWidth.length - 1;
+      const janIdx = pmWidth.findIndex(d => d.m === "Jan '26");
+      new Chart(pmsEl, {
+        type: 'line',
+        data: {
+          labels: pmWidth.map(d => d.m),
+          datasets: [{
+            label: 'PMs with any FT',
+            data: pmWidth.map(d => d.v),
+            borderColor: BLUE,
+            backgroundColor: 'rgba(49,133,252,0.10)',
+            borderWidth: 2.5,
+            fill: true,
+            tension: 0.32,
+            pointRadius: pmWidth.map((_, i) => i === janIdx || i === aprIdx ? 5 : 0),
+            pointBackgroundColor: '#fff',
+            pointBorderColor: BLUE,
+            pointBorderWidth: 2.5,
+            datalabels: {
+              display: ctx => ctx.dataIndex === janIdx || ctx.dataIndex === aprIdx,
+              anchor: 'end', align: ctx => ctx.dataIndex === aprIdx ? 'top' : 'bottom',
+              offset: 6,
+              backgroundColor: '#fff',
+              borderColor: BLUE,
+              borderWidth: 1,
+              borderRadius: 3,
+              padding: { top: 2, bottom: 2, left: 5, right: 5 },
+              color: BLUE,
+              font: { weight: 800, size: 10, family: 'Poppins' },
+              formatter: v => v.toLocaleString()
+            }
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          layout: { padding: { top: 14, right: 6, bottom: 4, left: 4 } },
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y.toLocaleString() + ' PMs' } } },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { size: 9, family: 'Poppins' }, color: '#94a3b8',
+                maxRotation: 0, autoSkip: false,
+                callback: function(_, i) {
+                  const m = this.getLabelForValue(i);
+                  return (i === 0 || i === janIdx || i === aprIdx) ? m : '';
+                }
+              }
+            },
+            y: { display: false, beginAtZero: false, min: 3000, max: 4400 }
+          }
+        }
+      });
+    }
+
+    // ---- Driver 2 · Activation velocity mini-chart ----
+    const velEl = document.getElementById('chart-ft-driver-velocity');
+    if (velEl) {
+      const aprIdx = velocity.length - 1;
+      const janIdx = velocity.findIndex(d => d.m === "Jan '26");
+      new Chart(velEl, {
+        type: 'line',
+        data: {
+          labels: velocity.map(d => d.m),
+          datasets: [{
+            label: 'Same-month pay rate',
+            data: velocity.map(d => d.v),
+            borderColor: PINK,
+            backgroundColor: 'rgba(255,73,152,0.10)',
+            borderWidth: 2.5,
+            fill: true,
+            tension: 0.32,
+            pointRadius: velocity.map((_, i) => i === janIdx || i === aprIdx ? 5 : 0),
+            pointBackgroundColor: '#fff',
+            pointBorderColor: PINK,
+            pointBorderWidth: 2.5,
+            datalabels: {
+              display: ctx => ctx.dataIndex === janIdx || ctx.dataIndex === aprIdx,
+              anchor: 'end', align: ctx => ctx.dataIndex === aprIdx ? 'top' : 'bottom',
+              offset: 6,
+              backgroundColor: '#fff',
+              borderColor: PINK,
+              borderWidth: 1,
+              borderRadius: 3,
+              padding: { top: 2, bottom: 2, left: 5, right: 5 },
+              color: PINK,
+              font: { weight: 800, size: 10, family: 'Poppins' },
+              formatter: v => v.toFixed(1) + '%'
+            }
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          layout: { padding: { top: 14, right: 6, bottom: 4, left: 4 } },
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y.toFixed(1) + '% same-month' } } },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                font: { size: 9, family: 'Poppins' }, color: '#94a3b8',
+                maxRotation: 0, autoSkip: false,
+                callback: function(_, i) {
+                  const m = this.getLabelForValue(i);
+                  return (i === 0 || i === janIdx || i === aprIdx) ? m : '';
+                }
+              }
+            },
+            y: { display: false, beginAtZero: false, min: 28, max: 42 }
+          }
+        }
+      });
+    }
   });
 })();
 </script>
