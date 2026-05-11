@@ -1661,6 +1661,184 @@
 </section>
 
 <!-- ============================================================ -->
+<!-- SECTION 04b · NEW ACTIVE LEASES & ELIGIBILITY                  -->
+<!-- ============================================================ -->
+<section data-slide-title="New Active Leases & Eligibility">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">05</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">New Active Leases &amp; Eligibility</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Eligibility lift is real — Onboarding accounts are driving it.</h2>
+
+    <div class="chart-shell" style="margin-top: 14px">
+      <div class="ch-title">New active leases · per activation cohort</div>
+      <div class="chart-wrap" style="height: 380px"><canvas id="chart-new-eligibility"></canvas></div>
+    </div>
+
+    <!-- Verified-insight card -->
+    <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
+      <div style="font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #162050; margin-bottom: 8px">💡 Insight · Onboarding accounts driving the lift</div>
+      Of the +9 pp lift in cohort-level eligibility (Sep '25 → Apr '26), <strong>Onboarding accounts (0–3 months on platform) drove ~85% of it</strong>: their share of new leases meeting the eligibility bar climbed <strong>+11.5 pp (18.7% → 30.2%)</strong>, while Mature accounts (3+ months) barely moved (<strong>+1.4 pp, 61.8% → 63.2%</strong>). Newer PMs are completing setup faster — attaching tenants on the lease, enabling Merchant Account at onboarding, and triggering portal invites at activation — so a much larger share of their newly-active leases is actually ready to transact within the cycle.
+    </div>
+
+    <!-- Mature vs Onboarding split (small comparison strip) -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px">
+      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #3185FC; border-radius: 6px">
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Mature (3+ mo on platform)</div>
+        <div style="font-size: 18px; font-weight: 800; color: #162050; margin-top: 6px">61.8% → 63.2%</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">+1.4 pp · steady, no real lift</div>
+      </div>
+      <div style="padding: 12px 14px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 6px">
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Onboarding (0–3 mo on platform)</div>
+        <div style="font-size: 18px; font-weight: 800; color: #ff4998; margin-top: 6px">18.7% → 30.2%</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">+11.5 pp · <strong style="color: var(--text)">the lift driver</strong></div>
+      </div>
+    </div>
+
+    <p style="margin-top: 10px; font-size: 10.5px; color: var(--muted); font-style: italic; line-height: 1.5">
+      Cohort = leases first-active in the activation month (cycle 25th→24th). Eligible = lease's end-of-cycle snapshot has <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">status='ACTIVE'</code> + <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">active_tenant_flag=1</code> + <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">merchant_account_flag=1</code>. Source: <code style="font-style: normal; font-size: 10px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">/tmp/new_lease_eligibility.sql</code>.
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  // New active leases per cohort + eligible split (combined Mature+Onboarding)
+  // Source: /tmp/new_lease_eligibility.sql, cohort_status combined.
+  const cohortData = [
+    { month: "Sep '25", total: 15306, eligible:  6792 },
+    { month: "Oct '25", total: 22916, eligible: 10368 },
+    { month: "Nov '25", total: 22451, eligible:  9444 },
+    { month: "Dec '25", total: 20907, eligible:  8740 },
+    { month: "Jan '26", total: 19889, eligible: 10136 },
+    { month: "Feb '26", total: 22195, eligible: 12205 },
+    { month: "Mar '26", total: 22162, eligible: 11460 },
+    { month: "Apr '26", total: 23807, eligible: 12234 },
+  ];
+  const PINK = '#ff4998', BLUE = '#3185FC', GRAY = '#cbd5e1';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+    const el = document.getElementById('chart-new-eligibility');
+    if (!el) return;
+
+    const eligData    = cohortData.map(d => d.eligible / 1000);
+    const notEligData = cohortData.map(d => (d.total - d.eligible) / 1000);
+    const pctElig     = cohortData.map(d => 100 * d.eligible / d.total);
+    const totalKs     = cohortData.map(d => d.total / 1000);
+
+    new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: cohortData.map(d => d.month),
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Eligible at cycle-end (K)',
+            data: eligData,
+            backgroundColor: BLUE,
+            borderRadius: 0,
+            stack: 'cohort',
+            yAxisID: 'yCount',
+            order: 3,
+            datalabels: {
+              display: true, anchor: 'center', align: 'center',
+              color: '#fff', font: { weight: 800, size: 12 },
+              formatter: v => v.toFixed(1) + 'K'
+            }
+          },
+          {
+            type: 'bar',
+            label: 'Not eligible (K)',
+            data: notEligData,
+            backgroundColor: 'rgba(203,213,225,0.6)',
+            borderRadius: 0,
+            stack: 'cohort',
+            yAxisID: 'yCount',
+            order: 3,
+            datalabels: {
+              // Show total-cohort label on top of the stack
+              display: ctx => ctx.dataIndex >= 0,
+              anchor: 'end', align: 'top', offset: 4,
+              color: '#475569', font: { weight: 700, size: 10.5 },
+              formatter: (v, ctx) => totalKs[ctx.dataIndex].toFixed(1) + 'K'
+            }
+          },
+          {
+            type: 'line',
+            label: '% Eligible',
+            data: pctElig,
+            borderColor: PINK,
+            backgroundColor: 'transparent',
+            borderWidth: 3,
+            pointRadius: 7,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: PINK,
+            pointBorderWidth: 2.5,
+            tension: 0.3,
+            yAxisID: 'yPct',
+            order: 1,
+            datalabels: {
+              display: true, anchor: 'center', align: 'top', offset: 10,
+              color: PINK, font: { weight: 800, size: 11.5 },
+              formatter: v => v.toFixed(1) + '%'
+            }
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 24, right: 16, bottom: 6, left: 8 } },
+        plugins: {
+          legend: {
+            display: true, position: 'bottom', align: 'center',
+            labels: { boxWidth: 14, boxHeight: 10, font: { size: 12, weight: 700 }, color: '#162050', padding: 14, usePointStyle: true }
+          },
+          tooltip: {
+            callbacks: {
+              afterBody: items => {
+                const d = cohortData[items[0].dataIndex];
+                return [`Total new active: ${d.total.toLocaleString()}`, `Eligible: ${d.eligible.toLocaleString()} (${(100*d.eligible/d.total).toFixed(1)}%)`];
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true, grid: { display: false },
+            ticks: { font: { size: 11, weight: 700 }, color: '#162050' }
+          },
+          yCount: {
+            stacked: true,
+            position: 'left',
+            beginAtZero: true,
+            max: 28,
+            grid: { display: false },
+            ticks: { display: false },
+            title: { display: false }
+          },
+          yPct: {
+            position: 'right',
+            beginAtZero: false,
+            min: 30,
+            max: 70,
+            grid: { display: false },
+            ticks: { display: false },
+            title: { display: false }
+          }
+        }
+      }
+    });
+  });
+})();
+</script>
+
+<!-- ============================================================ -->
 <!-- SECTION 02b · LEASE ACTIVATION COHORTS (split from Paid Leases) -->
 <!-- ============================================================ -->
 <section data-slide-title="Lease Activation Cohorts">
@@ -1755,7 +1933,7 @@
     </style>
 
     <div class="chapter" style="margin-bottom: 10px">
-      <div class="chapter-num">05</div>
+      <div class="chapter-num">06</div>
       <div class="chapter-meta">
         <div class="chapter-name">Lease Activation Cohorts</div>
       </div>
@@ -1820,7 +1998,7 @@
 <section class="paper" data-slide-title="Card Performance · The What">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">06</div>
+      <div class="chapter-num">07</div>
       <div class="chapter-meta">
         <div class="chapter-name">Card Performance · The What</div>
       </div>
@@ -1878,7 +2056,7 @@
 <section class="paper" data-slide-title="Card Performance · The Why">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">07</div>
+      <div class="chapter-num">08</div>
       <div class="chapter-meta">
         <div class="chapter-name">Card Performance · The Why</div>
       </div>
@@ -2193,7 +2371,7 @@
 <section class="paper" data-slide-title="NSF">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">08</div>
+      <div class="chapter-num">09</div>
       <div class="chapter-meta">
         <div class="chapter-name">NSF</div>
       </div>
@@ -2289,7 +2467,7 @@
 <section data-slide-title="PM Adoption · Research Approach">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">09</div>
+      <div class="chapter-num">10</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Research Approach</div>
       </div>
@@ -2352,7 +2530,7 @@
 <section class="paper">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">10</div>
+      <div class="chapter-num">11</div>
       <div class="chapter-meta">
         <div class="chapter-name">PM Adoption · Data Findings</div>
       </div>
@@ -2621,7 +2799,7 @@
   <div class="wrap">
     <div style="margin-bottom: 14px">
       <div class="chapter" style="margin-bottom: 10px">
-        <div class="chapter-num">11</div>
+        <div class="chapter-num">12</div>
         <div class="chapter-meta">
           <div class="chapter-name">Churned Accounts</div>
         </div>
@@ -3308,7 +3486,7 @@
 <section data-slide-title="Funnel Methodology">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">12</div>
+      <div class="chapter-num">13</div>
       <div class="chapter-meta">
         <div class="chapter-name">Funnel Methodology</div>
       </div>
@@ -3493,7 +3671,7 @@
 <section class="paper" data-slide-title="Lease Funnel">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">13</div>
+      <div class="chapter-num">14</div>
       <div class="chapter-meta">
         <div class="chapter-name">Lease Funnel</div>
       </div>
@@ -3570,7 +3748,7 @@
 <section data-slide-title="Late invites overview">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">14</div>
+      <div class="chapter-num">15</div>
       <div class="chapter-meta">
         <div class="chapter-name">Late invites overview · where the Mature drop comes from</div>
       </div>
@@ -3684,7 +3862,7 @@
 <section>
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">15</div>
+      <div class="chapter-num">16</div>
       <div class="chapter-meta">
         <div class="chapter-name">Action Items</div>
       </div>
@@ -5776,10 +5954,10 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   // A group can contain `slides: [from, to]` and/or `children: [...nested groups]`.
   // Slides outside any group render as ungrouped items at the bottom.
   const tocGroups = [
-    { name: 'Business Overview', from: 1, to: 7 },   // displayed 02–08 (Exec Summary → NSF)
-    { name: 'PM Side', from: 8, to: 10 },            // displayed 09–11 (PM Research, PM Findings, Churned)
-    { name: 'Lease Funnel', from: 11, to: 13 },      // displayed 12–14 (Funnel Methodology, Lease Funnel, Late invites)
-    // Slide 15 (Action Items) → ungrouped at the bottom
+    { name: 'Business Overview', from: 1, to: 8 },   // displayed 02–09 (Exec Summary → NSF; incl. new 05 New Active Leases & Eligibility)
+    { name: 'PM Side', from: 9, to: 11 },            // displayed 10–12 (PM Research, PM Findings, Churned)
+    { name: 'Lease Funnel', from: 12, to: 14 },      // displayed 13–15 (Funnel Methodology, Lease Funnel, Late invites)
+    // Slide 16 (Action Items) → ungrouped at the bottom
   ];
 
   function escapeHtml(s) {
