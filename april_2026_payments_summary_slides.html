@@ -1613,6 +1613,9 @@
           <button class="active" data-elig-view="Onboarding" onclick="setEligView('Onboarding')">Onboarding (0–2 mo)</button>
         </div>
       </div>
+      <div style="font-size: 11px; color: var(--muted); margin: -2px 0 8px; line-height: 1.5">
+        Cohort = leases first-active in the payments-month (cycle 25th → 24th). <strong style="color: var(--text)">Eligibility measured at cycle close (the 24th)</strong> — i.e., lease is <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">status='ACTIVE' AND active_tenant_flag=1 AND merchant_account_flag=1</code> on the 24th of its activation month. Lookback window varies by activation day (max ~30 days, min ~1 day).
+      </div>
       <div class="chart-wrap" style="height: 520px"><canvas id="chart-new-eligibility"></canvas></div>
     </div>
 
