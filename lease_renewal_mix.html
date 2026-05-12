@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lease Renewals — Monthly Mix (corrected)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<style>
+  :root {
+    --manual: #ef4444;
+    --both:   #f59e0b;
+    --system: #2563eb;
+    --ink:    #111827;
+    --muted:  #6b7280;
+    --bg:     #ffffff;
+    --card:   #f9fafb;
+    --border: #e5e7eb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    padding: 32px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  .sub { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .chart-wrap { position: relative; height: 480px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+  th:first-child, td:first-child { text-align: left; }
+  th { background: #f3f4f6; font-weight: 600; color: var(--muted); }
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+  }
+  .controls { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+  .controls label { font-size: 13px; color: var(--muted); cursor: pointer; }
+  .controls input { margin-right: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lease Renewals — Manual vs System (monthly mix)</h1>
+  <div class="sub">Active accounts only · each renewal event bucketed by its actual <b>renewal date</b> (System: <code>renewalHistory[].renewalDate</code> · Manual: new lease's <code>CREATEDAT</code>) · % stacked · <b>76 Airbnb/hotel/storage/Sec-8 repeat-tenant accounts excluded.</b></div>
+
+  <div class="card">
+    <div class="controls">
+      <label><input type="radio" name="mode" value="pct" checked /> 100% stacked</label>
+      <label><input type="radio" name="mode" value="abs" /> Absolute counts</label>
+    </div>
+    <div class="chart-wrap"><canvas id="chart"></canvas></div>
+  </div>
+
+  <div class="card">
+    <table id="table"></table>
+  </div>
+</div>
+
+<script>
+const raw = [
+  {month:"2024-01", system:2182, manual:186},
+  {month:"2024-02", system:2027, manual:158},
+  {month:"2024-03", system:2415, manual:144},
+  {month:"2024-04", system:2783, manual:191},
+  {month:"2024-05", system:2797, manual:266},
+  {month:"2024-06", system:2773, manual:386},
+  {month:"2024-07", system:3048, manual:301},
+  {month:"2024-08", system:2686, manual:285},
+  {month:"2024-09", system:2738, manual:218},
+  {month:"2024-10", system:2403, manual:288},
+  {month:"2024-11", system:1900, manual:201},
+  {month:"2024-12", system:1933, manual:212},
+  {month:"2025-01", system:1744, manual:287},
+  {month:"2025-02", system:1864, manual:319},
+  {month:"2025-03", system:2252, manual:377},
+  {month:"2025-04", system:2501, manual:441},
+  {month:"2025-05", system:2668, manual:508},
+  {month:"2025-06", system:2569, manual:491},
+  {month:"2025-07", system:2761, manual:545},
+  {month:"2025-08", system:2355, manual:533},
+  {month:"2025-09", system:2295, manual:623},
+  {month:"2025-10", system:2378, manual:524},
+  {month:"2025-11", system:1787, manual:421},
+  {month:"2025-12", system:2363, manual:419},
+  {month:"2026-01", system:2549, manual:651},
+  {month:"2026-02", system:2814, manual:738},
+  {month:"2026-03", system:3474, manual:621},
+  {month:"2026-04", system:3787, manual:651},
+];
+
+const labels = raw.map(r => {
+  const [y, m] = r.month.split("-");
+  const mn = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m - 1];
+  return `${mn} ${y.slice(2)}`;
+});
+
+const totals  = raw.map(r => r.manual + r.system);
+const pct     = (n, t) => t ? (n * 100 / t) : 0;
+
+const datasets = (mode) => {
+  const fmt = (vals) => mode === "pct"
+    ? vals.map((v, i) => pct(v, totals[i]))
+    : vals;
+  return [
+    { label:"Manual", backgroundColor:"#ef4444", data: fmt(raw.map(r => r.manual)), stack:"s" },
+    { label:"System", backgroundColor:"#2563eb", data: fmt(raw.map(r => r.system)), stack:"s" },
+  ];
+};
+
+Chart.register(ChartDataLabels);
+
+let currentMode = "pct";
+
+const ctx = document.getElementById("chart").getContext("2d");
+const chart = new Chart(ctx, {
+  type: "bar",
+  data: { labels, datasets: datasets("pct") },
+  options: {
+    maintainAspectRatio: false,
+    responsive: true,
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { position: "bottom" },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const i = ctx.dataIndex;
+            const k = ctx.dataset.label.toLowerCase();
+            const v = raw[i][k];
+            const p = pct(v, totals[i]).toFixed(1);
+            return `${ctx.dataset.label}: ${v.toLocaleString()} (${p}%)`;
+          },
+          footer: (items) => {
+            const i = items[0].dataIndex;
+            return `Total: ${totals[i].toLocaleString()}`;
+          }
+        }
+      },
+      title: { display: false },
+      datalabels: {
+        anchor: "center",
+        align: "center",
+        color: "#ffffff",
+        font: { weight: 700, size: 11 },
+        formatter: (value, ctx) => {
+          if (currentMode === "pct") {
+            // skip tiny slivers
+            return value < 4 ? "" : value.toFixed(1) + "%";
+          } else {
+            // absolute counts — skip tiny ones
+            return value < 200 ? "" : value.toLocaleString();
+          }
+        },
+        textShadowBlur: 4,
+        textShadowColor: "rgba(0,0,0,0.35)",
+      },
+    },
+    datasets: {
+      bar: {
+        barPercentage: 1.0,
+        categoryPercentage: 0.95,
+      },
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false } },
+      y: {
+        stacked: true,
+        beginAtZero: true,
+        max: 100,
+        ticks: { callback: (v) => v + "%" },
+        title: { display: true, text: "% of renewed leases" },
+      },
+    },
+  },
+});
+
+// table
+const tbl = document.getElementById("table");
+tbl.innerHTML = `
+  <thead><tr>
+    <th>Month</th>
+    <th>Manual</th><th>System</th><th>Total</th>
+    <th>% Manual</th><th>% System</th>
+  </tr></thead>
+  <tbody>
+    ${raw.map((r, i) => `
+      <tr>
+        <td>${labels[i]}</td>
+        <td>${r.manual.toLocaleString()}</td>
+        <td>${r.system.toLocaleString()}</td>
+        <td><b>${totals[i].toLocaleString()}</b></td>
+        <td>${pct(r.manual, totals[i]).toFixed(1)}%</td>
+        <td>${pct(r.system, totals[i]).toFixed(1)}%</td>
+      </tr>`).join("")}
+  </tbody>
+`;
+
+// toggle
+document.querySelectorAll('input[name="mode"]').forEach(el =>
+  el.addEventListener("change", (e) => {
+    const mode = e.target.value;
+    currentMode = mode;
+    chart.data.datasets = datasets(mode);
+    chart.options.scales.y.max = mode === "pct" ? 100 : undefined;
+    chart.options.scales.y.ticks.callback = mode === "pct"
+      ? (v) => v + "%"
+      : (v) => v.toLocaleString();
+    chart.options.scales.y.title.text = mode === "pct"
+      ? "% of renewed leases"
+      : "Renewed leases";
+    chart.update();
+  })
+);
+</script>
+</body>
+</html>
