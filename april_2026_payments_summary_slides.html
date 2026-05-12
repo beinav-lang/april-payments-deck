@@ -2309,16 +2309,28 @@
     </h2>
 
     <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">FT volume by month · split by activation recency <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Sep '25 → Apr '26</span></div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px">
+        <div class="ch-title" style="margin: 0">FT volume by month · split by activation recency <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Sep '25 → Apr '26</span></div>
+        <div>
+          <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 6px; text-align: right">Account type</div>
+          <div class="cohort-toggle" id="ft-view-toggle" style="margin-left: 0">
+            <button class="active" data-ft-view="All" onclick="setFtView('All')">All</button>
+            <button data-ft-view="Mature" onclick="setFtView('Mature')" disabled title="Needs /tmp/ft_paths_by_cohort.sql run; CSV pending">Mature (3+ mo)</button>
+            <button data-ft-view="Onboarding" onclick="setFtView('Onboarding')" disabled title="Needs /tmp/ft_paths_by_cohort.sql run; CSV pending">Onboarding (0–2 mo)</button>
+          </div>
+        </div>
+      </div>
       <div class="chart-wrap" style="height: 420px"><canvas id="chart-sf-stack"></canvas></div>
+      <div style="margin-top: 6px; font-size: 11px; color: var(--subtle); line-height: 1.5; font-style: italic">
+        Mature / Onboarding splits pending — query at <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">/tmp/ft_paths_by_cohort.sql</code>. Once the CSV is in place I can wire all three views in.
+      </div>
     </div>
 
     <!-- Insight card · What drove the uptake -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
       <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 What drove the uptake?</div>
       <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.6%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants invited at lease creation, accept and pay before cycle close — these are the fast-funnel FT.</div>
-      <div style="margin-bottom: 8px"><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog: tenants on older leases finally invited and paid.</div>
-      <div style="color: var(--muted); font-size: 13px"><strong style="color: var(--text)">Enabler · PM width:</strong> 3,733 → 4,124 distinct PMs contributing any FT (Jan → Apr '26, <strong style="color: var(--text)">+10.5%</strong>). More PMs adopting the workflow, not the same PMs doing more (median FT/PM flat at 2).</div>
+      <div><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog: tenants on older leases finally invited and paid.</div>
     </div>
 
   </div>
@@ -2327,27 +2339,31 @@
 <script>
 (function() {
   // Slide 08 · Stacked composition chart: same-cycle FT vs earlier-cycle FT
-  // Source: /tmp/ftdb.csv. Note: row totals here (same + prior) are slightly lower
-  // than the headline ftd.csv FT total because ftdb counts customer+lease pairs
-  // with snapshot ACTIVE records, while ftd counts unique customers.
-  const ftSplit = [
-    { m: "Sep '25", same: 4846, prior:  9287 },
-    { m: "Oct '25", same: 4775, prior:  8735 },
-    { m: "Nov '25", same: 4589, prior:  9462 },
-    { m: "Dec '25", same: 3803, prior:  7704 },
-    { m: "Jan '26", same: 5117, prior: 10085 },
-    { m: "Feb '26", same: 5614, prior:  9451 },
-    { m: "Mar '26", same: 5140, prior:  9456 },
-    { m: "Apr '26", same: 6211, prior:  9740 }
-  ];
+  // Source: /tmp/ftdb.csv (All view). Mature/Onboarding views pending
+  // /tmp/ft_paths_by_cohort.sql — buttons are disabled in the UI until then.
+  const ftDataByView = {
+    All: [
+      { m: "Sep '25", same: 4846, prior:  9287 },
+      { m: "Oct '25", same: 4775, prior:  8735 },
+      { m: "Nov '25", same: 4589, prior:  9462 },
+      { m: "Dec '25", same: 3803, prior:  7704 },
+      { m: "Jan '26", same: 5117, prior: 10085 },
+      { m: "Feb '26", same: 5614, prior:  9451 },
+      { m: "Mar '26", same: 5140, prior:  9456 },
+      { m: "Apr '26", same: 6211, prior:  9740 }
+    ],
+    Mature: null,      // ← fill from /tmp/ft_paths_by_cohort.sql output
+    Onboarding: null   // ← fill from /tmp/ft_paths_by_cohort.sql output
+  };
   const PINK = '#ff4998', SLATE = 'rgba(100,116,139,0.85)', NAVY = '#162050';
 
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof Chart === 'undefined') return;
-    const el = document.getElementById('chart-sf-stack');
-    if (!el) return;
+  let ftChart = null;
+  let currentFtView = 'All';
+
+  function buildChartConfig(view) {
+    const ftSplit = ftDataByView[view] || ftDataByView.All;
     const aprIdx = ftSplit.length - 1;
-    new Chart(el, {
+    return {
       type: 'bar',
       data: {
         labels: ftSplit.map(d => d.m),
@@ -2432,7 +2448,30 @@
           }
         }
       }
+    };
+  }
+
+  // Exposed for the toggle buttons (onclick handlers)
+  window.setFtView = function(view) {
+    if (!ftDataByView[view]) return;  // data not yet wired up
+    currentFtView = view;
+    // Update active button state
+    document.querySelectorAll('#ft-view-toggle button[data-ft-view]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.ftView === view);
     });
+    // Rebuild chart
+    if (ftChart) ftChart.destroy();
+    const el = document.getElementById('chart-sf-stack');
+    if (el && typeof Chart !== 'undefined') {
+      ftChart = new Chart(el, buildChartConfig(view));
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+    const el = document.getElementById('chart-sf-stack');
+    if (!el) return;
+    ftChart = new Chart(el, buildChartConfig(currentFtView));
   });
 })();
 </script>
