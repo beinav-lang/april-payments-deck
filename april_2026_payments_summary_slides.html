@@ -2323,6 +2323,12 @@
       <div class="chart-wrap" style="height: 420px"><canvas id="chart-sf-stack"></canvas></div>
     </div>
 
+    <!-- Mechanism line chart · % of new leases invited at or before activation -->
+    <div class="chart-shell" style="margin-top: 12px">
+      <div class="ch-title">% of new active leases invited at or before lease activation <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· mechanism behind same-cycle FT · Sep '25 → Apr '26</span></div>
+      <div class="chart-wrap" style="height: 180px"><canvas id="chart-sf-invite-at-active"></canvas></div>
+    </div>
+
     <!-- Insight card · What drove the uptake -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
       <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 What drove the uptake?</div>
@@ -2488,11 +2494,83 @@
     }
   };
 
+  // Source: /tmp/invite_at_activation_monthly.csv
+  // % of new active leases that had a portal invite sent on or before the
+  // lease's first ACTIVE snapshot date. Visualizes the 'invited at lease
+  // creation' mechanism behind the same-cycle FT lift.
+  const inviteAtActive = [
+    { m: "Sep '25", v: 36.71 },
+    { m: "Oct '25", v: 32.81 },
+    { m: "Nov '25", v: 32.06 },
+    { m: "Dec '25", v: 31.84 },
+    { m: "Jan '26", v: 42.02 },
+    { m: "Feb '26", v: 35.58 },
+    { m: "Mar '26", v: 36.76 },
+    { m: "Apr '26", v: 45.16 }
+  ];
+
+  function buildInviteAtActiveChart() {
+    const el = document.getElementById('chart-sf-invite-at-active');
+    if (!el || typeof Chart === 'undefined') return;
+    const janIdx = inviteAtActive.findIndex(d => d.m === "Jan '26");
+    const aprIdx = inviteAtActive.length - 1;
+    new Chart(el, {
+      type: 'line',
+      data: {
+        labels: inviteAtActive.map(d => d.m),
+        datasets: [{
+          label: '% invited at or before activation',
+          data: inviteAtActive.map(d => d.v),
+          borderColor: PINK,
+          backgroundColor: 'rgba(255,73,152,0.12)',
+          borderWidth: 2.5,
+          fill: true,
+          tension: 0.3,
+          pointRadius: inviteAtActive.map((_, i) => (i === 0 || i === janIdx || i === aprIdx) ? 5 : 3),
+          pointBackgroundColor: '#fff',
+          pointBorderColor: PINK,
+          pointBorderWidth: 2,
+          datalabels: {
+            display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === janIdx || ctx.dataIndex === aprIdx,
+            anchor: 'end', align: 'top', offset: 6,
+            backgroundColor: '#fff',
+            borderColor: PINK,
+            borderWidth: 1,
+            borderRadius: 3,
+            padding: { top: 2, bottom: 2, left: 5, right: 5 },
+            color: PINK,
+            font: { weight: 800, size: 11, family: 'Poppins' },
+            formatter: v => v.toFixed(1) + '%'
+          }
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 22, right: 16, bottom: 4, left: 8 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: c => c.parsed.y.toFixed(2) + '% invited at/before activation' } }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: {
+              font: ctx => ({ size: 11, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
+              color: ctx => ctx.index === aprIdx ? NAVY : '#64748b'
+            }
+          },
+          y: { display: false, beginAtZero: false, min: 25, max: 50 }
+        }
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') return;
     const el = document.getElementById('chart-sf-stack');
     if (!el) return;
     ftChart = new Chart(el, buildChartConfig(currentFtView));
+    buildInviteAtActiveChart();
   });
 })();
 </script>
