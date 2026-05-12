@@ -155,18 +155,18 @@ const chart = new Chart(ctx, {
         anchor: "center",
         align: "center",
         color: "#ffffff",
-        font: { weight: 700, size: 11 },
+        font: { weight: 800, size: 13 },
         formatter: (value, ctx) => {
           if (currentMode === "pct") {
-            // skip tiny slivers
-            return value < 4 ? "" : value.toFixed(1) + "%";
+            return value < 2 ? "" : value.toFixed(1) + "%";
           } else {
-            // absolute counts — skip tiny ones
-            return value < 200 ? "" : value.toLocaleString();
+            return value < 100 ? "" : value.toLocaleString();
           }
         },
-        textShadowBlur: 4,
-        textShadowColor: "rgba(0,0,0,0.35)",
+        textStrokeColor: "rgba(0,0,0,0.55)",
+        textStrokeWidth: 3,
+        textShadowBlur: 6,
+        textShadowColor: "rgba(0,0,0,0.55)",
       },
     },
     datasets: {
