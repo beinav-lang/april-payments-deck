@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <title>Lease Renewals — Monthly Mix (corrected)</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
@@ -155,7 +158,10 @@ const chart = new Chart(ctx, {
         anchor: "center",
         align: "center",
         color: "#ffffff",
-        font: { weight: 800, size: 13 },
+        font: { weight: 900, size: 14, family: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" },
+        backgroundColor: (ctx) => "rgba(0,0,0,0.30)",
+        borderRadius: 4,
+        padding: { top: 2, bottom: 2, left: 4, right: 4 },
         formatter: (value, ctx) => {
           if (currentMode === "pct") {
             return value < 2 ? "" : value.toFixed(1) + "%";
@@ -163,10 +169,6 @@ const chart = new Chart(ctx, {
             return value < 100 ? "" : value.toLocaleString();
           }
         },
-        textStrokeColor: "rgba(0,0,0,0.55)",
-        textStrokeWidth: 3,
-        textShadowBlur: 6,
-        textShadowColor: "rgba(0,0,0,0.55)",
       },
     },
     datasets: {
