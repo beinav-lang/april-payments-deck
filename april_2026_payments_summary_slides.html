@@ -2315,22 +2315,19 @@
           <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 6px; text-align: right">Account type</div>
           <div class="cohort-toggle" id="ft-view-toggle" style="margin-left: 0">
             <button class="active" data-ft-view="All" onclick="setFtView('All')">All</button>
-            <button data-ft-view="Mature" onclick="setFtView('Mature')" disabled title="Needs /tmp/ft_paths_by_cohort.sql run; CSV pending">Mature (3+ mo)</button>
-            <button data-ft-view="Onboarding" onclick="setFtView('Onboarding')" disabled title="Needs /tmp/ft_paths_by_cohort.sql run; CSV pending">Onboarding (0–2 mo)</button>
+            <button data-ft-view="Mature" onclick="setFtView('Mature')">Mature (3+ mo)</button>
+            <button data-ft-view="Onboarding" onclick="setFtView('Onboarding')">Onboarding (0–2 mo)</button>
           </div>
         </div>
       </div>
       <div class="chart-wrap" style="height: 420px"><canvas id="chart-sf-stack"></canvas></div>
-      <div style="margin-top: 6px; font-size: 11px; color: var(--subtle); line-height: 1.5; font-style: italic">
-        Mature / Onboarding splits pending — query at <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">/tmp/ft_paths_by_cohort.sql</code>. Once the CSV is in place I can wire all three views in.
-      </div>
     </div>
 
     <!-- Insight card · What drove the uptake -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
       <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 What drove the uptake?</div>
-      <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.6%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants invited at lease creation, accept and pay before cycle close — these are the fast-funnel FT.</div>
-      <div><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog: tenants on older leases finally invited and paid.</div>
+      <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.6%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants invited at lease creation, accept and pay before cycle close — these are the fast-funnel FT. <span style="color: var(--muted)">Both cohorts contributed similarly: Mature <strong style="color: var(--text)">+22.3%</strong>, Onboarding <strong style="color: var(--text)">+23.8%</strong>.</span></div>
+      <div><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog. <span style="color: var(--muted)">Cohort split tells a sharper story: <strong style="color: var(--text)">Onboarding +16.7%</strong> vs <strong style="color: var(--text)">Mature only +5.8%</strong> — new-PM back-catalogs are where the catchup is happening.</span></div>
     </div>
 
   </div>
@@ -2339,8 +2336,8 @@
 <script>
 (function() {
   // Slide 08 · Stacked composition chart: same-cycle FT vs earlier-cycle FT
-  // Source: /tmp/ftdb.csv (All view). Mature/Onboarding views pending
-  // /tmp/ft_paths_by_cohort.sql — buttons are disabled in the UI until then.
+  // Source: /tmp/ft_paths_by_cohort.csv (3 views: All, Mature PM>=90d, Onboarding PM<90d)
+  // Sanity check: Mature.same + Onboarding.same = All.same per cycle.
   const ftDataByView = {
     All: [
       { m: "Sep '25", same: 4846, prior:  9287 },
@@ -2352,8 +2349,26 @@
       { m: "Mar '26", same: 5140, prior:  9456 },
       { m: "Apr '26", same: 6211, prior:  9740 }
     ],
-    Mature: null,      // ← fill from /tmp/ft_paths_by_cohort.sql output
-    Onboarding: null   // ← fill from /tmp/ft_paths_by_cohort.sql output
+    Mature: [
+      { m: "Sep '25", same: 3835, prior: 5941 },
+      { m: "Oct '25", same: 3634, prior: 5466 },
+      { m: "Nov '25", same: 3848, prior: 5048 },
+      { m: "Dec '25", same: 3154, prior: 4981 },
+      { m: "Jan '26", same: 3824, prior: 5626 },
+      { m: "Feb '26", same: 4560, prior: 5479 },
+      { m: "Mar '26", same: 4326, prior: 5421 },
+      { m: "Apr '26", same: 4986, prior: 6153 }
+    ],
+    Onboarding: [
+      { m: "Sep '25", same: 1011, prior: 3346 },
+      { m: "Oct '25", same: 1141, prior: 3269 },
+      { m: "Nov '25", same:  741, prior: 4414 },
+      { m: "Dec '25", same:  649, prior: 2723 },
+      { m: "Jan '26", same: 1293, prior: 4459 },
+      { m: "Feb '26", same: 1054, prior: 3972 },
+      { m: "Mar '26", same:  814, prior: 4035 },
+      { m: "Apr '26", same: 1225, prior: 3587 }
+    ]
   };
   const PINK = '#ff4998', SLATE = 'rgba(100,116,139,0.85)', NAVY = '#162050';
 
