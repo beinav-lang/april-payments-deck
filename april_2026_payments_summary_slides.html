@@ -2326,8 +2326,9 @@
     <!-- Insight card · What drove the uptake -->
     <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
       <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 What drove the uptake?</div>
-      <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.6%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants invited at lease creation, accept and pay before cycle close — these are the fast-funnel FT. <span style="color: var(--muted)">Both cohorts contributed similarly: Mature <strong style="color: var(--text)">+22.3%</strong>, Onboarding <strong style="color: var(--text)">+23.8%</strong>.</span></div>
-      <div><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog. <span style="color: var(--muted)">Cohort split tells a sharper story: <strong style="color: var(--text)">Onboarding +16.7%</strong> vs <strong style="color: var(--text)">Mature only +5.8%</strong> — new-PM back-catalogs are where the catchup is happening.</span></div>
+      <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.5%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants activate and pay within the same cycle — fast-funnel FT. <span style="color: var(--muted)">Both cohorts contributed similarly: Mature <strong style="color: var(--text)">+22.9%</strong>, Onboarding <strong style="color: var(--text)">+20.7%</strong>.</span></div>
+      <div><strong style="color: #64748b">2) Earlier-cycle FT grew +14.0%</strong> over the same period — tenants on older leases finally paid. <span style="color: var(--muted)">Sharper read by cohort: <strong style="color: var(--text)">Onboarding +16.3%</strong> vs <strong style="color: var(--text)">Mature +12.3%</strong> — Onboarding-PM back catalogs drove a larger share of the catchup.</span></div>
+      <div style="margin-top: 10px; font-size: 11px; color: var(--subtle); font-style: italic">Bar totals match slide 7 <strong>first_time</strong> exactly (Apr '26: 15,116). Source: <code style="font-style: normal; font-size: 10.5px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px">/tmp/ft_paths_by_cohort_v2.sql</code> · COUNT(DISTINCT lease_id) on stripe_connect.</div>
     </div>
 
   </div>
@@ -2336,38 +2337,43 @@
 <script>
 (function() {
   // Slide 08 · Stacked composition chart: same-cycle FT vs earlier-cycle FT
-  // Source: /tmp/ft_paths_by_cohort.csv (3 views: All, Mature PM>=90d, Onboarding PM<90d)
-  // Sanity check: Mature.same + Onboarding.same = All.same per cycle.
+  // Source: /tmp/ft_paths_by_cohort_v2.csv (3 views: All, Mature PM>=90d, Onboarding PM<90d).
+  // Definition matches slide 7 exactly:
+  //   total_ft per (cycle, cohort) = COUNT(DISTINCT lease_id) on stripe_connect
+  //   where the lease's MIN(payments_month) = the cycle.
+  // Sum of (Mature.total + Onboarding.total) per cycle = slide 7 first_time, exact.
+  // 'prior' here = total - same, so the stacked bar's total height = slide 7 first_time.
+  // (The slate layer absorbs strict-earlier + ~3% pre-snapshot unknowns.)
   const ftDataByView = {
     All: [
-      { m: "Sep '25", same: 4846, prior:  9287 },
-      { m: "Oct '25", same: 4775, prior:  8735 },
-      { m: "Nov '25", same: 4589, prior:  9462 },
-      { m: "Dec '25", same: 3803, prior:  7704 },
-      { m: "Jan '26", same: 5117, prior: 10085 },
-      { m: "Feb '26", same: 5614, prior:  9451 },
-      { m: "Mar '26", same: 5140, prior:  9456 },
-      { m: "Apr '26", same: 6211, prior:  9740 }
+      { m: "Sep '25", same: 4622, prior: 8262 },
+      { m: "Oct '25", same: 4608, prior: 8233 },
+      { m: "Nov '25", same: 4472, prior: 8824 },
+      { m: "Dec '25", same: 3745, prior: 7123 },
+      { m: "Jan '26", same: 4923, prior: 9775 },
+      { m: "Feb '26", same: 5460, prior: 8974 },
+      { m: "Mar '26", same: 4992, prior: 9122 },
+      { m: "Apr '26", same: 5996, prior: 9120 }
     ],
     Mature: [
-      { m: "Sep '25", same: 3835, prior: 5941 },
-      { m: "Oct '25", same: 3634, prior: 5466 },
-      { m: "Nov '25", same: 3848, prior: 5048 },
-      { m: "Dec '25", same: 3154, prior: 4981 },
-      { m: "Jan '26", same: 3824, prior: 5626 },
-      { m: "Feb '26", same: 4560, prior: 5479 },
-      { m: "Mar '26", same: 4326, prior: 5421 },
-      { m: "Apr '26", same: 4986, prior: 6153 }
+      { m: "Sep '25", same: 3642, prior: 5053 },
+      { m: "Oct '25", same: 3469, prior: 4773 },
+      { m: "Nov '25", same: 3735, prior: 4442 },
+      { m: "Dec '25", same: 3099, prior: 4469 },
+      { m: "Jan '26", same: 3752, prior: 5333 },
+      { m: "Feb '26", same: 4416, prior: 5065 },
+      { m: "Mar '26", same: 4180, prior: 5129 },
+      { m: "Apr '26", same: 4795, prior: 5521 }
     ],
     Onboarding: [
-      { m: "Sep '25", same: 1011, prior: 3346 },
-      { m: "Oct '25", same: 1141, prior: 3269 },
-      { m: "Nov '25", same:  741, prior: 4414 },
-      { m: "Dec '25", same:  649, prior: 2723 },
-      { m: "Jan '26", same: 1293, prior: 4459 },
-      { m: "Feb '26", same: 1054, prior: 3972 },
-      { m: "Mar '26", same:  814, prior: 4035 },
-      { m: "Apr '26", same: 1225, prior: 3587 }
+      { m: "Sep '25", same:  980, prior: 3209 },
+      { m: "Oct '25", same: 1139, prior: 3460 },
+      { m: "Nov '25", same:  737, prior: 4382 },
+      { m: "Dec '25", same:  646, prior: 2654 },
+      { m: "Jan '26", same: 1171, prior: 4442 },
+      { m: "Feb '26", same: 1044, prior: 3909 },
+      { m: "Mar '26", same:  812, prior: 3993 },
+      { m: "Apr '26", same: 1201, prior: 3599 }
     ]
   };
   const PINK = '#ff4998', SLATE = 'rgba(100,116,139,0.85)', NAVY = '#162050';
@@ -3315,10 +3321,34 @@
       </div>
     </div>
 
-    <h3 style="font-size: 18px; font-weight: 700; color: var(--text); margin: 28px 0 2px; line-height: 1.3">Risk score — why and how</h3>
-    <div style="font-size: 11px; color: var(--muted); font-weight: 500; margin-bottom: 12px">turning the levers + leading indicators into one CSM-ready signal</div>
+    <details class="rs-collapse">
+      <summary>
+        <span class="rs-collapse-title">Risk score — why and how</span>
+        <span class="rs-collapse-sub">turning the levers + leading indicators into one CSM-ready signal</span>
+        <span class="rs-collapse-chev">▾</span>
+      </summary>
 
     <style>
+      .rs-collapse { margin: 28px 0 0; }
+      .rs-collapse > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex; align-items: baseline; gap: 14px;
+        padding: 12px 18px;
+        background: #f1f5f9;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        user-select: none;
+        transition: background 0.15s;
+      }
+      .rs-collapse > summary::-webkit-details-marker { display: none }
+      .rs-collapse > summary:hover { background: #e2e8f0; }
+      .rs-collapse[open] > summary { background: #e2e8f0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; margin-bottom: 0; }
+      .rs-collapse-title { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3; }
+      .rs-collapse-sub   { flex: 1; font-size: 11.5px; color: var(--muted); font-weight: 500; }
+      .rs-collapse-chev  { font-size: 14px; color: var(--muted); transition: transform 0.2s; line-height: 1; }
+      .rs-collapse[open] .rs-collapse-chev { transform: rotate(180deg); }
+      .rs-collapse-body { padding: 14px 18px 16px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; background: #fff; }
       .rs-why { background: #f8fafc; border-left: 3px solid var(--text); padding: 12px 14px; border-radius: 6px; font-size: 12px; line-height: 1.5; color: var(--text); margin-bottom: 14px; }
       .rs-why em { color: var(--warn); font-style: normal; font-weight: 700; }
       .rs-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
@@ -3343,6 +3373,8 @@
       .rs-deliver { font-size: 11px; color: var(--muted); line-height: 1.5; padding: 10px 14px; background: #f8fafc; border-radius: 6px; }
       .rs-deliver strong { color: var(--text); font-weight: 600; }
     </style>
+
+      <div class="rs-collapse-body">
 
     <div class="rs-why">
       <strong>Why.</strong> The matrix above shows adoption is sticky — <em>half of Lows at day 90 stay stuck</em>. By the time outcome data is conclusive, the window to intervene has already closed. We need to detect risk earlier and direct CSM action to the specific lever that's broken, not "this account is in trouble" generically.
@@ -3420,6 +3452,9 @@
         <div style="margin-bottom: 8px"><strong>4. Risk score = sum of points</strong> across all firing flags. Range in practice: 0–25.</div>
         <div style="margin-bottom: 8px"><strong>Example:</strong> a PM with no merchant account (+8), online payments not engaged (+7), and slow invite lag (+3) scores <strong>18</strong> — very high risk. A PM with only no-bank-connect firing scores <strong>1</strong> — clean.</div>
         <div style="font-size: 10.5px; color: var(--muted); line-height: 1.5">* These three are real signals univariately (lift 2.5–5×) but collinear with the higher-weighted flags. The regression assigns them no marginal weight; keep them as <em>secondary warnings</em> in the dashboard. <strong>AUC = 0.94</strong> in-sample (target: predict Low adopter); out-of-time validation is a step on the v2 roadmap.</div>
+      </div>
+    </details>
+
       </div>
     </details>
 
