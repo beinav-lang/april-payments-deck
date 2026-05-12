@@ -4286,8 +4286,146 @@
 
 
 <!-- ============================================================ -->
-<!-- SECTION · ACTION ITEMS (last)                                 -->
+<!-- SECTION · ACTION ITEMS — Four Q2 levers                       -->
 <!-- ============================================================ -->
+<style>
+  /* Slide 18 · Q2 levers */
+  .q2-frame {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #fff;
+    overflow: hidden;
+    margin-top: 14px;
+    box-shadow: 0 1px 8px rgba(22,32,80,0.04);
+  }
+  .q2-frame-header {
+    background: var(--navy-mid);
+    color: #fff;
+    padding: 18px 28px;
+  }
+  .q2-frame-header h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    margin: 0;
+    color: #fff;
+  }
+  .q2-frame-subhead {
+    background: #fff;
+    padding: 14px 28px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .q2-levers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    padding: 18px 28px 28px;
+    background: #fff;
+  }
+  .q2-lever {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .q2-lever-stripe {
+    height: 6px;
+  }
+  .q2-lever-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .q2-lever-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .q2-lever-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .q2-launch-pill {
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 50px;
+    letter-spacing: 0.2px;
+  }
+  .q2-lever-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.25;
+    margin-top: 2px;
+  }
+  .q2-lever-sub {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .q2-lever-stat {
+    background: #f4f6fb;
+    border-radius: 6px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .q2-lever-stat .num {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+  }
+  .q2-lever-stat .baseline {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 700;
+    margin-left: 6px;
+  }
+  .q2-lever-stat .caption {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .q2-lever-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-top: auto;
+  }
+  /* Card-specific colors */
+  .q2-lever.cost .q2-lever-stripe { background: #ff4998; }
+  .q2-lever.cost .q2-launch-pill  { background: #ff4998; }
+  .q2-lever.cost .q2-lever-sub    { color: #ff4998; }
+  .q2-lever.cost .q2-lever-stat .num { color: #ff4998; }
+
+  .q2-lever.pricing .q2-lever-stripe { background: #16a34a; }
+  .q2-lever.pricing .q2-launch-pill  { background: #16a34a; }
+  .q2-lever.pricing .q2-lever-sub    { color: #16a34a; }
+  .q2-lever.pricing .q2-lever-stat .num { color: #16a34a; }
+
+  .q2-lever.revenue .q2-lever-stripe { background: #3185FC; }
+  .q2-lever.revenue .q2-launch-pill  { background: #3185FC; }
+  .q2-lever.revenue .q2-lever-sub    { color: #3185FC; }
+  .q2-lever.revenue .q2-lever-stat .num { color: #3185FC; }
+
+  .q2-lever.adoption .q2-lever-stripe { background: #7c3aed; }
+  .q2-lever.adoption .q2-launch-pill  { background: #7c3aed; }
+  .q2-lever.adoption .q2-lever-sub    { color: #7c3aed; }
+  .q2-lever.adoption .q2-lever-stat .num { color: #7c3aed; }
+</style>
+
 <section>
   <div class="wrap">
     <div class="chapter">
@@ -4297,7 +4435,88 @@
       </div>
     </div>
 
-    <!-- Body intentionally left blank -->
+    <div class="q2-frame">
+      <div class="q2-frame-header">
+        <h2>Four Q2 levers to lift payments revenue</h2>
+      </div>
+      <div class="q2-frame-subhead">
+        Each targets a different driver — cost reduction, NSF legacy-accounts repricing, card-share lift, and payment conversion.
+      </div>
+
+      <div class="q2-levers-grid">
+
+        <!-- 1 · Cost lever -->
+        <div class="q2-lever cost">
+          <div class="q2-lever-stripe"></div>
+          <div class="q2-lever-body">
+            <div class="q2-lever-top">
+              <div class="q2-lever-eyebrow">Cost lever</div>
+              <div class="q2-launch-pill">Q2 launch</div>
+            </div>
+            <div class="q2-lever-title">Reduce Stripe fees</div>
+            <div class="q2-lever-sub">Lower the cost-of-revenue on every transaction</div>
+            <div class="q2-lever-stat">
+              <div class="num">~$175K ARR</div>
+            </div>
+            <div class="q2-lever-note">New Stripe agreement with reduced processing rates.</div>
+          </div>
+        </div>
+
+        <!-- 2 · Pricing lever -->
+        <div class="q2-lever pricing">
+          <div class="q2-lever-stripe"></div>
+          <div class="q2-lever-body">
+            <div class="q2-lever-top">
+              <div class="q2-lever-eyebrow">Pricing lever</div>
+              <div class="q2-launch-pill">Q2 launch</div>
+            </div>
+            <div class="q2-lever-title">NSF pricing — legacy accounts</div>
+            <div class="q2-lever-sub">Migrate older accounts to the new NSF pricing</div>
+            <div class="q2-lever-stat">
+              <div class="num">~$500K ARR</div>
+            </div>
+            <div class="q2-lever-note">Bring legacy accounts up to current Platform Fee schedule. Lifts NSF ARR with no behavioral change required from PMs.</div>
+          </div>
+        </div>
+
+        <!-- 3 · Revenue lever -->
+        <div class="q2-lever revenue">
+          <div class="q2-lever-stripe"></div>
+          <div class="q2-lever-body">
+            <div class="q2-lever-top">
+              <div class="q2-lever-eyebrow">Revenue lever</div>
+              <div class="q2-launch-pill">Q2 launch</div>
+            </div>
+            <div class="q2-lever-title">Card pricing</div>
+            <div class="q2-lever-sub">Increasing card adoption</div>
+            <div class="q2-lever-stat">
+              <div class="num">+1pp<span class="baseline">Baseline 17.75 pp</span></div>
+              <div class="caption">uplift in card adoption</div>
+            </div>
+            <div class="q2-lever-note">Re-evaluate the card-payment fee structure to lift adoption rate without suppressing card share.</div>
+          </div>
+        </div>
+
+        <!-- 4 · Adoption lever -->
+        <div class="q2-lever adoption">
+          <div class="q2-lever-stripe"></div>
+          <div class="q2-lever-body">
+            <div class="q2-lever-top">
+              <div class="q2-lever-eyebrow">Adoption lever</div>
+              <div class="q2-launch-pill">Q2 launch</div>
+            </div>
+            <div class="q2-lever-title">Smoother tenant portal experience</div>
+            <div class="q2-lever-sub">Reduce friction to make payment</div>
+            <div class="q2-lever-stat">
+              <div class="num">+3pp<span class="baseline">Baseline 47.5pp</span></div>
+              <div class="caption">target payment conversion uplift</div>
+            </div>
+            <div class="q2-lever-note">Saved card / OTP login / one-click checkout.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
 
