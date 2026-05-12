@@ -2663,10 +2663,29 @@
             stack: 'ft',
             borderRadius: { topLeft: 4, topRight: 4 },
             datalabels: {
-              display: true,
-              anchor: 'center', align: 'center',
-              color: '#fff', font: { weight: 800, size: 12, family: 'Poppins' },
-              formatter: v => (v/1000).toFixed(1) + 'K'
+              labels: {
+                value: {
+                  display: true,
+                  anchor: 'center', align: 'center',
+                  color: '#fff', font: { weight: 800, size: 12, family: 'Poppins' },
+                  formatter: v => (v/1000).toFixed(1) + 'K'
+                },
+                total: {
+                  display: true,
+                  anchor: 'end', align: 'top', offset: 4,
+                  color: NAVY,
+                  backgroundColor: '#fff',
+                  borderColor: NAVY,
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  padding: { top: 2, bottom: 2, left: 6, right: 6 },
+                  font: { weight: 800, size: 12, family: 'Poppins' },
+                  formatter: (v, ctx) => {
+                    const d = ftSplit[ctx.dataIndex];
+                    return ((d.same + d.prior) / 1000).toFixed(1) + 'K';
+                  }
+                }
+              }
             }
           }
         ]
