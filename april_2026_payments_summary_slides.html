@@ -2630,7 +2630,9 @@
         <div class="sf-path-mech">
           Tenant gets invited <strong>before</strong> the lease shows ACTIVE in the snapshot. By the 24th (cycle close), the lease is eligible <em>and</em> a first payment has cleared — recorded as <strong>M0 paid</strong>.
         </div>
-        <div class="sf-evidence-eyebrow">Supporting evidence · Sep '25 → Apr '26</div>
+        <div style="margin: 4px 0 0; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted)">Same-month FT volume · monthly</div>
+        <div style="height: 150px; margin: 2px 0 0"><canvas id="chart-sf-path-a"></canvas></div>
+        <div class="sf-evidence-eyebrow" style="margin-top: 8px">Other supporting evidence · Sep '25 → Apr '26</div>
         <div class="sf-evidence">
           <div class="sf-evidence-row">
             <span class="label">Onboarding eligibility (slide 05)</span>
@@ -2661,7 +2663,9 @@
         <div class="sf-path-mech">
           Lease was activated in a prior cycle (M-1, M-2 … back to mid-Aug '25). What changed in April: the tenant got invited, accepted, and submitted a first payment — driven by the same broader invite-workflow shift.
         </div>
-        <div class="sf-evidence-eyebrow">Supporting evidence · slide 06 cohort heatmap</div>
+        <div style="margin: 4px 0 0; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted)">Earlier-cycle FT volume · monthly</div>
+        <div style="height: 150px; margin: 2px 0 0"><canvas id="chart-sf-path-b"></canvas></div>
+        <div class="sf-evidence-eyebrow" style="margin-top: 8px">Other supporting evidence · slide 06 cohort heatmap</div>
         <div class="sf-evidence">
           <div class="sf-evidence-row">
             <span class="label">Jan '26 cohort · M3 paid (Apr read)</span>
@@ -2704,6 +2708,82 @@
 
   </div>
 </section>
+
+<script>
+(function() {
+  // Slide 08·b · Path A & Path B trend charts (Sep '25 → Apr '26)
+  // Source: /tmp/ftdb.csv (same as the Driver 2 stacked composition on slide 08)
+  const pathA = [
+    { m: "Sep '25", v: 4846 },
+    { m: "Oct '25", v: 4775 },
+    { m: "Nov '25", v: 4589 },
+    { m: "Dec '25", v: 3803 },
+    { m: "Jan '26", v: 5117 },
+    { m: "Feb '26", v: 5614 },
+    { m: "Mar '26", v: 5140 },
+    { m: "Apr '26", v: 6211 }
+  ];
+  const pathB = [
+    { m: "Sep '25", v: 9287 },
+    { m: "Oct '25", v: 8735 },
+    { m: "Nov '25", v: 9462 },
+    { m: "Dec '25", v: 7704 },
+    { m: "Jan '26", v: 10085 },
+    { m: "Feb '26", v: 9451 },
+    { m: "Mar '26", v: 9456 },
+    { m: "Apr '26", v: 9740 }
+  ];
+
+  function makeBarChart(elId, data, baseColor, dimColor, labelColor) {
+    const el = document.getElementById(elId);
+    if (!el || typeof Chart === 'undefined') return;
+    const janIdx = data.findIndex(d => d.m === "Jan '26");
+    const aprIdx = data.length - 1;
+    new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: data.map(d => d.m),
+        datasets: [{
+          data: data.map(d => d.v),
+          backgroundColor: data.map((_, i) => i >= janIdx ? baseColor : dimColor),
+          borderRadius: 3,
+          datalabels: {
+            display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === aprIdx || ctx.dataIndex === janIdx,
+            anchor: 'end', align: 'top', offset: 2,
+            color: labelColor,
+            font: ctx => ({ weight: ctx.dataIndex === aprIdx ? 800 : 700, size: 10, family: 'Poppins' }),
+            formatter: v => (v/1000).toFixed(1) + 'K'
+          }
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        layout: { padding: { top: 18, right: 6, bottom: 2, left: 4 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: c => c.parsed.y.toLocaleString() + ' FT' } }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: {
+              font: ctx => ({ size: 9.5, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
+              color: ctx => ctx.index === aprIdx ? '#162050' : '#94a3b8',
+              maxRotation: 0, autoSkip: false
+            }
+          },
+          y: { display: false, beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    makeBarChart('chart-sf-path-a', pathA, '#ff4998', 'rgba(255,73,152,0.30)', '#9d214f');
+    makeBarChart('chart-sf-path-b', pathB, 'rgba(100,116,139,0.85)', 'rgba(148,163,184,0.35)', '#475569');
+  });
+})();
+</script>
 
 <section class="paper" data-slide-title="Card Performance · The What">
   <div class="wrap">
