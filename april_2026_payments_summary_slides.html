@@ -2585,125 +2585,31 @@
   .sf-outcome-driver-text strong { font-weight: 800; }
 </style>
 
-<section data-slide-title="First-Time Paid Leases · Story flow (alt)">
+<section data-slide-title="First-Time Paid Leases · Composition (alt)">
   <div class="wrap">
     <div class="chapter">
       <div class="chapter-num">08·b</div>
       <div class="chapter-meta">
-        <div class="chapter-name">First-Time Paid Leases · Story flow <span style="font-size: 11px; font-weight: 600; color: var(--muted); margin-left: 8px; letter-spacing: 1px; text-transform: uppercase">· alt view</span></div>
+        <div class="chapter-name">First-Time Paid Leases · Composition <span style="font-size: 11px; font-weight: 600; color: var(--muted); margin-left: 8px; letter-spacing: 1px; text-transform: uppercase">· alt view</span></div>
       </div>
     </div>
 
     <h2 class="section-title">
-      How Apr '26's <span style="color: #3185FC">15,254 FT</span> were made — <em>one root cause, two paths</em>.
+      First-time paid leases · <em style="color: #ff4998">same-cycle pay</em> vs <em style="color: #64748b">back-catalog catchup</em>.
     </h2>
 
-    <!-- Root cause band -->
-    <div class="sf-root-band">
-      <div style="flex: 1">
-        <div class="sf-root-eyebrow">Root cause · slide 15</div>
-        <div class="sf-root-title">Pre-active invite workflow shift</div>
-        <div class="sf-root-note">PMs now fire the portal invite at lease <strong style="color: #fff">creation</strong>, not at activation. Same-day &amp; 1–7d invites actually fell in April. The lift comes entirely from invites sent <strong style="color: #fff">before</strong> the snapshot ACTIVE flag is set.</div>
-      </div>
-      <div class="sf-root-stat">
-        <div class="num">108 → 3,740</div>
-        <div class="cap">Pre-active invites · Mar → Apr '26 (~35×)</div>
-      </div>
+    <div class="chart-shell" style="margin-top: 14px">
+      <div class="ch-title">FT volume by month · split by activation recency <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Sep '25 → Apr '26</span></div>
+      <div class="chart-wrap" style="height: 420px"><canvas id="chart-sf-stack"></canvas></div>
     </div>
 
-    <!-- Splitter arrows -->
-    <div class="sf-arrows">
-      <span>↓</span>
-      <span>↓</span>
-    </div>
-
-    <!-- Two-path grid -->
-    <div class="sf-paths">
-
-      <!-- PATH A · Same-month FT -->
-      <div class="sf-path same-month">
-        <div class="sf-path-head">
-          <div class="sf-path-eyebrow">Path A · Same-month FT</div>
-          <div class="sf-path-share"><strong>38%</strong> of total FT</div>
-        </div>
-        <div class="sf-path-title">Invite fires at lease creation → tenant pays in same cycle.</div>
-        <div class="sf-path-mech">
-          Tenant gets invited <strong>before</strong> the lease shows ACTIVE in the snapshot. By the 24th (cycle close), the lease is eligible <em>and</em> a first payment has cleared — recorded as <strong>M0 paid</strong>.
-        </div>
-        <div style="margin: 4px 0 0; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted)">Same-month FT volume · monthly</div>
-        <div style="height: 150px; margin: 2px 0 0"><canvas id="chart-sf-path-a"></canvas></div>
-        <div class="sf-evidence-eyebrow" style="margin-top: 8px">Other supporting evidence · Sep '25 → Apr '26</div>
-        <div class="sf-evidence">
-          <div class="sf-evidence-row">
-            <span class="label">Onboarding eligibility (slide 05)</span>
-            <span class="value">18.7% → 30.2% <strong>(+11.5 pp)</strong></span>
-          </div>
-          <div class="sf-evidence-row">
-            <span class="label">Onboarding M0 paid (slide 06)</span>
-            <span class="value">7.3% → 12.0% <strong>(+4.7 pp)</strong></span>
-          </div>
-          <div class="sf-evidence-row">
-            <span class="label">All-view M0 paid (slide 06)</span>
-            <span class="value">21.0% → 25.2% <strong>(+4.2 pp, series record)</strong></span>
-          </div>
-        </div>
-        <div class="sf-path-result">
-          <div class="num">6,211 same-month FT</div>
-          <div class="cap">Apr '26 · Sep–Dec avg → Jan–Apr avg = <strong style="color: #ff4998">+22.6%</strong></div>
-        </div>
-      </div>
-
-      <!-- PATH B · Earlier-cycle FT -->
-      <div class="sf-path earlier">
-        <div class="sf-path-head">
-          <div class="sf-path-eyebrow">Path B · Earlier-cycle FT</div>
-          <div class="sf-path-share"><strong>60%</strong> of total FT</div>
-        </div>
-        <div class="sf-path-title">PMs catch up on the back catalog — tenants on older leases finally pay.</div>
-        <div class="sf-path-mech">
-          Lease was activated in a prior cycle (M-1, M-2 … back to mid-Aug '25). What changed in April: the tenant got invited, accepted, and submitted a first payment — driven by the same broader invite-workflow shift.
-        </div>
-        <div style="margin: 4px 0 0; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted)">Earlier-cycle FT volume · monthly</div>
-        <div style="height: 150px; margin: 2px 0 0"><canvas id="chart-sf-path-b"></canvas></div>
-        <div class="sf-evidence-eyebrow" style="margin-top: 8px">Other supporting evidence · slide 06 cohort heatmap</div>
-        <div class="sf-evidence">
-          <div class="sf-evidence-row">
-            <span class="label">Jan '26 cohort · M3 paid (Apr read)</span>
-            <span class="value">45.2% <strong>(series record)</strong></span>
-          </div>
-          <div class="sf-evidence-row">
-            <span class="label">Mature Jan '26 · M3 paid</span>
-            <span class="value">49.8% <strong>(series peak)</strong></span>
-          </div>
-          <div class="sf-evidence-row">
-            <span class="label">Feb '26 cohort · M2 paid</span>
-            <span class="value">48.0% <strong>(+5.4 pp from M1)</strong></span>
-          </div>
-        </div>
-        <div class="sf-path-result">
-          <div class="num">9,740 earlier-cycle FT</div>
-          <div class="cap">Apr '26 · Sep–Dec avg → Jan–Apr avg = <strong style="color: #64748b">+10.1%</strong></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Outcome arrow -->
-    <div class="sf-outcome-arrow">↓</div>
-
-    <!-- Outcome band -->
-    <div class="sf-outcome">
-      <div class="sf-outcome-main">
-        <div class="sf-outcome-eyebrow">Outcome · Apr '26</div>
-        <div class="sf-outcome-num">15,254 first-time paid leases</div>
-        <div class="sf-outcome-sub"><strong>+20% YoY</strong> · 38% via Path A (fast funnel) + 60% via Path B (back-catalog) + 3% unknown (pre-snapshot activations)</div>
-      </div>
-      <div class="sf-outcome-driver">
-        <div class="sf-outcome-driver-eyebrow">Enabler · Driver 1 · PM width</div>
-        <div class="sf-outcome-driver-text">
-          <strong>3,733 → 4,124</strong> distinct PMs contributing any FT (Jan → Apr '26, <strong>+10.5%</strong>). More PMs adopting the pre-active invite workflow — not the same PMs doing more (median FT/PM flat at 2).
-        </div>
-      </div>
+    <!-- Insight card · What drove the uptake -->
+    <div style="margin-top: 14px; padding: 18px 22px; background: rgba(223,254,2,0.22); border-left: 5px solid #162050; border-radius: 8px; font-size: 14px; color: var(--text); line-height: 1.65">
+      <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 What drove the uptake?</div>
+      <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.6%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants invited at lease creation, accept and pay before cycle close — these are the fast-funnel FT.</div>
+      <div style="margin-bottom: 8px"><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog: tenants on older leases finally invited and paid.</div>
+      <div style="margin-bottom: 8px"><strong>3) Both paths trace to the same root —</strong> the <strong>pre-active invite workflow shift</strong> on slide 15: Mar '26 = 108 pre-active invites → Apr '26 = <strong>3,740 (~35×)</strong>. Same-day &amp; 1–7d invites actually fell — the lift comes entirely from invites that fire at lease <em>creation</em> rather than after activation.</div>
+      <div style="color: var(--muted); font-size: 13px"><strong style="color: var(--text)">Enabler · PM width:</strong> 3,733 → 4,124 distinct PMs contributing any FT (Jan → Apr '26, <strong style="color: var(--text)">+10.5%</strong>). More PMs adopting the workflow, not the same PMs doing more (median FT/PM flat at 2).</div>
     </div>
 
   </div>
@@ -2711,76 +2617,94 @@
 
 <script>
 (function() {
-  // Slide 08·b · Path A & Path B trend charts (Sep '25 → Apr '26)
-  // Source: /tmp/ftdb.csv (same as the Driver 2 stacked composition on slide 08)
-  const pathA = [
-    { m: "Sep '25", v: 4846 },
-    { m: "Oct '25", v: 4775 },
-    { m: "Nov '25", v: 4589 },
-    { m: "Dec '25", v: 3803 },
-    { m: "Jan '26", v: 5117 },
-    { m: "Feb '26", v: 5614 },
-    { m: "Mar '26", v: 5140 },
-    { m: "Apr '26", v: 6211 }
+  // Slide 08·b · Stacked composition chart: same-cycle FT vs earlier-cycle FT
+  // Source: /tmp/ftdb.csv. Note: row totals here (same + prior) are slightly lower
+  // than the headline ftd.csv FT total because ftdb counts customer+lease pairs
+  // with snapshot ACTIVE records, while ftd counts unique customers.
+  const ftSplit = [
+    { m: "Sep '25", same: 4846, prior:  9287 },
+    { m: "Oct '25", same: 4775, prior:  8735 },
+    { m: "Nov '25", same: 4589, prior:  9462 },
+    { m: "Dec '25", same: 3803, prior:  7704 },
+    { m: "Jan '26", same: 5117, prior: 10085 },
+    { m: "Feb '26", same: 5614, prior:  9451 },
+    { m: "Mar '26", same: 5140, prior:  9456 },
+    { m: "Apr '26", same: 6211, prior:  9740 }
   ];
-  const pathB = [
-    { m: "Sep '25", v: 9287 },
-    { m: "Oct '25", v: 8735 },
-    { m: "Nov '25", v: 9462 },
-    { m: "Dec '25", v: 7704 },
-    { m: "Jan '26", v: 10085 },
-    { m: "Feb '26", v: 9451 },
-    { m: "Mar '26", v: 9456 },
-    { m: "Apr '26", v: 9740 }
-  ];
+  const PINK = '#ff4998', SLATE = 'rgba(100,116,139,0.85)', NAVY = '#162050';
 
-  function makeBarChart(elId, data, baseColor, dimColor, labelColor) {
-    const el = document.getElementById(elId);
-    if (!el || typeof Chart === 'undefined') return;
-    const janIdx = data.findIndex(d => d.m === "Jan '26");
-    const aprIdx = data.length - 1;
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Chart === 'undefined') return;
+    const el = document.getElementById('chart-sf-stack');
+    if (!el) return;
+    const aprIdx = ftSplit.length - 1;
     new Chart(el, {
       type: 'bar',
       data: {
-        labels: data.map(d => d.m),
-        datasets: [{
-          data: data.map(d => d.v),
-          backgroundColor: data.map((_, i) => i >= janIdx ? baseColor : dimColor),
-          borderRadius: 3,
-          datalabels: {
-            display: ctx => ctx.dataIndex === 0 || ctx.dataIndex === aprIdx || ctx.dataIndex === janIdx,
-            anchor: 'end', align: 'top', offset: 2,
-            color: labelColor,
-            font: ctx => ({ weight: ctx.dataIndex === aprIdx ? 800 : 700, size: 10, family: 'Poppins' }),
-            formatter: v => (v/1000).toFixed(1) + 'K'
+        labels: ftSplit.map(d => d.m),
+        datasets: [
+          {
+            label: 'Same-cycle FT (tenant activates & pays same cycle)',
+            data: ftSplit.map(d => d.same),
+            backgroundColor: PINK,
+            stack: 'ft',
+            borderRadius: 0,
+            datalabels: {
+              display: true,
+              anchor: 'center', align: 'center',
+              color: '#fff', font: { weight: 800, size: 12, family: 'Poppins' },
+              formatter: v => (v/1000).toFixed(1) + 'K'
+            }
+          },
+          {
+            label: 'Earlier-cycle FT (tenants on older leases finally pay)',
+            data: ftSplit.map(d => d.prior),
+            backgroundColor: SLATE,
+            stack: 'ft',
+            borderRadius: { topLeft: 4, topRight: 4 },
+            datalabels: {
+              display: true,
+              anchor: 'center', align: 'center',
+              color: '#fff', font: { weight: 800, size: 12, family: 'Poppins' },
+              formatter: v => (v/1000).toFixed(1) + 'K'
+            }
           }
-        }]
+        ]
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        layout: { padding: { top: 18, right: 6, bottom: 2, left: 4 } },
+        layout: { padding: { top: 32, right: 16, bottom: 4, left: 8 } },
         plugins: {
-          legend: { display: false },
-          tooltip: { callbacks: { label: c => c.parsed.y.toLocaleString() + ' FT' } }
+          legend: {
+            display: true, position: 'bottom', align: 'center',
+            labels: { boxWidth: 14, boxHeight: 10, font: { size: 12.5, weight: 700 }, color: NAVY, padding: 16, usePointStyle: true }
+          },
+          tooltip: {
+            callbacks: {
+              label: c => `${c.dataset.label}: ${c.parsed.y.toLocaleString()}`,
+              footer: items => {
+                const d = ftSplit[items[0].dataIndex];
+                const tot = d.same + d.prior;
+                return `Total: ${tot.toLocaleString()} · Same-cycle share: ${(100*d.same/tot).toFixed(1)}%`;
+              }
+            }
+          }
         },
         scales: {
           x: {
-            grid: { display: false },
+            stacked: true, grid: { display: false },
             ticks: {
-              font: ctx => ({ size: 9.5, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
-              color: ctx => ctx.index === aprIdx ? '#162050' : '#94a3b8',
-              maxRotation: 0, autoSkip: false
+              font: ctx => ({ size: 12, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
+              color: ctx => ctx.index === aprIdx ? NAVY : '#64748b'
             }
           },
-          y: { display: false, beginAtZero: true }
+          y: {
+            stacked: true, beginAtZero: true,
+            grid: { display: false }, ticks: { display: false }, title: { display: false }
+          }
         }
       }
     });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    makeBarChart('chart-sf-path-a', pathA, '#ff4998', 'rgba(255,73,152,0.30)', '#9d214f');
-    makeBarChart('chart-sf-path-b', pathB, 'rgba(100,116,139,0.85)', 'rgba(148,163,184,0.35)', '#475569');
   });
 })();
 </script>
