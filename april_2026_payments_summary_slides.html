@@ -2049,302 +2049,12 @@
 <!-- ============================================================ -->
 <!-- SECTION 07b · FIRST-TIME PAID LEASES                          -->
 <!-- ============================================================ -->
-<section data-slide-title="First-Time Paid Leases">
-  <div class="wrap">
-    <div class="chapter">
-      <div class="chapter-num">08</div>
-      <div class="chapter-meta">
-        <div class="chapter-name">First-Time Paid Leases</div>
-      </div>
-    </div>
-
-    <h2 class="section-title">
-      <span style="color: #3185FC">FT volume climbing since Jan '26 (15,254 in Apr · +20% YoY)</span> · driven by <span style="color: #3185FC">more PMs paying</span> &amp; <span style="color: #ff4998">faster activation → pay</span>.
-    </h2>
-
-    <!-- Hero: total FT per month -->
-    <div class="chart-shell" style="margin-top: 14px">
-      <div class="ch-title">First-time paid leases by month <span style="font-weight: 500; color: var(--muted); font-size: 11.5px">· Mar '25 → Apr '26</span></div>
-      <div class="chart-wrap" style="height: 280px"><canvas id="chart-ft-trend"></canvas></div>
-    </div>
-
-    <!-- 2 driver mini-cards with mini-charts side-by-side -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px">
-
-      <!-- Driver 1 · PM width -->
-      <div style="padding: 14px 16px 12px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #3185FC; border-radius: 8px">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px">
-          <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Driver 1 · PM width</div>
-          <div style="font-size: 11px; font-weight: 700; color: #3185FC">+10.5%</div>
-        </div>
-        <div style="font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 2px">Distinct PMs contributing any FT</div>
-        <div style="font-size: 22px; font-weight: 800; color: #162050; line-height: 1.1; margin-bottom: 2px">3,733 → 4,124</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-bottom: 8px">Jan '26 → Apr '26 · platform wider, not deeper per-PM (median FT/PM flat at 2)</div>
-        <div style="height: 120px"><canvas id="chart-ft-driver-pms"></canvas></div>
-      </div>
-
-      <!-- Driver 2 · Activation velocity -->
-      <div style="padding: 14px 16px 12px; background: #fff; border: 1px solid var(--border); border-left: 4px solid #ff4998; border-radius: 8px">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px">
-          <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted)">Driver 2 · Activation velocity</div>
-          <div style="font-size: 11px; font-weight: 700; color: #ff4998">+5.1 pp</div>
-        </div>
-        <div style="font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 2px">Same-month activation → first-pay rate</div>
-        <div style="font-size: 22px; font-weight: 800; color: #162050; line-height: 1.1; margin-bottom: 2px">32.6% → 37.7%</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-bottom: 6px">Jan '26 → Apr '26 · same-month FT <strong style="color: #ff4998">+22.6%</strong> vs earlier-cycles <strong style="color: var(--text)">+10.1%</strong> (Sep–Dec '25 → Jan–Apr '26 avg)</div>
-        <div style="display: flex; gap: 12px; font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 4px">
-          <span style="display: inline-flex; align-items: center; gap: 5px"><span style="width: 10px; height: 10px; background: #ff4998; border-radius: 2px; display: inline-block"></span>Same-month</span>
-          <span style="display: inline-flex; align-items: center; gap: 5px"><span style="width: 10px; height: 10px; background: rgba(148,163,184,0.55); border-radius: 2px; display: inline-block"></span>Earlier cycles (M-1 &amp; older, combined)</span>
-        </div>
-        <div style="height: 110px"><canvas id="chart-ft-driver-velocity"></canvas></div>
-        <div style="margin-top: 4px; font-size: 9.5px; color: var(--subtle); line-height: 1.4">
-          Earlier-cycles bucket bundles all activations before the first-pay cycle. ~2–4% of FT each month have no snapshot ACTIVE record (lease active before mid-Aug '25, when snapshot data begins) and are excluded from this view.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Compact mechanism note -->
-    <div style="margin-top: 12px; padding: 10px 16px; background: rgba(223,254,2,0.18); border-left: 4px solid #162050; border-radius: 6px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong>Mechanism · width + speed, not depth.</strong> &nbsp;<span style="color: var(--muted)">Not concentration (top-10 PM share stable 6–13%). Not each PM doing more (avg / median FT per PM essentially flat). The platform is touching <strong style="color: var(--text)">more PMs</strong> and pulling activations into the same payment cycle they happened in — traces to the <strong style="color: var(--text)">pre-active invite workflow shift</strong> on slide 15 (Mar '26 = 108 pre-active invites → Apr '26 = <strong style="color: var(--text)">3,740</strong>, ~35× jump; same-day &amp; 1–7d invites actually fell).</span>
-    </div>
-
-  </div>
-</section>
-
-<script>
-(function() {
-  // Slide 08 · FT-volume hero + 2 driver mini-charts (PM width + activation velocity)
-  // Sources: /tmp/ftd.csv (PM width + totals), /tmp/ftdb.csv (same-month pay rate)
-  const ftVolume = [
-    { m: "Mar '25", ft: 11720 },
-    { m: "Apr '25", ft: 12718 },
-    { m: "May '25", ft: 11780 },
-    { m: "Jun '25", ft: 13147 },
-    { m: "Jul '25", ft: 13775 },
-    { m: "Aug '25", ft: 13897 },
-    { m: "Sep '25", ft: 13406 },
-    { m: "Oct '25", ft: 12886 },
-    { m: "Nov '25", ft: 13302 },
-    { m: "Dec '25", ft: 10941 },
-    { m: "Jan '26", ft: 14669 },
-    { m: "Feb '26", ft: 14520 },
-    { m: "Mar '26", ft: 14033 },
-    { m: "Apr '26", ft: 15254 }
-  ];
-  const pmWidth = [
-    { m: "Mar '25", v: 3267 },
-    { m: "Apr '25", v: 3425 },
-    { m: "May '25", v: 3477 },
-    { m: "Jun '25", v: 3621 },
-    { m: "Jul '25", v: 3641 },
-    { m: "Aug '25", v: 3743 },
-    { m: "Sep '25", v: 3737 },
-    { m: "Oct '25", v: 3706 },
-    { m: "Nov '25", v: 3686 },
-    { m: "Dec '25", v: 3575 },
-    { m: "Jan '26", v: 3733 },
-    { m: "Feb '26", v: 4095 },
-    { m: "Mar '26", v: 3901 },
-    { m: "Apr '26", v: 4124 }
-  ];
-  // Velocity composition: FT split by activation recency (same-month vs prior-month).
-  // Series starts Sep '25 (Aug '25 was 97.2% — snapshot data started mid-Aug, artifact).
-  // Source: /tmp/ftdb.csv. Same-month + Prior-month does not equal Total here because the
-  // join misses leases with no snapshot ACTIVE record (~3-5%); plotted are the rows that
-  // have both first-pay and a snapshot lease_id, so totals here are slightly lower than
-  // the hero's FT-total (which uses the customer-level ftd.csv).
-  const velocity = [
-    { m: "Sep '25", same: 4846, prior:  9287, pct: 33.5 },
-    { m: "Oct '25", same: 4775, prior:  8735, pct: 34.6 },
-    { m: "Nov '25", same: 4589, prior:  9462, pct: 32.2 },
-    { m: "Dec '25", same: 3803, prior:  7704, pct: 32.4 },
-    { m: "Jan '26", same: 5117, prior: 10085, pct: 32.6 },
-    { m: "Feb '26", same: 5614, prior:  9451, pct: 36.0 },
-    { m: "Mar '26", same: 5140, prior:  9456, pct: 33.9 },
-    { m: "Apr '26", same: 6211, prior:  9740, pct: 37.7 }
-  ];
-  const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', MUTED = '#94a3b8';
-
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof Chart === 'undefined') return;
-
-    // ---- Hero · FT volume by month ----
-    const heroEl = document.getElementById('chart-ft-trend');
-    if (heroEl) {
-      const aprIdx = ftVolume.length - 1;
-      const janIdx = ftVolume.findIndex(d => d.m === "Jan '26");
-      new Chart(heroEl, {
-        type: 'bar',
-        data: {
-          labels: ftVolume.map(d => d.m),
-          datasets: [{
-            label: 'First-time paid leases',
-            data: ftVolume.map(d => d.ft),
-            backgroundColor: ftVolume.map((_, i) => i >= janIdx ? NAVY : 'rgba(22,32,80,0.35)'),
-            borderRadius: 4,
-            datalabels: {
-              display: true,
-              anchor: 'end', align: 'top', offset: 4,
-              color: ctx => ctx.dataIndex >= janIdx ? NAVY : MUTED,
-              font: ctx => ({ weight: ctx.dataIndex >= janIdx ? 800 : 600, size: 11, family: 'Poppins' }),
-              formatter: v => (v / 1000).toFixed(1) + 'K'
-            }
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 28, right: 16, bottom: 4, left: 8 } },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: ctx => 'FT: ' + ctx.parsed.y.toLocaleString()
-              }
-            }
-          },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: {
-                font: ctx => ({ size: 11, weight: ctx.index === aprIdx ? 800 : 600, family: 'Poppins' }),
-                color: ctx => ctx.index === aprIdx ? NAVY : '#64748b'
-              }
-            },
-            y: {
-              beginAtZero: true, max: 18000,
-              grid: { display: false }, ticks: { display: false }, title: { display: false }
-            }
-          }
-        }
-      });
-    }
-
-    // ---- Driver 1 · PM width mini-chart ----
-    const pmsEl = document.getElementById('chart-ft-driver-pms');
-    if (pmsEl) {
-      const aprIdx = pmWidth.length - 1;
-      const janIdx = pmWidth.findIndex(d => d.m === "Jan '26");
-      new Chart(pmsEl, {
-        type: 'line',
-        data: {
-          labels: pmWidth.map(d => d.m),
-          datasets: [{
-            label: 'PMs with any FT',
-            data: pmWidth.map(d => d.v),
-            borderColor: BLUE,
-            backgroundColor: 'rgba(49,133,252,0.10)',
-            borderWidth: 2.5,
-            fill: true,
-            tension: 0.32,
-            pointRadius: pmWidth.map((_, i) => i === janIdx || i === aprIdx ? 5 : 0),
-            pointBackgroundColor: '#fff',
-            pointBorderColor: BLUE,
-            pointBorderWidth: 2.5,
-            datalabels: {
-              display: ctx => ctx.dataIndex === janIdx || ctx.dataIndex === aprIdx,
-              anchor: 'end', align: ctx => ctx.dataIndex === aprIdx ? 'top' : 'bottom',
-              offset: 6,
-              backgroundColor: '#fff',
-              borderColor: BLUE,
-              borderWidth: 1,
-              borderRadius: 3,
-              padding: { top: 2, bottom: 2, left: 5, right: 5 },
-              color: BLUE,
-              font: { weight: 800, size: 10, family: 'Poppins' },
-              formatter: v => v.toLocaleString()
-            }
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 14, right: 6, bottom: 4, left: 4 } },
-          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y.toLocaleString() + ' PMs' } } },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: {
-                font: { size: 9, family: 'Poppins' }, color: '#94a3b8',
-                maxRotation: 0, autoSkip: false,
-                callback: function(_, i) {
-                  const m = this.getLabelForValue(i);
-                  return (i === 0 || i === janIdx || i === aprIdx) ? m : '';
-                }
-              }
-            },
-            y: { display: false, beginAtZero: false, min: 3000, max: 4400 }
-          }
-        }
-      });
-    }
-
-    // ---- Driver 2 · FT composition by activation recency (stacked) ----
-    const velEl = document.getElementById('chart-ft-driver-velocity');
-    if (velEl) {
-      const aprIdx = velocity.length - 1;
-      const janIdx = velocity.findIndex(d => d.m === "Jan '26");
-      new Chart(velEl, {
-        type: 'bar',
-        data: {
-          labels: velocity.map(d => d.m),
-          datasets: [
-            {
-              label: 'Same-month activation',
-              data: velocity.map(d => d.same),
-              backgroundColor: PINK,
-              stack: 'ft',
-              borderRadius: 0,
-              datalabels: { display: false }
-            },
-            {
-              label: 'Earlier cycles (M-1 & older, combined)',
-              data: velocity.map(d => d.prior),
-              backgroundColor: 'rgba(148,163,184,0.55)',
-              stack: 'ft',
-              borderRadius: { topLeft: 3, topRight: 3 },
-              datalabels: { display: false }
-            }
-          ]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 12, right: 6, bottom: 4, left: 4 } },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: c => `${c.dataset.label}: ${c.parsed.y.toLocaleString()}`,
-                footer: items => `Same-month %: ${velocity[items[0].dataIndex].pct.toFixed(1)}%`
-              }
-            }
-          },
-          scales: {
-            x: {
-              stacked: true,
-              grid: { display: false },
-              ticks: {
-                font: { size: 9, family: 'Poppins' }, color: '#94a3b8',
-                maxRotation: 0, autoSkip: false,
-                callback: function(_, i) {
-                  const m = this.getLabelForValue(i);
-                  return (i === 0 || i === janIdx || i === aprIdx) ? m : '';
-                }
-              }
-            },
-            y: { stacked: true, display: false, beginAtZero: true }
-          }
-        }
-      });
-    }
-  });
-})();
-</script>
 
 <!-- ============================================================ -->
 <!-- SECTION · FIRST-TIME PAID LEASES · STORY FLOW (alt of slide 8) -->
 <!-- ============================================================ -->
 <style>
-  /* Slide 08·b · Story-flow diagram */
+  /* Slide 08 · FT Composition (legacy story-flow styles kept; some unused after simplification) */
   .sf-root-band {
     background: linear-gradient(135deg, #162050 0%, #2F3E83 100%);
     color: #fff;
@@ -2585,12 +2295,12 @@
   .sf-outcome-driver-text strong { font-weight: 800; }
 </style>
 
-<section data-slide-title="First-Time Paid Leases · Composition (alt)">
+<section data-slide-title="First-Time Paid Leases · Composition">
   <div class="wrap">
     <div class="chapter">
-      <div class="chapter-num">08·b</div>
+      <div class="chapter-num">08</div>
       <div class="chapter-meta">
-        <div class="chapter-name">First-Time Paid Leases · Composition <span style="font-size: 11px; font-weight: 600; color: var(--muted); margin-left: 8px; letter-spacing: 1px; text-transform: uppercase">· alt view</span></div>
+        <div class="chapter-name">First-Time Paid Leases · Composition</div>
       </div>
     </div>
 
@@ -2608,7 +2318,6 @@
       <div style="font-size: 15.5px; font-weight: 800; color: #162050; margin-bottom: 10px; line-height: 1.4">💡 What drove the uptake?</div>
       <div style="margin-bottom: 8px"><strong style="color: #ff4998">1) Same-cycle FT grew +22.6%</strong> (Sep–Dec '25 avg → Jan–Apr '26 avg). Tenants invited at lease creation, accept and pay before cycle close — these are the fast-funnel FT.</div>
       <div style="margin-bottom: 8px"><strong style="color: #64748b">2) Earlier-cycle FT grew +10.1%</strong> over the same period — PMs catching up on the back catalog: tenants on older leases finally invited and paid.</div>
-      <div style="margin-bottom: 8px"><strong>3) Both paths trace to the same root —</strong> the <strong>pre-active invite workflow shift</strong> on slide 15: Mar '26 = 108 pre-active invites → Apr '26 = <strong>3,740 (~35×)</strong>. Same-day &amp; 1–7d invites actually fell — the lift comes entirely from invites that fire at lease <em>creation</em> rather than after activation.</div>
       <div style="color: var(--muted); font-size: 13px"><strong style="color: var(--text)">Enabler · PM width:</strong> 3,733 → 4,124 distinct PMs contributing any FT (Jan → Apr '26, <strong style="color: var(--text)">+10.5%</strong>). More PMs adopting the workflow, not the same PMs doing more (median FT/PM flat at 2).</div>
     </div>
 
@@ -2617,7 +2326,7 @@
 
 <script>
 (function() {
-  // Slide 08·b · Stacked composition chart: same-cycle FT vs earlier-cycle FT
+  // Slide 08 · Stacked composition chart: same-cycle FT vs earlier-cycle FT
   // Source: /tmp/ftdb.csv. Note: row totals here (same + prior) are slightly lower
   // than the headline ftd.csv FT total because ftdb counts customer+lease pairs
   // with snapshot ACTIVE records, while ftd counts unique customers.
@@ -7108,9 +6817,9 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   // A group can contain `slides: [from, to]` and/or `children: [...nested groups]`.
   // Slides outside any group render as ungrouped items at the bottom.
   const tocGroups = [
-    { name: 'Business Overview', from: 1, to: 11 },  // displayed 02–11 + alt 08·b (Exec Summary → FT Story flow → NSF)
-    { name: 'PM Side', from: 12, to: 14 },           // displayed 12–14 (Churned, PM Research, PM Findings)
-    { name: 'Lease Funnel', from: 15, to: 17 },      // displayed 15–17 (Funnel Methodology, Lease Funnel, Late invites)
+    { name: 'Business Overview', from: 1, to: 10 },  // displayed 02–11 (Exec Summary → NSF)
+    { name: 'PM Side', from: 11, to: 13 },           // displayed 12–14 (Churned, PM Research, PM Findings)
+    { name: 'Lease Funnel', from: 14, to: 16 },      // displayed 15–17 (Funnel Methodology, Lease Funnel, Late invites)
     // Slide 18 (Action Items) → ungrouped at the bottom
   ];
 
