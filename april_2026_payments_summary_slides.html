@@ -2088,15 +2088,19 @@
         </div>
         <div style="font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 2px">Same-month activation → first-pay rate</div>
         <div style="font-size: 22px; font-weight: 800; color: #162050; line-height: 1.1; margin-bottom: 2px">32.6% → 37.7%</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-bottom: 8px">Jan '26 → Apr '26 · tenants paying sooner after lease activation (Apr M0 a series record — slide 06)</div>
-        <div style="height: 120px"><canvas id="chart-ft-driver-velocity"></canvas></div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-bottom: 6px">Jan '26 → Apr '26 · same-month FT <strong style="color: #ff4998">+22.6%</strong> vs prior-month <strong style="color: var(--text)">+10.1%</strong> (Sep–Dec '25 → Jan–Apr '26 avg)</div>
+        <div style="display: flex; gap: 12px; font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 4px">
+          <span style="display: inline-flex; align-items: center; gap: 5px"><span style="width: 10px; height: 10px; background: #ff4998; border-radius: 2px; display: inline-block"></span>Same-month</span>
+          <span style="display: inline-flex; align-items: center; gap: 5px"><span style="width: 10px; height: 10px; background: rgba(148,163,184,0.55); border-radius: 2px; display: inline-block"></span>Prior-month</span>
+        </div>
+        <div style="height: 110px"><canvas id="chart-ft-driver-velocity"></canvas></div>
       </div>
 
     </div>
 
     <!-- Compact mechanism note -->
     <div style="margin-top: 12px; padding: 10px 16px; background: rgba(223,254,2,0.18); border-left: 4px solid #162050; border-radius: 6px; font-size: 12.5px; color: var(--text); line-height: 1.55">
-      <strong>Mechanism · width + speed, not depth.</strong> &nbsp;<span style="color: var(--muted)">Not concentration (top-10 PM share stable 6–13%). Not each PM doing more (avg / median FT per PM essentially flat). The platform is touching more PMs and pulling activations into the same payment cycle they happened in.</span>
+      <strong>Mechanism · width + speed, not depth.</strong> &nbsp;<span style="color: var(--muted)">Not concentration (top-10 PM share stable 6–13%). Not each PM doing more (avg / median FT per PM essentially flat). The platform is touching <strong style="color: var(--text)">more PMs</strong> and pulling activations into the same payment cycle they happened in — traces to the <strong style="color: var(--text)">pre-active invite workflow shift</strong> on slide 15 (Mar '26 = 108 pre-active invites → Apr '26 = <strong style="color: var(--text)">3,740</strong>, ~35× jump; same-day &amp; 1–7d invites actually fell).</span>
     </div>
 
   </div>
@@ -2138,16 +2142,21 @@
     { m: "Mar '26", v: 3901 },
     { m: "Apr '26", v: 4124 }
   ];
-  // Velocity series starts Sep '25 (Aug '25 was 97.2% — snapshot data started mid-Aug, artifact)
+  // Velocity composition: FT split by activation recency (same-month vs prior-month).
+  // Series starts Sep '25 (Aug '25 was 97.2% — snapshot data started mid-Aug, artifact).
+  // Source: /tmp/ftdb.csv. Same-month + Prior-month does not equal Total here because the
+  // join misses leases with no snapshot ACTIVE record (~3-5%); plotted are the rows that
+  // have both first-pay and a snapshot lease_id, so totals here are slightly lower than
+  // the hero's FT-total (which uses the customer-level ftd.csv).
   const velocity = [
-    { m: "Sep '25", v: 33.5 },
-    { m: "Oct '25", v: 34.6 },
-    { m: "Nov '25", v: 32.2 },
-    { m: "Dec '25", v: 32.4 },
-    { m: "Jan '26", v: 32.6 },
-    { m: "Feb '26", v: 36.0 },
-    { m: "Mar '26", v: 33.9 },
-    { m: "Apr '26", v: 37.7 }
+    { m: "Sep '25", same: 4846, prior:  9287, pct: 33.5 },
+    { m: "Oct '25", same: 4775, prior:  8735, pct: 34.6 },
+    { m: "Nov '25", same: 4589, prior:  9462, pct: 32.2 },
+    { m: "Dec '25", same: 3803, prior:  7704, pct: 32.4 },
+    { m: "Jan '26", same: 5117, prior: 10085, pct: 32.6 },
+    { m: "Feb '26", same: 5614, prior:  9451, pct: 36.0 },
+    { m: "Mar '26", same: 5140, prior:  9456, pct: 33.9 },
+    { m: "Apr '26", same: 6211, prior:  9740, pct: 37.7 }
   ];
   const NAVY = '#162050', BLUE = '#3185FC', PINK = '#ff4998', MUTED = '#94a3b8';
 
@@ -2263,48 +2272,49 @@
       });
     }
 
-    // ---- Driver 2 · Activation velocity mini-chart ----
+    // ---- Driver 2 · FT composition by activation recency (stacked) ----
     const velEl = document.getElementById('chart-ft-driver-velocity');
     if (velEl) {
       const aprIdx = velocity.length - 1;
       const janIdx = velocity.findIndex(d => d.m === "Jan '26");
       new Chart(velEl, {
-        type: 'line',
+        type: 'bar',
         data: {
           labels: velocity.map(d => d.m),
-          datasets: [{
-            label: 'Same-month pay rate',
-            data: velocity.map(d => d.v),
-            borderColor: PINK,
-            backgroundColor: 'rgba(255,73,152,0.10)',
-            borderWidth: 2.5,
-            fill: true,
-            tension: 0.32,
-            pointRadius: velocity.map((_, i) => i === janIdx || i === aprIdx ? 5 : 0),
-            pointBackgroundColor: '#fff',
-            pointBorderColor: PINK,
-            pointBorderWidth: 2.5,
-            datalabels: {
-              display: ctx => ctx.dataIndex === janIdx || ctx.dataIndex === aprIdx,
-              anchor: 'end', align: ctx => ctx.dataIndex === aprIdx ? 'top' : 'bottom',
-              offset: 6,
-              backgroundColor: '#fff',
-              borderColor: PINK,
-              borderWidth: 1,
-              borderRadius: 3,
-              padding: { top: 2, bottom: 2, left: 5, right: 5 },
-              color: PINK,
-              font: { weight: 800, size: 10, family: 'Poppins' },
-              formatter: v => v.toFixed(1) + '%'
+          datasets: [
+            {
+              label: 'Same-month activation',
+              data: velocity.map(d => d.same),
+              backgroundColor: PINK,
+              stack: 'ft',
+              borderRadius: 0,
+              datalabels: { display: false }
+            },
+            {
+              label: 'Prior-month activation',
+              data: velocity.map(d => d.prior),
+              backgroundColor: 'rgba(148,163,184,0.55)',
+              stack: 'ft',
+              borderRadius: { topLeft: 3, topRight: 3 },
+              datalabels: { display: false }
             }
-          }]
+          ]
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 14, right: 6, bottom: 4, left: 4 } },
-          plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y.toFixed(1) + '% same-month' } } },
+          layout: { padding: { top: 12, right: 6, bottom: 4, left: 4 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: c => `${c.dataset.label}: ${c.parsed.y.toLocaleString()}`,
+                footer: items => `Same-month %: ${velocity[items[0].dataIndex].pct.toFixed(1)}%`
+              }
+            }
+          },
           scales: {
             x: {
+              stacked: true,
               grid: { display: false },
               ticks: {
                 font: { size: 9, family: 'Poppins' }, color: '#94a3b8',
@@ -2315,7 +2325,7 @@
                 }
               }
             },
-            y: { display: false, beginAtZero: false, min: 28, max: 42 }
+            y: { stacked: true, display: false, beginAtZero: true }
           }
         }
       });
