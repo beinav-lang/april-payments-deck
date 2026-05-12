@@ -2340,6 +2340,371 @@
 })();
 </script>
 
+<!-- ============================================================ -->
+<!-- SECTION · FIRST-TIME PAID LEASES · STORY FLOW (alt of slide 8) -->
+<!-- ============================================================ -->
+<style>
+  /* Slide 08·b · Story-flow diagram */
+  .sf-root-band {
+    background: linear-gradient(135deg, #162050 0%, #2F3E83 100%);
+    color: #fff;
+    padding: 16px 22px;
+    border-radius: 10px;
+    margin-top: 14px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .sf-root-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .sf-root-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .sf-root-stat {
+    flex-shrink: 0;
+    text-align: center;
+    padding-left: 22px;
+    border-left: 1px solid rgba(255,255,255,0.18);
+  }
+  .sf-root-stat .num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .sf-root-stat .cap {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+  }
+  .sf-root-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.55;
+  }
+
+  /* Down-arrow splitter */
+  .sf-arrows {
+    display: flex;
+    justify-content: space-around;
+    margin: 6px 0 -2px;
+    padding: 0 14%;
+    color: var(--subtle);
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  /* Two-path grid */
+  .sf-paths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .sf-path {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sf-path.same-month { border-top: 4px solid #ff4998; }
+  .sf-path.earlier    { border-top: 4px solid #94a3b8; }
+  .sf-path-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .sf-path-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+  .sf-path.same-month .sf-path-eyebrow { color: #ff4998; }
+  .sf-path.earlier    .sf-path-eyebrow { color: #64748b; }
+  .sf-path-share {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .sf-path-share strong { color: var(--text); font-size: 13px; font-weight: 800; }
+  .sf-path-title {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .sf-path-mech {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    background: #f7f9fd;
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+  .sf-path-mech strong { color: var(--text); font-weight: 700; }
+  .sf-evidence-eyebrow {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-top: 2px;
+  }
+  .sf-evidence {
+    display: grid;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.45;
+  }
+  .sf-evidence-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.02);
+    border-radius: 4px;
+  }
+  .sf-evidence-row .label {
+    color: var(--muted);
+    font-size: 11.5px;
+  }
+  .sf-evidence-row .value {
+    font-weight: 800;
+    font-family: 'Poppins';
+    color: var(--text);
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+  .sf-path.same-month .sf-evidence-row .value strong { color: #ff4998; }
+  .sf-path.earlier    .sf-evidence-row .value strong { color: #64748b; }
+  .sf-path-result {
+    margin-top: auto;
+    padding: 10px 12px;
+    background: rgba(22,32,80,0.05);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .sf-path-result .num {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .sf-path.same-month .sf-path-result { background: rgba(255,73,152,0.08); }
+  .sf-path.same-month .sf-path-result .num { color: #ff4998; }
+  .sf-path.earlier    .sf-path-result .num { color: var(--text); }
+  .sf-path-result .cap {
+    font-size: 10.5px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+  }
+
+  /* Outcome band */
+  .sf-outcome-arrow {
+    text-align: center;
+    margin: 8px 0 0;
+    color: var(--subtle);
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .sf-outcome {
+    margin-top: 4px;
+    background: linear-gradient(135deg, #DFFE02 0%, #c5e600 100%);
+    border-radius: 10px;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .sf-outcome-main {
+    flex: 1;
+  }
+  .sf-outcome-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .sf-outcome-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .sf-outcome-sub {
+    font-size: 13.5px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .sf-outcome-driver {
+    border-left: 2px solid rgba(22,32,80,0.25);
+    padding-left: 20px;
+    max-width: 340px;
+  }
+  .sf-outcome-driver-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .sf-outcome-driver-text {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .sf-outcome-driver-text strong { font-weight: 800; }
+</style>
+
+<section data-slide-title="First-Time Paid Leases · Story flow (alt)">
+  <div class="wrap">
+    <div class="chapter">
+      <div class="chapter-num">08·b</div>
+      <div class="chapter-meta">
+        <div class="chapter-name">First-Time Paid Leases · Story flow <span style="font-size: 11px; font-weight: 600; color: var(--muted); margin-left: 8px; letter-spacing: 1px; text-transform: uppercase">· alt view</span></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">
+      How Apr '26's <span style="color: #3185FC">15,254 FT</span> were made — <em>one root cause, two paths</em>.
+    </h2>
+
+    <!-- Root cause band -->
+    <div class="sf-root-band">
+      <div style="flex: 1">
+        <div class="sf-root-eyebrow">Root cause · slide 15</div>
+        <div class="sf-root-title">Pre-active invite workflow shift</div>
+        <div class="sf-root-note">PMs now fire the portal invite at lease <strong style="color: #fff">creation</strong>, not at activation. Same-day &amp; 1–7d invites actually fell in April. The lift comes entirely from invites sent <strong style="color: #fff">before</strong> the snapshot ACTIVE flag is set.</div>
+      </div>
+      <div class="sf-root-stat">
+        <div class="num">108 → 3,740</div>
+        <div class="cap">Pre-active invites · Mar → Apr '26 (~35×)</div>
+      </div>
+    </div>
+
+    <!-- Splitter arrows -->
+    <div class="sf-arrows">
+      <span>↓</span>
+      <span>↓</span>
+    </div>
+
+    <!-- Two-path grid -->
+    <div class="sf-paths">
+
+      <!-- PATH A · Same-month FT -->
+      <div class="sf-path same-month">
+        <div class="sf-path-head">
+          <div class="sf-path-eyebrow">Path A · Same-month FT</div>
+          <div class="sf-path-share"><strong>38%</strong> of total FT</div>
+        </div>
+        <div class="sf-path-title">Invite fires at lease creation → tenant pays in same cycle.</div>
+        <div class="sf-path-mech">
+          Tenant gets invited <strong>before</strong> the lease shows ACTIVE in the snapshot. By the 24th (cycle close), the lease is eligible <em>and</em> a first payment has cleared — recorded as <strong>M0 paid</strong>.
+        </div>
+        <div class="sf-evidence-eyebrow">Supporting evidence · Sep '25 → Apr '26</div>
+        <div class="sf-evidence">
+          <div class="sf-evidence-row">
+            <span class="label">Onboarding eligibility (slide 05)</span>
+            <span class="value">18.7% → 30.2% <strong>(+11.5 pp)</strong></span>
+          </div>
+          <div class="sf-evidence-row">
+            <span class="label">Onboarding M0 paid (slide 06)</span>
+            <span class="value">7.3% → 12.0% <strong>(+4.7 pp)</strong></span>
+          </div>
+          <div class="sf-evidence-row">
+            <span class="label">All-view M0 paid (slide 06)</span>
+            <span class="value">21.0% → 25.2% <strong>(+4.2 pp, series record)</strong></span>
+          </div>
+        </div>
+        <div class="sf-path-result">
+          <div class="num">6,211 same-month FT</div>
+          <div class="cap">Apr '26 · Sep–Dec avg → Jan–Apr avg = <strong style="color: #ff4998">+22.6%</strong></div>
+        </div>
+      </div>
+
+      <!-- PATH B · Earlier-cycle FT -->
+      <div class="sf-path earlier">
+        <div class="sf-path-head">
+          <div class="sf-path-eyebrow">Path B · Earlier-cycle FT</div>
+          <div class="sf-path-share"><strong>60%</strong> of total FT</div>
+        </div>
+        <div class="sf-path-title">PMs catch up on the back catalog — tenants on older leases finally pay.</div>
+        <div class="sf-path-mech">
+          Lease was activated in a prior cycle (M-1, M-2 … back to mid-Aug '25). What changed in April: the tenant got invited, accepted, and submitted a first payment — driven by the same broader invite-workflow shift.
+        </div>
+        <div class="sf-evidence-eyebrow">Supporting evidence · slide 06 cohort heatmap</div>
+        <div class="sf-evidence">
+          <div class="sf-evidence-row">
+            <span class="label">Jan '26 cohort · M3 paid (Apr read)</span>
+            <span class="value">45.2% <strong>(series record)</strong></span>
+          </div>
+          <div class="sf-evidence-row">
+            <span class="label">Mature Jan '26 · M3 paid</span>
+            <span class="value">49.8% <strong>(series peak)</strong></span>
+          </div>
+          <div class="sf-evidence-row">
+            <span class="label">Feb '26 cohort · M2 paid</span>
+            <span class="value">48.0% <strong>(+5.4 pp from M1)</strong></span>
+          </div>
+        </div>
+        <div class="sf-path-result">
+          <div class="num">9,740 earlier-cycle FT</div>
+          <div class="cap">Apr '26 · Sep–Dec avg → Jan–Apr avg = <strong style="color: #64748b">+10.1%</strong></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Outcome arrow -->
+    <div class="sf-outcome-arrow">↓</div>
+
+    <!-- Outcome band -->
+    <div class="sf-outcome">
+      <div class="sf-outcome-main">
+        <div class="sf-outcome-eyebrow">Outcome · Apr '26</div>
+        <div class="sf-outcome-num">15,254 first-time paid leases</div>
+        <div class="sf-outcome-sub"><strong>+20% YoY</strong> · 38% via Path A (fast funnel) + 60% via Path B (back-catalog) + 3% unknown (pre-snapshot activations)</div>
+      </div>
+      <div class="sf-outcome-driver">
+        <div class="sf-outcome-driver-eyebrow">Enabler · Driver 1 · PM width</div>
+        <div class="sf-outcome-driver-text">
+          <strong>3,733 → 4,124</strong> distinct PMs contributing any FT (Jan → Apr '26, <strong>+10.5%</strong>). More PMs adopting the pre-active invite workflow — not the same PMs doing more (median FT/PM flat at 2).
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section class="paper" data-slide-title="Card Performance · The What">
   <div class="wrap">
     <div class="chapter">
@@ -6720,9 +7085,9 @@ new Chart(document.getElementById('chart-churned-accounts'), {
   // A group can contain `slides: [from, to]` and/or `children: [...nested groups]`.
   // Slides outside any group render as ungrouped items at the bottom.
   const tocGroups = [
-    { name: 'Business Overview', from: 1, to: 10 },  // displayed 02–11 (Exec Summary → NSF)
-    { name: 'PM Side', from: 11, to: 13 },           // displayed 12–14 (Churned, PM Research, PM Findings)
-    { name: 'Lease Funnel', from: 14, to: 16 },      // displayed 15–17 (Funnel Methodology, Lease Funnel, Late invites)
+    { name: 'Business Overview', from: 1, to: 11 },  // displayed 02–11 + alt 08·b (Exec Summary → FT Story flow → NSF)
+    { name: 'PM Side', from: 12, to: 14 },           // displayed 12–14 (Churned, PM Research, PM Findings)
+    { name: 'Lease Funnel', from: 15, to: 17 },      // displayed 15–17 (Funnel Methodology, Lease Funnel, Late invites)
     // Slide 18 (Action Items) → ungrouped at the bottom
   ];
 
