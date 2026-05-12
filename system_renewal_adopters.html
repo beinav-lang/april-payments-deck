@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>% System Renewal Adopters — Monthly Trend</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+<style>
+  :root {
+    --ink:    #111827;
+    --muted:  #6b7280;
+    --bg:     #ffffff;
+    --card:   #f9fafb;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    padding: 32px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  .sub { color: var(--muted); margin-bottom: 24px; font-size: 14px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .chart-wrap { position: relative; height: 480px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+  th:first-child, td:first-child { text-align: left; }
+  th { background: #f3f4f6; font-weight: 600; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>% Active Accounts That Have Adopted the System Renewal Feature</h1>
+  <div class="sub">
+    Cumulative · denominator = active accounts (<code>VW_CROSS_CORE.subscription_status='active'</code>) at end of month ·
+    numerator = same, restricted to accounts with at least one <code>renewalHistory[]</code> entry whose <code>renewalDate</code> ≤ month-end.
+  </div>
+
+  <div class="card">
+    <div class="chart-wrap"><canvas id="chart"></canvas></div>
+  </div>
+
+  <div class="card">
+    <table id="table"></table>
+  </div>
+</div>
+
+<script>
+const raw = [
+  {month:"2023-01", active:3512,  adopters:1163, pct:33.1},
+  {month:"2023-02", active:3748,  adopters:1252, pct:33.4},
+  {month:"2023-03", active:4002,  adopters:1379, pct:34.5},
+  {month:"2023-04", active:4209,  adopters:1497, pct:35.6},
+  {month:"2023-05", active:4430,  adopters:1608, pct:36.3},
+  {month:"2023-06", active:4649,  adopters:1744, pct:37.5},
+  {month:"2023-07", active:4842,  adopters:1837, pct:37.9},
+  {month:"2023-08", active:5103,  adopters:1949, pct:38.2},
+  {month:"2023-09", active:5310,  adopters:2037, pct:38.4},
+  {month:"2023-10", active:5549,  adopters:2142, pct:38.6},
+  {month:"2023-11", active:5806,  adopters:2253, pct:38.8},
+  {month:"2023-12", active:6068,  adopters:2364, pct:39.0},
+  {month:"2024-01", active:6480,  adopters:2549, pct:39.3},
+  {month:"2024-02", active:6745,  adopters:2693, pct:39.9},
+  {month:"2024-03", active:6956,  adopters:2861, pct:41.1},
+  {month:"2024-04", active:7206,  adopters:3052, pct:42.4},
+  {month:"2024-05", active:7394,  adopters:3190, pct:43.1},
+  {month:"2024-06", active:7603,  adopters:3347, pct:44.0},
+  {month:"2024-07", active:7917,  adopters:3478, pct:43.9},
+  {month:"2024-08", active:8171,  adopters:3606, pct:44.1},
+  {month:"2024-09", active:8460,  adopters:3705, pct:43.8},
+  {month:"2024-10", active:8673,  adopters:3799, pct:43.8},
+  {month:"2024-11", active:8901,  adopters:3880, pct:43.6},
+  {month:"2024-12", active:9161,  adopters:3941, pct:43.0},
+  {month:"2025-01", active:9462,  adopters:4005, pct:42.3},
+  {month:"2025-02", active:9571,  adopters:4052, pct:42.3},
+  {month:"2025-03", active:9829,  adopters:4177, pct:42.5},
+  {month:"2025-04", active:9996,  adopters:4266, pct:42.7},
+  {month:"2025-05", active:10240, adopters:4368, pct:42.7},
+  {month:"2025-06", active:10408, adopters:4444, pct:42.7},
+  {month:"2025-07", active:10666, adopters:4538, pct:42.5},
+  {month:"2025-08", active:10793, adopters:4596, pct:42.6},
+  {month:"2025-09", active:11050, adopters:4712, pct:42.6},
+  {month:"2025-10", active:11215, adopters:4778, pct:42.6},
+  {month:"2025-11", active:11325, adopters:4831, pct:42.7},
+  {month:"2025-12", active:11462, adopters:4901, pct:42.8},
+  {month:"2026-01", active:11609, adopters:5006, pct:43.1},
+  {month:"2026-02", active:11559, adopters:5022, pct:43.4},
+  {month:"2026-03", active:11616, adopters:5116, pct:44.0},
+  {month:"2026-04", active:11624, adopters:5220, pct:44.9},
+];
+
+const labels = raw.map(r => {
+  const [y, m] = r.month.split("-");
+  const mn = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+m - 1];
+  return `${mn} ${y.slice(2)}`;
+});
+
+Chart.register(ChartDataLabels);
+
+const ctx = document.getElementById("chart").getContext("2d");
+new Chart(ctx, {
+  type: "line",
+  data: {
+    labels,
+    datasets: [{
+      label: "% Active Accounts Adopting System Renewal",
+      data: raw.map(r => r.pct),
+      borderColor: "#2563eb",
+      backgroundColor: "rgba(37,99,235,0.10)",
+      borderWidth: 2.5,
+      pointRadius: 3,
+      pointHoverRadius: 6,
+      tension: 0.25,
+      fill: true,
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    responsive: true,
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const r = raw[ctx.dataIndex];
+            return `${r.pct.toFixed(1)}% · ${r.adopters.toLocaleString()} of ${r.active.toLocaleString()} accounts`;
+          }
+        }
+      },
+      datalabels: {
+        align: "top",
+        anchor: "end",
+        offset: 6,
+        color: "#1f2937",
+        font: { weight: 600, size: 10 },
+        formatter: (v, ctx) => {
+          // Show every other label to avoid clutter; always first and last
+          const i = ctx.dataIndex;
+          const n = raw.length;
+          if (i === 0 || i === n - 1 || i % 3 === 0) {
+            return v.toFixed(1) + "%";
+          }
+          return "";
+        },
+      },
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: {
+        beginAtZero: false,
+        suggestedMin: 30,
+        suggestedMax: 50,
+        ticks: { callback: (v) => v + "%" },
+        title: { display: true, text: "% adopters" },
+      },
+    },
+  },
+});
+
+const tbl = document.getElementById("table");
+tbl.innerHTML = `
+  <thead><tr>
+    <th>Month</th>
+    <th>Active accounts</th>
+    <th>System adopters</th>
+    <th>% adopters</th>
+  </tr></thead>
+  <tbody>
+    ${raw.map((r, i) => `
+      <tr>
+        <td>${labels[i]}</td>
+        <td>${r.active.toLocaleString()}</td>
+        <td>${r.adopters.toLocaleString()}</td>
+        <td><b>${r.pct.toFixed(1)}%</b></td>
+      </tr>`).join("")}
+  </tbody>
+`;
+</script>
+</body>
+</html>
